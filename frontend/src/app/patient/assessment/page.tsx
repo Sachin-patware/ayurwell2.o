@@ -1,233 +1,139 @@
-'use client';
+// 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import PatientLayout from '@/components/layouts/PatientLayout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2, CheckCircle, Edit } from 'lucide-react';
-import api from '@/services/api';
-import { useAuth } from '@/contexts/AuthContext';
+// import { useState, useEffect } from 'react';
+// import { useRouter } from 'next/navigation';
+// import PatientLayout from '@/components/layouts/PatientLayout';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { Button } from '@/components/ui/button';
+// import { Info, Calendar, User } from 'lucide-react';
+// import api from '@/services/api';
 
-export default function AssessmentPage() {
-    const { user } = useAuth();
-    const router = useRouter();
-    const [loading, setLoading] = useState(false);
-    const [fetchingData, setFetchingData] = useState(true);
-    const [hasExistingAssessment, setHasExistingAssessment] = useState(false);
-    const [age, setAge] = useState('');
-    const [gender, setGender] = useState('');
-    const [prakriti, setPrakriti] = useState('');
-    const [vikriti, setVikriti] = useState('');
-    const [healthHistory, setHealthHistory] = useState('');
+// export default function AssessmentPage() {
+//     const router = useRouter();
+//     const { user } = useAuth();
+//     const [patient, setPatient] = useState<any>(null);
+//     const [loading, setLoading] = useState(true);
 
-    // Fetch existing assessment data
-    useEffect(() => {
-        const fetchAssessment = async () => {
-            try {
-                const userId = user?.uid;
-                if (!userId) return;
+//     useEffect(() => {
+//         const fetchPatient = async () => {
+//             try {
+//                 // Assuming the user.uid is the patientId or we can get it from /auth/me if needed
+//                 // But for now let's try to get the current patient's profile
+//                 // The /patients endpoint with GET might return list, but /patients/<id> returns one.
+//                 // If we don't have ID, we might need to rely on the backend to give us "my" profile.
+//                 // Let's assume user.uid is the patientId for now as per User model.
+//                 if (user?.uid) {
+//                     const response = await api.get(`/patients/${user.uid}`);
+//                     setPatient(response.data);
+//                 }
+//             } catch (error) {
+//                 console.error('Error fetching patient:', error);
+//             } finally {
+//                 setLoading(false);
+//             }
+//         };
 
-                const response = await api.get(`/patients/${userId}`);
-                const patientData = response.data;
+//         if (user) {
+//             fetchPatient();
+//         }
+//     }, [user]);
 
-                // If assessment exists, populate the form
-                if (patientData.assessment) {
-                    const assessment = patientData.assessment;
-                    setAge(assessment.age?.toString() || '');
-                    setGender(assessment.gender || '');
-                    setPrakriti(assessment.prakriti || '');
-                    setVikriti(assessment.vikriti || '');
-                    setHealthHistory(patientData.healthHistory || '');
-                    setHasExistingAssessment(true);
-                }
-            } catch (error) {
-                console.error('Error fetching assessment:', error);
-            } finally {
-                setFetchingData(false);
-            }
-        };
+//     if (loading) {
+//         return (
+//             <PatientLayout>
+//                 <div className="flex justify-center items-center h-64">
+//                     <p>Loading assessment...</p>
+//                 </div>
+//             </PatientLayout>
+//         );
+//     }
 
-        if (user) {
-            fetchAssessment();
-        }
-    }, [user]);
+//     return (
+//         <PatientLayout>
+//             <div className="max-w-2xl mx-auto space-y-6">
+//                 <div>
+//                     <h2 className="text-3xl font-bold text-gray-900">Health Assessment</h2>
+//                     <p className="text-gray-500 mt-1">
+//                         Your Ayurvedic constitution and health profile.
+//                     </p>
+//                 </div>
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
+//                 {patient?.assessment?.prakriti ? (
+//                     <div className="space-y-6">
+//                         <Card>
+//                             <CardHeader>
+//                                 <CardTitle>Your Constitution</CardTitle>
+//                             </CardHeader>
+//                             <CardContent className="space-y-6">
+//                                 <div className="grid grid-cols-2 gap-4">
+//                                     <div className="bg-green-50 p-4 rounded-lg text-center">
+//                                         <h3 className="text-sm font-medium text-green-800 mb-1">Prakriti</h3>
+//                                         <p className="text-2xl font-bold text-green-900">{patient.assessment.prakriti}</p>
+//                                     </div>
+//                                     <div className="bg-orange-50 p-4 rounded-lg text-center">
+//                                         <h3 className="text-sm font-medium text-orange-800 mb-1">Vikriti</h3>
+//                                         <p className="text-2xl font-bold text-orange-900">{patient.assessment.vikriti || 'None'}</p>
+//                                     </div>
+//                                 </div>
 
-        try {
-            const userId = user?.uid;
-            if (!userId) {
-                alert('User not authenticated');
-                return;
-            }
+//                                 <div className="grid grid-cols-2 gap-4 text-sm">
+//                                     <div className="flex justify-between border-b pb-2">
+//                                         <span className="text-gray-500">Age</span>
+//                                         <span className="font-medium">{patient.assessment.age}</span>
+//                                     </div>
+//                                     <div className="flex justify-between border-b pb-2">
+//                                         <span className="text-gray-500">Gender</span>
+//                                         <span className="font-medium">{patient.assessment.gender}</span>
+//                                     </div>
+//                                 </div>
+//                             </CardContent>
+//                         </Card>
 
-            await api.put(`/patients/${userId}`, {
-                assessment: {
-                    age: parseInt(age),
-                    gender,
-                    prakriti,
-                    vikriti
-                },
-                healthHistory
-            });
-
-            alert(hasExistingAssessment ? 'Assessment updated successfully!' : 'Assessment saved successfully!');
-            router.push('/patient/dashboard');
-        } catch (error) {
-            console.error('Error saving assessment:', error);
-            alert('Failed to save assessment');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (fetchingData) {
-        return (
-            <PatientLayout>
-                <div className="flex items-center justify-center min-h-[400px]">
-                    <Loader2 className="h-8 w-8 animate-spin text-[#2E7D32]" />
-                </div>
-            </PatientLayout>
-        );
-    }
-
-    return (
-        <PatientLayout>
-            <div className="max-w-2xl mx-auto space-y-6">
-                <div>
-                    <h2 className="text-3xl font-bold text-gray-900">Health Assessment</h2>
-                    <p className="text-gray-500 mt-1">
-                        {hasExistingAssessment
-                            ? 'Review and update your health assessment information.'
-                            : 'Complete your profile so your doctor can generate a personalized diet plan.'}
-                    </p>
-                </div>
-
-                {hasExistingAssessment && (
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                        <div>
-                            <h3 className="font-medium text-green-900">Assessment Completed</h3>
-                            <p className="text-sm text-green-700 mt-1">
-                                You can review and update your information below.
-                            </p>
-                        </div>
-                    </div>
-                )}
-
-                <Card>
-                    <CardHeader>
-                        <div className="flex items-center justify-between">
-                            <CardTitle>Personal Details</CardTitle>
-                            {hasExistingAssessment && (
-                                <div className="flex items-center text-sm text-gray-500">
-                                    <Edit className="h-4 w-4 mr-1" />
-                                    Edit Mode
-                                </div>
-                            )}
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700">Age</label>
-                                    <Input
-                                        type="number"
-                                        value={age}
-                                        onChange={(e) => setAge(e.target.value)}
-                                        required
-                                        placeholder="e.g., 30"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-700">Gender</label>
-                                    <Select value={gender} onValueChange={setGender} required>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select gender" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="Male">Male</SelectItem>
-                                            <SelectItem value="Female">Female</SelectItem>
-                                            <SelectItem value="Other">Other</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700">Prakriti (Body Constitution)</label>
-                                <Select value={prakriti} onValueChange={setPrakriti} required>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select your constitution" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Vata">Vata (Air/Ether)</SelectItem>
-                                        <SelectItem value="Pitta">Pitta (Fire/Water)</SelectItem>
-                                        <SelectItem value="Kapha">Kapha (Earth/Water)</SelectItem>
-                                        <SelectItem value="Vata-Pitta">Vata-Pitta</SelectItem>
-                                        <SelectItem value="Pitta-Kapha">Pitta-Kapha</SelectItem>
-                                        <SelectItem value="Vata-Kapha">Vata-Kapha</SelectItem>
-                                        <SelectItem value="Tridosha">Tridosha (Balanced)</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700">Vikriti (Current Imbalance)</label>
-                                <Select value={vikriti} onValueChange={setVikriti} required>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select current imbalance" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Vata">Vata (Anxiety, Dryness, Bloating)</SelectItem>
-                                        <SelectItem value="Pitta">Pitta (Acidity, Heat, Anger)</SelectItem>
-                                        <SelectItem value="Kapha">Kapha (Lethargy, Weight Gain, Congestion)</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700">Health History / Notes</label>
-                                <textarea
-                                    className="w-full min-h-[100px] px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
-                                    placeholder="Any existing conditions, allergies, or concerns..."
-                                    value={healthHistory}
-                                    onChange={(e) => setHealthHistory(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="flex gap-3">
-                                <Button
-                                    type="submit"
-                                    className="flex-1 bg-[#2E7D32] hover:bg-[#1B5E20]"
-                                    disabled={loading}
-                                >
-                                    {loading ? (
-                                        <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</>
-                                    ) : (
-                                        hasExistingAssessment ? 'Update Assessment' : 'Save Assessment'
-                                    )}
-                                </Button>
-                                {hasExistingAssessment && (
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        onClick={() => router.push('/patient/dashboard')}
-                                    >
-                                        Cancel
-                                    </Button>
-                                )}
-                            </div>
-                        </form>
-                    </CardContent>
-                </Card>
-            </div>
-        </PatientLayout>
-    );
-}
+//                         {patient.assessmentDoctorName && (
+//                             <Card className="bg-blue-50 border-blue-100">
+//                                 <CardContent className="pt-6">
+//                                     <div className="flex items-start gap-4">
+//                                         <div className="bg-blue-100 p-2 rounded-full">
+//                                             <User className="h-5 w-5 text-blue-600" />
+//                                         </div>
+//                                         <div>
+//                                             <h3 className="font-semibold text-blue-900">Assessment Verified</h3>
+//                                             <p className="text-blue-700 text-sm mt-1">
+//                                                 This assessment was conducted by <strong>Dr. {patient.assessmentDoctorName}</strong>
+//                                                 {patient.assessmentCreatedAt && (
+//                                                     <span> on {new Date(patient.assessmentCreatedAt).toLocaleDateString()}</span>
+//                                                 )}.
+//                                             </p>
+//                                         </div>
+//                                     </div>
+//                                 </CardContent>
+//                             </Card>
+//                         )}
+//                     </div>
+//                 ) : (
+//                     <Card>
+//                         <CardContent className="pt-6">
+//                             <div className="text-center py-8">
+//                                 <div className="bg-blue-50 p-4 rounded-full inline-flex mb-4">
+//                                     <Info className="h-8 w-8 text-blue-600" />
+//                                 </div>
+//                                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
+//                                     Assessment Pending
+//                                 </h3>
+//                                 <p className="text-gray-600 max-w-md mx-auto mb-6">
+//                                     Your health assessment (Prakriti & Vikriti analysis) must be completed in consultation with your Ayurvedic practitioner. Please schedule an appointment or visit your doctor to update this information.
+//                                 </p>
+//                                 <Button
+//                                     onClick={() => router.push('/patient/dashboard')}
+//                                     className="bg-[#2E7D32] hover:bg-[#1B5E20]"
+//                                 >
+//                                     Back to Dashboard
+//                                 </Button>
+//                             </div>
+//                         </CardContent>
+//                     </Card>
+//                 )}
+//             </div>
+//         </PatientLayout>
+//     );
+// }

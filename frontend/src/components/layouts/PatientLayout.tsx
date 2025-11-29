@@ -52,7 +52,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
         { href: '/patient/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/patient/diet-plan', label: 'My Diet', icon: FileText },
         { href: '/patient/track', label: 'Track Progress', icon: Activity },
-        { href: '/appointments', label: 'Appointments', icon: Calendar },
+        { href: '/patient/appointments', label: 'Appointments', icon: Calendar },
     ];
 
     return (

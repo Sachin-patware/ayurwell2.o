@@ -6,3 +6,4 @@ flask-jwt-extended
 flask-bcrypt
 pandas
 scikit-learn
+dotenv

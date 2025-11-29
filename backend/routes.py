@@ -50,14 +50,21 @@ def get_patient(patient_id):
         patient = Patient.objects(patientId=patient_id).first()
         if not patient:
             return jsonify({"error": "Patient not found"}), 404
-            
-        return jsonify({
-            "id": str(patient.id),
-            "patientId": patient.patientId,
+        else:{
             "name": patient.name,
             "healthHistory": patient.healthHistory,
-            "assessment": patient.assessment
-        })
+            "assessment": patient.assessment,
+            "assessmentCreatedBy": patient.assessmentCreatedBy,
+            "assessmentCreatedAt": patient.assessmentCreatedAt.isoformat() if patient.assessmentCreatedAt else None
+        }
+
+        # If assessment was created by a doctor, fetch doctor's name
+        if patient.assessmentCreatedBy:
+            doctor = Doctor.objects(doctorId=patient.assessmentCreatedBy).first()
+            if doctor:
+                response_data['assessmentDoctorName'] = doctor.name
+        
+        return jsonify(response_data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -72,6 +79,16 @@ def update_patient(patient_id):
         
     if 'assessment' in data:
         patient.assessment = data['assessment']
+        # If the updater is a doctor (we can check if they are in Doctor collection or just assume based on role if we had it in JWT)
+        # For now, we'll assume the current user is the one creating/updating it.
+        # Ideally we should check if current_user is a doctor.
+        current_user = get_jwt_identity()
+        # Check if user is a doctor
+        is_doctor = Doctor.objects(doctorId=current_user).first() is not None
+        
+        if is_doctor:
+            patient.assessmentCreatedBy = current_user
+            patient.assessmentCreatedAt = get_ist_now()
     
     if 'healthHistory' in data:
         patient.healthHistory = data['healthHistory']

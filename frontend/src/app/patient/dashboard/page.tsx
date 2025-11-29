@@ -248,7 +248,7 @@ export default function PatientDashboard() {
                         <h3 className="text-xl font-bold text-gray-900">Quick Actions</h3>
                         <Card className="shadow-md">
                             <CardContent className="p-0 divide-y">
-                                <Link href="/patient/assessment" className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
+                                {/* <Link href="/patient/assessment" className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
                                     <div className="flex items-center space-x-3">
                                         <div className="h-8 w-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
                                             <FileText className="h-4 w-4" />
@@ -256,7 +256,7 @@ export default function PatientDashboard() {
                                         <span className="font-medium text-gray-700">Complete Assessment</span>
                                     </div>
                                     <ChevronRight className="h-4 w-4 text-gray-400" />
-                                </Link>
+                                </Link> */}
                                 <Link href="/patient/track" className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors">
                                     <div className="flex items-center space-x-3">
                                         <div className="h-8 w-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">

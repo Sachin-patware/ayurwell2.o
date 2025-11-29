@@ -18,7 +18,7 @@ export default function DashboardPage() {
             } else if (user.role === 'patient') {
                 router.push('/patient/dashboard');
             } else if (user.role === 'admin') {
-                router.push('/admin/dashboard');
+                router.push('/admin');
             } else {
                 // Fallback for unknown roles
                 router.push('/login');

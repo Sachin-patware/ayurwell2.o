@@ -41,6 +41,8 @@ class Patient(db.Document):
     assignedDoctorId = db.StringField()
     healthHistory = db.StringField()
     assessment = db.DictField(default={})  # prakriti, vikriti, age, etc.
+    assessmentCreatedBy = db.StringField()  # doctorId
+    assessmentCreatedAt = db.DateTimeField()
     createdAt = db.DateTimeField(default=get_ist_now)
 
 class Appointment(db.Document):
@@ -50,9 +52,28 @@ class Appointment(db.Document):
     doctorName = db.StringField(required=True)
     startTimestamp = db.DateTimeField(required=True)
     endTimestamp = db.DateTimeField()
-    status = db.StringField(default='upcoming', choices=['upcoming', 'completed', 'cancelled'])
+    status = db.StringField(
+        default='pending', 
+        choices=['pending', 'confirmed', 'cancelled', 'doctor_rescheduled_pending', 'patient_rescheduled_pending', 'completed']
+    )
     notes = db.StringField()
+    cancelReason = db.StringField()
+    rescheduleReason = db.StringField()  # Reason for rescheduling
+    isRescheduledBy = db.StringField(choices=['patient', 'doctor', None])
+    proposedStartTimestamp = db.DateTimeField()  # For doctor-initiated reschedules
+    proposedEndTimestamp = db.DateTimeField()    # For doctor-initiated reschedules
     createdAt = db.DateTimeField(default=get_ist_now)
+    updatedAt = db.DateTimeField(default=get_ist_now)
+    
+    # Indexes for performance
+    meta = {
+        'indexes': [
+            {'fields': ['doctorId', 'startTimestamp']},
+            {'fields': ['patientId', 'startTimestamp']},
+            {'fields': ['status', 'startTimestamp']},
+            {'fields': ['doctorId', 'status', 'startTimestamp']}
+        ]
+    }
 
 class DietPlan(db.Document):
     patientId = db.StringField(required=True)

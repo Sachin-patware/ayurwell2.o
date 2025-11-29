@@ -69,8 +69,8 @@ export default function PractitionerDashboard() {
                     totalConsultations: appointments.filter((a: Appointment) => a.status === 'completed').length
                 });
 
-                // Set recent patients (last 5)
-                setRecentPatients(patients.slice(0, 5));
+                // Set recent patients (last 5 added, reversed to show newest first)
+                setRecentPatients([...patients].reverse().slice(0, 5));
 
                 // Set today's appointments
                 setTodayAppointments(todaysAppointments);
@@ -99,7 +99,7 @@ export default function PractitionerDashboard() {
         <PractitionerLayout>
             <div className="space-y-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-gray-900">Dashboard</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">Dashboard (Updated)</h2>
                     <p className="text-gray-500 mt-2">Welcome back, Dr. {user?.name}</p>
                 </div>
 
@@ -167,7 +167,9 @@ export default function PractitionerDashboard() {
                                                 </div>
                                                 <div>
                                                     <p className="font-medium text-gray-900">{patient.name}</p>
-                                                    <p className="text-sm text-gray-500">ID: {patient.patientId}</p>
+                                                    <p className="text-sm text-gray-500" title={patient.patientId}>
+                                                        ID: {patient.patientId.substring(0, 8)}...
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className="text-sm text-gray-500">

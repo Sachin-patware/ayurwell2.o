@@ -5,22 +5,12 @@ import PractitionerLayout from '@/components/layouts/PractitionerLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar, Clock, User, Loader2, AlertCircle, CheckCircle, XCircle, CalendarClock, Filter } from 'lucide-react';
+import { Calendar, Clock, User, Loader2, AlertCircle, CheckCircle, XCircle, CalendarClock, Filter, Edit } from 'lucide-react';
 import { startOfDay, endOfDay, isWithinInterval, parseISO } from 'date-fns';
 import { formatDateIST } from '@/lib/dateUtils';
 import api from '@/services/api';
-
-interface Appointment {
-    id: string;
-    doctorId: string;
-    patientId: string;
-    doctorName: string;
-    patientName: string;
-    startTimestamp: string;
-    endTimestamp?: string;
-    status: string;
-    notes?: string;
-}
+import RescheduleModal from '@/components/appointments/RescheduleModal';
+import { Appointment } from '@/services/appointmentService';
 
 export default function PractitionerAppointmentsPage() {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -29,6 +19,10 @@ export default function PractitionerAppointmentsPage() {
     const [error, setError] = useState('');
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [dateFilter, setDateFilter] = useState<string>('all'); // 'all', 'today', 'upcoming', 'past'
+
+    // Reschedule state
+    const [rescheduleModalOpen, setRescheduleModalOpen] = useState(false);
+    const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
 
     useEffect(() => {
         fetchAppointments();
@@ -41,7 +35,7 @@ export default function PractitionerAppointmentsPage() {
     const fetchAppointments = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/appointments/');
+            const response = await api.get('/appointments/me');
             // Sort by date (newest first)
             const sorted = response.data.sort((a: Appointment, b: Appointment) =>
                 new Date(b.startTimestamp).getTime() - new Date(a.startTimestamp).getTime()
@@ -76,7 +70,7 @@ export default function PractitionerAppointmentsPage() {
         } else if (dateFilter === 'upcoming') {
             filtered = filtered.filter(apt => {
                 const aptDate = parseISO(apt.startTimestamp);
-                return aptDate >= now && apt.status === 'upcoming';
+                return aptDate > now;
             });
         } else if (dateFilter === 'past') {
             filtered = filtered.filter(apt => {
@@ -88,21 +82,88 @@ export default function PractitionerAppointmentsPage() {
         setFilteredAppointments(filtered);
     };
 
+    // Handle reschedule click
+    const handleRescheduleClick = (appointment: Appointment) => {
+        setSelectedAppointment(appointment);
+        setRescheduleModalOpen(true);
+    };
+
+    const handleRescheduleSubmit = async (newTimestamp: string, reason?: string) => {
+        if (!selectedAppointment?.id) {
+            alert('Please select an appointment and try again.');
+            return;
+        }
+
+        try {
+            const res = await api.post(`/appointments/${selectedAppointment.id}/reschedule/doctor`, {
+                newStartTimestamp: newTimestamp,
+                reason: reason
+            });
+
+            console.log('📥 Doctor Reschedule API Response:', res.data);
+            console.log('📥 Appointment object from response:', res.data.appointment);
+
+            // Update UI instantly with the returned appointment object
+            setAppointments(prev => prev.map(apt => {
+                if (apt.id === selectedAppointment.id) {
+                    console.log('🔄 Updating appointment:', apt.id);
+                    console.log('🔄 Old appointment:', apt);
+                    const updated = { ...apt, ...res.data.appointment };
+                    console.log('🔄 New appointment:', updated);
+                    return updated;
+                }
+                return apt;
+            }));
+
+            setRescheduleModalOpen(false);
+            setSelectedAppointment(null);
+
+            alert('✅ Reschedule proposal sent to patient!');
+        } catch (err: any) {
+            console.error('Error rescheduling:', err);
+            throw new Error(err.response?.data?.error || 'Failed to reschedule');
+        }
+    };
+
     const handleStatusChange = async (appointmentId: string, newStatus: string) => {
         try {
-            await api.put(`/appointments/${appointmentId}`, { status: newStatus });
+            if (newStatus === 'confirmed') {
+                await api.post(`/appointments/${appointmentId}/confirm`);
+            } else if (newStatus === 'cancelled') {
+                await api.post(`/appointments/${appointmentId}/cancel`, { reason: 'Cancelled by doctor' });
+            }
             await fetchAppointments();
+            alert(`✅ Appointment ${newStatus}!`);
         } catch (err: any) {
-            setError(err.response?.data?.error || 'Failed to update status');
             console.error('Error updating status:', err);
+            alert(`❌ Failed to update appointment: ${err.response?.data?.error || err.message}`);
+        }
+    };
+
+    const handleReschedule = (appointment: Appointment) => {
+        handleRescheduleClick(appointment);
+    };
+
+    const handleRejectReschedule = async (appointmentId: string) => {
+        try {
+            await api.post(`/appointments/${appointmentId}/reschedule/reject`);
+            await fetchAppointments();
+            alert('✅ Reschedule request rejected!');
+        } catch (err: any) {
+            console.error('Error rejecting reschedule:', err);
+            alert(`❌ Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
         }
     };
 
     const getStatusBadge = (status: string) => {
         const badges = {
-            upcoming: { bg: 'bg-green-100', text: 'text-green-700', icon: CheckCircle, label: 'Upcoming' },
+            pending: { bg: 'bg-yellow-100', text: 'text-yellow-700', icon: Clock, label: 'Pending' },
+            confirmed: { bg: 'bg-green-100', text: 'text-green-700', icon: CheckCircle, label: 'Confirmed' },
+            upcoming: { bg: 'bg-green-100', text: 'text-green-700', icon: CheckCircle, label: 'Confirmed' },
             completed: { bg: 'bg-blue-100', text: 'text-blue-700', icon: CheckCircle, label: 'Completed' },
             cancelled: { bg: 'bg-red-100', text: 'text-red-700', icon: XCircle, label: 'Cancelled' },
+            doctor_rescheduled_pending: { bg: 'bg-orange-100', text: 'text-orange-700', icon: Clock, label: 'Reschedule Proposed' },
+            patient_rescheduled_pending: { bg: 'bg-purple-100', text: 'text-purple-700', icon: Clock, label: 'Patient Reschedule Req' },
         };
         const badge = badges[status as keyof typeof badges] || badges.upcoming;
         const Icon = badge.icon;
@@ -118,7 +179,7 @@ export default function PractitionerAppointmentsPage() {
         const now = new Date();
         return {
             total: appointments.length,
-            upcoming: appointments.filter(a => a.status === 'upcoming' && parseISO(a.startTimestamp) >= now).length,
+            upcoming: appointments.filter(a => (a.status === 'pending' || a.status === 'confirmed') && parseISO(a.startTimestamp) >= now).length,
             today: appointments.filter(a => {
                 const aptDate = parseISO(a.startTimestamp);
                 return isWithinInterval(aptDate, { start: startOfDay(now), end: endOfDay(now) });
@@ -213,7 +274,9 @@ export default function PractitionerAppointmentsPage() {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="all">All Status</SelectItem>
-                                                <SelectItem value="upcoming">Upcoming</SelectItem>
+                                                <SelectItem value="pending">Pending</SelectItem>
+                                                <SelectItem value="confirmed">Confirmed</SelectItem>
+
                                                 <SelectItem value="completed">Completed</SelectItem>
                                                 <SelectItem value="cancelled">Cancelled</SelectItem>
                                             </SelectContent>
@@ -261,28 +324,138 @@ export default function PractitionerAppointmentsPage() {
                                                     </div>
                                                 </div>
 
-                                                {apt.status === 'upcoming' && (
-                                                    <div className="flex gap-2">
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            className="flex-1 border-2 border-green-300 hover:bg-green-50 text-green-700"
-                                                            onClick={() => handleStatusChange(apt.id, 'completed')}
-                                                        >
-                                                            <CheckCircle className="h-4 w-4 mr-1" />
-                                                            Mark Complete
-                                                        </Button>
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            className="flex-1 border-2 border-red-300 hover:bg-red-50 text-red-700"
-                                                            onClick={() => handleStatusChange(apt.id, 'cancelled')}
-                                                        >
-                                                            <XCircle className="h-4 w-4 mr-1" />
-                                                            Cancel
-                                                        </Button>
+                                                {/* Proposed Reschedule Section */}
+                                                {(apt.status === 'patient_rescheduled_pending' || apt.status === 'doctor_rescheduled_pending') && apt.proposedStartTimestamp && (
+                                                    <div className="mb-3 p-3 bg-orange-50 border-2 border-orange-200 rounded-lg">
+                                                        <p className="text-xs font-bold text-orange-700 mb-2 uppercase flex items-center gap-1">
+                                                            <CalendarClock className="h-4 w-4" />
+                                                            {apt.status === 'patient_rescheduled_pending' ? 'Patient Proposed New Time:' : 'You Proposed:'}
+                                                        </p>
+                                                        <div className="flex items-center gap-2 text-orange-800 font-semibold">
+                                                            <Calendar className="h-4 w-4" />
+                                                            {formatDateIST(apt.proposedStartTimestamp, 'EEEE, MMMM d, yyyy')}
+                                                        </div>
+                                                        <div className="flex items-center gap-2 text-orange-800 font-semibold mt-1">
+                                                            <Clock className="h-4 w-4" />
+                                                            {formatDateIST(apt.proposedStartTimestamp, 'h:mm a')}
+                                                        </div>
                                                     </div>
                                                 )}
+
+                                                {/* Action Buttons */}
+                                                <div className="flex gap-2 mt-4 flex-wrap">
+                                                    {/* PENDING: Confirm + Propose Reschedule + Reject */}
+                                                    {apt.status === 'pending' && (
+                                                        <>
+                                                            <Button
+                                                                size="sm"
+                                                                className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
+                                                                onClick={() => handleStatusChange(apt.id, 'confirmed')}
+                                                            >
+                                                                <CheckCircle className="h-4 w-4 mr-1" />
+                                                                Confirm
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                                                onClick={() => handleReschedule(apt)}
+                                                            >
+                                                                <Edit className="h-4 w-4 mr-1" />
+                                                                Propose Reschedule
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                onClick={() => handleStatusChange(apt.id, 'cancelled')}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Reject
+                                                            </Button>
+                                                        </>
+                                                    )}
+
+                                                    {/* CONFIRMED: Propose Reschedule + Cancel */}
+                                                    {apt.status === 'confirmed' && (
+                                                        <>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                                                onClick={() => handleReschedule(apt)}
+                                                            >
+                                                                <Edit className="h-4 w-4 mr-1" />
+                                                                Propose Reschedule
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                onClick={() => handleStatusChange(apt.id, 'cancelled')}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Cancel
+                                                            </Button>
+                                                        </>
+                                                    )}
+
+                                                    {/* PATIENT_RESCHEDULED_PENDING: Accept + Decline + Cancel */}
+                                                    {apt.status === 'patient_rescheduled_pending' && (
+                                                        <>
+                                                            <Button
+                                                                size="sm"
+                                                                className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
+                                                                onClick={() => handleStatusChange(apt.id, 'confirmed')}
+                                                            >
+                                                                <CheckCircle className="h-4 w-4 mr-1" />
+                                                                Accept Reschedule
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                onClick={() => handleRejectReschedule(apt.id)}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Decline
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                onClick={() => handleStatusChange(apt.id, 'cancelled')}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Cancel
+                                                            </Button>
+                                                        </>
+                                                    )}
+
+                                                    {/* DOCTOR_RESCHEDULED_PENDING: Withdraw Proposal + Cancel */}
+                                                    {apt.status === 'doctor_rescheduled_pending' && (
+                                                        <>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-orange-200 text-orange-600 hover:bg-orange-50"
+                                                                onClick={() => handleRejectReschedule(apt.id)}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Withdraw Proposal
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                onClick={() => handleStatusChange(apt.id, 'cancelled')}
+                                                            >
+                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                Cancel
+                                                            </Button>
+                                                        </>
+                                                    )}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -296,6 +469,19 @@ export default function PractitionerAppointmentsPage() {
                             </CardContent>
                         </Card>
                     </>
+                )}
+
+                {selectedAppointment && (
+                    <RescheduleModal
+                        isOpen={rescheduleModalOpen}
+                        onClose={() => {
+                            setRescheduleModalOpen(false);
+                            setSelectedAppointment(null);
+                        }}
+                        appointment={selectedAppointment}
+                        onReschedule={handleRescheduleSubmit}
+                        userRole="doctor"
+                    />
                 )}
             </div>
         </PractitionerLayout>

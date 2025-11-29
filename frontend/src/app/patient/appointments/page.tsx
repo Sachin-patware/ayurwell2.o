@@ -21,34 +21,37 @@ interface Appointment {
     endTimestamp?: string;
     status: string;
     notes?: string;
+    rescheduleReason?: string;
+    proposedStartTimestamp?: string;
+}
+
+interface ClinicSchedule {
+    day: string;
+    from: string;
+    to: string;
 }
 
 interface Doctor {
     doctorId: string;
     name: string;
     specialization: string;
-    clinicHours: Array<{ day: string; from: string; to: string }>;
+    clinicHours: ClinicSchedule[];
 }
 
-export default function AppointmentsPage() {
+export default function PatientAppointmentsPage() {
+    const [loading, setLoading] = useState(true);
+    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [selectedDoctor, setSelectedDoctor] = useState<string>('');
+    const [doctorAppointments, setDoctorAppointments] = useState<Appointment[]>([]);
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
     const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-    const [selectedDoctor, setSelectedDoctor] = useState<string>('');
-    const [appointments, setAppointments] = useState<Appointment[]>([]);
-    const [doctorAppointments, setDoctorAppointments] = useState<Appointment[]>([]); // All appointments for selected doctor
-    const [doctors, setDoctors] = useState<Doctor[]>([]);
-    const [loading, setLoading] = useState(true);
     const [booking, setBooking] = useState(false);
     const [error, setError] = useState('');
     const [reschedulingId, setReschedulingId] = useState<string | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>('all');
 
-    const availableSlots = [
-        '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-        '12:00 PM', '12:30 PM',
-        '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
-        '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM'
-    ];
+    const selectedDoctorData = doctors.find((d) => d.doctorId === selectedDoctor);
 
     useEffect(() => {
         fetchData();
@@ -67,7 +70,7 @@ export default function AppointmentsPage() {
         try {
             setLoading(true);
             const [appointmentsRes, doctorsRes] = await Promise.all([
-                api.get('/appointments/'),
+                api.get('/appointments/me'),
                 api.get('/doctors')
             ]);
             setAppointments(appointmentsRes.data);
@@ -127,24 +130,39 @@ export default function AppointmentsPage() {
             });
 
             if (reschedulingId) {
-                // Reschedule existing appointment
-                await api.put(`/appointments/${reschedulingId}`, {
-                    startTimestamp: localDateTimeString,
-                    status: 'upcoming'
+                // Reschedule existing appointment - use /reschedule/patient endpoint
+                const res = await api.post(`/appointments/${reschedulingId}/reschedule/patient`, {
+                    newStartTimestamp: localDateTimeString
                 });
-                alert(`✅ Appointment rescheduled successfully to ${format(selectedDate, 'PPP')} at ${selectedSlot}!`);
+
+                console.log('📥 Reschedule API Response:', res.data);
+                console.log('📥 Appointment object from response:', res.data.appointment);
+
+                // Update UI instantly with the returned appointment object
+                setAppointments(prev => prev.map(apt => {
+                    if (apt.id === reschedulingId) {
+                        console.log('🔄 Updating appointment:', apt.id);
+                        console.log('🔄 Old appointment:', apt);
+                        const updated = { ...apt, ...res.data.appointment };
+                        console.log('🔄 New appointment:', updated);
+                        return updated;
+                    }
+                    return apt;
+                }));
+
+                alert(`✅ Reschedule request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
                 setReschedulingId(null);
             } else {
-                // Book new appointment
-                await api.post('/appointments/', {
+                // Book new appointment - use /book endpoint
+                await api.post('/appointments/book', {
                     doctor_id: selectedDoctor,
                     startTimestamp: localDateTimeString,
                     notes: 'Diet consultation'
                 });
-                alert(`✅ Appointment booked successfully for ${format(selectedDate, 'PPP')} at ${selectedSlot}!`);
+                alert(`✅ Appointment request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
+                await fetchData();
             }
 
-            await fetchData();
             await fetchDoctorAppointments(); // Refresh doctor's appointments
             setSelectedSlot(null);
             setSelectedDoctor('');
@@ -161,10 +179,9 @@ export default function AppointmentsPage() {
 
     const handleCancel = async (appointmentId: string) => {
         if (!confirm('Are you sure you want to cancel this appointment?')) return;
-
         try {
-            await api.put(`/appointments/${appointmentId}`, {
-                status: 'cancelled'
+            await api.post(`/appointments/${appointmentId}/cancel`, {
+                reason: 'Cancelled by patient'
             });
             await fetchData();
             await fetchDoctorAppointments(); // Refresh doctor's appointments
@@ -182,14 +199,28 @@ export default function AppointmentsPage() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const handleRescheduleResponse = async (appointmentId: string, action: 'accept' | 'reject') => {
+        try {
+            await api.post(`/appointments/${appointmentId}/reschedule/${action}`);
+            await fetchData();
+            alert(`✅ Reschedule proposal ${action}ed!`);
+        } catch (err: any) {
+            console.error(`Error ${action}ing reschedule:`, err);
+            alert(`❌ Failed to ${action} reschedule`);
+        }
+    };
+
     const filteredAppointments = appointments.filter(a => {
         if (statusFilter === 'all') return true;
+        if (statusFilter === 'pending') {
+            return a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending';
+        }
         return a.status === statusFilter;
     });
 
-    const upcomingAppointments = appointments.filter(a => a.status === 'upcoming');
-    const selectedDoctorData = doctors.find(d => d.doctorId === selectedDoctor);
-
+    const upcomingAppointments = appointments.filter(a => a.status === 'confirmed');
+    const pastAppointments = appointments.filter(a => a.status === 'cancelled');
+    const pendingAppointments = appointments.filter(a => a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending');
     // Get available days for selected doctor
     const getAvailableDays = (): string[] => {
         if (!selectedDoctorData) return [];
@@ -225,15 +256,42 @@ export default function AppointmentsPage() {
         return bookedSlots;
     };
 
+    // Generate 30-minute slots between start and end time
+    const generateTimeSlots = (start: string, end: string): string[] => {
+        const slots: string[] = [];
+        const [startHour, startMin] = start.split(':').map(Number);
+        const [endHour, endMin] = end.split(':').map(Number);
+
+        let currentHour = startHour;
+        let currentMin = startMin;
+
+        while (currentHour < endHour || (currentHour === endHour && currentMin < endMin)) {
+            const period = currentHour >= 12 ? 'PM' : 'AM';
+            const displayHour = currentHour > 12 ? currentHour - 12 : (currentHour === 0 ? 12 : currentHour);
+            const displayMin = currentMin === 0 ? '00' : currentMin;
+
+            // Format: "09:00 AM"
+            const timeString = `${String(displayHour).padStart(2, '0')}:${displayMin} ${period}`;
+            slots.push(timeString);
+
+            // Increment by 30 minutes
+            currentMin += 30;
+            if (currentMin >= 60) {
+                currentHour += 1;
+                currentMin = 0;
+            }
+        }
+        return slots;
+    };
+
     // Get available time slots based on doctor's clinic hours and existing bookings
     const getAvailableSlots = (): string[] => {
-        if (!selectedDate || !selectedDoctorData) return availableSlots;
+        if (!selectedDate || !selectedDoctorData) return [];
 
         const dayName = format(selectedDate, 'EEEE');
         console.log('🔍 Debug - Selected day:', dayName);
-        console.log('🔍 Debug - Doctor clinic hours:', selectedDoctorData.clinicHours);
 
-        const clinicDay = selectedDoctorData.clinicHours.find(ch => ch.day === dayName);
+        const clinicDay = selectedDoctorData.clinicHours.find((ch) => ch.day === dayName);
         console.log('🔍 Debug - Found clinic day:', clinicDay);
 
         if (!clinicDay) {
@@ -241,34 +299,15 @@ export default function AppointmentsPage() {
             return []; // Doctor not available on this day
         }
 
-        // Parse clinic hours
-        const [fromHour, fromMin] = clinicDay.from.split(':').map(Number);
-        const [toHour, toMin] = clinicDay.to.split(':').map(Number);
-
-        console.log('🔍 Debug - Clinic hours:', `${fromHour}:${fromMin} to ${toHour}:${toMin}`);
-
-        // Filter slots within clinic hours
-        const slotsInRange = availableSlots.filter(slot => {
-            const [time, period] = slot.split(' ');
-            const [hours, minutes] = time.split(':').map(Number);
-            let hour = hours;
-            if (period === 'PM' && hour !== 12) hour += 12;
-            if (period === 'AM' && hour === 12) hour = 0;
-
-            const slotMinutes = hour * 60 + minutes;
-            const fromMinutes = fromHour * 60 + fromMin;
-            const toMinutes = toHour * 60 + toMin;
-
-            return slotMinutes >= fromMinutes && slotMinutes < toMinutes;
-        });
-
-        console.log('✅ Slots in range:', slotsInRange);
+        // Generate slots for this specific day based on doctor's hours
+        const dailySlots = generateTimeSlots(clinicDay.from, clinicDay.to);
+        console.log('✅ Generated slots for day:', dailySlots);
 
         // Remove booked slots
         const bookedSlots = getBookedSlots();
         console.log('📅 Booked slots:', bookedSlots);
 
-        const finalSlots = slotsInRange.filter(slot => !bookedSlots.includes(slot));
+        const finalSlots = dailySlots.filter(slot => !bookedSlots.includes(slot));
         console.log('✅ Final available slots:', finalSlots);
 
         return finalSlots;
@@ -278,11 +317,14 @@ export default function AppointmentsPage() {
 
     const getStatusBadge = (status: string) => {
         const badges = {
-            upcoming: { bg: 'bg-gradient-to-r from-green-400 to-emerald-400', text: 'text-white', icon: CheckCircle, label: 'Confirmed' },
+            pending: { bg: 'bg-gradient-to-r from-yellow-400 to-orange-400', text: 'text-white', icon: Clock, label: 'Pending Confirmation' },
+            doctor_rescheduled_pending: { bg: 'bg-gradient-to-r from-orange-400 to-red-400', text: 'text-white', icon: CalendarClock, label: 'Reschedule Proposed' },
+            patient_rescheduled_pending: { bg: 'bg-gradient-to-r from-orange-400 to-red-400', text: 'text-white', icon: CalendarClock, label: 'Reschedule Requested' },
+            confirmed: { bg: 'bg-gradient-to-r from-green-400 to-emerald-400', text: 'text-white', icon: CheckCircle, label: 'Confirmed' },
             completed: { bg: 'bg-gradient-to-r from-blue-400 to-cyan-400', text: 'text-white', icon: CalendarCheck, label: 'Completed' },
             cancelled: { bg: 'bg-gradient-to-r from-red-400 to-pink-400', text: 'text-white', icon: XCircle, label: 'Cancelled' },
         };
-        const badge = badges[status as keyof typeof badges] || badges.upcoming;
+        const badge = badges[status as keyof typeof badges] || badges.pending;
         const Icon = badge.icon;
         return (
             <div className={`${badge.bg} ${badge.text} px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1`}>
@@ -496,7 +538,8 @@ export default function AppointmentsPage() {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="all">All Status</SelectItem>
-                                                <SelectItem value="upcoming">Upcoming</SelectItem>
+                                                <SelectItem value="pending">Pending</SelectItem>
+                                                <SelectItem value="confirmed">Confirmed</SelectItem>
                                                 <SelectItem value="completed">Completed</SelectItem>
                                                 <SelectItem value="cancelled">Cancelled</SelectItem>
                                             </SelectContent>
@@ -505,51 +548,137 @@ export default function AppointmentsPage() {
                                 </CardHeader>
                                 <CardContent className="p-4">
                                     {filteredAppointments.length > 0 ? (
-                                        <div className="space-y-3">
+                                        <div className="space-y-4">
                                             {filteredAppointments.map((apt) => (
-                                                <div key={apt.id} className="bg-gradient-to-r from-white to-blue-50/30 p-4 rounded-xl shadow-sm border-2 border-blue-100 hover:shadow-md transition-shadow">
-                                                    <div className="flex items-start justify-between mb-3">
+                                                <div key={apt.id} className="border rounded-lg p-4 bg-white shadow-sm">
+                                                    <div className="flex justify-between items-start mb-2">
                                                         <div>
-                                                            <h4 className="font-bold text-gray-900 flex items-center gap-2">
-                                                                <User className="h-4 w-4 text-indigo-500" />
-                                                                {apt.doctorName}
-                                                            </h4>
-                                                            <p className="text-sm text-gray-500 mt-1">{apt.notes || 'Consultation'}</p>
+                                                            <h4 className="font-bold text-lg">{format(new Date(apt.startTimestamp), 'PPP')}</h4>
+                                                            <p className="text-gray-600 flex items-center gap-2">
+                                                                <Clock className="h-4 w-4" />
+                                                                {format(new Date(apt.startTimestamp), 'p')}
+                                                            </p>
+                                                            <p className="text-gray-600 flex items-center gap-2">
+                                                                <User className="h-4 w-4" />
+                                                                Dr. {apt.doctorName}
+                                                            </p>
                                                         </div>
                                                         {getStatusBadge(apt.status)}
                                                     </div>
-                                                    <div className="space-y-2 text-sm text-gray-600 mb-3">
-                                                        <div className="flex items-center bg-indigo-50 p-2 rounded-lg">
-                                                            <Calendar className="h-4 w-4 mr-2 text-indigo-500" />
-                                                            <span className="font-medium">{format(new Date(apt.startTimestamp), 'EEEE, MMMM d, yyyy')}</span>
+
+                                                    {/* Proposed Reschedule Section */}
+                                                    {(apt.status === 'doctor_rescheduled_pending') && apt.proposedStartTimestamp && (
+                                                        <div className="mb-3 p-2 bg-orange-50 border border-orange-200 rounded-lg">
+                                                            <p className="text-xs font-bold text-orange-700 mb-1 uppercase">
+                                                                Doctor Proposed New Time:
+                                                            </p>
+                                                            <div className="flex items-center gap-2 text-orange-800 font-medium">
+                                                                <CalendarClock className="h-4 w-4" />
+                                                                {format(new Date(apt.proposedStartTimestamp), 'PPP p')}
+                                                            </div>
+                                                            {apt.rescheduleReason && (
+                                                                <div className="mt-2 pt-2 border-t border-orange-200">
+                                                                    <p className="text-xs font-semibold text-orange-700 mb-1">Reason:</p>
+                                                                    <p className="text-sm text-orange-800">{apt.rescheduleReason}</p>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                        <div className="flex items-center bg-purple-50 p-2 rounded-lg">
-                                                            <Clock className="h-4 w-4 mr-2 text-purple-500" />
-                                                            <span className="font-medium">{format(new Date(apt.startTimestamp), 'h:mm a')}</span>
-                                                        </div>
-                                                    </div>
-                                                    {apt.status === 'upcoming' && (
-                                                        <div className="flex gap-2">
+                                                    )}
+
+                                                    <div className="flex gap-2 mt-4 justify-end">
+                                                        {/* PENDING: Only Cancel (patient cannot reschedule until doctor confirms) */}
+                                                        {apt.status === 'pending' && (
                                                             <Button
                                                                 variant="outline"
                                                                 size="sm"
-                                                                className="flex-1 border-2 border-indigo-300 hover:bg-indigo-50 text-indigo-600 font-semibold"
-                                                                onClick={() => handleReschedule(apt)}
-                                                            >
-                                                                <Edit className="h-4 w-4 mr-1" />
-                                                                Reschedule
-                                                            </Button>
-                                                            <Button
-                                                                variant="outline"
-                                                                size="sm"
-                                                                className="flex-1 border-2 border-red-300 hover:bg-red-50 text-red-600 font-semibold"
+                                                                className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleCancel(apt.id)}
                                                             >
                                                                 <X className="h-4 w-4 mr-1" />
                                                                 Cancel
                                                             </Button>
-                                                        </div>
-                                                    )}
+                                                        )}
+
+                                                        {/* CONFIRMED: Reschedule + Cancel */}
+                                                        {apt.status === 'confirmed' && (
+                                                            <>
+                                                                <Button
+                                                                    variant="outline"
+                                                                    size="sm"
+                                                                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                                                                    onClick={() => handleReschedule(apt)}
+                                                                >
+                                                                    <Edit className="h-4 w-4 mr-1" />
+                                                                    Reschedule
+                                                                </Button>
+                                                                <Button
+                                                                    variant="outline"
+                                                                    size="sm"
+                                                                    className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                    onClick={() => handleCancel(apt.id)}
+                                                                >
+                                                                    <X className="h-4 w-4 mr-1" />
+                                                                    Cancel
+                                                                </Button>
+                                                            </>
+                                                        )}
+
+                                                        {/* PATIENT_RESCHEDULED_PENDING: Withdraw Request + Cancel */}
+                                                        {apt.status === 'patient_rescheduled_pending' && (
+                                                            <>
+                                                                <Button
+                                                                    variant="outline"
+                                                                    size="sm"
+                                                                    className="border-orange-200 text-orange-600 hover:bg-orange-50"
+                                                                    onClick={() => handleRescheduleResponse(apt.id, 'reject')}
+                                                                >
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                    Withdraw Request
+                                                                </Button>
+                                                                <Button
+                                                                    variant="outline"
+                                                                    size="sm"
+                                                                    className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                    onClick={() => handleCancel(apt.id)}
+                                                                >
+                                                                    <X className="h-4 w-4 mr-1" />
+                                                                    Cancel
+                                                                </Button>
+                                                            </>
+                                                        )}
+
+                                                        {/* DOCTOR_RESCHEDULED_PENDING: Accept + Reject + Cancel */}
+                                                        {apt.status === 'doctor_rescheduled_pending' && (
+                                                            <>
+                                                                <Button
+                                                                    size="sm"
+                                                                    className="bg-green-600 hover:bg-green-700 text-white"
+                                                                    onClick={() => handleRescheduleResponse(apt.id, 'accept')}
+                                                                >
+                                                                    <CheckCircle className="h-4 w-4 mr-1" />
+                                                                    Accept New Time
+                                                                </Button>
+                                                                <Button
+                                                                    size="sm"
+                                                                    variant="outline"
+                                                                    className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                    onClick={() => handleRescheduleResponse(apt.id, 'reject')}
+                                                                >
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                    Reject
+                                                                </Button>
+                                                                <Button
+                                                                    variant="outline"
+                                                                    size="sm"
+                                                                    className="border-red-200 text-red-600 hover:bg-red-50"
+                                                                    onClick={() => handleCancel(apt.id)}
+                                                                >
+                                                                    <X className="h-4 w-4 mr-1" />
+                                                                    Cancel
+                                                                </Button>
+                                                            </>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
@@ -561,68 +690,79 @@ export default function AppointmentsPage() {
                                         </div>
                                     )}
                                 </CardContent>
-                            </Card>
-                        </div>
+                            </Card >
+                        </div >
 
                         {/* Sidebar */}
-                        <div className="space-y-6">
+                        < div className="space-y-6" >
                             {/* Quick Stats */}
-                            <Card className="border-2 border-green-200 shadow-lg">
+                            < Card className="border-2 border-green-200 shadow-lg" >
                                 <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
                                     <CardTitle className="text-green-700">Quick Stats</CardTitle>
                                 </CardHeader>
                                 <CardContent className="p-4 space-y-3">
                                     <div className="bg-gradient-to-r from-green-400 to-emerald-400 text-white p-3 rounded-lg">
                                         <p className="text-xs opacity-90">Upcoming</p>
-                                        <p className="text-3xl font-bold">{appointments.filter(a => a.status === 'upcoming').length}</p>
+                                        <p className="text-3xl font-bold">{upcomingAppointments.length}</p>
                                     </div>
                                     <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
                                         <p className="text-xs opacity-90">Completed</p>
                                         <p className="text-3xl font-bold">{appointments.filter(a => a.status === 'completed').length}</p>
+                                    </div>
+                                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
+                                        <p className="text-xs opacity-90">Cancelled</p>
+                                        <p className="text-3xl font-bold">{pastAppointments.length}</p>
+                                    </div>
+                                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
+                                        <p className="text-xs opacity-90">Pending</p>
+                                        <p className="text-3xl font-bold">{appointments.filter(a => a.status === 'pending').length}</p>
                                     </div>
                                     <div className="bg-gradient-to-r from-gray-400 to-slate-400 text-white p-3 rounded-lg">
                                         <p className="text-xs opacity-90">Total</p>
                                         <p className="text-3xl font-bold">{appointments.length}</p>
                                     </div>
                                 </CardContent>
-                            </Card>
+                            </Card >
 
                             {/* Doctor Info */}
-                            {selectedDoctorData && (
-                                <Card className="border-2 border-purple-200 shadow-lg">
-                                    <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-                                        <CardTitle className="text-purple-700">Practitioner Info</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="p-4">
-                                        <div className="flex items-center space-x-4 mb-4">
-                                            <div className="h-14 w-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-                                                <User className="h-7 w-7 text-white" />
+                            {
+                                selectedDoctorData && (
+                                    <Card className="border-2 border-purple-200 shadow-lg">
+                                        <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
+                                            <CardTitle className="text-purple-700">Practitioner Info</CardTitle>
+                                        </CardHeader>
+                                        <CardContent className="p-4">
+                                            <div className="flex items-center space-x-4 mb-4">
+                                                <div className="h-14 w-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                                                    <User className="h-7 w-7 text-white" />
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-bold text-gray-900">{selectedDoctorData.name}</h4>
+                                                    <p className="text-sm text-purple-600 font-medium">{selectedDoctorData.specialization}</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h4 className="font-bold text-gray-900">{selectedDoctorData.name}</h4>
-                                                <p className="text-sm text-purple-600 font-medium">{selectedDoctorData.specialization}</p>
-                                            </div>
-                                        </div>
-                                        {selectedDoctorData.clinicHours.length > 0 && (
-                                            <div className="mt-4 bg-purple-50 p-3 rounded-lg">
-                                                <p className="text-sm font-semibold text-purple-700 mb-2 flex items-center gap-2">
-                                                    <Clock className="h-4 w-4" />
-                                                    Clinic Hours:
-                                                </p>
-                                                {selectedDoctorData.clinicHours.map((schedule, idx) => (
-                                                    <p key={idx} className="text-sm text-gray-700 py-1 border-b border-purple-100 last:border-0">
-                                                        <span className="font-medium">{schedule.day}:</span> {schedule.from} - {schedule.to}
+                                            {selectedDoctorData.clinicHours.length > 0 && (
+                                                <div className="mt-4 bg-purple-50 p-3 rounded-lg">
+                                                    <p className="text-sm font-semibold text-purple-700 mb-2 flex items-center gap-2">
+                                                        <Clock className="h-4 w-4" />
+                                                        Clinic Hours:
                                                     </p>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </CardContent>
-                                </Card>
-                            )}
-                        </div>
-                    </div>
-                )}
-            </div>
-        </PatientLayout>
+                                                    {selectedDoctorData.clinicHours.map((schedule, idx) => (
+                                                        <p key={idx} className="text-sm text-gray-700 py-1 border-b border-purple-100 last:border-0">
+                                                            <span className="font-medium">{schedule.day}:</span> {schedule.from} - {schedule.to}
+                                                        </p>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </CardContent>
+                                    </Card>
+                                )
+                            }
+                        </div >
+                    </div >
+                )
+                }
+            </div >
+        </PatientLayout >
     );
 }
