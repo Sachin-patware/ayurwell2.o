@@ -11,6 +11,7 @@ import { formatDateIST } from '@/lib/dateUtils';
 import api from '@/services/api';
 import RescheduleModal from '@/components/appointments/RescheduleModal';
 import { Appointment } from '@/services/appointmentService';
+import { toast } from 'react-toastify';
 
 export default function PractitionerAppointmentsPage() {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -90,7 +91,7 @@ export default function PractitionerAppointmentsPage() {
 
     const handleRescheduleSubmit = async (newTimestamp: string, reason?: string) => {
         if (!selectedAppointment?.id) {
-            alert('Please select an appointment and try again.');
+            toast.warn('Please select an appointment and try again.');
             return;
         }
 
@@ -118,7 +119,7 @@ export default function PractitionerAppointmentsPage() {
             setRescheduleModalOpen(false);
             setSelectedAppointment(null);
 
-            alert('✅ Reschedule proposal sent to patient!');
+            toast.success('✅ Reschedule proposal sent to patient!');
         } catch (err: any) {
             console.error('Error rescheduling:', err);
             throw new Error(err.response?.data?.error || 'Failed to reschedule');
@@ -133,10 +134,10 @@ export default function PractitionerAppointmentsPage() {
                 await api.post(`/appointments/${appointmentId}/cancel`, { reason: 'Cancelled by doctor' });
             }
             await fetchAppointments();
-            alert(`✅ Appointment ${newStatus}!`);
+            toast.success(`✅ Appointment ${newStatus}!`);
         } catch (err: any) {
             console.error('Error updating status:', err);
-            alert(`❌ Failed to update appointment: ${err.response?.data?.error || err.message}`);
+            toast.error(`❌ Failed to update appointment: ${err.response?.data?.error || err.message}`);
         }
     };
 
@@ -148,10 +149,10 @@ export default function PractitionerAppointmentsPage() {
         try {
             await api.post(`/appointments/${appointmentId}/reschedule/reject`);
             await fetchAppointments();
-            alert('✅ Reschedule request rejected!');
+            toast.success('✅ Reschedule request rejected!');
         } catch (err: any) {
             console.error('Error rejecting reschedule:', err);
-            alert(`❌ Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
+            toast.error(`❌ Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
         }
     };
 

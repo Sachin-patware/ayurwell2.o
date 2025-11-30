@@ -8,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Download, Share2, Loader2, AlertCircle } from 'lucide-react';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
+
 
 export default function PatientDietPlanPage() {
     const { user } = useAuth();
@@ -53,12 +55,12 @@ export default function PatientDietPlanPage() {
 
     const handleDownloadPDF = () => {
         // TODO: Implement PDF generation
-        alert('PDF download feature coming soon!');
+        toast.success('PDF download feature coming soon!');
     };
 
     const handleShare = () => {
         // TODO: Implement sharing
-        alert('Sharing feature coming soon!');
+        toast.success('Sharing feature coming soon!');
     };
 
     return (

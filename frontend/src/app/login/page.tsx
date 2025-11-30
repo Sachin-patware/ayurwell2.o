@@ -70,7 +70,7 @@ export default function LoginPage() {
                     <CardHeader className="space-y-1 text-center">
                         <CardTitle className="text-2xl font-bold text-[#2E7D32]">Welcome Back</CardTitle>
                         <CardDescription>
-                            Enter your credentials to access your Ayur-Aahar account
+                            Enter your credentials to access your AyurWell account
                         </CardDescription>
                     </CardHeader>
                     <CardContent>

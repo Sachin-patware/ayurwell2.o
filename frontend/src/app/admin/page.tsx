@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trash2, Plus } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 interface FoodItem {
     id: string;
@@ -29,7 +30,7 @@ export default function AdminPage() {
         e.preventDefault();
         // Implement API call to add food
         console.log('Adding food:', newFood);
-        alert('Food added (mock)');
+        toast.success('Food added (mock');
         setNewFood({ name: '', rasa: '', virya: '', vipaka: '', dosha_pacified: '' });
     };
 

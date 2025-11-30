@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { toast } from 'react-toastify';
 
 interface FoodItem {
     id: string;
@@ -62,7 +63,7 @@ export function FoodSearchModal({ isOpen, onClose, onSelect }: FoodSearchModalPr
 
     const handleAddCustomFood = () => {
         if (!customFood.name || !customFood.calories) {
-            alert('Please enter food name and calories');
+            toast.info('Please enter food name and calories');
             return;
         }
 

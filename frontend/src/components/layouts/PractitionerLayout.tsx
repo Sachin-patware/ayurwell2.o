@@ -69,7 +69,7 @@ export default function PractitionerLayout({ children }: { children: React.React
                     >
                         <div className="flex flex-col h-full">
                             <div className="p-6 border-b border-[#8F9E7A]">
-                                <h1 className="text-2xl font-bold font-serif">Ayur-Aahar</h1>
+                                <h1 className="text-2xl font-bold font-serif">AyurWell</h1>
                                 <p className="text-sm text-[#E9F7EF] mt-1">Practitioner Portal</p>
                             </div>
 
@@ -118,7 +118,7 @@ export default function PractitionerLayout({ children }: { children: React.React
             <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
                 {/* Mobile Header */}
                 <header className="lg:hidden bg-[#A2B38B] text-white p-4 flex items-center justify-between shadow-md">
-                    <h1 className="text-xl font-bold">Ayur-Aahar</h1>
+                    <h1 className="text-xl font-bold">AyurWell</h1>
                     <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                         {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                     </Button>

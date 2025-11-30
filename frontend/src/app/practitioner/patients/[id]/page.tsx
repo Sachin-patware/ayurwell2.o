@@ -11,6 +11,9 @@ import { FileText, Calendar, MessageSquare, Activity, Plus, Loader2 } from 'luci
 import { useParams } from 'next/navigation';
 import AssessmentForm from '@/components/forms/AssessmentForm';
 import api from '@/services/api';
+import { toast } from 'react-toastify';
+
+
 
 export default function PatientDetailPage() {
     const params = useParams();
@@ -148,7 +151,7 @@ export default function PatientDetailPage() {
                                     initialData={patient}
                                     onSuccess={() => {
                                         fetchPatient();
-                                        alert('Assessment updated successfully');
+                                        toast.success('Assessment updated successfully');
                                     }}
                                 />
                             </CardContent>

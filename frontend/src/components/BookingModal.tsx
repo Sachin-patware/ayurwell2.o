@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import api from '@/services/api';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
+
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -33,11 +35,11 @@ export default function BookingModal({ isOpen, onClose, doctorId }: BookingModal
                 date: dateTime,
                 notes
             });
-            alert('Appointment booked successfully!');
+            toast.success('Appointment booked successfully!');
             onClose();
         } catch (error) {
             console.error('Booking failed', error);
-            alert('Failed to book appointment');
+            toast.error('Failed to book appointment');
         } finally {
             setLoading(false);
         }

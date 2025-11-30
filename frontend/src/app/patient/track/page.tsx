@@ -11,6 +11,7 @@ import { Calendar as CalendarIcon, Save, Loader2, Droplet, TrendingUp, History, 
 import { format, subDays, addDays, startOfWeek, endOfWeek } from 'date-fns';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 interface ProgressEntry {
     id: string;
@@ -79,7 +80,7 @@ export default function TrackingPage() {
         try {
             const userId = user?.uid;
             if (!userId) {
-                alert('User not authenticated');
+               toast.error('User not authenticated');
                 return;
             }
             await api.post('/progress', {
@@ -104,7 +105,7 @@ export default function TrackingPage() {
             setTimeout(() => setSuccess(false), 3000);
         } catch (err) {
             console.error('Error saving progress:', err);
-            alert('Failed to save progress');
+           toast.error('Failed to save progress');
         } finally {
             setSaving(false);
         }
@@ -129,7 +130,7 @@ export default function TrackingPage() {
             await fetchHistory();
         } catch (err) {
             console.error('Error deleting entry:', err);
-            alert('Failed to delete entry');
+           toast.error('Failed to delete entry');
         }
     };
 

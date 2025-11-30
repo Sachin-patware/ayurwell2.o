@@ -219,7 +219,7 @@ export default function PractitionerDashboard() {
                             ) : (
                                 <div className="text-center py-8 text-gray-500">
                                     <p>No appointments for today</p>
-                                    <Link href="/appointments">
+                                    <Link href="/practitioner/appointments">
                                         <Button variant="link" className="text-[#2E7D32] mt-2">
                                             View all appointments
                                         </Button>

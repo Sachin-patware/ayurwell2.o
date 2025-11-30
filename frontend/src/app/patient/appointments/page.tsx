@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import PatientLayout from '@/components/layouts/PatientLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -150,7 +151,7 @@ export default function PatientAppointmentsPage() {
                     return apt;
                 }));
 
-                alert(`✅ Reschedule request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
+                toast.success(`Reschedule request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
                 setReschedulingId(null);
             } else {
                 // Book new appointment - use /book endpoint
@@ -159,7 +160,7 @@ export default function PatientAppointmentsPage() {
                     startTimestamp: localDateTimeString,
                     notes: 'Diet consultation'
                 });
-                alert(`✅ Appointment request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
+                toast.success(`Appointment request sent! Waiting for doctor confirmation for ${format(selectedDate, 'PPP')} at ${selectedSlot}.`);
                 await fetchData();
             }
 
@@ -171,7 +172,7 @@ export default function PatientAppointmentsPage() {
             console.error('Error processing appointment:', err);
             const errorMsg = err.response?.data?.error || err.message || 'Failed to process appointment';
             setError(errorMsg);
-            alert(`❌ Error: ${errorMsg}`);
+            toast.error(errorMsg);
         } finally {
             setBooking(false);
         }
@@ -187,6 +188,7 @@ export default function PatientAppointmentsPage() {
             await fetchDoctorAppointments(); // Refresh doctor's appointments
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to cancel appointment');
+            toast.error('Failed to cancel appointment');
             console.error('Error cancelling appointment:', err);
         }
     };
@@ -203,10 +205,10 @@ export default function PatientAppointmentsPage() {
         try {
             await api.post(`/appointments/${appointmentId}/reschedule/${action}`);
             await fetchData();
-            alert(`✅ Reschedule proposal ${action}ed!`);
+            toast.success(`Reschedule proposal ${action}ed!`);
         } catch (err: any) {
             console.error(`Error ${action}ing reschedule:`, err);
-            alert(`❌ Failed to ${action} reschedule`);
+            toast.error(`Failed to ${action} reschedule`);
         }
     };
 
@@ -234,6 +236,7 @@ export default function PatientAppointmentsPage() {
         return getAvailableDays().includes(dayName);
     };
 
+
     // Get booked slots for selected date and doctor (from ALL patients)
     const getBookedSlots = (): string[] => {
         if (!selectedDate || !selectedDoctor) return [];
@@ -243,6 +246,12 @@ export default function PatientAppointmentsPage() {
 
         // Use doctorAppointments instead of appointments to check ALL bookings for this doctor
         doctorAppointments.forEach(apt => {
+            // Skip the current appointment being rescheduled
+            if (reschedulingId && apt.id === reschedulingId) {
+                console.log('⏭️ Skipping current appointment:', apt.id);
+                return;
+            }
+
             const aptDate = format(new Date(apt.startTimestamp), 'yyyy-MM-dd');
             if (aptDate === dateStr) {
                 // Format time to match our slot format (e.g., "02:00 PM")
@@ -283,37 +292,56 @@ export default function PatientAppointmentsPage() {
         }
         return slots;
     };
+    // 
+
 
     // Get available time slots based on doctor's clinic hours and existing bookings
-    const getAvailableSlots = (): string[] => {
+    const getAllSlots = (): string[] => {
         if (!selectedDate || !selectedDoctorData) return [];
 
         const dayName = format(selectedDate, 'EEEE');
-        console.log('🔍 Debug - Selected day:', dayName);
-
         const clinicDay = selectedDoctorData.clinicHours.find((ch) => ch.day === dayName);
-        console.log('🔍 Debug - Found clinic day:', clinicDay);
 
         if (!clinicDay) {
-            console.log('⚠️ Doctor not available on', dayName);
-            return []; // Doctor not available on this day
+            return [];
         }
 
-        // Generate slots for this specific day based on doctor's hours
-        const dailySlots = generateTimeSlots(clinicDay.from, clinicDay.to);
-        console.log('✅ Generated slots for day:', dailySlots);
-
-        // Remove booked slots
-        const bookedSlots = getBookedSlots();
-        console.log('📅 Booked slots:', bookedSlots);
-
-        const finalSlots = dailySlots.filter(slot => !bookedSlots.includes(slot));
-        console.log('✅ Final available slots:', finalSlots);
-
-        return finalSlots;
+        return generateTimeSlots(clinicDay.from, clinicDay.to);
     };
 
-    const availableTimeSlotsForSelectedDate = getAvailableSlots();
+    const getAvailableSlots = (): string[] => {
+        const allSlots = getAllSlots();
+        const bookedSlots = getBookedSlots();
+        return allSlots.filter(slot => !bookedSlots.includes(slot));
+    };
+
+
+    // Get current appointment slot when rescheduling
+    const getCurrentAppointmentSlot = (): string | null => {
+        if (!reschedulingId || !selectedDate) return null;
+
+        const appointment = appointments.find(apt => apt.id === reschedulingId);
+        if (!appointment) return null;
+
+        // Convert appointment timestamp to a Date object
+        const oldDateObj = new Date(appointment.startTimestamp);
+
+        // Format dates for comparison
+        const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
+        const oldDateStr = format(oldDateObj, 'yyyy-MM-dd');
+
+        // If same date → return old slot
+        if (selectedDateStr === oldDateStr) {
+            return format(oldDateObj, 'hh:mm a'); // correct OLD slot
+        }
+
+        return null;
+    };
+
+
+    const availableSlots = getAvailableSlots();
+    const bookedSlots = getBookedSlots();
+
 
     const getStatusBadge = (status: string) => {
         const badges = {
@@ -431,20 +459,21 @@ export default function PatientAppointmentsPage() {
                                         </Select>
                                     </div>
 
-                                    <div className="flex flex-col md:flex-row gap-8">
-                                        <div className="flex-1">
+                                    <div className="flex flex-col md:flex-row gap-8 ">
+                                        <div className="flex-1 ">
                                             <h4 className="font-semibold mb-4 text-gray-700 flex items-center gap-2">
                                                 <Calendar className="h-4 w-4 text-indigo-500" />
                                                 1. Select Date
                                             </h4>
                                             {selectedDoctor ? (
-                                                <>
+                                                <><div className="border-2 border-blue-300 rounded-xl bg-white p-4 shadow-sm">
                                                     <CalendarView
                                                         selectedDate={selectedDate}
                                                         onSelect={setSelectedDate}
                                                         bookedDates={[]}
                                                         isDateAvailable={isDateAvailable}
                                                     />
+                                                </div>
                                                     <div className="mt-3 bg-indigo-50 p-3 rounded-lg">
                                                         <p className="text-xs font-semibold text-indigo-700 mb-1">Available Days:</p>
                                                         <p className="text-xs text-indigo-600">
@@ -465,26 +494,24 @@ export default function PatientAppointmentsPage() {
                                             </h4>
                                             {selectedDate && selectedDoctor ? (
                                                 <>
-                                                    <TimeSlotPicker
-                                                        slots={availableTimeSlotsForSelectedDate}
-                                                        selectedSlot={selectedSlot}
-                                                        onSelect={setSelectedSlot}
-                                                    />
-                                                    {availableTimeSlotsForSelectedDate.length === 0 && (
+                                                    <div className="border-2 border-purple-300 rounded-xl bg-white p-4 shadow-sm overflow-y-auto">
+
+                                                        <TimeSlotPicker
+                                                            slots={getAllSlots()}
+                                                            selectedSlot={selectedSlot}
+                                                            onSelect={setSelectedSlot}
+                                                            bookedSlots={bookedSlots}
+                                                            currentSlot={getCurrentAppointmentSlot()}
+                                                        />
+                                                    </div>
+                                                    {availableSlots.length === 0 && (
                                                         <div className="mt-3 bg-red-50 border border-red-200 p-3 rounded-lg">
                                                             <p className="text-xs font-semibold text-red-700">
                                                                 ⚠️ No available slots on this day
                                                             </p>
                                                         </div>
                                                     )}
-                                                    {getBookedSlots().length > 0 && (
-                                                        <div className="mt-3 bg-orange-50 p-3 rounded-lg">
-                                                            <p className="text-xs font-semibold text-orange-700 mb-1">Booked Slots:</p>
-                                                            <p className="text-xs text-orange-600">
-                                                                {getBookedSlots().join(', ')}
-                                                            </p>
-                                                        </div>
-                                                    )}
+
                                                 </>
                                             ) : (
                                                 <div className="bg-gray-50 p-8 rounded-lg text-center">

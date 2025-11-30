@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Loader2, CheckCircle } from 'lucide-react';
 import api from '@/services/api';
+import { toast } from 'react-toastify';
 
 interface AssessmentFormProps {
     patientId: string;
@@ -52,7 +53,7 @@ export default function AssessmentForm({ patientId, initialData, onSuccess, onCa
             if (onSuccess) onSuccess();
         } catch (error) {
             console.error('Error saving assessment:', error);
-            alert('Failed to save assessment');
+            toast.error('Failed to save assessment');
         } finally {
             setLoading(false);
         }

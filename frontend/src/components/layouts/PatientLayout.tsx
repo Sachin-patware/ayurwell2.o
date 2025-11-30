@@ -63,7 +63,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <h1 className="text-2xl font-bold font-serif text-[#2E7D32]">Ayur-Aahar</h1>
+                                <h1 className="text-2xl font-bold font-serif text-[#2E7D32]">AyurWell</h1>
                             </div>
                             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                                 {navItems.map((item) => {
