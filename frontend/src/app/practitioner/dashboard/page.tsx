@@ -18,6 +18,10 @@ interface RecentPatient {
     assessment?: {
         prakriti?: string;
     };
+    lastAppointment?: {
+        date: string;
+        status: string;
+    };
 }
 
 interface Appointment {
@@ -44,9 +48,9 @@ export default function PractitionerDashboard() {
             try {
                 setLoading(true);
 
-                // Fetch patients
-                const patientsResponse = await api.get('/patients');
-                const patients = patientsResponse.data;
+                // Fetch doctor-specific patients (only confirmed/completed appointments)
+                const patientsResponse = await api.get('/appointments/doctor/patients');
+                const patients = patientsResponse.data.patients || [];
 
                 // Fetch appointments
                 const appointmentsResponse = await api.get('/appointments/');
@@ -172,18 +176,33 @@ export default function PractitionerDashboard() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className="text-sm text-gray-500">
-                                                {patient.assessment?.prakriti || 'N/A'}
+                                            <div className="flex flex-col items-end gap-1">
+                                                {patient.lastAppointment && (
+                                                    <>
+                                                        <span className={`text-xs px-2 py-1 rounded-full ${patient.lastAppointment.status === 'confirmed'
+                                                                ? 'bg-green-100 text-green-700'
+                                                                : 'bg-blue-100 text-blue-700'
+                                                            }`}>
+                                                            {patient.lastAppointment.status}
+                                                        </span>
+                                                        <span className="text-xs text-gray-500">
+                                                            {new Intl.DateTimeFormat('en-IN', {
+                                                                dateStyle: 'medium',
+                                                                timeZone: 'Asia/Kolkata'
+                                                            }).format(new Date(patient.lastAppointment.date))}
+                                                        </span>
+                                                    </>
+                                                )}
                                             </div>
                                         </Link>
                                     ))}
                                 </div>
                             ) : (
                                 <div className="text-center py-8 text-gray-500">
-                                    <p>No patients yet</p>
-                                    <Link href="/practitioner/patients">
+                                    <p>No patients with confirmed/completed appointments yet</p>
+                                    <Link href="/practitioner/appointments">
                                         <Button variant="link" className="text-[#2E7D32] mt-2">
-                                            Add your first patient
+                                            View appointments
                                         </Button>
                                     </Link>
                                 </div>

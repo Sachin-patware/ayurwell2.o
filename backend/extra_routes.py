@@ -3,6 +3,7 @@ from models import Appointment, User, Patient, Doctor, Assessment, get_ist_now
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from datetime import datetime, timedelta, timezone
 from email_service import email_service, format_appointment_time
+from appointment_utils import auto_complete_appointments
 
 appt_bp = Blueprint('appointments', __name__)
 
@@ -142,6 +143,9 @@ def book_appointment():
 @jwt_required()
 def get_my_appointments():
     """Get appointments for current user (patient or doctor)"""
+    # Auto-complete past confirmed appointments
+    auto_complete_appointments()
+
     user_id = get_jwt_identity()
     user = User.objects(uid=user_id).first()
     
@@ -249,38 +253,12 @@ def confirm_appointment(appointment_id):
 @jwt_required()
 def complete_appointment(appointment_id):
     """
-    Doctor marks appointment as completed
-    Status: confirmed → completed
+    DISABLED: Appointments are now auto-completed when end time passes.
+    Doctors cannot manually complete appointments.
     """
-    user_id = get_jwt_identity()
-    
-    appt = Appointment.objects(id=appointment_id).first()
-    if not appt:
-        return jsonify({"error": "Appointment not found"}), 404
-    
-    # Verify doctor owns this appointment
-    if appt.doctorId != user_id:
-        return jsonify({"error": "Unauthorized. Only the assigned doctor can complete."}), 403
-    
-    # Validate status transition
-    is_valid, error = validate_status_transition(appt.status, 'completed')
-    if not is_valid:
-        return jsonify({"error": error}), 400
-    
-    # Check if appointment time has passed (allow completion only after start time)
-    # Adding a small buffer (e.g., 5 mins before start) if needed, but strict >= start is safer
-    if get_ist_now() < appt.startTimestamp:
-        return jsonify({"error": "Cannot mark as completed before the appointment start time."}), 400
-    
-    # Update status
-    appt.status = 'completed'
-    appt.updatedAt = get_ist_now()
-    appt.save()
-    
     return jsonify({
-        "message": "Appointment marked as completed",
-        "status": "completed"
-    }), 200
+        "error": "Manual completion disabled. Appointments auto-complete after end time."
+    }), 403
 
 
 @appt_bp.route('/<appointment_id>/cancel', methods=['POST'])
@@ -925,3 +903,78 @@ def update_assessment_notes(assessment_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
+@appt_bp.route('/doctor/patients', methods=['GET'])
+@jwt_required()
+def get_doctor_patients():
+    """
+    Get patients who have confirmed or completed appointments with the current doctor.
+    Only returns patients with at least one confirmed or completed appointment.
+    """
+    try:
+        # Auto-complete past confirmed appointments
+        auto_complete_appointments()
+        
+        current_user_id = get_jwt_identity()
+        user = User.objects(uid=current_user_id).first()
+        
+        if not user or user.role != 'doctor':
+            return jsonify({'error': 'Only doctors can access this endpoint'}), 403
+        
+        # Find all appointments for this doctor with confirmed or completed status
+        appointments = Appointment.objects(
+            doctorId=current_user_id,
+            status__in=['confirmed', 'completed']
+        ).order_by('-startTimestamp')
+        
+        # Extract unique patient IDs and track last appointment for each
+        patient_appointments = {}
+        for appt in appointments:
+            if appt.patientId not in patient_appointments:
+                patient_appointments[appt.patientId] = {
+                    'lastAppointmentDate': appt.startTimestamp,
+                    'lastAppointmentStatus': appt.status
+                }
+        
+        # Fetch patient details for unique patient IDs
+        patient_ids = list(patient_appointments.keys())
+        patients = Patient.objects(patientId__in=patient_ids)
+        
+        # Build response with patient info and last appointment details
+        patient_list = []
+        ist_tz = timezone(timedelta(hours=5, minutes=30))
+        
+        for patient in patients:
+            last_appt_info = patient_appointments.get(patient.patientId, {})
+            
+            # Convert timestamp to IST
+            last_appt_date = last_appt_info.get('lastAppointmentDate')
+            if last_appt_date:
+                if last_appt_date.tzinfo is None:
+                    last_appt_date = last_appt_date.replace(tzinfo=timezone.utc)
+                last_appt_date = last_appt_date.astimezone(ist_tz).isoformat()
+            
+            patient_list.append({
+                'id': str(patient.id),
+                'patientId': patient.patientId,
+                'name': patient.name,
+                'assessment': patient.assessment or {},
+                'lastAppointment': {
+                    'date': last_appt_date,
+                    'status': last_appt_info.get('lastAppointmentStatus')
+                } if last_appt_info else None
+            })
+        
+        # Sort by last appointment date (most recent first)
+        patient_list.sort(
+            key=lambda x: x['lastAppointment']['date'] if x['lastAppointment'] else '',
+            reverse=True
+        )
+        
+        return jsonify({
+            'patients': patient_list,
+            'count': len(patient_list)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

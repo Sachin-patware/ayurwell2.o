@@ -352,7 +352,7 @@ export default function PatientAppointmentsPage() {
             completed: { bg: 'bg-gradient-to-r from-blue-400 to-cyan-400', text: 'text-white', icon: CalendarCheck, label: 'Completed' },
             cancelled: { bg: 'bg-gradient-to-r from-red-400 to-pink-400', text: 'text-white', icon: XCircle, label: 'Cancelled' },
         };
-        const badge = badges[status as keyof typeof badges] || badges.pending;
+        const badge = badges[status.toLowerCase() as keyof typeof badges] || badges.pending;
         const Icon = badge.icon;
         return (
             <div className={`${badge.bg} ${badge.text} px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1`}>

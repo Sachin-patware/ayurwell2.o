@@ -9,14 +9,14 @@ from sendgrid.helpers.mail import Mail, Email
 class EmailService:
     def __init__(self):
         # Environment variables
-        self.from_email = os.getenv("FROM_EMAIL", "sachinpatware10@gmail.com")
-        self.from_name = os.getenv("FROM_NAME", "AyurWell")
+        self.from_email = os.getenv("FROM_EMAIL")
+        self.from_name = os.getenv("FROM_NAME")
 
         # SMTP
         self.smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
         self.smtp_port = int(os.getenv("SMTP_PORT", "587"))
-        self.smtp_user = os.getenv("SMTP_USER", "")
-        self.smtp_password = os.getenv("SMTP_PASSWORD", "")
+        self.smtp_user = os.getenv("SMTP_USER",)
+        self.smtp_password = os.getenv("SMTP_PASSWORD",)
 
     # =============================================
     # Master Send Function

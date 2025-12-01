@@ -83,8 +83,8 @@ function CreateDietPlanContent() {
     const fetchPatients = async () => {
         try {
             setLoadingPatients(true);
-            const response = await api.get('/patients');
-            setPatients(response.data);
+            const response = await api.get('/appointments/doctor/patients');
+            setPatients(response.data.patients || []);
         } catch (err: any) {
             setError('Failed to load patients');
             console.error(err);

@@ -19,29 +19,9 @@ def add_patient():
     new_patient = Patient(
         patientId=data.get('patientId', current_user),
         name=data['name'],
-        healthHistory=data.get('healthHistory', ''),
-        assessment={
-            'age': data.get('age'),
-            'gender': data.get('gender'),
-            'prakriti': data.get('prakriti'),
-            'vikriti': data.get('vikriti')
-        }
     )
     new_patient.save()
     return jsonify({"message": "Patient added", "id": str(new_patient.id)}), 201
-
-@api_bp.route('/patients', methods=['GET'])
-@jwt_required()
-def get_patients():
-    current_user = get_jwt_identity()
-    patients = Patient.objects()
-    
-    return jsonify([{
-        "id": str(p.id),
-        "patientId": p.patientId,
-        "name": p.name,
-        "assessment": p.assessment
-    } for p in patients])
 
 @api_bp.route('/patients/<patient_id>', methods=['GET'])
 @jwt_required()
@@ -54,10 +34,6 @@ def get_patient(patient_id):
         response_data = {
             "patientId": patient.patientId,
             "name": patient.name,
-            "healthHistory": patient.healthHistory,
-            "assessment": patient.assessment,
-            "assessmentCreatedBy": patient.assessmentCreatedBy,
-            "assessmentCreatedAt": patient.assessmentCreatedAt.isoformat() if patient.assessmentCreatedAt else None
         }
 
         # If assessment was created by a doctor, fetch doctor's name

@@ -3,7 +3,7 @@ from flask_cors import CORS
 from models import db
 from routes import api_bp
 from dotenv import load_dotenv
- 
+import os
 from flask_jwt_extended import JWTManager
 from auth_routes import auth_bp
 
@@ -11,9 +11,9 @@ def create_app():
     load_dotenv()
     app = Flask(__name__)
     app.config['MONGODB_SETTINGS'] = {
-        'host': 'mongodb://localhost:27017/ayurwell'
+        'host':os.getenv("MONGODB_URI")
     }
-    app.config['JWT_SECRET_KEY'] = 'super-secret-key-change-this-in-prod'
+    app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET_KEY")
     
     # Configure CORS to allow requests from frontend
     CORS(app, resources={

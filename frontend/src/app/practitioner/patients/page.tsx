@@ -37,8 +37,8 @@ export default function PatientsPage() {
         const fetchPatients = async () => {
             try {
                 setLoading(true);
-                const response = await api.get('/patients');
-                setPatients(response.data);
+                const response = await api.get('/appointments/doctor/patients');
+                setPatients(response.data.patients || []);
             } catch (error) {
                 console.error('Error fetching patients:', error);
             } finally {
