@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from models import Appointment, User, Patient, Doctor, get_ist_now
+from models import Appointment, User, Patient, Doctor, Assessment, get_ist_now
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from email_service import email_service, format_appointment_time
 
 appt_bp = Blueprint('appointments', __name__)
@@ -667,4 +667,261 @@ def get_appointments():
 def get_doctor_appointments(doctor_id):
     """Legacy endpoint - redirects to /doctor/<id>/upcoming"""
     return get_doctor_upcoming_appointments(doctor_id)
+
+
+# ==================== ASSESSMENT ENDPOINTS ====================
+
+@appt_bp.route('/assessments', methods=['POST'])
+@jwt_required()
+def create_assessment():
+    """Create a new assessment for a patient (doctor only)"""
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.objects(uid=current_user_id).first()
+        
+        if not user or user.role != 'doctor':
+            return jsonify({'error': 'Only doctors can create assessments'}), 403
+        
+        data = request.get_json()
+        patient_id = data.get('patientId')
+        
+        if not patient_id:
+            return jsonify({'error': 'Patient ID is required'}), 400
+        
+        # Verify patient exists
+        patient = Patient.objects(patientId=patient_id).first()
+        if not patient:
+            return jsonify({'error': 'Patient not found'}), 404
+        
+        # Generate unique assessment ID
+        import uuid
+        assessment_id = f"ASMT-{uuid.uuid4().hex[:12].upper()}"
+        
+        # Create assessment
+        assessment = Assessment(
+            assessmentId=assessment_id,
+            patientId=patient_id,
+            doctorId=current_user_id,
+            assessment=data.get('assessment', {}),
+            healthHistory=data.get('healthHistory', ''),
+            medicalConditions=data.get('medicalConditions', ''),
+            lifestyle=data.get('lifestyle', ''),
+            dietaryHabits=data.get('dietaryHabits', ''),
+            symptoms=data.get('symptoms', ''),
+            notes=data.get('notes', '')
+        )
+        assessment.save()
+        
+        # Return assessment data
+        return jsonify({
+            'message': 'Assessment created successfully',
+            'assessment': {
+                'assessmentId': assessment.assessmentId,
+                'patientId': assessment.patientId,
+                'doctorId': assessment.doctorId,
+                'createdAt': assessment.createdAt.isoformat(),
+                'assessment': assessment.assessment,
+                'healthHistory': assessment.healthHistory,
+                'medicalConditions': assessment.medicalConditions,
+                'lifestyle': assessment.lifestyle,
+                'dietaryHabits': assessment.dietaryHabits,
+                'symptoms': assessment.symptoms,
+                'notes': assessment.notes
+            }
+        }), 201
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@appt_bp.route('/assessments/patient/<patient_id>', methods=['GET'])
+@jwt_required()
+def get_patient_assessments(patient_id):
+    """Get all assessments for a specific patient"""
+    try:
+        # Fetch all assessments for the patient, sorted by newest first
+        assessments = Assessment.objects(patientId=patient_id).order_by('-createdAt')
+        
+        # Get doctor names for each assessment
+        assessment_list = []
+        ist_tz = timezone(timedelta(hours=5, minutes=30))
+        
+        for asmt in assessments:
+            doctor = User.objects(uid=asmt.doctorId).first()
+            doctor_name = doctor.name if doctor else "Unknown Doctor"
+            
+            # Ensure timestamps are in IST
+            created_at = asmt.createdAt
+            if created_at.tzinfo is None:
+                created_at = created_at.replace(tzinfo=timezone.utc)
+            created_at = created_at.astimezone(ist_tz).isoformat()
+            
+            updated_at = None
+            if asmt.updatedAt:
+                updated_at_dt = asmt.updatedAt
+                if updated_at_dt.tzinfo is None:
+                    updated_at_dt = updated_at_dt.replace(tzinfo=timezone.utc)
+                updated_at = updated_at_dt.astimezone(ist_tz).isoformat()
+            
+            assessment_list.append({
+                'assessmentId': asmt.assessmentId,
+                'patientId': asmt.patientId,
+                'doctorId': asmt.doctorId,
+                'doctorName': doctor_name,
+                'createdAt': created_at,
+                'assessment': asmt.assessment,
+                'healthHistory': asmt.healthHistory,
+                'medicalConditions': asmt.medicalConditions,
+                'lifestyle': asmt.lifestyle,
+                'dietaryHabits': asmt.dietaryHabits,
+                'symptoms': asmt.symptoms,
+                'notes': asmt.notes,
+                'updatedAt': updated_at
+            })
+        
+        return jsonify({
+            'assessments': assessment_list,
+            'count': len(assessment_list)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@appt_bp.route('/assessments/doctor/<doctor_id>', methods=['GET'])
+@jwt_required()
+def get_doctor_assessments(doctor_id):
+    """Get all assessments created by a specific doctor"""
+    try:
+        current_user_id = get_jwt_identity()
+        
+        # Verify the requesting user is the doctor or an admin
+        user = User.objects(uid=current_user_id).first()
+        if not user or (user.uid != doctor_id and user.role != 'admin'):
+            return jsonify({'error': 'Unauthorized'}), 403
+        
+        # Fetch all assessments by the doctor, sorted by newest first
+        assessments = Assessment.objects(doctorId=doctor_id).order_by('-createdAt')
+        
+        # Get patient names for each assessment
+        assessment_list = []
+        ist_tz = timezone(timedelta(hours=5, minutes=30))
+        
+        for asmt in assessments:
+            patient = Patient.objects(patientId=asmt.patientId).first()
+            patient_name = patient.name if patient else "Unknown Patient"
+            
+            # Ensure timestamps are in IST
+            created_at = asmt.createdAt
+            if created_at.tzinfo is None:
+                created_at = created_at.replace(tzinfo=timezone.utc)
+            created_at = created_at.astimezone(ist_tz).isoformat()
+            
+            updated_at = None
+            if asmt.updatedAt:
+                updated_at_dt = asmt.updatedAt
+                if updated_at_dt.tzinfo is None:
+                    updated_at_dt = updated_at_dt.replace(tzinfo=timezone.utc)
+                updated_at = updated_at_dt.astimezone(ist_tz).isoformat()
+            
+            assessment_list.append({
+                'assessmentId': asmt.assessmentId,
+                'patientId': asmt.patientId,
+                'patientName': patient_name,
+                'doctorId': asmt.doctorId,
+                'createdAt': created_at,
+                'assessment': asmt.assessment,
+                'healthHistory': asmt.healthHistory,
+                'medicalConditions': asmt.medicalConditions,
+                'lifestyle': asmt.lifestyle,
+                'dietaryHabits': asmt.dietaryHabits,
+                'symptoms': asmt.symptoms,
+                'notes': asmt.notes,
+                'updatedAt': updated_at
+            })
+        
+        return jsonify({
+            'assessments': assessment_list,
+            'count': len(assessment_list)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@appt_bp.route('/assessments/<assessment_id>', methods=['GET'])
+@jwt_required()
+def get_assessment(assessment_id):
+    """Get a specific assessment by ID"""
+    try:
+        assessment = Assessment.objects(assessmentId=assessment_id).first()
+        
+        if not assessment:
+            return jsonify({'error': 'Assessment not found'}), 404
+        
+        # Get doctor and patient names
+        doctor = User.objects(uid=assessment.doctorId).first()
+        patient = Patient.objects(patientId=assessment.patientId).first()
+        
+        return jsonify({
+            'assessment': {
+                'assessmentId': assessment.assessmentId,
+                'patientId': assessment.patientId,
+                'patientName': patient.name if patient else "Unknown",
+                'doctorId': assessment.doctorId,
+                'doctorName': doctor.name if doctor else "Unknown",
+                'createdAt': assessment.createdAt.isoformat(),
+                'assessment': assessment.assessment,
+                'healthHistory': assessment.healthHistory,
+                'medicalConditions': assessment.medicalConditions,
+                'lifestyle': assessment.lifestyle,
+                'dietaryHabits': assessment.dietaryHabits,
+                'symptoms': assessment.symptoms,
+                'notes': assessment.notes,
+                'updatedAt': assessment.updatedAt.isoformat() if assessment.updatedAt else None
+            }
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@appt_bp.route('/assessments/<assessment_id>/notes', methods=['PATCH'])
+@jwt_required()
+def update_assessment_notes(assessment_id):
+    """Update notes for an assessment (doctor only)"""
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.objects(uid=current_user_id).first()
+        
+        if not user or user.role != 'doctor':
+            return jsonify({'error': 'Only doctors can update assessments'}), 403
+        
+        assessment = Assessment.objects(assessmentId=assessment_id).first()
+        
+        if not assessment:
+            return jsonify({'error': 'Assessment not found'}), 404
+        
+        # Verify the doctor owns this assessment
+        if assessment.doctorId != current_user_id:
+            return jsonify({'error': 'You can only update your own assessments'}), 403
+        
+        data = request.get_json()
+        notes = data.get('notes', '')
+        
+        assessment.notes = notes
+        assessment.updatedAt = get_ist_now()
+        assessment.save()
+        
+        return jsonify({
+            'message': 'Notes updated successfully',
+            'assessment': {
+                'assessmentId': assessment.assessmentId,
+                'notes': assessment.notes,
+                'updatedAt': assessment.updatedAt.isoformat()
+            }
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 

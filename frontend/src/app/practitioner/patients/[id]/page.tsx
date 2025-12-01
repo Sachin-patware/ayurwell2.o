@@ -10,6 +10,7 @@ import { PrakritiGraph } from '@/components/charts/PrakritiGraph';
 import { FileText, Calendar, MessageSquare, Activity, Plus, Loader2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import AssessmentForm from '@/components/forms/AssessmentForm';
+import { AssessmentCard } from '@/components/assessments/AssessmentCard';
 import api from '@/services/api';
 import { toast } from 'react-toastify';
 
@@ -20,6 +21,8 @@ export default function PatientDetailPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [patient, setPatient] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [assessments, setAssessments] = useState<any[]>([]);
+    const [loadingAssessments, setLoadingAssessments] = useState(false);
 
     const fetchPatient = async () => {
         try {
@@ -32,9 +35,24 @@ export default function PatientDetailPage() {
         }
     };
 
+    const fetchAssessments = async () => {
+        if (!params.id) return;
+
+        try {
+            setLoadingAssessments(true);
+            const response = await api.get(`/appointments/assessments/patient/${params.id}`);
+            setAssessments(response.data.assessments || []);
+        } catch (error) {
+            console.error('Error fetching assessments:', error);
+        } finally {
+            setLoadingAssessments(false);
+        }
+    };
+
     useEffect(() => {
         if (params.id) {
             fetchPatient();
+            fetchAssessments();
         }
     }, [params.id]);
 
@@ -150,8 +168,9 @@ export default function PatientDetailPage() {
                                     patientId={patient.patientId}
                                     initialData={patient}
                                     onSuccess={() => {
-                                        fetchPatient();
-                                        toast.success('Assessment updated successfully');
+                                        fetchAssessments();
+            
+                                        setActiveTab('history');
                                     }}
                                 />
                             </CardContent>
@@ -161,12 +180,40 @@ export default function PatientDetailPage() {
                     <TabsContent value="history">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Consultation History</CardTitle>
+                                <div className="flex items-center justify-between">
+                                    <CardTitle>Assessment History</CardTitle>
+                                    <span className="text-sm text-gray-500">
+                                        {assessments.length} {assessments.length === 1 ? 'assessment' : 'assessments'}
+                                    </span>
+                                </div>
                             </CardHeader>
                             <CardContent>
-                                <div className="text-center py-8 text-gray-500">
-                                    No consultation history available.
-                                </div>
+                                {loadingAssessments ? (
+                                    <div className="flex items-center justify-center py-12">
+                                        <Loader2 className="h-8 w-8 animate-spin text-[#2E7D32]" />
+                                    </div>
+                                ) : assessments.length > 0 ? (
+                                    <div className="space-y-4">
+                                        {assessments.map((assessment) => (
+                                            <AssessmentCard
+                                                key={assessment.assessmentId}
+                                                assessment={assessment}
+                                                showPatientName={false}
+                                            />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-12 text-gray-500">
+                                        <FileText className="h-12 w-12 mx-auto text-gray-300 mb-3" />
+                                        <p>No assessment history available.</p>
+                                        <Button
+                                            onClick={() => setActiveTab('assessment')}
+                                            className="mt-4 bg-[#2E7D32] hover:bg-[#1B5E20]"
+                                        >
+                                            Create First Assessment
+                                        </Button>
+                                    </div>
+                                )}
                             </CardContent>
                         </Card>
                     </TabsContent>

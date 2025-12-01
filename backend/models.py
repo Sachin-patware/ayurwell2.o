@@ -45,6 +45,35 @@ class Patient(db.Document):
     assessmentCreatedAt = db.DateTimeField()
     createdAt = db.DateTimeField(default=get_ist_now)
 
+class Assessment(db.Document):
+    """Separate collection for patient assessments with full history"""
+    assessmentId = db.StringField(required=True, unique=True)
+    patientId = db.StringField(required=True)
+    doctorId = db.StringField(required=True)
+    createdAt = db.DateTimeField(default=get_ist_now)
+    
+    # Assessment data
+    assessment = db.DictField(default={})  # {age, gender, prakriti, vikriti}
+    healthHistory = db.StringField()
+    medicalConditions = db.StringField()
+    lifestyle = db.StringField()
+    dietaryHabits = db.StringField()
+    symptoms = db.StringField()
+    notes = db.StringField()
+    
+    # Metadata
+    updatedAt = db.DateTimeField(default=get_ist_now)
+    
+    # Indexes for efficient querying
+    meta = {
+        'indexes': [
+            {'fields': ['patientId', '-createdAt']},  # Patient's assessments, newest first
+            {'fields': ['doctorId', '-createdAt']},   # Doctor's assessments, newest first
+            {'fields': ['assessmentId']},
+        ]
+    }
+
+
 class Appointment(db.Document):
     doctorId = db.StringField(required=True)
     patientId = db.StringField(required=True)

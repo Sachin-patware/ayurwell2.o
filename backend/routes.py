@@ -50,7 +50,9 @@ def get_patient(patient_id):
         patient = Patient.objects(patientId=patient_id).first()
         if not patient:
             return jsonify({"error": "Patient not found"}), 404
-        else:{
+        
+        response_data = {
+            "patientId": patient.patientId,
             "name": patient.name,
             "healthHistory": patient.healthHistory,
             "assessment": patient.assessment,
@@ -67,6 +69,7 @@ def get_patient(patient_id):
         return jsonify(response_data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @api_bp.route('/patients/<patient_id>', methods=['PUT'])
 @jwt_required()

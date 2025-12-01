@@ -12,7 +12,8 @@ import {
     MessageSquare,
     LogOut,
     Menu,
-    X
+    X,
+    ClipboardList
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -51,6 +52,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
     const navItems = [
         { href: '/patient/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/patient/diet-plan', label: 'My Diet', icon: FileText },
+        { href: '/patient/assessment', label: 'Assessment', icon: ClipboardList },
         { href: '/patient/track', label: 'Track Progress', icon: Activity },
         { href: '/patient/appointments', label: 'Appointments', icon: Calendar },
     ];

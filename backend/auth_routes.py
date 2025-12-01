@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import User
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import timedelta
 import uuid
 
@@ -80,3 +80,23 @@ def login():
         }), 200
         
     return jsonify({"error": "Invalid credentials"}), 401
+
+@auth_bp.route('/me', methods=['GET'])
+@jwt_required()
+def get_current_user():
+    """Get current user information from JWT token"""
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.objects(uid=current_user_id).first()
+        
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+        
+        return jsonify({
+            "uid": user.uid,
+            "name": user.name,
+            "email": user.email,
+            "role": user.role
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
