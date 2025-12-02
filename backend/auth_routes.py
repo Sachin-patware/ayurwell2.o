@@ -26,7 +26,7 @@ def register():
         name=name,
         email=email,
         role=role,
-        meta_info={"phone": data.get('phone', ''), "verified": False}
+        meta_info={ "verified": False}
     )
     new_user.set_password(password)
     new_user.save()
@@ -38,7 +38,6 @@ def register():
             doctorId=uid,
             name=name,
             specialization=data.get('specialization', ''),
-            status='verified'  # Auto-verify for now (add admin approval later if needed)
         )
         doctor.save()
     elif role == 'patient':

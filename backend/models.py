@@ -32,14 +32,11 @@ class Doctor(db.Document):
     name = db.StringField(max_length=100, required=True)
     specialization = db.StringField(max_length=100)
     clinicHours = db.ListField(db.DictField())  # [{day, from, to}]
-    status = db.StringField(default='pending', choices=['pending', 'verified', 'inactive'])
-    
     # Rich Profile Fields
     personalInfo = db.DictField(default={})
     professionalInfo = db.DictField(default={})
     clinicInfo = db.DictField(default={})
     account = db.DictField(default={})
-    
     createdAt = db.DateTimeField(default=get_ist_now)
 
 class Patient(db.Document):

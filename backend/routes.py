@@ -80,7 +80,7 @@ def update_patient(patient_id):
 # Doctor endpoints
 @api_bp.route('/doctors', methods=['GET'])
 def get_doctors():
-    doctors = Doctor.objects(status='verified')
+    doctors = Doctor.objects(account__status='verified')
     return jsonify([{
         "doctorId": d.doctorId,
         "name": d.name,
@@ -387,7 +387,6 @@ def get_practitioner_profile():
         "name": name,
         "specialization": doctor.specialization,
         "clinicHours": doctor.clinicHours,
-        "status": doctor.status,
         "personalInfo": personal_info,
         "professionalInfo": doctor.professionalInfo,
         "clinicInfo": doctor.clinicInfo,
