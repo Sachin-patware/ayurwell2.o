@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CalendarView } from '@/components/appointments/CalendarView';
 import { TimeSlotPicker } from '@/components/appointments/TimeSlotPicker';
-import { Calendar, Clock, User, Loader2, AlertCircle, CalendarCheck, X, Edit, CheckCircle, XCircle, CalendarClock } from 'lucide-react';
+import { Calendar, Clock, User, Loader2, AlertCircle, CalendarCheck, X, Edit, CheckCircle, XCircle, CalendarClock, Filter } from 'lucide-react';
 import { format } from 'date-fns';
 import api from '@/services/api';
 
@@ -51,6 +51,7 @@ export default function PatientAppointmentsPage() {
     const [error, setError] = useState('');
     const [reschedulingId, setReschedulingId] = useState<string | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>('all');
+    const [dateFilter, setDateFilter] = useState<string>('all');
 
     const selectedDoctorData = doctors.find((d) => d.doctorId === selectedDoctor);
 
@@ -213,15 +214,51 @@ export default function PatientAppointmentsPage() {
     };
 
     const filteredAppointments = appointments.filter(a => {
-        if (statusFilter === 'all') return true;
-        if (statusFilter === 'pending') {
-            return a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending';
+        // Status Filter
+        let statusMatch = true;
+        if (statusFilter !== 'all') {
+            if (statusFilter === 'pending') {
+                statusMatch = (a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending');
+            } else {
+                statusMatch = a.status === statusFilter;
+            }
         }
-        return a.status === statusFilter;
-    });
+        if (!statusMatch) return false;
 
+        // Date Filter
+        const apptDate = new Date(a.startTimestamp);
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const apptDay = new Date(apptDate.getFullYear(), apptDate.getMonth(), apptDate.getDate());
+
+        if (dateFilter === 'today') {
+            return apptDay.getTime() === today.getTime();
+        }
+        if (dateFilter === 'upcoming') {
+            return new Date(a.startTimestamp) >= now;
+        }
+        if (dateFilter === 'past') {
+            return new Date(a.startTimestamp) < now;
+        }
+
+        return true;
+    }).sort((a, b) => {
+        const dateA = new Date(a.startTimestamp);
+        const dateB = new Date(b.startTimestamp);
+        const now = new Date();
+        const isFutureA = dateA >= now;
+        const isFutureB = dateB >= now;
+
+        if (isFutureA && isFutureB) return dateA.getTime() - dateB.getTime(); // Both future: Ascending
+        if (!isFutureA && !isFutureB) return dateB.getTime() - dateA.getTime(); // Both past: Descending
+        if (isFutureA) return -1; // Future comes first
+        return 1;
+    });
+    // const todayAppointments= appointments.filter(a => {
+    //                 const aptDate = parseISO(a.startTimestamp);
+    //                 return isWithinInterval(aptDate, { start: startOfDay(now), end: endOfDay(now) });
+    //             })
     const upcomingAppointments = appointments.filter(a => a.status === 'confirmed');
-    const pastAppointments = appointments.filter(a => a.status === 'cancelled');
     const pendingAppointments = appointments.filter(a => a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending');
     // Get available days for selected doctor
     const getAvailableDays = (): string[] => {
@@ -361,13 +398,12 @@ export default function PatientAppointmentsPage() {
             </div>
         );
     };
-
     return (
         <PatientLayout>
             <div className="space-y-6">
                 {/* Header with Gradient */}
                 <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white shadow-lg">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div>
                             <h2 className="text-3xl font-bold flex items-center gap-2">
                                 <CalendarClock className="h-8 w-8" />
@@ -375,14 +411,30 @@ export default function PatientAppointmentsPage() {
                             </h2>
                             <p className="mt-2 text-indigo-50">Manage your visits and book consultations</p>
                         </div>
-                        <div className="hidden md:flex items-center gap-4">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p className="text-xs text-indigo-100">Upcoming</p>
+                        <div className="flex gap-3">
+                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-center min-w-[80px]">
+                                <p className="text-xs text-indigo-100 uppercase tracking-wider">Today</p>
+                                <p className="text-2xl font-bold">{appointments.filter(a => {
+                                    const d = new Date(a.startTimestamp);
+                                    const n = new Date();
+                                    return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+                                }).length}</p>
+                            </div>
+                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-center min-w-[80px]">
+                                <p className="text-xs text-indigo-100 uppercase tracking-wider">Upcoming</p>
                                 <p className="text-2xl font-bold">{upcomingAppointments.length}</p>
+                            </div>
+                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-center min-w-[80px]">
+                                <p className="text-xs text-indigo-100 uppercase tracking-wider">Total</p>
+                                <p className="text-2xl font-bold">{appointments.length}</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            
+                            
+                            
 
                 {error && (
                     <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 rounded-xl p-4 shadow-sm">
@@ -556,23 +608,60 @@ export default function PatientAppointmentsPage() {
 
                             {/* All Appointments List */}
                             <Card className="border-2 border-blue-200 shadow-lg">
-                                <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
-                                    <div className="flex items-center justify-between">
-                                        <CardTitle className="text-blue-700">All Appointments</CardTitle>
-                                        <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                            <SelectTrigger className="w-40 border-2 border-blue-200">
-                                                <SelectValue />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all">All Status</SelectItem>
-                                                <SelectItem value="pending">Pending</SelectItem>
-                                                <SelectItem value="confirmed">Confirmed</SelectItem>
-                                                <SelectItem value="completed">Completed</SelectItem>
-                                                <SelectItem value="cancelled">Cancelled</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                </CardHeader>
+                                <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+        {/* Left Side Title */}
+        <div>
+            <CardTitle className="text-blue-700 text-2xl font-semibold">
+                All Appointments
+            </CardTitle>
+        </div>
+
+        {/* Right Side Filters */}
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+         <Filter className="h-5 w-5 text-gray-700" />
+            {/* Date Filter */}
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-600">
+                    Filter by Date
+                </label>
+                <Select value={dateFilter} onValueChange={setDateFilter}>
+                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
+                        <SelectValue placeholder="Select date range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">All Dates</SelectItem>
+                        <SelectItem value="today">Today</SelectItem>
+                        <SelectItem value="upcoming">Upcoming</SelectItem>
+                        <SelectItem value="past">Past</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+
+            {/* Status Filter */}
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-600">
+                    Filter by Status
+                </label>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
+                        <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">All Status</SelectItem>
+                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="confirmed">Confirmed</SelectItem>
+                        <SelectItem value="completed">Completed</SelectItem>
+                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+
+        </div>
+    </div>
+</CardHeader>
+
                                 <CardContent className="p-4">
                                     {filteredAppointments.length > 0 ? (
                                         <div className="space-y-4">
@@ -722,35 +811,6 @@ export default function PatientAppointmentsPage() {
 
                         {/* Sidebar */}
                         < div className="space-y-6" >
-                            {/* Quick Stats */}
-                            < Card className="border-2 border-green-200 shadow-lg" >
-                                <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
-                                    <CardTitle className="text-green-700">Quick Stats</CardTitle>
-                                </CardHeader>
-                                <CardContent className="p-4 space-y-3">
-                                    <div className="bg-gradient-to-r from-green-400 to-emerald-400 text-white p-3 rounded-lg">
-                                        <p className="text-xs opacity-90">Upcoming</p>
-                                        <p className="text-3xl font-bold">{upcomingAppointments.length}</p>
-                                    </div>
-                                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
-                                        <p className="text-xs opacity-90">Completed</p>
-                                        <p className="text-3xl font-bold">{appointments.filter(a => a.status === 'completed').length}</p>
-                                    </div>
-                                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
-                                        <p className="text-xs opacity-90">Cancelled</p>
-                                        <p className="text-3xl font-bold">{pastAppointments.length}</p>
-                                    </div>
-                                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 text-white p-3 rounded-lg">
-                                        <p className="text-xs opacity-90">Pending</p>
-                                        <p className="text-3xl font-bold">{appointments.filter(a => a.status === 'pending').length}</p>
-                                    </div>
-                                    <div className="bg-gradient-to-r from-gray-400 to-slate-400 text-white p-3 rounded-lg">
-                                        <p className="text-xs opacity-90">Total</p>
-                                        <p className="text-3xl font-bold">{appointments.length}</p>
-                                    </div>
-                                </CardContent>
-                            </Card >
-
                             {/* Doctor Info */}
                             {
                                 selectedDoctorData && (

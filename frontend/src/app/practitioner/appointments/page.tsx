@@ -180,11 +180,12 @@ export default function PractitionerAppointmentsPage() {
         const now = new Date();
         return {
             total: appointments.length,
-            upcoming: appointments.filter(a => (a.status === 'pending' || a.status === 'confirmed') && parseISO(a.startTimestamp) >= now).length,
+            upcoming: appointments.filter(a => (a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending'|| a.status === 'confirmed') && parseISO(a.startTimestamp) >= now).length,
             today: appointments.filter(a => {
                 const aptDate = parseISO(a.startTimestamp);
                 return isWithinInterval(aptDate, { start: startOfDay(now), end: endOfDay(now) });
             }).length,
+            pending:appointments.filter(a => a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending').length,
             completed: appointments.filter(a => a.status === 'completed').length,
         };
     };
@@ -214,9 +215,13 @@ export default function PractitionerAppointmentsPage() {
                                 <p className="text-2xl font-bold">{stats.upcoming}</p>
                             </div>
                             <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-center">
+                                <p className="text-xs text-green-100">Pending</p>
+                                <p className="text-2xl font-bold">{stats.pending}</p>
+                            </div>
+                            {/* <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 text-center">
                                 <p className="text-xs text-green-100">Total</p>
                                 <p className="text-2xl font-bold">{stats.total}</p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

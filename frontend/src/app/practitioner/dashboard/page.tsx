@@ -57,13 +57,17 @@ export default function PractitionerDashboard() {
                 const appointments = appointmentsResponse.data;
 
                 // Calculate stats
+                const now = new Date();
                 const upcomingAppointments = appointments.filter(
-                    (a: Appointment) => a.status === 'upcoming'
+                    (a: Appointment) => a.status === 'confirmed' && new Date(a.startTimestamp) > now
                 );
 
-                const today = new Date().toISOString().split('T')[0];
-                const todaysAppointments = upcomingAppointments.filter(
-                    (a: Appointment) => a.startTimestamp.startsWith(today)
+                const todayStr = format(now, 'yyyy-MM-dd');
+                const todaysAppointments = appointments.filter(
+                    (a: Appointment) => {
+                        const apptDate = new Date(a.startTimestamp);
+                        return format(apptDate, 'yyyy-MM-dd') === todayStr && a.status === 'confirmed';
+                    }
                 );
 
                 setStats({
@@ -102,76 +106,89 @@ export default function PractitionerDashboard() {
     return (
         <PractitionerLayout>
             <div className="space-y-8">
-                <div>
-                    <h2 className="text-3xl font-bold text-gray-900">Dashboard (Updated)</h2>
-                    <p className="text-gray-500 mt-2">Welcome back, Dr. {user?.name}</p>
+                <div className="bg-gradient-to-r from-[#E9F7EF] to-white p-6 rounded-2xl border border-[#A2B38B]/20">
+                    <h2 className="text-3xl font-bold text-[#1B5E20]">Dashboard</h2>
+                    <p className="text-[#2E7D32] mt-2 font-medium">Welcome back, Dr. {user?.name}</p>
                 </div>
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <StatsCard
-                        title="Active Patients"
-                        value={stats.activePatients}
-                        icon={Users}
-                        color="blue"
-                        description="Total registered"
-                    />
-                    <StatsCard
-                        title="Appointments"
-                        value={stats.upcomingAppointments}
-                        icon={Calendar}
-                        color="green"
-                        description="Upcoming"
-                    />
-                    <StatsCard
-                        title="Pending Diets"
-                        value={stats.pendingDietPlans}
-                        icon={FileText}
-                        color="orange"
-                        description="Needs review"
-                    />
-                    <StatsCard
-                        title="Consultations"
-                        value={stats.totalConsultations}
-                        icon={Activity}
-                        color="purple"
-                        description="Completed"
-                    />
-                </div>
-
-                {/* Quick Actions */}
-                <div className="flex space-x-4">
-
-                    <Link href="/practitioner/diet-plans/create">
-                        <Button variant="outline" className="border-[#2E7D32] text-[#2E7D32] hover:bg-[#E9F7EF]">
-                            <FileText className="mr-2 h-4 w-4" /> Generate Diet Plan
-                        </Button>
+                    <Link href="/practitioner/patients">
+                        <div className="transition-transform hover:scale-105 cursor-pointer">
+                            <StatsCard
+                                title="Active Patients"
+                                value={stats.activePatients}
+                                icon={Users}
+                                color="blue"
+                                description="Total registered"
+                            />
+                        </div>
+                    </Link>
+                    <Link href="/practitioner/appointments">
+                        <div className="transition-transform hover:scale-105 cursor-pointer">
+                            <StatsCard
+                                title="Appointments"
+                                value={stats.upcomingAppointments}
+                                icon={Calendar}
+                                color="green"
+                                description="Upcoming confirmed"
+                            />
+                        </div>
+                    </Link>
+                    <Link href="/practitioner/diet-plans">
+                        <div className="transition-transform hover:scale-105 cursor-pointer">
+                            <StatsCard
+                                title="Diet Plans"
+                                value={stats.pendingDietPlans}
+                                icon={FileText}
+                                color="orange"
+                                description="Manage plans"
+                            />
+                        </div>
+                    </Link>
+                    <Link href="/practitioner/appointments">
+                        <div className="transition-transform hover:scale-105 cursor-pointer">
+                            <StatsCard
+                                title="Consultations"
+                                value={stats.totalConsultations}
+                                icon={Activity}
+                                color="purple"
+                                description="Completed total"
+                            />
+                        </div>
                     </Link>
                 </div>
 
                 {/* Recent Activity & Appointments */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Recent Patients */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Recent Patients</CardTitle>
+                    <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+                        <CardHeader className="border-b bg-gray-50/50">
+                            <div className="flex items-center justify-between">
+                                <CardTitle className="text-lg font-semibold text-gray-800">Recent Patients</CardTitle>
+                                <Link href="/practitioner/patients">
+                                    <Button variant="ghost" size="sm" className="text-[#2E7D32] hover:text-[#1B5E20]">
+                                        View All
+                                    </Button>
+                                </Link>
+                            </div>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="p-0">
                             {recentPatients.length > 0 ? (
-                                <div className="space-y-3">
+                                <div className="divide-y">
                                     {recentPatients.map((patient) => (
                                         <Link
                                             key={patient.id}
                                             href={`/practitioner/patients/${patient.patientId}`}
-                                            className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                                            className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group"
                                         >
-                                            <div className="flex items-center space-x-3">
-                                                <div className="h-10 w-10 rounded-full bg-[#E9F7EF] text-[#2E7D32] flex items-center justify-center font-semibold">
+                                            <div className="flex items-center space-x-4">
+                                                <div className="h-10 w-10 rounded-full bg-[#E9F7EF] text-[#2E7D32] flex items-center justify-center font-bold group-hover:bg-[#2E7D32] group-hover:text-white transition-colors">
                                                     {patient.name.charAt(0)}
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium text-gray-900">{patient.name}</p>
-                                                    <p className="text-sm text-gray-500" title={patient.patientId}>
+                                                    <p className="font-medium text-gray-900 group-hover:text-[#2E7D32] transition-colors">{patient.name}</p>
+                                                    <p className="text-xs text-gray-500">
                                                         ID: {patient.patientId.substring(0, 8)}...
                                                     </p>
                                                 </div>
@@ -179,9 +196,9 @@ export default function PractitionerDashboard() {
                                             <div className="flex flex-col items-end gap-1">
                                                 {patient.lastAppointment && (
                                                     <>
-                                                        <span className={`text-xs px-2 py-1 rounded-full ${patient.lastAppointment.status === 'confirmed'
-                                                                ? 'bg-green-100 text-green-700'
-                                                                : 'bg-blue-100 text-blue-700'
+                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold ${patient.lastAppointment.status === 'confirmed'
+                                                            ? 'bg-green-100 text-green-700'
+                                                            : 'bg-blue-100 text-blue-700'
                                                             }`}>
                                                             {patient.lastAppointment.status}
                                                         </span>
@@ -198,51 +215,54 @@ export default function PractitionerDashboard() {
                                     ))}
                                 </div>
                             ) : (
-                                <div className="text-center py-8 text-gray-500">
-                                    <p>No patients with confirmed/completed appointments yet</p>
-                                    <Link href="/practitioner/appointments">
-                                        <Button variant="link" className="text-[#2E7D32] mt-2">
-                                            View appointments
-                                        </Button>
-                                    </Link>
+                                <div className="text-center py-12 text-gray-500">
+                                    <Users className="h-10 w-10 mx-auto text-gray-300 mb-3" />
+                                    <p>No recent patients found</p>
                                 </div>
                             )}
                         </CardContent>
                     </Card>
 
                     {/* Today's Appointments */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Today's Appointments</CardTitle>
+                    <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+                        <CardHeader className="border-b bg-gray-50/50">
+                            <div className="flex items-center justify-between">
+                                <CardTitle className="text-lg font-semibold text-gray-800">Today's Appointments</CardTitle>
+                                <Link href="/practitioner/appointments">
+                                    <Button variant="ghost" size="sm" className="text-[#2E7D32] hover:text-[#1B5E20]">
+                                        View Calendar
+                                    </Button>
+                                </Link>
+                            </div>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="p-0">
                             {todayAppointments.length > 0 ? (
-                                <div className="space-y-3">
+                                <div className="divide-y">
                                     {todayAppointments.map((appointment) => (
                                         <div
                                             key={appointment.id}
-                                            className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-100"
+                                            className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
                                         >
-                                            <div>
-                                                <p className="font-medium text-gray-900">{appointment.patientName}</p>
-                                                <p className="text-sm text-gray-500">
-                                                    {format(new Date(appointment.startTimestamp), 'h:mm a')}
-                                                </p>
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                                                <div>
+                                                    <p className="font-medium text-gray-900">{appointment.patientName}</p>
+                                                    <p className="text-sm text-gray-500 flex items-center gap-1">
+                                                        <Calendar className="h-3 w-3" />
+                                                        {format(new Date(appointment.startTimestamp), 'h:mm a')}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                                                {appointment.status}
+                                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+                                                Confirmed
                                             </span>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <div className="text-center py-8 text-gray-500">
-                                    <p>No appointments for today</p>
-                                    <Link href="/practitioner/appointments">
-                                        <Button variant="link" className="text-[#2E7D32] mt-2">
-                                            View all appointments
-                                        </Button>
-                                    </Link>
+                                <div className="text-center py-12 text-gray-500">
+                                    <Calendar className="h-10 w-10 mx-auto text-gray-300 mb-3" />
+                                    <p>No appointments scheduled for today</p>
                                 </div>
                             )}
                         </CardContent>
