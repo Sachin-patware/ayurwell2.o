@@ -54,6 +54,7 @@ export default function PractitionerLayout({ children }: { children: React.React
         { href: '/practitioner/patients', label: 'Patients', icon: Users },
         { href: '/practitioner/appointments', label: 'Appointments', icon: Calendar },
         { href: '/practitioner/diet-plans', label: 'Diet Plans', icon: FileText },
+        { href: '/practitioner/profile', label: 'Profile', icon: Settings },
     ];
 
     return (

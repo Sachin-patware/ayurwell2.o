@@ -360,3 +360,90 @@ def delete_progress(progress_id):
     progress.delete()
     return jsonify({"message": "Progress entry deleted successfully"}), 200
 
+
+# Practitioner Profile Endpoints
+@api_bp.route('/practitioner/profile', methods=['GET'])
+@jwt_required()
+def get_practitioner_profile():
+    current_user_id = get_jwt_identity()
+    doctor = Doctor.objects(doctorId=current_user_id).first()
+    
+    if not doctor:
+        return jsonify({"error": "Doctor profile not found"}), 404
+    
+    # Fetch email and name from User collection to ensure sync
+    from models import User
+    user = User.objects(uid=current_user_id).first()
+    email = user.email if user else ""
+    name = user.name if user else doctor.name
+        
+    # Merge email/name into personalInfo for frontend convenience
+    personal_info = doctor.personalInfo or {}
+    personal_info['email'] = email
+    personal_info['name'] = name
+        
+    return jsonify({
+        "doctorId": doctor.doctorId,
+        "name": name,
+        "specialization": doctor.specialization,
+        "clinicHours": doctor.clinicHours,
+        "status": doctor.status,
+        "personalInfo": personal_info,
+        "professionalInfo": doctor.professionalInfo,
+        "clinicInfo": doctor.clinicInfo,
+        "account": doctor.account,
+        "createdAt": doctor.createdAt.isoformat() if doctor.createdAt else None
+    })
+
+@api_bp.route('/practitioner/profile', methods=['PUT'])
+@jwt_required()
+def update_practitioner_profile():
+    current_user_id = get_jwt_identity()
+    data = request.json
+    
+    doctor = Doctor.objects(doctorId=current_user_id).first()
+    
+    if not doctor:
+        return jsonify({"error": "Doctor profile not found"}), 404
+    
+    # Update top-level fields
+    if 'specialization' in data:
+        doctor.specialization = data['specialization']
+    if 'clinicHours' in data:
+        doctor.clinicHours = data['clinicHours']
+        
+    # Update rich fields
+    if 'personalInfo' in data:
+        doctor.personalInfo = data['personalInfo']
+        
+        # Sync Name with User collection if changed
+        if 'name' in data['personalInfo']:
+            new_name = data['personalInfo']['name']
+            doctor.name = new_name
+            
+            from models import User
+            user = User.objects(uid=current_user_id).first()
+            if user:
+                user.name = new_name
+                user.save()
+            
+    if 'professionalInfo' in data:
+        doctor.professionalInfo = data['professionalInfo']
+        # Sync top-level specialization
+        if 'specialization' in data['professionalInfo']:
+            doctor.specialization = data['professionalInfo']['specialization']
+            
+    if 'clinicInfo' in data:
+        doctor.clinicInfo = data['clinicInfo']
+        # Sync top-level clinicHours
+        if 'clinicHours' in data['clinicInfo']:
+            doctor.clinicHours = data['clinicInfo']['clinicHours']
+            
+    if 'account' in data:
+        # Don't allow updating critical account fields directly via this endpoint if needed
+        # But for now, we'll allow updating profileImage etc.
+        doctor.account = data['account']
+        
+    doctor.save()
+    
+    return jsonify({"message": "Profile updated successfully"}), 200

@@ -18,7 +18,6 @@ const registerSchema = z.object({
     email: z.string().email('Invalid email address'),
     password: z.string().min(6, 'Password must be at least 6 characters'),
     role: z.enum(['patient', 'doctor']),
-    phone: z.string().optional(),
     specialization: z.string().optional(),
 });
 
@@ -94,10 +93,7 @@ export default function RegisterPage() {
                                 {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
                             </div>
 
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700">Phone (Optional)</label>
-                                <Input {...register('phone')} placeholder="+91-1234567890" />
-                            </div>
+
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">I am a...</label>
