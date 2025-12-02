@@ -99,28 +99,43 @@ export default function PatientsPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {filteredPatients.map((patient) => (
                                     <Link key={patient.id} href={`/practitioner/patients/${patient.patientId}`}>
-                                        <div className="border rounded-lg p-4 hover:bg-gray-50 transition-colors cursor-pointer group">
-                                            <div className="flex items-center space-x-4">
-                                                <div className="h-12 w-12 rounded-full bg-[#E9F7EF] text-[#2E7D32] flex items-center justify-center font-bold text-lg group-hover:bg-[#2E7D32] group-hover:text-white transition-colors">
-                                                    {patient.name.charAt(0)}
+                                        <div className="border rounded-xl p-5 hover:shadow-lg hover:border-[#2E7D32] transition-all cursor-pointer group bg-white">
+                                            <div className="flex items-start space-x-4">
+                                                <div className="h-14 w-14 rounded-full bg-gradient-to-br from-[#E9F7EF] to-[#2E7D32]/20 text-[#2E7D32] flex items-center justify-center font-bold text-xl group-hover:from-[#2E7D32] group-hover:to-[#1B5E20] group-hover:text-white transition-all shadow-sm">
+                                                    {patient.name.charAt(0).toUpperCase()}
                                                 </div>
-                                                <div>
-                                                    <h3 className="font-semibold text-gray-900">{patient.name}</h3>
-                                                    <p className="text-sm text-gray-500">ID: {patient.patientId}</p>
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="font-semibold text-lg text-gray-900 truncate group-hover:text-[#2E7D32] transition-colors">
+                                                        {patient.name}
+                                                    </h3>
+                                                    <p className="text-sm text-gray-500 font-mono mt-0.5">
+                                                        {patient.patientId}
+                                                    </p>
+                                                    {(patient.email || patient.phone) && (
+                                                        <div className="mt-3 space-y-1">
+                                                            {patient.email && (
+                                                                <p className="text-xs text-gray-600 truncate flex items-center gap-1.5">
+                                                                    <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                                    </svg>
+                                                                    {patient.email}
+                                                                </p>
+                                                            )}
+                                                            {patient.phone && (
+                                                                <p className="text-xs text-gray-600 flex items-center gap-1.5">
+                                                                    <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                                    </svg>
+                                                                    {patient.phone}
+                                                                </p>
+                                                            )}
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </div>
-                                            <div className="mt-4 pt-4 border-t flex justify-between text-sm">
-                                                <div>
-                                                    <span className="text-gray-500">Prakriti:</span>
-                                                    <span className="ml-1 font-medium text-[#E07A5F]">
-                                                        {patient.assessment?.prakriti || 'N/A'}
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span className="text-gray-500">Age:</span>
-                                                    <span className="ml-1 font-medium">
-                                                        {patient.assessment?.age || 'N/A'}
-                                                    </span>
+                                                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <svg className="w-5 h-5 text-[#2E7D32]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                    </svg>
                                                 </div>
                                             </div>
                                         </div>

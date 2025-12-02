@@ -38,6 +38,7 @@ function CreateDietPlanContent() {
     const [loadingPatients, setLoadingPatients] = useState(true);
     const [selectedPatient, setSelectedPatient] = useState('');
     const [selectedPatientData, setSelectedPatientData] = useState<Patient | null>(null);
+    const [latestAssessment, setLatestAssessment] = useState<any>(null);
 
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -140,10 +141,26 @@ function CreateDietPlanContent() {
         }
     };
 
+    const fetchAssessment = async (pId: string) => {
+        try {
+            const response = await api.get(`/appointments/assessments/patient/${pId}`);
+            if (response.data.assessments && response.data.assessments.length > 0) {
+                // The API returns sorted by newest first
+                setLatestAssessment(response.data.assessments[0]);
+            } else {
+                setLatestAssessment(null);
+            }
+        } catch (error) {
+            console.error('Error fetching assessment:', error);
+            setLatestAssessment(null);
+        }
+    };
+
     const handlePatientChange = async (value: string) => {
         setSelectedPatient(value);
         const patient = patients.find(p => p.patientId === value);
         setSelectedPatientData(patient || null);
+        fetchAssessment(value);
 
         // Reset state for new patient
         if (!editPlanId) {
@@ -169,7 +186,8 @@ function CreateDietPlanContent() {
 
         try {
             const response = await api.post('/generate-diet', {
-                patient_id: selectedPatient
+                patient_id: selectedPatient,
+                assessment_data: latestAssessment
             });
 
             setGeneratedPlan(response.data.diet_plan);
@@ -368,28 +386,35 @@ function CreateDietPlanContent() {
                     <div className="flex flex-col md:flex-row gap-4 items-end">
                         <div className="w-full md:w-2/3 space-y-2">
                             <label className="text-sm font-medium text-gray-700">Select Patient</label>
-                            <Select
-                                onValueChange={handlePatientChange}
-                                disabled={loadingPatients || !!editPlanId} // Disable changing patient when editing specific plan
-                                value={selectedPatient}
-                            >
-                                <SelectTrigger>
-                                    <SelectValue placeholder={loadingPatients ? "Loading patients..." : "Choose a patient..."} />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {patients.map((patient) => (
-                                        <SelectItem key={patient.patientId} value={patient.patientId}>
-                                            {patient.name} ({patient.assessment?.prakriti || 'No assessment'})
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            {initialPatientId && selectedPatientData ? (
+                                <div className="p-3 bg-gray-100 rounded-md border border-gray-200 text-gray-700 font-medium">
+                                    {selectedPatientData.name} ({latestAssessment?.assessment?.prakriti || selectedPatientData.assessment?.prakriti || 'No assessment'})
+                                </div>
+                            ) : (
+                                <Select
+                                    onValueChange={handlePatientChange}
+                                    disabled={loadingPatients || !!editPlanId}
+                                    value={selectedPatient}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder={loadingPatients ? "Loading patients..." : "Choose a patient..."} />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {patients.map((patient) => (
+                                            <SelectItem key={patient.patientId} value={patient.patientId}>
+                                                {patient.name} ({patient.assessment?.prakriti || 'No assessment'})
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            )}
+
                             {selectedPatientData && (
                                 <div className="text-xs text-gray-500 mt-2">
-                                    <span className="font-medium">Assessment:</span> Prakriti: {selectedPatientData.assessment?.prakriti || 'N/A'},
-                                    Vikriti: {selectedPatientData.assessment?.vikriti || 'N/A'},
-                                    Age: {selectedPatientData.assessment?.age || 'N/A'},
-                                    Gender: {selectedPatientData.assessment?.gender || 'N/A'}
+                                    <span className="font-medium">Assessment:</span> Prakriti: {latestAssessment?.assessment?.prakriti || selectedPatientData.assessment?.prakriti || 'N/A'},
+                                    Vikriti: {latestAssessment?.assessment?.vikriti || selectedPatientData.assessment?.vikriti || 'N/A'},
+                                    Age: {latestAssessment?.assessment?.age || selectedPatientData.assessment?.age || 'N/A'},
+                                    Gender: {latestAssessment?.assessment?.gender || selectedPatientData.assessment?.gender || 'N/A'}
                                 </div>
                             )}
                         </div>
@@ -422,8 +447,6 @@ function CreateDietPlanContent() {
                                         </DialogFooter>
                                     </DialogContent>
                                 ) : (
-                                    /* If no plan, just generate immediately (handled by trigger click if we didn't use DialogTrigger properly, 
-                                       but here we need to intercept. Better to just call handleGenerate if no plan) */
                                     <div className="hidden" ref={(el) => { if (el && !generatedPlan && regenerateDialogOpen) handleGenerate(); }}></div>
                                 )}
                             </Dialog>
@@ -432,63 +455,65 @@ function CreateDietPlanContent() {
                 </CardContent>
             </Card>
 
-            {generatedPlan && (
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                    <TabsList className="bg-white border p-1 rounded-lg">
-                        <TabsTrigger value="preview">Preview Plan</TabsTrigger>
-                        <TabsTrigger value="editor" disabled={mode === 'view'}>
-                            Manual Editor {mode === 'view' && '(Enable Edit Mode)'}
-                        </TabsTrigger>
-                    </TabsList>
+            {
+                generatedPlan && (
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+                        <TabsList className="bg-white border p-1 rounded-lg">
+                            <TabsTrigger value="preview">Preview Plan</TabsTrigger>
+                            <TabsTrigger value="editor" disabled={mode === 'view'}>
+                                Manual Editor {mode === 'view' && '(Enable Edit Mode)'}
+                            </TabsTrigger>
+                        </TabsList>
 
-                    <TabsContent value="preview">
-                        <Card>
-                            <CardHeader className="bg-gradient-to-r from-[#E9F7EF] to-white">
-                                <CardTitle className="text-[#2E7D32] flex items-center">
-                                    <Sparkles className="mr-2 h-5 w-5" />
-                                    Diet Plan Preview
-                                </CardTitle>
-                                <p className="text-sm text-gray-600">
-                                    {mode === 'view'
-                                        ? "You are viewing the plan as the patient sees it."
-                                        : "This is what the patient will see. Switch to 'Manual Editor' to make changes."}
-                                </p>
-                            </CardHeader>
-                            <CardContent className="p-6">
-                                <DietPlanViewer plan={generatedPlan} />
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
+                        <TabsContent value="preview">
+                            <Card>
+                                <CardHeader className="bg-gradient-to-r from-[#E9F7EF] to-white">
+                                    <CardTitle className="text-[#2E7D32] flex items-center">
+                                        <Sparkles className="mr-2 h-5 w-5" />
+                                        Diet Plan Preview
+                                    </CardTitle>
+                                    <p className="text-sm text-gray-600">
+                                        {mode === 'view'
+                                            ? "You are viewing the plan as the patient sees it."
+                                            : "This is what the patient will see. Switch to 'Manual Editor' to make changes."}
+                                    </p>
+                                </CardHeader>
+                                <CardContent className="p-6">
+                                    <DietPlanViewer plan={generatedPlan} />
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
 
-                    <TabsContent value="editor">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <div className="lg:col-span-2">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Manual Meal Editor</CardTitle>
-                                        <p className="text-sm text-gray-600">Drag and drop to customize the plan. Changes are auto-synced to preview.</p>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <MealEditor meals={editorMeals} onChange={handleMealsChange} />
-                                    </CardContent>
-                                </Card>
+                        <TabsContent value="editor">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div className="lg:col-span-2">
+                                    <Card>
+                                        <CardHeader>
+                                            <CardTitle>Manual Meal Editor</CardTitle>
+                                            <p className="text-sm text-gray-600">Drag and drop to customize the plan. Changes are auto-synced to preview.</p>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <MealEditor meals={editorMeals} onChange={handleMealsChange} />
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                                <div className="space-y-6">
+                                    <Card className="bg-[#E9F7EF] border-[#A2B38B]">
+                                        <CardHeader>
+                                            <CardTitle className="text-[#2E7D32]">Dosha Balance</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-sm text-gray-600 mb-4">Based on patient&apos;s Prakriti: {selectedPatientData?.assessment?.prakriti}</p>
+                                            {/* Visual indicators would go here */}
+                                        </CardContent>
+                                    </Card>
+                                </div>
                             </div>
-                            <div className="space-y-6">
-                                <Card className="bg-[#E9F7EF] border-[#A2B38B]">
-                                    <CardHeader>
-                                        <CardTitle className="text-[#2E7D32]">Dosha Balance</CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p className="text-sm text-gray-600 mb-4">Based on patient&apos;s Prakriti: {selectedPatientData?.assessment?.prakriti}</p>
-                                        {/* Visual indicators would go here */}
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </div>
-                    </TabsContent>
-                </Tabs>
-            )}
-        </div>
+                        </TabsContent>
+                    </Tabs>
+                )
+            }
+        </div >
     );
 }
 

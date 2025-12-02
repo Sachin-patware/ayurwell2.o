@@ -4,12 +4,14 @@ Migrates existing appointments to new schema
 """
 from models import db, Appointment, get_ist_now
 from flask import Flask
+from dotenv import load_dotenv
+import os
 
 def create_app():
     """Create Flask app for migration"""
     app = Flask(__name__)
     app.config['MONGODB_SETTINGS'] = {
-        'host': 'mongodb://localhost:27017/ayurwell'
+        'host': os.getenv("MONGODB_URI")
     }
     db.init_app(app)
     return app

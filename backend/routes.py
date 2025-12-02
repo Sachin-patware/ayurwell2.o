@@ -104,7 +104,18 @@ def generate_diet_plan():
     from ml_service import ml_service
     
     # Construct profile from assessment
-    assessment = patient.assessment or {}
+    assessment_data = data.get('assessment_data')
+    
+    if assessment_data and 'assessment' in assessment_data:
+        # If full assessment object passed (from Assessment collection)
+        assessment = assessment_data['assessment']
+    elif assessment_data:
+        # If just the assessment fields passed
+        assessment = assessment_data
+    else:
+        # Fallback to patient's embedded assessment
+        assessment = patient.assessment or {}
+
     profile = {
         "prakriti": assessment.get('prakriti'),
         "vikriti": assessment.get('vikriti'),
