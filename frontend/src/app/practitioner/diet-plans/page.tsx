@@ -30,6 +30,24 @@ interface DietPlan {
     calories: number;
 }
 
+function toIST(dateString: string) {
+    const d = new Date(
+        dateString.endsWith('Z') || dateString.includes('+')
+            ? dateString
+            : dateString + 'Z'
+    );
+
+    return new Intl.DateTimeFormat('en-IN', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+        timeZone: 'Asia/Kolkata'
+    }).format(d);
+}
+
 export default function DietPlansPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [plans, setPlans] = useState<DietPlan[]>([]);
@@ -76,8 +94,11 @@ export default function DietPlansPage() {
     const filteredPlans = plans.filter(plan => {
         const matchesSearch = plan.patientName.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesStatus = statusFilter === 'all' || plan.status.toLowerCase() === statusFilter.toLowerCase();
+
+
         return matchesSearch && matchesStatus;
     });
+
 
     const getStatusColor = (status: string) => {
         switch (status.toLowerCase()) {
@@ -112,7 +133,6 @@ export default function DietPlansPage() {
         completed: plans.filter(p => p.status === 'completed').length,
         cancelled: plans.filter(p => p.status === 'cancelled').length,
     };
-
     return (
         <PractitionerLayout>
             <div className="space-y-6">
@@ -194,7 +214,7 @@ export default function DietPlansPage() {
                                             <p className="text-sm text-gray-500 flex items-center mt-1">
                                                 <Calendar className="h-3 w-3 mr-1" />
                                                 <span className="font-medium mr-1">Updated:</span>
-                                                {formatDateIST(plan.lastModified || plan.generatedAt, 'MMM d, yyyy h:mm a')}
+                                                <span>{toIST(plan.lastModified || plan.generatedAt)}</span>
                                             </p>
                                         </div>
                                         <Badge className={`${getStatusColor(plan.status)} border px-2.5 py-0.5`}>

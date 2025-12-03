@@ -5,7 +5,6 @@ import PractitionerLayout from '@/components/layouts/PractitionerLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Search, Plus, Filter, Loader2, UserPlus } from 'lucide-react';
 import Link from 'next/link';

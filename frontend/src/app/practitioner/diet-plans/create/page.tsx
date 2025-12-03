@@ -43,6 +43,7 @@ function CreateDietPlanContent() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [isPublishing, setIsPublishing] = useState(false);
+    const [loadingPlan, setLoadingPlan] = useState(false);
 
     const [generatedPlan, setGeneratedPlan] = useState<any>(null);
     const [planId, setPlanId] = useState<string | null>(null);
@@ -96,6 +97,7 @@ function CreateDietPlanContent() {
 
     const loadSpecificPlan = async (id: string) => {
         try {
+            setLoadingPlan(true);
             // Try to get plan directly first (more robust)
             try {
                 const response = await api.get(`/diet-plans/single/${id}`);
@@ -161,6 +163,8 @@ function CreateDietPlanContent() {
         } catch (err) {
             console.error("Error loading plan:", err);
             setError("Failed to load the requested plan.");
+        } finally {
+            setLoadingPlan(false);
         }
     };
 
@@ -309,6 +313,18 @@ function CreateDietPlanContent() {
         }
     };
 
+    // Show loading state
+    if (loadingPatients || loadingPlan) {
+        return (
+            <div className="flex flex-col items-center justify-center h-[60vh] space-y-4">
+                <Loader2 className="h-12 w-12 animate-spin text-[#2E7D32]" />
+                <p className="text-gray-600 text-lg">
+                    {loadingPlan ? 'Loading diet plan...' : 'Loading patients...'}
+                </p>
+            </div>
+        );
+    }
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -421,6 +437,7 @@ function CreateDietPlanContent() {
                                     <p className="text-xs text-gray-500">Latest Assessment</p>
                                     <p className="text-sm font-medium text-[#2E7D32]">
                                         {formatDateIST(latestAssessment.createdAt, 'MMM d, yyyy')}
+
                                     </p>
                                 </div>
                             )}
