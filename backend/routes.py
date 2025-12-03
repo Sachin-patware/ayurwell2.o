@@ -138,20 +138,12 @@ def generate_diet_plan():
     
     diet_plan_content = ml_service.generate_diet(profile)
     
-    # Save as draft by default (doctor must publish)
-    new_plan = DietPlan(
-        patientId=patient_id,
-        content=json.dumps(diet_plan_content),
-        createdBy=current_user,
-        status='draft'
-    )
-    new_plan.save()
-    
+    # Don't auto-save - let doctor decide to save or publish
+    # Just return the generated plan
     return jsonify({
-        "message": "Diet plan generated as draft", 
-        "diet_plan": diet_plan_content,
-        "plan_id": str(new_plan.id)
-    }), 201
+        "message": "Diet plan generated successfully", 
+        "diet_plan": diet_plan_content
+    }), 200
 
 @api_bp.route('/diet-plans/<patient_id>', methods=['GET'])
 @jwt_required()
@@ -378,6 +370,23 @@ def update_diet_plan(plan_id):
     plan.save()
     
     return jsonify({"message": "Diet plan updated"}), 200
+
+@api_bp.route('/diet-plans/<plan_id>', methods=['DELETE'])
+@jwt_required()
+def delete_diet_plan(plan_id):
+    """Delete a diet plan"""
+    current_user = get_jwt_identity()
+    
+    plan = DietPlan.objects(id=plan_id).first()
+    if not plan:
+        return jsonify({"error": "Diet plan not found"}), 404
+    
+    # Only allow deletion by the doctor who created it
+    if plan.createdBy != current_user:
+        return jsonify({"error": "Unauthorized to delete this plan"}), 403
+    
+    plan.delete()
+    return jsonify({"message": "Diet plan deleted successfully"}), 200
 
 # Progress tracking endpoints
 @api_bp.route('/progress', methods=['POST'])

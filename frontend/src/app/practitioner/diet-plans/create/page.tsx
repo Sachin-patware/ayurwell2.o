@@ -9,12 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DietPlanViewer } from '@/components/diet/DietPlanViewer';
 import { MealEditor } from '@/components/diet/MealEditor';
-import { Loader2, Sparkles, Save, Send, ArrowLeft, Clock, Edit, AlertCircle } from 'lucide-react';
+import { Loader2, Sparkles, Save, Send, ArrowLeft, Clock, Edit, AlertCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import api from '@/services/api';
 import { formatDateIST } from '@/lib/dateUtils';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { toast } from 'react-toastify';
 
 interface Patient {
     id: string;
@@ -44,6 +45,7 @@ function CreateDietPlanContent() {
     const [isSaving, setIsSaving] = useState(false);
     const [isPublishing, setIsPublishing] = useState(false);
     const [loadingPlan, setLoadingPlan] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const [generatedPlan, setGeneratedPlan] = useState<any>(null);
     const [planId, setPlanId] = useState<string | null>(null);
@@ -53,6 +55,7 @@ function CreateDietPlanContent() {
     const [error, setError] = useState('');
     const [publishDialogOpen, setPublishDialogOpen] = useState(false);
     const [regenerateDialogOpen, setRegenerateDialogOpen] = useState(false);
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [lastSaved, setLastSaved] = useState<Date | null>(null);
 
     // Mode: 'view' (read-only), 'edit' (manual changes), 'create' (new plan)
@@ -105,14 +108,36 @@ function CreateDietPlanContent() {
 
                 if (plan) {
                     setSelectedPatient(plan.patientId);
-                    // Fetch patient details if not already loaded
-                    if (!selectedPatientData || selectedPatientData.patientId !== plan.patientId) {
-                        const patientRes = await api.get('/appointments/doctor/patients');
-                        const allPatients = patientRes.data.patients || [];
+
+                    // Fetch patient details and assessment in parallel (faster!)
+                    const promises = [];
+
+                    // Only fetch patients if not already loaded
+                    if (patients.length === 0) {
+                        promises.push(api.get('/appointments/doctor/patients'));
+                    }
+
+                    // Always fetch assessment for this patient
+                    promises.push(api.get(`/appointments/assessments/patient/${plan.patientId}`));
+
+                    const results = await Promise.all(promises);
+
+                    // Process patient data if we fetched it
+                    if (patients.length === 0 && results[0]) {
+                        const allPatients = results[0].data.patients || [];
                         setPatients(allPatients);
                         const patient = allPatients.find((p: any) => p.patientId === plan.patientId);
                         setSelectedPatientData(patient || null);
-                        if (patient) fetchAssessment(patient.patientId);
+                    } else {
+                        // Use already loaded patients
+                        const patient = patients.find(p => p.patientId === plan.patientId);
+                        setSelectedPatientData(patient || null);
+                    }
+
+                    // Process assessment data
+                    const assessmentResult = patients.length === 0 ? results[1] : results[0];
+                    if (assessmentResult?.data.assessments && assessmentResult.data.assessments.length > 0) {
+                        setLatestAssessment(assessmentResult.data.assessments[0]);
                     }
 
                     setGeneratedPlan(plan.content);
@@ -215,10 +240,12 @@ function CreateDietPlanContent() {
                 assessment_data: latestAssessment
             });
 
+            // Don't auto-save - let doctor decide to save or publish
             setGeneratedPlan(response.data.diet_plan);
-            setPlanId(response.data.plan_id);
+            // Don't set planId yet - will be set when saved
+            setPlanId(null);
             setPlanStatus('draft');
-            setLastSaved(new Date());
+            setLastSaved(null);
             setActiveTab('preview');
             setMode('edit');
 
@@ -261,11 +288,15 @@ function CreateDietPlanContent() {
 
             setPlanId(response.data.plan_id);
             setLastSaved(new Date());
+            setPlanStatus('draft');
 
             if (mode === 'create') setMode('edit');
 
+            toast.success('Diet plan saved as draft successfully!');
+
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to save plan');
+            toast.error('Failed to save diet plan');
             console.error('Error saving plan:', err);
         } finally {
             setIsSaving(false);
@@ -273,20 +304,58 @@ function CreateDietPlanContent() {
     };
 
     const handlePublish = async () => {
-        if (!planId) return;
+        // If no planId, save first then publish
+        if (!planId) {
+            await handleSave();
+            // Wait a bit for save to complete
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+
+        if (!planId && !generatedPlan) {
+            toast.error('Please save the plan first');
+            return;
+        }
 
         setIsPublishing(true);
 
         try {
-            await api.put(`/diet-plans/${planId}/publish`);
+            // Use the planId from state or the one just saved
+            const idToPublish = planId;
+            if (!idToPublish) {
+                throw new Error('No plan ID available');
+            }
+
+            await api.put(`/diet-plans/${idToPublish}/publish`);
             setPublishDialogOpen(false);
+            toast.success('Diet plan published successfully!');
             router.push('/practitioner/diet-plans');
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to publish diet plan');
+            toast.error('Failed to publish diet plan');
             console.error('Error publishing plan:', err);
             setPublishDialogOpen(false);
         } finally {
             setIsPublishing(false);
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!planId) return;
+
+        setIsDeleting(true);
+
+        try {
+            await api.delete(`/diet-plans/${planId}`);
+            setDeleteDialogOpen(false);
+            toast.success('Diet plan deleted successfully!');
+            router.push('/practitioner/diet-plans');
+        } catch (err: any) {
+            setError(err.response?.data?.error || 'Failed to delete diet plan');
+            toast.error('Failed to delete diet plan');
+            console.error('Error deleting plan:', err);
+            setDeleteDialogOpen(false);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -344,6 +413,41 @@ function CreateDietPlanContent() {
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
+                    {/* Delete Button - only show when editing/viewing existing plan */}
+                    {planId && (
+                        <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+                            <DialogTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="border-red-300 text-red-600 hover:bg-red-50 hover:border-red-400"
+                                >
+                                    <Trash2 className="mr-2 h-4 w-4" /> Delete Plan
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Delete Diet Plan?</DialogTitle>
+                                    <DialogDescription>
+                                        Are you sure you want to delete this diet plan? This action cannot be undone.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <DialogFooter>
+                                    <Button variant="outline" onClick={() => setDeleteDialogOpen(false)}>Cancel</Button>
+                                    <Button
+                                        className="bg-red-600 hover:bg-red-700"
+                                        onClick={handleDelete}
+                                        disabled={isDeleting}
+                                    >
+                                        {isDeleting ? (
+                                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Deleting...</>
+                                        ) : (
+                                            'Delete'
+                                        )}
+                                    </Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                    )}
 
                     {mode === 'view' ? (
                         <Button
@@ -363,7 +467,7 @@ function CreateDietPlanContent() {
                                 {isSaving ? (
                                     <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</>
                                 ) : (
-                                    <><Save className="mr-2 h-4 w-4" /> Save Changes</>
+                                    <><Save className="mr-2 h-4 w-4" /> Save as Draft</>
                                 )}
                             </Button>
 
@@ -371,7 +475,7 @@ function CreateDietPlanContent() {
                                 <DialogTrigger asChild>
                                     <Button
                                         className="bg-[#2E7D32] hover:bg-[#1B5E20]"
-                                        disabled={!generatedPlan || !planId}
+                                        disabled={!generatedPlan}
                                     >
                                         <Send className="mr-2 h-4 w-4" /> Publish to Patient
                                     </Button>
@@ -471,14 +575,14 @@ function CreateDietPlanContent() {
                                 <Dialog open={regenerateDialogOpen} onOpenChange={setRegenerateDialogOpen}>
                                     <DialogTrigger asChild>
                                         <Button
-                                            className="w-full bg-gradient-to-r from-[#E07A5F] to-[#D06950] hover:from-[#D06950] hover:to-[#C05840] text-white shadow-md"
+                                            className="w-full bg-gradient-to-r from-[#2E7D32] to-[#1B5E20] hover:from-[#1B5E20] hover:to-[#0D4A14] text-white shadow-lg hover:shadow-xl transition-all duration-200"
                                             disabled={!selectedPatient || isGenerating || loadingPatients}
                                             size="lg"
                                         >
                                             {isGenerating ? (
-                                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating AI Diet Plan...</>
+                                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating AI-Powered Diet Plan...</>
                                             ) : (
-                                                <><Sparkles className="mr-2 h-5 w-5" /> {generatedPlan ? 'Regenerate with AI' : 'Generate AI Diet Plan'}</>
+                                                <><Sparkles className="mr-2 h-5 w-5" /> {generatedPlan ? 'Regenerate AI Diet Plan' : 'Generate AI-Powered Diet Plan'}</>
                                             )}
                                         </Button>
                                     </DialogTrigger>
@@ -487,12 +591,12 @@ function CreateDietPlanContent() {
                                             <DialogHeader>
                                                 <DialogTitle>Regenerate Diet Plan?</DialogTitle>
                                                 <DialogDescription>
-                                                    This will overwrite the current plan and lose any manual changes. Are you sure?
+                                                    This will create a new AI-generated plan and replace the current one. Any unsaved changes will be lost. Are you sure?
                                                 </DialogDescription>
                                             </DialogHeader>
                                             <DialogFooter>
                                                 <Button variant="outline" onClick={() => setRegenerateDialogOpen(false)}>Cancel</Button>
-                                                <Button className="bg-[#E07A5F]" onClick={handleGenerate}>Yes, Regenerate</Button>
+                                                <Button className="bg-[#2E7D32] hover:bg-[#1B5E20]" onClick={handleGenerate}>Yes, Regenerate</Button>
                                             </DialogFooter>
                                         </DialogContent>
                                     ) : (
