@@ -96,6 +96,49 @@ function CreateDietPlanContent() {
 
     const loadSpecificPlan = async (id: string) => {
         try {
+            // Try to get plan directly first (more robust)
+            try {
+                const response = await api.get(`/diet-plans/single/${id}`);
+                const plan = response.data;
+
+                if (plan) {
+                    setSelectedPatient(plan.patientId);
+                    // Fetch patient details if not already loaded
+                    if (!selectedPatientData || selectedPatientData.patientId !== plan.patientId) {
+                        const patientRes = await api.get('/appointments/doctor/patients');
+                        const allPatients = patientRes.data.patients || [];
+                        setPatients(allPatients);
+                        const patient = allPatients.find((p: any) => p.patientId === plan.patientId);
+                        setSelectedPatientData(patient || null);
+                        if (patient) fetchAssessment(patient.patientId);
+                    }
+
+                    setGeneratedPlan(plan.content);
+                    setPlanId(plan.id);
+                    setPlanStatus(plan.status);
+                    setLastSaved(new Date(plan.lastModified || plan.generatedAt));
+                    setMode('view');
+
+                    if (plan.content.mealPlan && plan.content.mealPlan.length > 0) {
+                        const firstDay = plan.content.mealPlan[0];
+                        const mappedMeals = firstDay.meals.map((m: any) => ({
+                            id: m.type,
+                            name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
+                            items: m.items.map((i: string) => ({ name: i })),
+                            time: m.time
+                        }));
+                        setEditorMeals(prev => prev.map(p => {
+                            const found = mappedMeals.find((m: any) => m.id === p.id);
+                            return found || p;
+                        }));
+                    }
+                    return;
+                }
+            } catch (singlePlanErr) {
+                console.warn("Could not fetch single plan directly, trying fallback...", singlePlanErr);
+            }
+
+            // Fallback: Get all plans for the patient if we have patientId
             const pId = initialPatientId || selectedPatient;
             if (!pId) return;
 
@@ -103,6 +146,7 @@ function CreateDietPlanContent() {
             const plan = response.data.find((p: any) => p.id === id);
 
             if (plan) {
+                // ... existing logic ...
                 setSelectedPatient(plan.patientId);
                 const patient = patients.find(p => p.patientId === plan.patientId);
                 setSelectedPatientData(patient || null);
@@ -112,20 +156,7 @@ function CreateDietPlanContent() {
                 setPlanStatus(plan.status);
                 setLastSaved(new Date(plan.lastModified || plan.generatedAt));
                 setMode('view');
-
-                if (plan.content.mealPlan && plan.content.mealPlan.length > 0) {
-                    const firstDay = plan.content.mealPlan[0];
-                    const mappedMeals = firstDay.meals.map((m: any) => ({
-                        id: m.type,
-                        name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
-                        items: m.items.map((i: string) => ({ name: i })),
-                        time: m.time
-                    }));
-                    setEditorMeals(prev => prev.map(p => {
-                        const found = mappedMeals.find((m: any) => m.id === p.id);
-                        return found || p;
-                    }));
-                }
+                // ...
             }
         } catch (err) {
             console.error("Error loading plan:", err);

@@ -75,7 +75,9 @@ export default function PatientDietPlanPage() {
                                 {plan.publishedAt && (
                                     <span>Published: {new Date(plan.publishedAt).toLocaleDateString()}</span>
                                 )}
-                                <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Active Plan</span>
+                                {plan.status === 'active' && <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs font-medium">Active Plan</span>}
+                                {plan.status === 'completed' && <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Completed</span>}
+                                {plan.status === 'cancelled' && <span className="px-2 py-0.5 bg-red-100 text-red-800 rounded-full text-xs font-medium">Cancelled</span>}
                             </div>
                         )}
                     </div>

@@ -103,7 +103,7 @@ export default function TrackingPage() {
             setNotes('');
             setEditingId(null);
             setTimeout(() => setSuccess(false), 3000);
-             toast.success('saved progress');
+            toast.success('saved progress');
         } catch (err) {
             console.error('Error saving progress:', err);
            toast.error('Failed to save progress');

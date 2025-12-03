@@ -89,6 +89,19 @@ def get_doctors():
     } for d in doctors])
 
 # Diet plan endpoints
+
+def validate_status_transition(current_status, new_status):
+    """Validate diet plan status transitions"""
+    allowed_transitions = {
+        'draft': ['active', 'cancelled'],
+        'active': ['completed', 'cancelled'],
+        'completed': [],  # terminal
+        'cancelled': []   # terminal
+    }
+    
+    if new_status not in allowed_transitions.get(current_status, []):
+        raise ValueError(f"Invalid transition from {current_status} to {new_status}")
+
 @api_bp.route('/generate-diet', methods=['POST'])
 @jwt_required()
 def generate_diet_plan():
@@ -130,7 +143,6 @@ def generate_diet_plan():
         patientId=patient_id,
         content=json.dumps(diet_plan_content),
         createdBy=current_user,
-        published=False,
         status='draft'
     )
     new_plan.save()
@@ -152,18 +164,17 @@ def get_diet_plans(patient_id):
     is_patient_viewing_own = (current_user == patient_id)
     
     if is_patient_viewing_own:
-        # Patients only see published plans
-        plans = DietPlan.objects(patientId=patient_id, published=True)
+        # Patients only see active, completed, or cancelled plans
+        plans = DietPlan.objects(patientId=patient_id, status__in=['active', 'completed', 'cancelled']).order_by('-lastModified')
     else:
-        # Doctors see all plans (drafts + published)
-        plans = DietPlan.objects(patientId=patient_id)
+        # Doctors see all plans (drafts + active + etc)
+        plans = DietPlan.objects(patientId=patient_id).order_by('-lastModified')
     
     return jsonify([{
         "id": str(p.id),
         "generatedAt": p.generatedAt.isoformat(),
         "content": json.loads(p.content) if p.content else {},
         "createdBy": p.createdBy,
-        "published": p.published,
         "status": p.status,
         "publishedAt": p.publishedAt.isoformat() if p.publishedAt else None,
         "lastModified": p.lastModified.isoformat() if p.lastModified else None
@@ -198,7 +209,6 @@ def save_diet_plan_draft():
             patientId=patient_id,
             content=json.dumps(content),
             createdBy=current_user,
-            published=False,
             status='draft'
         )
         new_plan.save()
@@ -240,6 +250,28 @@ def get_all_diet_plans():
         
     return jsonify(results)
 
+@api_bp.route('/diet-plans/single/<plan_id>', methods=['GET'])
+@jwt_required()
+def get_single_diet_plan(plan_id):
+    """Get a single diet plan by ID"""
+    plan = DietPlan.objects(id=plan_id).first()
+    if not plan:
+        return jsonify({"error": "Diet plan not found"}), 404
+    
+    patient = Patient.objects(patientId=plan.patientId).first()
+    
+    result = {
+        "id": str(plan.id),
+        "patientId": plan.patientId,
+        "patientName": patient.name if patient else "Unknown",
+        "generatedAt": plan.generatedAt.isoformat(),
+        "lastModified": plan.lastModified.isoformat() if plan.lastModified else plan.generatedAt.isoformat(),
+        "status": plan.status,
+        "content": json.loads(plan.content) if plan.content else {},
+        "publishedAt": plan.publishedAt.isoformat() if plan.publishedAt else None
+    }
+    return jsonify(result)
+
 @api_bp.route('/diet-plans/<plan_id>/status', methods=['PUT'])
 @jwt_required()
 def update_diet_plan_status(plan_id):
@@ -279,20 +311,54 @@ def update_diet_plan_status(plan_id):
 @api_bp.route('/diet-plans/<plan_id>/publish', methods=['PUT'])
 @jwt_required()
 def publish_diet_plan(plan_id):
-    """Publish a diet plan to make it visible to patient"""
-    from datetime import datetime
-    
+    """Publish a diet plan (Draft -> Active)"""
     plan = DietPlan.objects(id=plan_id).first()
     if not plan:
         return jsonify({"error": "Diet plan not found"}), 404
     
-    plan.published = True
-    plan.status = 'published'
-    plan.publishedAt = get_ist_now()
-    plan.lastModified = get_ist_now()
-    plan.save()
+    try:
+        validate_status_transition(plan.status, 'active')
+        plan.status = 'active'
+        plan.publishedAt = get_ist_now()
+        plan.lastModified = get_ist_now()
+        plan.save()
+        return jsonify({"message": "Diet plan published (active) successfully"}), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+@api_bp.route('/diet-plans/<plan_id>/complete', methods=['PUT'])
+@jwt_required()
+def complete_diet_plan(plan_id):
+    """Mark a diet plan as completed (Active -> Completed)"""
+    plan = DietPlan.objects(id=plan_id).first()
+    if not plan:
+        return jsonify({"error": "Diet plan not found"}), 404
     
-    return jsonify({"message": "Diet plan published successfully"}), 200
+    try:
+        validate_status_transition(plan.status, 'completed')
+        plan.status = 'completed'
+        plan.lastModified = get_ist_now()
+        plan.save()
+        return jsonify({"message": "Diet plan marked as completed"}), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+@api_bp.route('/diet-plans/<plan_id>/cancel', methods=['PUT'])
+@jwt_required()
+def cancel_diet_plan(plan_id):
+    """Cancel a diet plan (Draft/Active -> Cancelled)"""
+    plan = DietPlan.objects(id=plan_id).first()
+    if not plan:
+        return jsonify({"error": "Diet plan not found"}), 404
+    
+    try:
+        validate_status_transition(plan.status, 'cancelled')
+        plan.status = 'cancelled'
+        plan.lastModified = get_ist_now()
+        plan.save()
+        return jsonify({"message": "Diet plan cancelled"}), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
 
 @api_bp.route('/diet-plans/<plan_id>', methods=['PUT'])
 @jwt_required()
