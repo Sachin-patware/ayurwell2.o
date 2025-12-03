@@ -208,8 +208,11 @@ def save_diet_plan_draft():
 @api_bp.route('/diet-plans', methods=['GET'])
 @jwt_required()
 def get_all_diet_plans():
-    """Get all diet plans for practitioner dashboard"""
-    plans = DietPlan.objects().order_by('-lastModified')
+    """Get all diet plans created by the current practitioner"""
+    current_user = get_jwt_identity()
+    
+    # Filter plans by current doctor
+    plans = DietPlan.objects(createdBy=current_user).order_by('-lastModified')
     
     # We need to fetch patient names for display
     results = []

@@ -96,12 +96,6 @@ function CreateDietPlanContent() {
 
     const loadSpecificPlan = async (id: string) => {
         try {
-            // We need an endpoint to get a single plan, or we filter from all plans
-            // Assuming we can fetch all plans for the patient and find it, or add a specific endpoint
-            // For now, let's try to find it in the patient's plans if we have the patientId
-            // But we might not know the patientId yet if we just have the planId from URL (though we passed it)
-
-            // Better approach: Get all plans for the patient if we have patientId
             const pId = initialPatientId || selectedPatient;
             if (!pId) return;
 
@@ -117,18 +111,16 @@ function CreateDietPlanContent() {
                 setPlanId(plan.id);
                 setPlanStatus(plan.status);
                 setLastSaved(new Date(plan.lastModified || plan.generatedAt));
-                setMode('view'); // Default to view mode for existing plans
+                setMode('view');
 
-                // Populate editor
                 if (plan.content.mealPlan && plan.content.mealPlan.length > 0) {
                     const firstDay = plan.content.mealPlan[0];
                     const mappedMeals = firstDay.meals.map((m: any) => ({
                         id: m.type,
                         name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
-                        items: m.items.map((i: string) => ({ name: i })), // Convert string items to objects for editor
+                        items: m.items.map((i: string) => ({ name: i })),
                         time: m.time
                     }));
-                    // Merge with default structure to ensure all slots exist
                     setEditorMeals(prev => prev.map(p => {
                         const found = mappedMeals.find((m: any) => m.id === p.id);
                         return found || p;
@@ -145,7 +137,6 @@ function CreateDietPlanContent() {
         try {
             const response = await api.get(`/appointments/assessments/patient/${pId}`);
             if (response.data.assessments && response.data.assessments.length > 0) {
-                // The API returns sorted by newest first
                 setLatestAssessment(response.data.assessments[0]);
             } else {
                 setLatestAssessment(null);
@@ -162,7 +153,6 @@ function CreateDietPlanContent() {
         setSelectedPatientData(patient || null);
         fetchAssessment(value);
 
-        // Reset state for new patient
         if (!editPlanId) {
             setGeneratedPlan(null);
             setPlanId(null);
@@ -195,9 +185,8 @@ function CreateDietPlanContent() {
             setPlanStatus('draft');
             setLastSaved(new Date());
             setActiveTab('preview');
-            setMode('edit'); // Switch to edit mode after generation
+            setMode('edit');
 
-            // Update editor meals from new plan
             if (response.data.diet_plan.mealPlan && response.data.diet_plan.mealPlan.length > 0) {
                 const firstDay = response.data.diet_plan.mealPlan[0];
                 const mappedMeals = firstDay.meals.map((m: any) => ({
@@ -238,7 +227,6 @@ function CreateDietPlanContent() {
             setPlanId(response.data.plan_id);
             setLastSaved(new Date());
 
-            // If we were in create mode, we are now in edit mode (saved draft)
             if (mode === 'create') setMode('edit');
 
         } catch (err: any) {
@@ -274,12 +262,10 @@ function CreateDietPlanContent() {
             const updatedPlan = JSON.parse(JSON.stringify(generatedPlan));
 
             if (updatedPlan.mealPlan && updatedPlan.mealPlan.length > 0) {
-                // Update all 7 days with the same structure for now (simplified)
                 updatedPlan.mealPlan.forEach((day: any) => {
                     day.meals = newMeals.map(m => ({
                         type: m.id,
                         time: m.time,
-                        // Persist the full item object if available, otherwise just the name
                         items: m.items.map((i: any) => {
                             if (typeof i === 'string') return { name: i };
                             return i;
@@ -381,139 +367,153 @@ function CreateDietPlanContent() {
                 </Card>
             )}
 
-            <Card>
-                <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row gap-4 items-end">
-                        <div className="w-full md:w-2/3 space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Select Patient</label>
-                            {initialPatientId && selectedPatientData ? (
-                                <div className="p-3 bg-gray-100 rounded-md border border-gray-200 text-gray-700 font-medium">
-                                    {selectedPatientData.name} ({latestAssessment?.assessment?.prakriti || selectedPatientData.assessment?.prakriti || 'No assessment'})
-                                </div>
-                            ) : (
-                                <Select
-                                    onValueChange={handlePatientChange}
-                                    disabled={loadingPatients || !!editPlanId}
-                                    value={selectedPatient}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder={loadingPatients ? "Loading patients..." : "Choose a patient..."} />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {patients.map((patient) => (
-                                            <SelectItem key={patient.patientId} value={patient.patientId}>
-                                                {patient.name} ({patient.assessment?.prakriti || 'No assessment'})
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            )}
-
-                            {selectedPatientData && (
-                                <div className="text-xs text-gray-500 mt-2">
-                                    <span className="font-medium">Assessment:</span> Prakriti: {latestAssessment?.assessment?.prakriti || selectedPatientData.assessment?.prakriti || 'N/A'},
-                                    Vikriti: {latestAssessment?.assessment?.vikriti || selectedPatientData.assessment?.vikriti || 'N/A'},
-                                    Age: {latestAssessment?.assessment?.age || selectedPatientData.assessment?.age || 'N/A'},
-                                    Gender: {latestAssessment?.assessment?.gender || selectedPatientData.assessment?.gender || 'N/A'}
+            {/* Patient Information Card */}
+            {selectedPatientData && (
+                <Card className="border-2 border-[#2E7D32]/20 bg-gradient-to-br from-white to-green-50/30">
+                    <CardHeader className="pb-4">
+                        <CardTitle className="text-lg flex items-center gap-2 text-[#2E7D32]">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            Patient Information
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        {/* Patient Name & ID */}
+                        <div className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200">
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-900">{selectedPatientData.name}</h3>
+                                <p className="text-sm text-gray-500 font-mono mt-1">ID: {selectedPatientData.patientId}</p>
+                            </div>
+                            {latestAssessment && (
+                                <div className="text-right">
+                                    <p className="text-xs text-gray-500">Latest Assessment</p>
+                                    <p className="text-sm font-medium text-[#2E7D32]">
+                                        {formatDateIST(latestAssessment.createdAt, 'MMM d, yyyy')}
+                                    </p>
                                 </div>
                             )}
                         </div>
 
-                        {mode !== 'view' && (
-                            <Dialog open={regenerateDialogOpen} onOpenChange={setRegenerateDialogOpen}>
-                                <DialogTrigger asChild>
-                                    <Button
-                                        className="bg-[#E07A5F] hover:bg-[#D06950] text-white"
-                                        disabled={!selectedPatient || isGenerating || loadingPatients}
-                                    >
-                                        {isGenerating ? (
-                                            <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating...</>
-                                        ) : (
-                                            <><Sparkles className="mr-2 h-4 w-4" /> {generatedPlan ? 'Regenerate Plan' : 'Generate with ML'}</>
-                                        )}
-                                    </Button>
-                                </DialogTrigger>
-                                {generatedPlan ? (
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Regenerate Diet Plan?</DialogTitle>
-                                            <DialogDescription>
-                                                This will overwrite the current plan and lose any manual changes. Are you sure?
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <DialogFooter>
-                                            <Button variant="outline" onClick={() => setRegenerateDialogOpen(false)}>Cancel</Button>
-                                            <Button className="bg-[#E07A5F]" onClick={handleGenerate}>Yes, Regenerate</Button>
-                                        </DialogFooter>
-                                    </DialogContent>
-                                ) : (
-                                    <div className="hidden" ref={(el) => { if (el && !generatedPlan && regenerateDialogOpen) handleGenerate(); }}></div>
-                                )}
-                            </Dialog>
-                        )}
-                    </div>
-                </CardContent>
-            </Card>
-
-            {
-                generatedPlan && (
-                    <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                        <TabsList className="bg-white border p-1 rounded-lg">
-                            <TabsTrigger value="preview">Preview Plan</TabsTrigger>
-                            <TabsTrigger value="editor" disabled={mode === 'view'}>
-                                Manual Editor {mode === 'view' && '(Enable Edit Mode)'}
-                            </TabsTrigger>
-                        </TabsList>
-
-                        <TabsContent value="preview">
-                            <Card>
-                                <CardHeader className="bg-gradient-to-r from-[#E9F7EF] to-white">
-                                    <CardTitle className="text-[#2E7D32] flex items-center">
-                                        <Sparkles className="mr-2 h-5 w-5" />
-                                        Diet Plan Preview
-                                    </CardTitle>
-                                    <p className="text-sm text-gray-600">
-                                        {mode === 'view'
-                                            ? "You are viewing the plan as the patient sees it."
-                                            : "This is what the patient will see. Switch to 'Manual Editor' to make changes."}
-                                    </p>
-                                </CardHeader>
-                                <CardContent className="p-6">
-                                    <DietPlanViewer plan={generatedPlan} />
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-
-                        <TabsContent value="editor">
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                <div className="lg:col-span-2">
-                                    <Card>
-                                        <CardHeader>
-                                            <CardTitle>Manual Meal Editor</CardTitle>
-                                            <p className="text-sm text-gray-600">Drag and drop to customize the plan. Changes are auto-synced to preview.</p>
-                                        </CardHeader>
-                                        <CardContent>
-                                            <MealEditor meals={editorMeals} onChange={handleMealsChange} />
-                                        </CardContent>
-                                    </Card>
+                        {/* Assessment Data */}
+                        {latestAssessment?.assessment && (
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div className="bg-gradient-to-br from-green-50 to-green-100/50 p-4 rounded-lg border border-green-200">
+                                    <p className="text-xs font-medium text-green-700 uppercase tracking-wide mb-1">Prakriti</p>
+                                    <p className="text-lg font-bold text-green-900">{latestAssessment.assessment.prakriti || 'N/A'}</p>
                                 </div>
-                                <div className="space-y-6">
-                                    <Card className="bg-[#E9F7EF] border-[#A2B38B]">
-                                        <CardHeader>
-                                            <CardTitle className="text-[#2E7D32]">Dosha Balance</CardTitle>
-                                        </CardHeader>
-                                        <CardContent>
-                                            <p className="text-sm text-gray-600 mb-4">Based on patient&apos;s Prakriti: {selectedPatientData?.assessment?.prakriti}</p>
-                                            {/* Visual indicators would go here */}
-                                        </CardContent>
-                                    </Card>
+                                <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 p-4 rounded-lg border border-orange-200">
+                                    <p className="text-xs font-medium text-orange-700 uppercase tracking-wide mb-1">Vikriti</p>
+                                    <p className="text-lg font-bold text-orange-900">{latestAssessment.assessment.vikriti || 'N/A'}</p>
+                                </div>
+                                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 rounded-lg border border-blue-200">
+                                    <p className="text-xs font-medium text-blue-700 uppercase tracking-wide mb-1">Age</p>
+                                    <p className="text-lg font-bold text-blue-900">{latestAssessment.assessment.age || 'N/A'}</p>
+                                </div>
+                                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 p-4 rounded-lg border border-purple-200">
+                                    <p className="text-xs font-medium text-purple-700 uppercase tracking-wide mb-1">Gender</p>
+                                    <p className="text-lg font-bold text-purple-900">{latestAssessment.assessment.gender || 'N/A'}</p>
                                 </div>
                             </div>
-                        </TabsContent>
-                    </Tabs>
-                )
-            }
-        </div >
+                        )}
+
+                        {/* Generate Button */}
+                        {mode !== 'view' && (
+                            <div className="pt-2">
+                                <Dialog open={regenerateDialogOpen} onOpenChange={setRegenerateDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <Button
+                                            className="w-full bg-gradient-to-r from-[#E07A5F] to-[#D06950] hover:from-[#D06950] hover:to-[#C05840] text-white shadow-md"
+                                            disabled={!selectedPatient || isGenerating || loadingPatients}
+                                            size="lg"
+                                        >
+                                            {isGenerating ? (
+                                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating AI Diet Plan...</>
+                                            ) : (
+                                                <><Sparkles className="mr-2 h-5 w-5" /> {generatedPlan ? 'Regenerate with AI' : 'Generate AI Diet Plan'}</>
+                                            )}
+                                        </Button>
+                                    </DialogTrigger>
+                                    {generatedPlan ? (
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Regenerate Diet Plan?</DialogTitle>
+                                                <DialogDescription>
+                                                    This will overwrite the current plan and lose any manual changes. Are you sure?
+                                                </DialogDescription>
+                                            </DialogHeader>
+                                            <DialogFooter>
+                                                <Button variant="outline" onClick={() => setRegenerateDialogOpen(false)}>Cancel</Button>
+                                                <Button className="bg-[#E07A5F]" onClick={handleGenerate}>Yes, Regenerate</Button>
+                                            </DialogFooter>
+                                        </DialogContent>
+                                    ) : (
+                                        <div className="hidden" ref={(el) => { if (el && !generatedPlan && regenerateDialogOpen) handleGenerate(); }}></div>
+                                    )}
+                                </Dialog>
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+            )}
+
+            {generatedPlan && (
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+                    <TabsList className="bg-white border p-1 rounded-lg">
+                        <TabsTrigger value="preview">Preview Plan</TabsTrigger>
+                        <TabsTrigger value="editor" disabled={mode === 'view'}>
+                            Manual Editor {mode === 'view' && '(Enable Edit Mode)'}
+                        </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="preview">
+                        <Card>
+                            <CardHeader className="bg-gradient-to-r from-[#E9F7EF] to-white">
+                                <CardTitle className="text-[#2E7D32] flex items-center">
+                                    <Sparkles className="mr-2 h-5 w-5" />
+                                    Diet Plan Preview
+                                </CardTitle>
+                                <p className="text-sm text-gray-600">
+                                    {mode === 'view'
+                                        ? "You are viewing the plan as the patient sees it."
+                                        : "This is what the patient will see. Switch to 'Manual Editor' to make changes."}
+                                </p>
+                            </CardHeader>
+                            <CardContent className="p-6">
+                                <DietPlanViewer plan={generatedPlan} />
+                            </CardContent>
+                        </Card>
+                    </TabsContent>
+
+                    <TabsContent value="editor">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div className="lg:col-span-2">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle>Manual Meal Editor</CardTitle>
+                                        <p className="text-sm text-gray-600">Drag and drop to customize the plan. Changes are auto-synced to preview.</p>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <MealEditor meals={editorMeals} onChange={handleMealsChange} />
+                                    </CardContent>
+                                </Card>
+                            </div>
+                            <div className="space-y-6">
+                                <Card className="bg-[#E9F7EF] border-[#A2B38B]">
+                                    <CardHeader>
+                                        <CardTitle className="text-[#2E7D32]">Dosha Balance</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-sm text-gray-600 mb-4">Based on patient&apos;s Prakriti: {selectedPatientData?.assessment?.prakriti}</p>
+                                        {/* Visual indicators would go here */}
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </div>
+                    </TabsContent>
+                </Tabs>
+            )}
+        </div>
     );
 }
 

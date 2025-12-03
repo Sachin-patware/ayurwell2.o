@@ -29,7 +29,7 @@ export default function PatientDashboard() {
             // 1. Fetch Appointments
             const aptResponse = await api.get('/appointments/');
             const upcoming = aptResponse.data
-                .filter((a: any) => a.status === 'upcoming')
+                .filter((a: any) => a.status === 'confirmed' || a.status === 'pending')
                 .sort((a: any, b: any) => new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime());
 
             if (upcoming.length > 0) {

@@ -114,7 +114,7 @@ class DietPlan(db.Document):
     content = db.StringField()  # JSON string of the plan
     createdBy = db.StringField()  # doctorId
     published = db.BooleanField(default=False)  # Whether plan is published to patient
-    status = db.StringField(default='draft', choices=['draft', 'published', 'active', 'completed', 'cancelled', 'archived'])
+    status = db.StringField(default='draft', choices=['draft',  'active', 'completed', 'cancelled'])
     publishedAt = db.DateTimeField()  # When it was published
     lastModified = db.DateTimeField(default=get_ist_now)
 

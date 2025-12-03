@@ -357,7 +357,7 @@ export default function PatientDetailPage() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-6">
-                                    {(assessments[0].healthHistory || assessments[0].medicalConditions) && (
+                                    {assessments.length > 0 && assessments[0] && (assessments[0].healthHistory || assessments[0].medicalConditions) && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             {assessments[0].healthHistory && (
                                                 <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
@@ -380,7 +380,7 @@ export default function PatientDetailPage() {
                                         </div>
                                     )}
 
-                                    {(assessments[0].lifestyle || assessments[0].dietaryHabits || assessments[0].symptoms) && (
+                                    {assessments.length > 0 && assessments[0] && (assessments[0].lifestyle || assessments[0].dietaryHabits || assessments[0].symptoms) && (
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                             {assessments[0].lifestyle && (
                                                 <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
@@ -412,7 +412,7 @@ export default function PatientDetailPage() {
                                         </div>
                                     )}
 
-                                    {!assessments[0].healthHistory && !assessments[0].medicalConditions &&
+                                    {assessments.length > 0 && assessments[0] && !assessments[0].healthHistory && !assessments[0].medicalConditions &&
                                         !assessments[0].lifestyle && !assessments[0].dietaryHabits && !assessments[0].symptoms && (
                                             <div className="text-center py-8 text-gray-500">
                                                 No medical history recorded in the latest assessment.
