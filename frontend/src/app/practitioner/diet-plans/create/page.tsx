@@ -151,7 +151,13 @@ function CreateDietPlanContent() {
                         const mappedMeals = firstDay.meals.map((m: any) => ({
                             id: m.type,
                             name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
-                            items: m.items.map((i: string) => ({ name: i })),
+                            items: m.items.map((i: any, idx: number) => ({
+                                id: `${m.type}-${idx}-${Date.now()}`,
+                                name: typeof i === 'string' ? i : i.name,
+                                calories: typeof i === 'object' ? i.calories || 0 : 0,
+                                rasa: typeof i === 'object' ? i.rasa || '' : '',
+                                dosha: typeof i === 'object' ? i.dosha || '' : ''
+                            })),
                             time: m.time
                         }));
                         setEditorMeals(prev => prev.map(p => {
@@ -254,7 +260,13 @@ function CreateDietPlanContent() {
                 const mappedMeals = firstDay.meals.map((m: any) => ({
                     id: m.type,
                     name: m.type.charAt(0).toUpperCase() + m.type.slice(1),
-                    items: m.items.map((i: string) => ({ name: i })),
+                    items: m.items.map((i: any, idx: number) => ({
+                        id: `${m.type}-${idx}-${Date.now()}`,
+                        name: typeof i === 'string' ? i : i.name,
+                        calories: typeof i === 'object' ? i.calories || 0 : 0,
+                        rasa: typeof i === 'object' ? i.rasa || '' : '',
+                        dosha: typeof i === 'object' ? i.dosha || '' : ''
+                    })),
                     time: m.time
                 }));
                 setEditorMeals(prev => prev.map(p => {
@@ -288,11 +300,12 @@ function CreateDietPlanContent() {
 
             setPlanId(response.data.plan_id);
             setLastSaved(new Date());
-            setPlanStatus('draft');
+            // Only set to draft if it's a new plan
+            if (!planId) setPlanStatus('draft');
 
             if (mode === 'create') setMode('edit');
 
-            toast.success('Diet plan saved as draft successfully!');
+            toast.success(planId ? 'Changes saved successfully!' : 'Diet plan saved as draft successfully!');
 
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to save plan');
@@ -304,28 +317,30 @@ function CreateDietPlanContent() {
     };
 
     const handlePublish = async () => {
-        // If no planId, save first then publish
-        if (!planId) {
-            await handleSave();
-            // Wait a bit for save to complete
-            await new Promise(resolve => setTimeout(resolve, 500));
-        }
-
-        if (!planId && !generatedPlan) {
-            toast.error('Please save the plan first');
+        if (!generatedPlan || !selectedPatient) {
+            toast.error('Please generate a plan first');
             return;
         }
 
         setIsPublishing(true);
 
         try {
-            // Use the planId from state or the one just saved
-            const idToPublish = planId;
-            if (!idToPublish) {
-                throw new Error('No plan ID available');
+            if (!planId) {
+                // New plan - use save-and-publish endpoint
+                const response = await api.post('/diet-plans/save-and-publish', {
+                    patient_id: selectedPatient,
+                    content: generatedPlan
+                });
+
+                setPlanId(response.data.plan_id);
+                setPlanStatus('active');
+                setLastSaved(new Date());
+            } else {
+                // Existing plan - use regular publish endpoint
+                await api.put(`/diet-plans/${planId}/publish`);
+                setPlanStatus('active');
             }
 
-            await api.put(`/diet-plans/${idToPublish}/publish`);
             setPublishDialogOpen(false);
             toast.success('Diet plan published successfully!');
             router.push('/practitioner/diet-plans');
@@ -413,8 +428,8 @@ function CreateDietPlanContent() {
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
-                    {/* Delete Button - only show when editing/viewing existing plan */}
-                    {planId && (
+                    {/* Delete Button - only show when editing existing plan */}
+                    {planId && mode === 'edit' && (
                         <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
                             <DialogTrigger asChild>
                                 <Button
@@ -456,7 +471,21 @@ function CreateDietPlanContent() {
                         >
                             <Edit className="mr-2 h-4 w-4" /> Edit Plan
                         </Button>
+                    ) : planId ? (
+                        /* Editing existing plan - show only Save Changes */
+                        <Button
+                            onClick={handleSave}
+                            disabled={!generatedPlan || isSaving}
+                            className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
+                        >
+                            {isSaving ? (
+                                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</>
+                            ) : (
+                                <><Save className="mr-2 h-4 w-4" /> Save Changes</>
+                            )}
+                        </Button>
                     ) : (
+                        /* New plan - show Save as Draft and Publish */
                         <>
                             <Button
                                 variant="outline"

@@ -207,6 +207,35 @@ def save_diet_plan_draft():
         
         return jsonify({"message": "Draft saved", "plan_id": str(new_plan.id)}), 201
 
+@api_bp.route('/diet-plans/save-and-publish', methods=['POST'])
+@jwt_required()
+def save_and_publish_diet_plan():
+    """Save a new diet plan and immediately publish it"""
+    from datetime import datetime
+    data = request.json
+    current_user = get_jwt_identity()
+    
+    patient_id = data.get('patient_id')
+    content = data.get('content')
+    
+    if not patient_id or not content:
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    # Create new plan with active status
+    new_plan = DietPlan(
+        patientId=patient_id,
+        content=json.dumps(content),
+        createdBy=current_user,
+        status='active',
+        publishedAt=get_ist_now()
+    )
+    new_plan.save()
+    
+    return jsonify({
+        "message": "Diet plan published successfully", 
+        "plan_id": str(new_plan.id)
+    }), 201
+
 @api_bp.route('/diet-plans', methods=['GET'])
 @jwt_required()
 def get_all_diet_plans():
