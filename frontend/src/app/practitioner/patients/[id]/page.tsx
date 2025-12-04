@@ -377,12 +377,7 @@ export default function PatientDetailPage() {
                                 </Card>
                             </div>
                         ) : (
-                            <Card>
-                                <CardContent className="py-12 text-center">
-                                    <p className="text-gray-500 mb-4">No assessment data available.</p>
-                                    <Button onClick={() => setActiveTab('assessment')}>Go to Assessment</Button>
-                                </CardContent>
-                            </Card>
+                            <span>No Data</span>
                         )}
 
                         <div className="space-y-6">
@@ -585,15 +580,6 @@ export default function PatientDetailPage() {
                                         </Link>
                                     </div>
                                     <div className="flex flex-col sm:flex-row gap-4">
-                                        <div className="relative flex-1">
-                                            <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
-                                            <Input
-                                                placeholder="Search by patient name..."
-                                                className="pl-10"
-                                                value={searchTerm}
-                                                onChange={(e) => setSearchTerm(e.target.value)}
-                                            />
-                                        </div>
                                         <div className="flex gap-2 bg-gray-100 p-1 rounded-lg overflow-x-auto">
                                             {['all', 'draft', 'active', 'completed', 'cancelled'].map((status) => (
                                                 <button

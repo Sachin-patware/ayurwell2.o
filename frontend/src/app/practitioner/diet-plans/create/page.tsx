@@ -580,9 +580,9 @@ function CreateDietPlanContent() {
                                             size="lg"
                                         >
                                             {isGenerating ? (
-                                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating AI-Powered Diet Plan...</>
+                                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating  Diet Plan...</>
                                             ) : (
-                                                <><Sparkles className="mr-2 h-5 w-5" /> {generatedPlan ? 'Regenerate AI Diet Plan' : 'Generate AI-Powered Diet Plan'}</>
+                                                <><Sparkles className="mr-2 h-5 w-5" /> {generatedPlan ? 'Regenerate Diet Plan' : 'Generate Diet Plan'}</>
                                             )}
                                         </Button>
                                     </DialogTrigger>
