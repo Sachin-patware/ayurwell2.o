@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
@@ -9,20 +9,36 @@ import {
     FileText,
     Activity,
     Calendar,
-    MessageSquare,
+    ClipboardList,
     LogOut,
     Menu,
     X,
-    ClipboardList
+    ChevronDown,
+    User
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 export default function PatientLayout({ children }: { children: React.ReactNode }) {
     const { user, logout, isLoading } = useAuth();
     const pathname = usePathname();
     const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const profileRef = useRef<HTMLDivElement>(null);
+
+    // Close profile dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+                setIsProfileOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     // Route protection: redirect if not logged in or not a patient
     useEffect(() => {
@@ -30,7 +46,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
             if (!user) {
                 router.push('/login');
             } else if (user.role !== 'patient') {
-                router.push('/practitioner/dashboard'); // Redirect to practitioner dashboard if not patient
+                router.push('/practitioner/dashboard');
             }
         }
     }, [user, isLoading, router]);
@@ -60,14 +76,24 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
     return (
         <div className="min-h-screen bg-[#F5F5DC] flex flex-col">
             {/* Navbar */}
-            <nav className="bg-white shadow-sm border-b border-[#D7D4C8] sticky top-0 z-50">
+            <nav className="bg-white shadow-md border-b-2 border-[#2E7D32]/20 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="flex-shrink-0 flex items-center">
-                                <h1 className="text-2xl font-bold font-serif text-[#2E7D32]">AyurWell</h1>
+                            <div className="flex-shrink-0 flex items-center gap-3">
+                                <Image
+                                    src="/logo.jpg"
+                                    alt="AyurWell Logo"
+                                    width={40}
+                                    height={40}
+                                    className="rounded-lg"
+                                />
+                                <div>
+                                    <h1 className="text-2xl font-bold font-serif text-[#2E7D32]">AyurWell</h1>
+                                    <span className="text-xs text-gray-500 hidden md:block">Patient Portal</span>
+                                </div>
                             </div>
-                            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <div className="hidden sm:ml-8 sm:flex sm:space-x-6">
                                 {navItems.map((item) => {
                                     const isActive = pathname === item.href;
                                     return (
@@ -86,22 +112,88 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
                                 })}
                             </div>
                         </div>
+
+                        {/* Profile Dropdown - Desktop */}
                         <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                            <div className="ml-3 relative flex items-center space-x-4">
-                                <div className="flex flex-col items-end">
-                                    <span className="text-sm font-medium text-gray-900">{user?.name}</span>
-                                    <span className="text-xs text-gray-500 capitalize">{user?.role}</span>
-                                </div>
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={logout}
-                                    className="text-gray-500 hover:text-[#E07A5F]"
+                            <div className="ml-3 relative" ref={profileRef}>
+                                <button
+                                    onClick={() => setIsProfileOpen(!isProfileOpen)}
+                                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
                                 >
-                                    <LogOut className="h-5 w-5" />
-                                </Button>
+                                    <div className="flex flex-col items-end">
+                                        <span className="text-sm font-semibold text-gray-900">{user?.name}</span>
+                                        <span className="text-xs text-gray-500">Patient</span>
+                                    </div>
+                                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#E07A5F] to-[#D4634A] flex items-center justify-center text-white font-bold shadow-md">
+                                        {user?.name?.charAt(0)}
+                                    </div>
+                                    <ChevronDown className={`h-4 w-4 text-gray-500 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
+                                </button>
+
+                                {/* Dropdown Menu */}
+                                <AnimatePresence>
+                                    {isProfileOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border-2 border-gray-200 overflow-hidden"
+                                        >
+                                            {/* Profile Info */}
+                                            <div className="bg-gradient-to-r from-[#FFF3E0] to-[#FFE0B2] p-4 border-b-2 border-[#E07A5F]/20">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#E07A5F] to-[#D4634A] flex items-center justify-center text-white font-bold text-lg shadow-md">
+                                                        {user?.name?.charAt(0)}
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="text-sm font-bold text-gray-900 truncate">{user?.name}</p>
+                                                        <p className="text-xs text-gray-600 truncate">{user?.email}</p>
+                                                        <p className="text-xs text-[#E07A5F] font-semibold mt-0.5">Patient</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Menu Items */}
+                                            <div className="py-2">
+                                                <Link
+                                                    href="/patient/dashboard"
+                                                    onClick={() => setIsProfileOpen(false)}
+                                                    className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition-colors"
+                                                >
+                                                    <div className="bg-blue-100 rounded-lg p-2">
+                                                        <User className="h-4 w-4 text-blue-600" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-semibold text-gray-900">My Profile</p>
+                                                        <p className="text-xs text-gray-500">View your information</p>
+                                                    </div>
+                                                </Link>
+                                            </div>
+
+                                            {/* Logout Button */}
+                                            <div className="border-t-2 border-gray-100 p-2">
+                                                <button
+                                                    onClick={() => {
+                                                        setIsProfileOpen(false);
+                                                        logout();
+                                                    }}
+                                                    className="flex items-center gap-3 w-full px-4 py-3 hover:bg-red-50 transition-colors rounded-lg"
+                                                >
+                                                    <div className="bg-red-100 rounded-lg p-2">
+                                                        <LogOut className="h-4 w-4 text-red-600" />
+                                                    </div>
+                                                    <div className="text-left">
+                                                        <p className="text-sm font-semibold text-red-600">Logout</p>
+                                                        <p className="text-xs text-gray-500">Sign out of your account</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         </div>
+
                         <div className="-mr-2 flex items-center sm:hidden">
                             <Button
                                 variant="ghost"
@@ -143,28 +235,41 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
                                         </Link>
                                     );
                                 })}
-                                <div className="pt-4 pb-3 border-t border-gray-200">
-                                    <div className="flex items-center px-4">
-                                        <div className="flex-shrink-0">
-                                            <div className="h-10 w-10 rounded-full bg-[#E07A5F] flex items-center justify-center text-white font-bold">
-                                                {user?.name?.charAt(0)}
-                                            </div>
-                                        </div>
-                                        <div className="ml-3">
-                                            <div className="text-base font-medium text-gray-800">{user?.name}</div>
-                                            <div className="text-sm font-medium text-gray-500">{user?.email}</div>
+                            </div>
+
+                            {/* Mobile Profile Section */}
+                            <div className="pt-4 pb-3 border-t border-gray-200 bg-gradient-to-r from-[#FFF3E0] to-[#FFE0B2]">
+                                <div className="flex items-center px-4">
+                                    <div className="flex-shrink-0">
+                                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#E07A5F] to-[#D4634A] flex items-center justify-center text-white font-bold text-lg shadow-md">
+                                            {user?.name?.charAt(0)}
                                         </div>
                                     </div>
-                                    <div className="mt-3 space-y-1">
-                                        <Button
-                                            variant="ghost"
-                                            className="w-full justify-start px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-                                            onClick={logout}
-                                        >
-                                            <LogOut className="h-5 w-5 mr-3" />
-                                            Sign out
-                                        </Button>
+                                    <div className="ml-3">
+                                        <div className="text-base font-bold text-gray-900">{user?.name}</div>
+                                        <div className="text-sm text-gray-600">{user?.email}</div>
+                                        <div className="text-xs text-[#E07A5F] font-semibold mt-0.5">Patient</div>
                                     </div>
+                                </div>
+                                <div className="mt-3 space-y-1 px-2">
+                                    <Link
+                                        href="/patient/dashboard"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/60 transition-colors"
+                                    >
+                                        <User className="h-5 w-5 text-gray-600" />
+                                        <span className="text-base font-medium text-gray-700">My Profile</span>
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            logout();
+                                        }}
+                                        className="flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-red-50 transition-colors"
+                                    >
+                                        <LogOut className="h-5 w-5 text-red-600" />
+                                        <span className="text-base font-medium text-red-600">Logout</span>
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
