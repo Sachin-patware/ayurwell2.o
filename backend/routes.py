@@ -162,15 +162,27 @@ def get_diet_plans(patient_id):
         # Doctors see all plans (drafts + active + etc)
         plans = DietPlan.objects(patientId=patient_id).order_by('-lastModified')
     
-    return jsonify([{
-        "id": str(p.id),
-        "generatedAt": p.generatedAt.isoformat(),
-        "content": json.loads(p.content) if p.content else {},
-        "createdBy": p.createdBy,
-        "status": p.status,
-        "publishedAt": p.publishedAt.isoformat() if p.publishedAt else None,
-        "lastModified": p.lastModified.isoformat() if p.lastModified else None
-    } for p in plans])
+    results = []
+    for p in plans:
+        # Fetch doctor name for each plan
+        doctor_name = "Unknown"
+        if p.createdBy:
+            doctor = Doctor.objects(doctorId=p.createdBy).first()
+            if doctor:
+                doctor_name = doctor.name
+        
+        results.append({
+            "id": str(p.id),
+            "generatedAt": p.generatedAt.isoformat(),
+            "content": json.loads(p.content) if p.content else {},
+            "createdBy": p.createdBy,
+            "doctorName": doctor_name,
+            "status": p.status,
+            "publishedAt": p.publishedAt.isoformat() if p.publishedAt else None,
+            "lastModified": p.lastModified.isoformat() if p.lastModified else None
+        })
+    
+    return jsonify(results)
 
 @api_bp.route('/diet-plans/save-draft', methods=['POST'])
 @jwt_required()
