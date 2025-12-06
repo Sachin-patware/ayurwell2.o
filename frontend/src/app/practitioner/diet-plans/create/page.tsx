@@ -248,9 +248,14 @@ function CreateDietPlanContent() {
 
             // Don't auto-save - let doctor decide to save or publish
             setGeneratedPlan(response.data.diet_plan);
-            // Don't set planId yet - will be set when saved
-            setPlanId(null);
-            setPlanStatus('draft');
+
+            // If we are regenerating an existing plan, keep the ID and status
+            // This ensures the UI stays in "Edit" mode with "Save Changes" button
+            if (!planId) {
+                setPlanId(null);
+                setPlanStatus('draft');
+            }
+
             setLastSaved(null);
             setActiveTab('preview');
             setMode('edit');
