@@ -156,7 +156,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
                                             {/* Menu Items */}
                                             <div className="py-2">
                                                 <Link
-                                                    href="/patient/dashboard"
+                                                    href="/patient/profile"
                                                     onClick={() => setIsProfileOpen(false)}
                                                     className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition-colors"
                                                 >
@@ -253,7 +253,7 @@ export default function PatientLayout({ children }: { children: React.ReactNode 
                                 </div>
                                 <div className="mt-3 space-y-1 px-2">
                                     <Link
-                                        href="/patient/dashboard"
+                                        href="/patient/profile"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/60 transition-colors"
                                     >

@@ -47,6 +47,11 @@ class Patient(db.Document):
     assessment = db.DictField(default={})  # prakriti, vikriti, age, etc.
     assessmentCreatedBy = db.StringField()  # doctorId
     assessmentCreatedAt = db.DateTimeField()
+    
+    # New Profile Fields
+    personalInfo = db.DictField(default={})  # gender, age, email, phone, address
+    medicalInfo = db.DictField(default={})   # bloodGroup, dietPreferences, smoking, alcohol
+    
     createdAt = db.DateTimeField(default=get_ist_now)
 
 class Assessment(db.Document):
@@ -141,5 +146,7 @@ class Progress(db.Document):
     symptoms = db.StringField()
     mealAdherence = db.IntField()  # percentage
     weight = db.FloatField()  # optional
+    sleepHours = db.FloatField()  # New: Sleep duration
+    mood = db.StringField()  # New: Mood (e.g., "Happy", "Stressed")
     notes = db.StringField()
 

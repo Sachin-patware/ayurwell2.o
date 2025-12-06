@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar as CalendarIcon, Save, Loader2, Droplet, TrendingUp, History, Edit2, Trash2, ChevronLeft, ChevronRight, Activity, Heart, Zap } from 'lucide-react';
+import { Calendar as CalendarIcon, Save, Loader2, Droplet, TrendingUp, History, Edit2, Trash2, ChevronLeft, ChevronRight, Activity, Heart, Zap, Moon, Smile } from 'lucide-react';
 import { format, subDays, addDays, startOfWeek, endOfWeek } from 'date-fns';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
@@ -21,6 +21,8 @@ interface ProgressEntry {
     symptoms: string;
     mealAdherence: number;
     weight?: number;
+    sleepHours?: number;
+    mood?: string;
     notes: string;
 }
 
@@ -31,8 +33,10 @@ export default function TrackingPage() {
     const [waterIntake, setWaterIntake] = useState(0);
     const [bowelMovement, setBowelMovement] = useState('');
     const [symptoms, setSymptoms] = useState('');
-    const [mealAdherence, setMealAdherence] = useState(100);
+    const [mealAdherence, setMealAdherence] = useState(50); // Default to 50%
     const [weight, setWeight] = useState('');
+    const [sleepHours, setSleepHours] = useState('');
+    const [mood, setMood] = useState('');
     const [notes, setNotes] = useState('');
     const [saving, setSaving] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -74,6 +78,12 @@ export default function TrackingPage() {
 
     const stats = weeklyStats();
 
+    const getAdherenceLabel = (value: number) => {
+        if (value <= 30) return { text: "Needs Improvement", color: "text-red-600", emoji: "😟" };
+        if (value <= 70) return { text: "Moderate", color: "text-orange-600", emoji: "😐" };
+        return { text: "Excellent", color: "text-green-600", emoji: "🌟" };
+    };
+
     const handleSave = async () => {
         setSaving(true);
         setSuccess(false);
@@ -91,25 +101,33 @@ export default function TrackingPage() {
                 symptoms,
                 mealAdherence,
                 weight: weight ? parseFloat(weight) : null,
+                sleepHours: sleepHours ? parseFloat(sleepHours) : null,
+                mood,
                 notes
             });
             setSuccess(true);
             await fetchHistory();
-            setWaterIntake(0);
-            setBowelMovement('');
-            setSymptoms('');
-            setMealAdherence(100);
-            setWeight('');
-            setNotes('');
-            setEditingId(null);
+            resetForm();
             setTimeout(() => setSuccess(false), 3000);
-            toast.success('saved progress');
+            toast.success('Progress saved successfully');
         } catch (err) {
             console.error('Error saving progress:', err);
             toast.error('Failed to save progress');
         } finally {
             setSaving(false);
         }
+    };
+
+    const resetForm = () => {
+        setWaterIntake(0);
+        setBowelMovement('');
+        setSymptoms('');
+        setMealAdherence(50);
+        setWeight('');
+        setSleepHours('');
+        setMood('');
+        setNotes('');
+        setEditingId(null);
     };
 
     const handleEdit = (entry: ProgressEntry) => {
@@ -119,6 +137,8 @@ export default function TrackingPage() {
         setSymptoms(entry.symptoms);
         setMealAdherence(entry.mealAdherence);
         setWeight(entry.weight?.toString() || '');
+        setSleepHours(entry.sleepHours?.toString() || '');
+        setMood(entry.mood || '');
         setNotes(entry.notes);
         setEditingId(entry.id);
         setActiveTab('log');
@@ -135,252 +155,325 @@ export default function TrackingPage() {
         }
     };
 
+    const adherenceInfo = getAdherenceLabel(mealAdherence);
+
     return (
         <PatientLayout>
-            <div className="space-y-6">
+            <div className="space-y-8 pb-10">
                 {/* Header with Gradient */}
-                <div className="bg-gradient-to-r from-[#F1F8F4] to-[#E8F5E9] rounded-2xl p-6 border-2 border-[#2E7D32]/20 shadow-md">
-                    <div className="flex items-center justify-between">
+                <div className="bg-gradient-to-r from-[#F1F8F4] to-[#E8F5E9] rounded-2xl p-8 border border-[#2E7D32]/10 shadow-sm">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
-                            <h2 className="text-3xl font-bold flex items-center gap-2 text-[#2E7D32]">
+                            <h2 className="text-3xl font-bold flex items-center gap-3 text-[#2E7D32]">
                                 <Activity className="h-8 w-8" />
                                 Track Your Progress
                             </h2>
-                            <p className="mt-2 text-gray-600">Monitor your daily health metrics and wellness journey</p>
+                            <p className="mt-2 text-gray-600 text-lg">Monitor your daily health metrics and wellness journey</p>
                         </div>
-                        <div className="hidden md:flex items-center gap-4">
-                            <div className="bg-white border-2 border-[#2E7D32]/30 rounded-lg px-4 py-2">
-                                <p className="text-xs text-gray-600">Streak</p>
-                                <p className="text-2xl font-bold text-[#2E7D32]">{stats.loggedDays} 🔥</p>
+                        <div className="flex items-center gap-4">
+                            <div className="bg-white/80 backdrop-blur-sm border border-[#2E7D32]/20 rounded-xl px-5 py-3 shadow-sm">
+                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Current Streak</p>
+                                <p className="text-3xl font-bold text-[#2E7D32]">{stats.loggedDays} <span className="text-xl">Days</span> 🔥</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {success && (
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-xl p-4 shadow-sm">
-                        <p className="text-green-700 font-semibold flex items-center gap-2">
-                            <span className="text-2xl">✓</span> Progress saved successfully!
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-4 shadow-sm animate-in fade-in slide-in-from-top-2">
+                        <p className="text-green-800 font-semibold flex items-center gap-2">
+                            <span className="flex items-center justify-center h-6 w-6 rounded-full bg-green-200 text-green-800 text-sm">✓</span>
+                            Progress saved successfully!
                         </p>
                     </div>
                 )}
 
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                    <TabsList className="grid w-full grid-cols-3 bg-gradient-to-r from-gray-100 to-gray-50 p-1 rounded-xl">
-                        <TabsTrigger value="log" className="data-[state=active]:bg-[#2E7D32] data-[state=active]:text-white rounded-lg">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+                    <TabsList className="grid w-full grid-cols-3 bg-gray-100/80 p-1.5 rounded-xl h-auto">
+                        <TabsTrigger value="log" className="data-[state=active]:bg-white data-[state=active]:text-[#2E7D32] data-[state=active]:shadow-sm rounded-lg py-3 font-medium transition-all">
                             <CalendarIcon className="h-4 w-4 mr-2" />
                             Log Today
                         </TabsTrigger>
-                        <TabsTrigger value="history" className="data-[state=active]:bg-[#1976D2] data-[state=active]:text-white rounded-lg">
+                        <TabsTrigger value="history" className="data-[state=active]:bg-white data-[state=active]:text-[#1976D2] data-[state=active]:shadow-sm rounded-lg py-3 font-medium transition-all">
                             <History className="h-4 w-4 mr-2" />
                             History
                         </TabsTrigger>
-                        <TabsTrigger value="stats" className="data-[state=active]:bg-[#7B1FA2] data-[state=active]:text-white rounded-lg">
+                        <TabsTrigger value="stats" className="data-[state=active]:bg-white data-[state=active]:text-[#7B1FA2] data-[state=active]:shadow-sm rounded-lg py-3 font-medium transition-all">
                             <TrendingUp className="h-4 w-4 mr-2" />
                             Stats
                         </TabsTrigger>
                     </TabsList>
 
                     {/* LOG TAB */}
-                    <TabsContent value="log" className="space-y-6">
-                        {/* Date Picker with Gradient */}
-                        <Card className="border-2 border-[#2E7D32]/30 shadow-md">
-                            <CardContent className="p-4 bg-gradient-to-r from-[#F1F8F4] to-[#E8F5E9]">
-                                <div className="flex items-center justify-between">
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() => setSelectedDate(subDays(selectedDate, 1))}
-                                        className="hover:bg-emerald-100 border-emerald-300"
-                                    >
-                                        <ChevronLeft className="h-4 w-4" />
-                                    </Button>
-
-                                    <div className="flex items-center space-x-3">
-                                        <div className="bg-[#2E7D32] p-2 rounded-lg">
-                                            <CalendarIcon className="h-5 w-5 text-white" />
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="font-bold text-lg text-gray-900">
-                                                {format(selectedDate, 'EEEE, MMMM d, yyyy')}
-                                            </p>
-                                            <p className="text-xs font-semibold text-[#2E7D32]">
-                                                {format(selectedDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
-                                                    ? '✨ Today'
-                                                    : format(selectedDate, 'yyyy-MM-dd') === format(subDays(new Date(), 1), 'yyyy-MM-dd')
-                                                        ? '📅 Yesterday'
-                                                        : ''}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-2">
+                    <TabsContent value="log" className="space-y-8 animate-in fade-in-50 slide-in-from-bottom-2 duration-300">
+                        {/* Date Picker */}
+                        <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+                            <CardContent className="p-6">
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                                    <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
                                         <Button
                                             variant="outline"
-                                            size="sm"
-                                            onClick={() => setSelectedDate(new Date())}
-                                            disabled={format(selectedDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')}
-                                            className="hover:bg-emerald-100 border-emerald-300 font-semibold"
+                                            size="icon"
+                                            onClick={() => setSelectedDate(subDays(selectedDate, 1))}
+                                            className="hover:bg-green-50 hover:text-green-700 border-gray-200"
                                         >
-                                            Today
+                                            <ChevronLeft className="h-4 w-4" />
                                         </Button>
+
+                                        <div className="flex items-center gap-3">
+                                            <div className="bg-green-100 p-2.5 rounded-xl text-green-700">
+                                                <CalendarIcon className="h-5 w-5" />
+                                            </div>
+                                            <div className="text-center">
+                                                <p className="font-bold text-lg text-gray-900">
+                                                    {format(selectedDate, 'EEEE, MMMM d, yyyy')}
+                                                </p>
+                                                <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">
+                                                    {format(selectedDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+                                                        ? '✨ Today'
+                                                        : format(selectedDate, 'yyyy-MM-dd') === format(subDays(new Date(), 1), 'yyyy-MM-dd')
+                                                            ? '📅 Yesterday'
+                                                            : ''}
+                                                </p>
+                                            </div>
+                                        </div>
+
                                         <Button
                                             variant="outline"
-                                            size="sm"
+                                            size="icon"
                                             onClick={() => setSelectedDate(addDays(selectedDate, 1))}
                                             disabled={format(selectedDate, 'yyyy-MM-dd') >= format(new Date(), 'yyyy-MM-dd')}
-                                            className="hover:bg-emerald-100 border-emerald-300"
+                                            className="hover:bg-green-50 hover:text-green-700 border-gray-200"
                                         >
                                             <ChevronRight className="h-4 w-4" />
                                         </Button>
                                     </div>
+
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setSelectedDate(new Date())}
+                                        disabled={format(selectedDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')}
+                                        className="text-green-700 hover:bg-green-50 hover:text-green-800 font-medium"
+                                    >
+                                        Jump to Today
+                                    </Button>
                                 </div>
                                 {editingId && (
-                                    <div className="mt-3 pt-3 border-t border-emerald-200">
-                                        <span className="text-sm text-orange-600 font-semibold flex items-center gap-2">
-                                            <Edit2 className="h-4 w-4" />
-                                            Editing existing entry for this date
+                                    <div className="mt-4 pt-4 border-t border-dashed border-gray-200">
+                                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-sm font-medium border border-orange-200">
+                                            <Edit2 className="h-3 w-3" />
+                                            Editing existing entry
                                         </span>
                                     </div>
                                 )}
                             </CardContent>
                         </Card>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                            {/* Water Intake - Blue */}
-                            <Card className="border-2 border-blue-200 shadow-sm hover:shadow-md transition-all">
-                                <CardHeader className="bg-gradient-to-r from-[#E3F2FD] to-[#BBDEFB] pb-3">
-                                    <CardTitle className="flex items-center gap-2 text-blue-900 text-lg">
-                                        <div className="bg-[#1976D2] p-2 rounded-lg">
-                                            <Droplet className="h-5 w-5 text-white" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Water Intake */}
+                            <Card className="border border-blue-100 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300 group">
+                                <CardHeader className="bg-blue-50/50 border-b border-blue-100 pb-4">
+                                    <CardTitle className="flex items-center gap-3 text-blue-900 text-lg group-hover:text-blue-700 transition-colors">
+                                        <div className="bg-blue-100 p-2 rounded-lg text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                                            <Droplet className="h-5 w-5" />
                                         </div>
                                         Water Intake
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-5 space-y-4">
-                                    <div className="space-y-3">
+                                <CardContent className="pt-6 space-y-6">
+                                    <div className="relative">
                                         <Input
                                             type="number"
-                                            placeholder="Enter ml (e.g., 2000)"
+                                            placeholder="0"
                                             value={waterIntake || ''}
                                             onChange={(e) => setWaterIntake(parseInt(e.target.value) || 0)}
-                                            className="text-lg border-2 border-blue-200 focus:border-blue-400 h-11"
+                                            className="text-3xl font-bold text-center h-16 border-blue-200 focus:border-blue-400 focus:ring-blue-100"
                                         />
-                                        <div className="flex gap-2 flex-wrap">
-                                            {[250, 500, 750, 1000].map((amt) => (
-                                                <Button
-                                                    key={amt}
-                                                    variant="outline"
-                                                    size="sm"
-                                                    onClick={() => setWaterIntake(waterIntake + amt)}
-                                                    className="flex-1 min-w-[70px] bg-blue-50 hover:bg-blue-100 border-blue-300 text-blue-700 font-semibold"
-                                                >
-                                                    +{amt}ml
-                                                </Button>
-                                            ))}
-                                        </div>
+                                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">ml</span>
                                     </div>
-                                    <div className="bg-[#1976D2] text-white p-4 rounded-xl text-center">
-                                        <p className="text-xs uppercase tracking-wide opacity-90 mb-1">Total Intake</p>
-                                        <p className="text-3xl font-bold">{waterIntake} <span className="text-lg">ml</span></p>
+                                    <div className="grid grid-cols-4 gap-2">
+                                        {[250, 500, 750, 1000].map((amt) => (
+                                            <Button
+                                                key={amt}
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => setWaterIntake(waterIntake + amt)}
+                                                className="bg-blue-50/50 hover:bg-blue-100 border-blue-200 text-blue-700 font-medium h-10"
+                                            >
+                                                +{amt}
+                                            </Button>
+                                        ))}
                                     </div>
                                 </CardContent>
                             </Card>
 
-                            {/* Bowel Movement - Green */}
-                            <Card className="border-2 border-green-200 shadow-sm hover:shadow-md transition-all">
-                                <CardHeader className="bg-gradient-to-r from-[#E8F5E9] to-[#C8E6C9] pb-3">
-                                    <CardTitle className="flex items-center gap-2 text-green-900 text-lg">
-                                        <div className="bg-[#388E3C] p-2 rounded-lg">
-                                            <Heart className="h-5 w-5 text-white" />
+                            {/* Bowel Movement */}
+                            <Card className="border border-green-100 shadow-sm hover:shadow-lg hover:border-green-200 transition-all duration-300 group">
+                                <CardHeader className="bg-green-50/50 border-b border-green-100 pb-4">
+                                    <CardTitle className="flex items-center gap-3 text-green-900 text-lg group-hover:text-green-700 transition-colors">
+                                        <div className="bg-green-100 p-2 rounded-lg text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
+                                            <Activity className="h-5 w-5" />
                                         </div>
                                         Bowel Movement
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-5">
+                                <CardContent className="pt-6">
                                     <Select value={bowelMovement} onValueChange={setBowelMovement}>
-                                        <SelectTrigger className="border-2 border-green-200 focus:border-green-400 h-11 text-base">
+                                        <SelectTrigger className="h-14 text-lg border-green-200 focus:border-green-400 focus:ring-green-100">
                                             <SelectValue placeholder="Select status..." />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="normal" className="text-base">✅ Normal</SelectItem>
-                                            <SelectItem value="constipated" className="text-base">🟡 Constipated</SelectItem>
-                                            <SelectItem value="loose" className="text-base">🟠 Loose</SelectItem>
-                                            <SelectItem value="diarrhea" className="text-base">🔴 Diarrhea</SelectItem>
+                                            <SelectItem value="normal" className="text-base py-3">✅ Normal</SelectItem>
+                                            <SelectItem value="constipated" className="text-base py-3">🟡 Constipated</SelectItem>
+                                            <SelectItem value="loose" className="text-base py-3">🟠 Loose</SelectItem>
+                                            <SelectItem value="diarrhea" className="text-base py-3">🔴 Diarrhea</SelectItem>
                                         </SelectContent>
                                     </Select>
+                                    <p className="text-sm text-gray-500 mt-4 px-1">
+                                        Regularity is key to digestive health in Ayurveda.
+                                    </p>
                                 </CardContent>
                             </Card>
 
-                            {/* Meal Adherence - Purple */}
-                            <Card className="border-2 border-purple-200 shadow-sm hover:shadow-md transition-all">
-                                <CardHeader className="bg-gradient-to-r from-[#F3E5F5] to-[#E1BEE7] pb-3">
-                                    <CardTitle className="flex items-center gap-2 text-purple-900 text-lg">
-                                        <div className="bg-[#7B1FA2] p-2 rounded-lg">
-                                            <Zap className="h-5 w-5 text-white" />
+                            {/* Meal Adherence */}
+                            <Card className="border border-purple-100 shadow-sm hover:shadow-lg hover:border-purple-200 transition-all duration-300 group md:col-span-2">
+                                <CardHeader className="bg-purple-50/50 border-b border-purple-100 pb-4">
+                                    <CardTitle className="flex items-center gap-3 text-purple-900 text-lg group-hover:text-purple-700 transition-colors">
+                                        <div className="bg-purple-100 p-2 rounded-lg text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                                            <Zap className="h-5 w-5" />
                                         </div>
-                                        Meal Adherence
+                                        Diet Plan Adherence
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-5 space-y-4">
-                                    <div className="space-y-3">
-                                        <Input
-                                            type="range"
-                                            min="0"
-                                            max="100"
-                                            value={mealAdherence}
-                                            onChange={(e) => setMealAdherence(parseInt(e.target.value))}
-                                            className="w-full h-2 accent-purple-600"
-                                        />
-                                        <div className="bg-[#7B1FA2] text-white p-4 rounded-xl text-center">
-                                            <p className="text-xs uppercase tracking-wide opacity-90 mb-1">Adherence Level</p>
-                                            <p className="text-4xl font-bold">{mealAdherence}%</p>
+                                <CardContent className="pt-8 pb-6 px-8">
+                                    <div className="space-y-8">
+                                        <div className="relative pt-2">
+                                            <Input
+                                                type="range"
+                                                min="0"
+                                                max="100"
+                                                step="5"
+                                                value={mealAdherence}
+                                                onChange={(e) => setMealAdherence(parseInt(e.target.value))}
+                                                className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                                            />
+                                            <div className="flex justify-between text-xs text-gray-400 mt-2 font-medium uppercase tracking-wider">
+                                                <span>0%</span>
+                                                <span>50%</span>
+                                                <span>100%</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-center justify-center gap-4">
+                                            <div className={`text-5xl font-bold ${adherenceInfo.color} transition-colors duration-300`}>
+                                                {mealAdherence}%
+                                            </div>
+                                            <div className={`px-4 py-2 rounded-xl bg-gray-50 border border-gray-100 text-lg font-medium ${adherenceInfo.color} flex items-center gap-2`}>
+                                                <span>{adherenceInfo.emoji}</span>
+                                                {adherenceInfo.text}
+                                            </div>
                                         </div>
                                     </div>
                                 </CardContent>
                             </Card>
 
-                            {/* Weight - Orange */}
-                            <Card className="border-2 border-orange-200 shadow-sm hover:shadow-md transition-all">
-                                <CardHeader className="bg-gradient-to-r from-[#FFF3E0] to-[#FFE0B2] pb-3">
-                                    <CardTitle className="text-orange-800 text-lg">Weight (Optional)</CardTitle>
+                            {/* Sleep & Mood (New) */}
+                            <Card className="border border-indigo-100 shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all duration-300 group">
+                                <CardHeader className="bg-indigo-50/50 border-b border-indigo-100 pb-4">
+                                    <CardTitle className="flex items-center gap-3 text-indigo-900 text-lg group-hover:text-indigo-700 transition-colors">
+                                        <div className="bg-indigo-100 p-2 rounded-lg text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                                            <Moon className="h-5 w-5" />
+                                        </div>
+                                        Sleep & Mood
+                                    </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-5">
-                                    <Input
-                                        type="number"
-                                        step="0.1"
-                                        placeholder="Enter weight in kg"
-                                        value={weight}
-                                        onChange={(e) => setWeight(e.target.value)}
-                                        className="border-2 border-orange-200 focus:border-orange-400 h-11 text-lg"
-                                    />
+                                <CardContent className="pt-6 space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-700">Sleep Duration</label>
+                                        <div className="relative">
+                                            <Input
+                                                type="number"
+                                                step="0.5"
+                                                placeholder="e.g. 7.5"
+                                                value={sleepHours}
+                                                onChange={(e) => setSleepHours(e.target.value)}
+                                                className="pl-10 h-11 border-indigo-200 focus:border-indigo-400 focus:ring-indigo-100"
+                                            />
+                                            <Moon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">hours</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-700">Mood</label>
+                                        <Select value={mood} onValueChange={setMood}>
+                                            <SelectTrigger className="h-11 border-indigo-200 focus:border-indigo-400 focus:ring-indigo-100">
+                                                <SelectValue placeholder="How do you feel?" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Happy">😊 Happy</SelectItem>
+                                                <SelectItem value="Calm">😌 Calm</SelectItem>
+                                                <SelectItem value="Energetic">⚡ Energetic</SelectItem>
+                                                <SelectItem value="Tired">😴 Tired</SelectItem>
+                                                <SelectItem value="Stressed">😫 Stressed</SelectItem>
+                                                <SelectItem value="Anxious">😰 Anxious</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
                                 </CardContent>
                             </Card>
 
-                            {/* Symptoms & Notes - Full Width */}
-                            <Card className="md:col-span-2 border-2 border-indigo-200 shadow-md">
-                                <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50">
-                                    <CardTitle className="text-indigo-700">Symptoms & Notes</CardTitle>
+                            {/* Weight */}
+                            <Card className="border border-orange-100 shadow-sm hover:shadow-lg hover:border-orange-200 transition-all duration-300 group">
+                                <CardHeader className="bg-orange-50/50 border-b border-orange-100 pb-4">
+                                    <CardTitle className="flex items-center gap-3 text-orange-900 text-lg group-hover:text-orange-700 transition-colors">
+                                        <div className="bg-orange-100 p-2 rounded-lg text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300">
+                                            <Activity className="h-5 w-5" />
+                                        </div>
+                                        Weight (Optional)
+                                    </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-4 space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Symptoms (if any)
-                                        </label>
+                                <CardContent className="pt-6">
+                                    <div className="relative">
                                         <Input
-                                            placeholder="e.g., acidity, headache, fatigue"
+                                            type="number"
+                                            step="0.1"
+                                            placeholder="0.0"
+                                            value={weight}
+                                            onChange={(e) => setWeight(e.target.value)}
+                                            className="text-3xl font-bold text-center h-16 border-orange-200 focus:border-orange-400 focus:ring-orange-100"
+                                        />
+                                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">kg</span>
+                                    </div>
+                                    <p className="text-sm text-gray-500 mt-4 text-center">
+                                        Track weekly for best results.
+                                    </p>
+                                </CardContent>
+                            </Card>
+
+                            {/* Symptoms & Notes */}
+                            <Card className="md:col-span-2 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                                <CardHeader className="bg-gray-50/50 border-b border-gray-200 pb-4">
+                                    <CardTitle className="text-gray-700 flex items-center gap-2">
+                                        <Edit2 className="h-5 w-5" />
+                                        Daily Journal
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="pt-6 space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-700">Symptoms (if any)</label>
+                                        <Input
+                                            placeholder="e.g., acidity, headache, bloating..."
                                             value={symptoms}
                                             onChange={(e) => setSymptoms(e.target.value)}
-                                            className="border-2 border-indigo-200 focus:border-indigo-400"
+                                            className="h-11 border-gray-300 focus:border-green-500 focus:ring-green-100"
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Additional Notes
-                                        </label>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-700">Additional Notes</label>
                                         <textarea
-                                            className="w-full min-h-[100px] px-3 py-2 border-2 border-indigo-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
-                                            placeholder="Any other observations or feelings..."
+                                            className="w-full min-h-[120px] px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 resize-none"
+                                            placeholder="How did you feel today? Any specific cravings or observations?"
                                             value={notes}
                                             onChange={(e) => setNotes(e.target.value)}
                                         />
@@ -389,27 +482,19 @@ export default function TrackingPage() {
                             </Card>
                         </div>
 
-                        <div className="flex justify-end gap-3">
+                        <div className="flex justify-end gap-4 pt-4 border-t border-gray-100">
                             {editingId && (
                                 <Button
                                     variant="outline"
-                                    onClick={() => {
-                                        setEditingId(null);
-                                        setWaterIntake(0);
-                                        setBowelMovement('');
-                                        setSymptoms('');
-                                        setMealAdherence(100);
-                                        setWeight('');
-                                        setNotes('');
-                                    }}
-                                    className="border-2 border-gray-300"
+                                    onClick={resetForm}
+                                    className="h-12 px-6 border-gray-300 text-gray-700 hover:bg-gray-50"
                                 >
                                     Cancel Edit
                                 </Button>
                             )}
                             <Button
                                 onClick={handleSave}
-                                className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white h-12 px-8 text-lg font-semibold shadow-lg"
+                                className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white h-12 px-8 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                                 disabled={saving || !bowelMovement}
                             >
                                 {saving ? (
@@ -422,104 +507,127 @@ export default function TrackingPage() {
                     </TabsContent>
 
                     {/* HISTORY TAB */}
-                    <TabsContent value="history" className="space-y-4">
+                    <TabsContent value="history" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-2 duration-300">
                         {loadingHistory ? (
-                            <div className="flex justify-center py-12">
-                                <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+                            <div className="flex justify-center py-20">
+                                <Loader2 className="h-10 w-10 animate-spin text-[#2E7D32]" />
                             </div>
                         ) : history.length === 0 ? (
-                            <Card className="border-2 border-blue-200">
-                                <CardContent className="py-12 text-center">
-                                    <div className="text-6xl mb-4">📊</div>
-                                    <p className="text-gray-500 text-lg">No progress entries yet.</p>
-                                    <p className="text-gray-400 mt-2">Start logging your daily metrics!</p>
-                                </CardContent>
-                            </Card>
+                            <div className="text-center py-20 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                                <div className="bg-white p-4 rounded-full inline-block mb-4 shadow-sm">
+                                    <Activity className="h-8 w-8 text-gray-400" />
+                                </div>
+                                <h3 className="text-lg font-medium text-gray-900">No entries yet</h3>
+                                <p className="text-gray-500 mt-1">Start logging your daily progress to see your history.</p>
+                                <Button
+                                    variant="link"
+                                    onClick={() => setActiveTab('log')}
+                                    className="mt-4 text-[#2E7D32] font-semibold"
+                                >
+                                    Log your first entry &rarr;
+                                </Button>
+                            </div>
                         ) : (
-                            <div className="space-y-4">
-                                {history.slice(0, 14).map((entry, index) => (
-                                    <Card key={entry.id} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-[#2E7D32] overflow-hidden">
-                                        <CardContent className="p-5">
-                                            <div className="flex items-start justify-between gap-4">
-                                                <div className="flex-1 space-y-4">
+                            <div className="grid gap-6">
+                                {history.slice(0, 14).map((entry) => (
+                                    <Card key={entry.id} className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-[#2E7D32] overflow-hidden group">
+                                        <CardContent className="p-6">
+                                            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                                                <div className="flex-1 space-y-6">
                                                     {/* Header */}
-                                                    <div className="flex flex-wrap items-center gap-3">
-                                                        <h3 className="font-bold text-lg text-gray-900">
+                                                    <div className="flex flex-wrap items-center gap-4">
+                                                        <h3 className="font-bold text-xl text-gray-900">
                                                             {format(new Date(entry.date), 'EEEE, MMM d, yyyy')}
                                                         </h3>
-                                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${entry.bowelMovement === 'normal' ? 'bg-green-100 text-green-700 border border-green-300' :
-                                                                entry.bowelMovement === 'constipated' ? 'bg-orange-100 text-orange-700 border border-orange-300' :
-                                                                    'bg-red-100 text-red-700 border border-red-300'
-                                                            }`}>
-                                                            {entry.bowelMovement === 'normal' ? '✅ Normal' :
-                                                                entry.bowelMovement === 'constipated' ? '🟡 Constipated' :
-                                                                    entry.bowelMovement === 'loose' ? '🟠 Loose' : '🔴 Diarrhea'}
-                                                        </span>
+                                                        <div className="flex gap-2">
+                                                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border ${entry.bowelMovement === 'normal' ? 'bg-green-50 text-green-700 border-green-200' :
+                                                                    entry.bowelMovement === 'constipated' ? 'bg-orange-50 text-orange-700 border-orange-200' :
+                                                                        'bg-red-50 text-red-700 border-red-200'
+                                                                }`}>
+                                                                {entry.bowelMovement === 'normal' ? '✅ Normal' :
+                                                                    entry.bowelMovement === 'constipated' ? '🟡 Constipated' :
+                                                                        entry.bowelMovement === 'loose' ? '🟠 Loose' : '🔴 Diarrhea'}
+                                                            </span>
+                                                            {entry.mood && (
+                                                                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                                                    Mood: {entry.mood}
+                                                                </span>
+                                                            )}
+                                                        </div>
                                                     </div>
 
                                                     {/* Metrics Grid */}
-                                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                        <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
-                                                            <div className="flex items-center gap-2 mb-1">
+                                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                                        <div className="bg-blue-50/50 border border-blue-100 p-4 rounded-xl">
+                                                            <div className="flex items-center gap-2 mb-2">
                                                                 <Droplet className="h-4 w-4 text-blue-600" />
-                                                                <span className="text-xs font-semibold text-blue-600 uppercase">Water</span>
+                                                                <span className="text-xs font-bold text-blue-600 uppercase">Water</span>
                                                             </div>
-                                                            <p className="text-lg font-bold text-blue-700">{entry.waterIntake} ml</p>
+                                                            <p className="text-xl font-bold text-blue-900">{entry.waterIntake} ml</p>
                                                         </div>
-                                                        <div className="bg-purple-50 border border-purple-200 p-3 rounded-lg">
-                                                            <div className="flex items-center gap-2 mb-1">
+                                                        <div className="bg-purple-50/50 border border-purple-100 p-4 rounded-xl">
+                                                            <div className="flex items-center gap-2 mb-2">
                                                                 <Zap className="h-4 w-4 text-purple-600" />
-                                                                <span className="text-xs font-semibold text-purple-600 uppercase">Adherence</span>
+                                                                <span className="text-xs font-bold text-purple-600 uppercase">Adherence</span>
                                                             </div>
-                                                            <p className="text-lg font-bold text-purple-700">{entry.mealAdherence}%</p>
+                                                            <p className="text-xl font-bold text-purple-900">{entry.mealAdherence}%</p>
                                                         </div>
-                                                        {entry.weight && (
-                                                            <div className="bg-orange-50 border border-orange-200 p-3 rounded-lg">
-                                                                <div className="flex items-center gap-2 mb-1">
-                                                                    <Activity className="h-4 w-4 text-orange-600" />
-                                                                    <span className="text-xs font-semibold text-orange-600 uppercase">Weight</span>
+                                                        {entry.sleepHours && (
+                                                            <div className="bg-indigo-50/50 border border-indigo-100 p-4 rounded-xl">
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <Moon className="h-4 w-4 text-indigo-600" />
+                                                                    <span className="text-xs font-bold text-indigo-600 uppercase">Sleep</span>
                                                                 </div>
-                                                                <p className="text-lg font-bold text-orange-700">{entry.weight} kg</p>
+                                                                <p className="text-xl font-bold text-indigo-900">{entry.sleepHours} hrs</p>
+                                                            </div>
+                                                        )}
+                                                        {entry.weight && (
+                                                            <div className="bg-orange-50/50 border border-orange-100 p-4 rounded-xl">
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <Activity className="h-4 w-4 text-orange-600" />
+                                                                    <span className="text-xs font-bold text-orange-600 uppercase">Weight</span>
+                                                                </div>
+                                                                <p className="text-xl font-bold text-orange-900">{entry.weight} kg</p>
                                                             </div>
                                                         )}
                                                     </div>
 
-                                                    {/* Symptoms */}
-                                                    {entry.symptoms && (
-                                                        <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
-                                                            <p className="text-xs font-semibold text-red-600 uppercase mb-1">🩺 Symptoms</p>
-                                                            <p className="text-sm text-red-700">{entry.symptoms}</p>
-                                                        </div>
-                                                    )}
-
-                                                    {/* Notes */}
-                                                    {entry.notes && (
-                                                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                                                            <p className="text-xs font-semibold text-gray-600 uppercase mb-1">📝 Notes</p>
-                                                            <p className="text-sm text-gray-700 italic">"{entry.notes}"</p>
+                                                    {/* Notes Section */}
+                                                    {(entry.symptoms || entry.notes) && (
+                                                        <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 space-y-3">
+                                                            {entry.symptoms && (
+                                                                <div className="flex gap-2 text-sm">
+                                                                    <span className="font-semibold text-red-600 min-w-[80px]">Symptoms:</span>
+                                                                    <span className="text-gray-700">{entry.symptoms}</span>
+                                                                </div>
+                                                            )}
+                                                            {entry.notes && (
+                                                                <div className="flex gap-2 text-sm">
+                                                                    <span className="font-semibold text-gray-600 min-w-[80px]">Notes:</span>
+                                                                    <span className="text-gray-700 italic">"{entry.notes}"</span>
+                                                                </div>
+                                                            )}
                                                         </div>
                                                     )}
                                                 </div>
 
                                                 {/* Action Buttons */}
-                                                <div className="flex flex-col gap-2">
+                                                <div className="flex lg:flex-col gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200">
                                                     <Button
-                                                        variant="ghost"
+                                                        variant="outline"
                                                         size="sm"
                                                         onClick={() => handleEdit(entry)}
-                                                        className="hover:bg-blue-100 text-blue-600 h-9 w-9 p-0"
-                                                        title="Edit"
+                                                        className="text-blue-600 border-blue-200 hover:bg-blue-50"
                                                     >
-                                                        <Edit2 className="h-4 w-4" />
+                                                        <Edit2 className="h-4 w-4 mr-2" /> Edit
                                                     </Button>
                                                     <Button
-                                                        variant="ghost"
+                                                        variant="outline"
                                                         size="sm"
                                                         onClick={() => handleDelete(entry.id)}
-                                                        className="hover:bg-red-100 text-red-600 h-9 w-9 p-0"
-                                                        title="Delete"
+                                                        className="text-red-600 border-red-200 hover:bg-red-50"
                                                     >
-                                                        <Trash2 className="h-4 w-4" />
+                                                        <Trash2 className="h-4 w-4 mr-2" /> Delete
                                                     </Button>
                                                 </div>
                                             </div>
@@ -531,75 +639,78 @@ export default function TrackingPage() {
                     </TabsContent>
 
                     {/* STATS TAB */}
-                    <TabsContent value="stats" className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <Card className="border-2 border-emerald-200 shadow-lg hover:shadow-xl transition-shadow">
-                                <CardHeader className="pb-3 bg-gradient-to-br from-emerald-50 to-teal-50">
-                                    <CardTitle className="text-sm font-semibold text-emerald-600">🔥 Logged Days</CardTitle>
+                    <TabsContent value="stats" className="space-y-6 animate-in fade-in-50 slide-in-from-bottom-2 duration-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <Card className="border border-emerald-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-sm font-bold text-emerald-600 uppercase tracking-wide">Logged Days</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">{stats.loggedDays}</p>
-                                    <p className="text-xs text-gray-500 mt-1">This week</p>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-4xl font-bold text-gray-900">{stats.loggedDays}</span>
+                                        <span className="text-sm text-gray-500">/ 7 days</span>
+                                    </div>
+                                    <div className="w-full bg-gray-100 rounded-full h-2 mt-3">
+                                        <div
+                                            className="bg-emerald-500 h-2 rounded-full transition-all duration-500"
+                                            style={{ width: `${(stats.loggedDays / 7) * 100}%` }}
+                                        ></div>
+                                    </div>
                                 </CardContent>
                             </Card>
 
-                            <Card className="border-2 border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
-                                <CardHeader className="pb-3 bg-gradient-to-br from-blue-50 to-cyan-50">
-                                    <CardTitle className="text-sm font-semibold text-blue-600">💧 Avg Water</CardTitle>
+                            <Card className="border border-blue-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-sm font-bold text-blue-600 uppercase tracking-wide">Avg Water</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">{stats.avgWater}</p>
-                                    <p className="text-xs text-gray-500 mt-1">ml per day</p>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-4xl font-bold text-gray-900">{stats.avgWater}</span>
+                                        <span className="text-sm text-gray-500">ml</span>
+                                    </div>
+                                    <p className="text-xs text-gray-400 mt-3">Daily goal: 2500ml</p>
                                 </CardContent>
                             </Card>
 
-                            <Card className="border-2 border-purple-200 shadow-lg hover:shadow-xl transition-shadow">
-                                <CardHeader className="pb-3 bg-gradient-to-br from-purple-50 to-pink-50">
-                                    <CardTitle className="text-sm font-semibold text-purple-600">⚡ Avg Adherence</CardTitle>
+                            <Card className="border border-purple-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-sm font-bold text-purple-600 uppercase tracking-wide">Avg Adherence</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{stats.avgAdherence}%</p>
-                                    <p className="text-xs text-gray-500 mt-1">Weekly average</p>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-4xl font-bold text-gray-900">{stats.avgAdherence}%</span>
+                                    </div>
+                                    <div className="w-full bg-gray-100 rounded-full h-2 mt-3">
+                                        <div
+                                            className="bg-purple-500 h-2 rounded-full transition-all duration-500"
+                                            style={{ width: `${stats.avgAdherence}%` }}
+                                        ></div>
+                                    </div>
                                 </CardContent>
                             </Card>
 
-                            <Card className="border-2 border-orange-200 shadow-lg hover:shadow-xl transition-shadow">
-                                <CardHeader className="pb-3 bg-gradient-to-br from-orange-50 to-amber-50">
-                                    <CardTitle className="text-sm font-semibold text-orange-600">⚖️ Weight Change</CardTitle>
+                            <Card className="border border-orange-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="text-sm font-bold text-orange-600 uppercase tracking-wide">Weight Change</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className={`text-4xl font-bold ${stats.weightChange === null ? 'text-gray-400' :
-                                        parseFloat(stats.weightChange) > 0 ? 'bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent' :
-                                            parseFloat(stats.weightChange) < 0 ? 'bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent' :
-                                                'text-gray-600'
-                                        }`}>
-                                        {stats.weightChange === null ? 'N/A' :
-                                            parseFloat(stats.weightChange) > 0 ? `+${stats.weightChange}` : stats.weightChange}
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-1">kg this week</p>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className={`text-4xl font-bold ${stats.weightChange === null ? 'text-gray-400' :
+                                                parseFloat(stats.weightChange) > 0 ? 'text-red-500' :
+                                                    parseFloat(stats.weightChange) < 0 ? 'text-green-500' : 'text-gray-900'
+                                            }`}>
+                                            {stats.weightChange === null ? '--' :
+                                                parseFloat(stats.weightChange) > 0 ? `+${stats.weightChange}` : stats.weightChange}
+                                        </span>
+                                        <span className="text-sm text-gray-500">kg</span>
+                                    </div>
+                                    <p className="text-xs text-gray-400 mt-3">Since start of week</p>
                                 </CardContent>
                             </Card>
                         </div>
-
-                        <Card className="border-2 border-indigo-200 shadow-lg">
-                            <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50">
-                                <CardTitle className="text-indigo-700">📊 Weekly Overview</CardTitle>
-                            </CardHeader>
-                            <CardContent className="pt-4">
-                                <p className="text-gray-700 text-lg">
-                                    You've logged <span className="font-bold text-emerald-600 text-xl">{stats.loggedDays} days</span> this week.
-                                    {stats.loggedDays < 7 && (
-                                        <span className="text-orange-600 font-semibold"> Keep it up! Try to log every day for better insights. 💪</span>
-                                    )}
-                                    {stats.loggedDays === 7 && (
-                                        <span className="text-green-600 font-semibold"> Excellent! You've logged every day this week! 🎉✨</span>
-                                    )}
-                                </p>
-                            </CardContent>
-                        </Card>
                     </TabsContent>
                 </Tabs>
-            </div >
-        </PatientLayout >
+            </div>
+        </PatientLayout>
     );
 }

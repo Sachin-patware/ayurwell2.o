@@ -462,6 +462,8 @@ def log_progress():
         existing.symptoms = data.get('symptoms', '')
         existing.mealAdherence = data.get('mealAdherence')
         existing.weight = data.get('weight')
+        existing.sleepHours = data.get('sleepHours')
+        existing.mood = data.get('mood')
         existing.notes = data.get('notes', '')
         existing.save()
         return jsonify({"message": "Progress updated", "id": str(existing.id), "updated": True}), 200
@@ -475,6 +477,8 @@ def log_progress():
             symptoms=data.get('symptoms', ''),
             mealAdherence=data.get('mealAdherence'),
             weight=data.get('weight'),
+            sleepHours=data.get('sleepHours'),
+            mood=data.get('mood'),
             notes=data.get('notes', '')
         )
         progress.save()
@@ -494,6 +498,8 @@ def get_progress(patient_id):
         "symptoms": p.symptoms,
         "mealAdherence": p.mealAdherence,
         "weight": p.weight,
+        "sleepHours": p.sleepHours,
+        "mood": p.mood,
         "notes": p.notes
     } for p in progress_records])
 
@@ -508,6 +514,79 @@ def delete_progress(progress_id):
     
     progress.delete()
     return jsonify({"message": "Progress entry deleted successfully"}), 200
+
+
+# Patient Profile Endpoints
+@api_bp.route('/patient/profile', methods=['GET'])
+@jwt_required()
+def get_patient_profile():
+    current_user_id = get_jwt_identity()
+    patient = Patient.objects(patientId=current_user_id).first()
+    
+    if not patient:
+        return jsonify({"error": "Patient profile not found"}), 404
+    
+    # Fetch email and name from User collection to ensure sync
+    from models import User
+    user = User.objects(uid=current_user_id).first()
+    email = user.email if user else ""
+    name = user.name if user else patient.name
+        
+    # Merge email/name into personalInfo for frontend convenience
+    personal_info = patient.personalInfo or {}
+    personal_info['email'] = email
+    personal_info['name'] = name
+    
+    # Ensure address structure exists
+    if 'address' not in personal_info:
+        personal_info['address'] = {
+            'line1': '', 'city': '', 'state': '', 'pincode': ''
+        }
+        
+    return jsonify({
+        "patientId": patient.patientId,
+        "personalInfo": personal_info,
+        "medicalInfo": patient.medicalInfo or {},
+        "createdAt": patient.createdAt.isoformat() if patient.createdAt else None
+    })
+
+@api_bp.route('/patient/profile', methods=['PUT'])
+@jwt_required()
+def update_patient_profile():
+    current_user_id = get_jwt_identity()
+    data = request.json
+    
+    patient = Patient.objects(patientId=current_user_id).first()
+    
+    if not patient:
+        return jsonify({"error": "Patient profile not found"}), 404
+    
+    # Update Personal Info
+    if 'personalInfo' in data:
+        # Prevent email update from here
+        if 'email' in data['personalInfo']:
+            del data['personalInfo']['email']
+            
+        patient.personalInfo = data['personalInfo']
+        
+        # Sync Name with User collection if changed
+        if 'name' in data['personalInfo']:
+            new_name = data['personalInfo']['name']
+            patient.name = new_name
+            
+            from models import User
+            user = User.objects(uid=current_user_id).first()
+            if user:
+                user.name = new_name
+                user.save()
+                
+    # Update Medical Info
+    if 'medicalInfo' in data:
+        patient.medicalInfo = data['medicalInfo']
+        
+    patient.save()
+    
+    return jsonify({"message": "Profile updated successfully"}), 200
 
 
 # Practitioner Profile Endpoints
