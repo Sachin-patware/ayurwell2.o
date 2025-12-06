@@ -11,9 +11,10 @@ type RenderFieldProps = {
   icon?: React.ComponentType<any>;
   placeholder?: string;
   isEditing: boolean;
+  disabled?: boolean;
 };
 
-function RenderFieldInner({ label, value, onChange, type = 'text', icon: Icon, placeholder, isEditing }: RenderFieldProps) {
+function RenderFieldInner({ label, value, onChange, type = 'text', icon: Icon, placeholder, isEditing, disabled }: RenderFieldProps) {
   if (!isEditing) {
     return (
       <div className="space-y-1">
@@ -41,6 +42,7 @@ function RenderFieldInner({ label, value, onChange, type = 'text', icon: Icon, p
           onChange={onChange as any}
           className={Icon ? 'pl-9' : ''}
           placeholder={placeholder}
+          disabled={disabled}
         />
       </div>
     </div>

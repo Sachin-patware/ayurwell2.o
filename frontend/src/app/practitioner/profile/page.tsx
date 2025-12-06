@@ -19,6 +19,7 @@ import {
   Plus,
   Trash2,
   Loader2,
+  Mail,
   Calendar
 } from 'lucide-react';
 import api from '@/services/api';
@@ -282,7 +283,7 @@ export default function DoctorProfilePage() {
                     icon={User}
                     isEditing={isEditing}
                   />
-                  <RenderField label="Email" value={profile.personalInfo.email} icon={Settings} isEditing={isEditing} />
+                  <RenderField label="Email" value={profile.personalInfo.email} icon={Mail} isEditing={isEditing} disabled />
                   <RenderField
                     label="Phone"
                     value={profile.personalInfo.phone}
