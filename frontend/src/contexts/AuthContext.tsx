@@ -15,6 +15,7 @@ interface AuthContextType {
     user: User | null;
     login: (userData: User, token: string) => void;
     logout: () => void;
+    refreshUser: (updates: Partial<User>) => void;
     isLoading: boolean;
     isAuthenticated: boolean;
 }
@@ -59,11 +60,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         router.push('/login');
     };
 
+    const refreshUser = (updates: Partial<User>) => {
+        if (user) {
+            const updatedUser = { ...user, ...updates };
+            setUser(updatedUser);
+            Cookies.set('user', JSON.stringify(updatedUser), { expires: 7 });
+        }
+    };
+
     return (
         <AuthContext.Provider value={{
             user,
             login,
             logout,
+            refreshUser,
             isLoading,
             isAuthenticated: !!user
         }}>

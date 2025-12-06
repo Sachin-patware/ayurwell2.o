@@ -21,6 +21,7 @@ import {
 import api from '@/services/api';
 import { toast } from 'react-toastify';
 import { RenderField } from '@/components/Renderfield';
+import { useAuth } from '@/contexts/AuthContext';
 
 type ProfileType = {
     personalInfo: {
@@ -57,6 +58,7 @@ const defaultProfile: ProfileType = {
 };
 
 export default function PatientProfilePage() {
+    const { refreshUser } = useAuth();
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -89,6 +91,12 @@ export default function PatientProfilePage() {
         try {
             setSaving(true);
             await api.put('/patient/profile', profile);
+
+            // Refresh user context if name changed
+            if (profile.personalInfo.name) {
+                refreshUser({ name: profile.personalInfo.name });
+            }
+
             toast.success('Profile updated successfully');
             setIsEditing(false);
         } catch (err) {
@@ -97,7 +105,7 @@ export default function PatientProfilePage() {
         } finally {
             setSaving(false);
         }
-    }, [profile]);
+    }, [profile, refreshUser]);
 
     const handleChange = useCallback(
         (section: keyof ProfileType, field: string, value: any, nestedField?: string) => {

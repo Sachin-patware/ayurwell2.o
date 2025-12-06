@@ -24,6 +24,7 @@ import {
 import api from '@/services/api';
 import { toast } from 'react-toastify';
 import { RenderField } from '@/components/Renderfield'; // or import from same file
+import { useAuth } from '@/contexts/AuthContext';
 
 type ProfileType = {
   personalInfo: {
@@ -80,6 +81,7 @@ const defaultProfile: ProfileType = {
 };
 
 export default function DoctorProfilePage() {
+  const { refreshUser } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -117,6 +119,12 @@ export default function DoctorProfilePage() {
     try {
       setSaving(true);
       await api.put('/practitioner/profile', profile);
+
+      // Refresh user context if name changed
+      if (profile.personalInfo.name) {
+        refreshUser({ name: profile.personalInfo.name });
+      }
+
       toast.success('Profile updated successfully');
       setIsEditing(false);
     } catch (err) {
@@ -125,7 +133,7 @@ export default function DoctorProfilePage() {
     } finally {
       setSaving(false);
     }
-  }, [profile]);
+  }, [profile, refreshUser]);
 
   // Helper — update a nested field with minimal cloning
   const handleChange = useCallback(
