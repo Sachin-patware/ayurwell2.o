@@ -80,7 +80,7 @@ export default function TrackingPage() {
         try {
             const userId = user?.uid;
             if (!userId) {
-               toast.error('User not authenticated');
+                toast.error('User not authenticated');
                 return;
             }
             await api.post('/progress', {
@@ -106,7 +106,7 @@ export default function TrackingPage() {
             toast.success('saved progress');
         } catch (err) {
             console.error('Error saving progress:', err);
-           toast.error('Failed to save progress');
+            toast.error('Failed to save progress');
         } finally {
             setSaving(false);
         }
@@ -131,7 +131,7 @@ export default function TrackingPage() {
             await fetchHistory();
         } catch (err) {
             console.error('Error deleting entry:', err);
-           toast.error('Failed to delete entry');
+            toast.error('Failed to delete entry');
         }
     };
 
@@ -139,19 +139,19 @@ export default function TrackingPage() {
         <PatientLayout>
             <div className="space-y-6">
                 {/* Header with Gradient */}
-                <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl p-6 text-white shadow-lg">
+                <div className="bg-gradient-to-r from-[#F1F8F4] to-[#E8F5E9] rounded-2xl p-6 border-2 border-[#2E7D32]/20 shadow-md">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h2 className="text-3xl font-bold flex items-center gap-2">
+                            <h2 className="text-3xl font-bold flex items-center gap-2 text-[#2E7D32]">
                                 <Activity className="h-8 w-8" />
                                 Track Your Progress
                             </h2>
-                            <p className="mt-2 text-emerald-50">Monitor your daily health metrics and wellness journey</p>
+                            <p className="mt-2 text-gray-600">Monitor your daily health metrics and wellness journey</p>
                         </div>
                         <div className="hidden md:flex items-center gap-4">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                                <p className="text-xs text-emerald-100">Streak</p>
-                                <p className="text-2xl font-bold">{stats.loggedDays} 🔥</p>
+                            <div className="bg-white border-2 border-[#2E7D32]/30 rounded-lg px-4 py-2">
+                                <p className="text-xs text-gray-600">Streak</p>
+                                <p className="text-2xl font-bold text-[#2E7D32]">{stats.loggedDays} 🔥</p>
                             </div>
                         </div>
                     </div>
@@ -167,15 +167,15 @@ export default function TrackingPage() {
 
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
                     <TabsList className="grid w-full grid-cols-3 bg-gradient-to-r from-gray-100 to-gray-50 p-1 rounded-xl">
-                        <TabsTrigger value="log" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-500 data-[state=active]:text-white rounded-lg">
+                        <TabsTrigger value="log" className="data-[state=active]:bg-[#2E7D32] data-[state=active]:text-white rounded-lg">
                             <CalendarIcon className="h-4 w-4 mr-2" />
                             Log Today
                         </TabsTrigger>
-                        <TabsTrigger value="history" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-cyan-500 data-[state=active]:text-white rounded-lg">
+                        <TabsTrigger value="history" className="data-[state=active]:bg-[#1976D2] data-[state=active]:text-white rounded-lg">
                             <History className="h-4 w-4 mr-2" />
                             History
                         </TabsTrigger>
-                        <TabsTrigger value="stats" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-lg">
+                        <TabsTrigger value="stats" className="data-[state=active]:bg-[#7B1FA2] data-[state=active]:text-white rounded-lg">
                             <TrendingUp className="h-4 w-4 mr-2" />
                             Stats
                         </TabsTrigger>
@@ -184,8 +184,8 @@ export default function TrackingPage() {
                     {/* LOG TAB */}
                     <TabsContent value="log" className="space-y-6">
                         {/* Date Picker with Gradient */}
-                        <Card className="border-2 border-emerald-200 shadow-md">
-                            <CardContent className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50">
+                        <Card className="border-2 border-[#2E7D32]/30 shadow-md">
+                            <CardContent className="p-4 bg-gradient-to-r from-[#F1F8F4] to-[#E8F5E9]">
                                 <div className="flex items-center justify-between">
                                     <Button
                                         variant="outline"
@@ -197,14 +197,14 @@ export default function TrackingPage() {
                                     </Button>
 
                                     <div className="flex items-center space-x-3">
-                                        <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2 rounded-lg">
+                                        <div className="bg-[#2E7D32] p-2 rounded-lg">
                                             <CalendarIcon className="h-5 w-5 text-white" />
                                         </div>
                                         <div className="text-center">
                                             <p className="font-bold text-lg text-gray-900">
                                                 {format(selectedDate, 'EEEE, MMMM d, yyyy')}
                                             </p>
-                                            <p className="text-xs font-semibold text-emerald-600">
+                                            <p className="text-xs font-semibold text-[#2E7D32]">
                                                 {format(selectedDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
                                                     ? '✨ Today'
                                                     : format(selectedDate, 'yyyy-MM-dd') === format(subDays(new Date(), 1), 'yyyy-MM-dd')
@@ -246,25 +246,25 @@ export default function TrackingPage() {
                             </CardContent>
                         </Card>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Water Intake - Blue Gradient */}
-                            <Card className="border-2 border-blue-200 shadow-md hover:shadow-lg transition-shadow">
-                                <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
-                                    <CardTitle className="flex items-center text-blue-700">
-                                        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-2 rounded-lg mr-2">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                            {/* Water Intake - Blue */}
+                            <Card className="border-2 border-blue-200 shadow-sm hover:shadow-md transition-all">
+                                <CardHeader className="bg-gradient-to-r from-[#E3F2FD] to-[#BBDEFB] pb-3">
+                                    <CardTitle className="flex items-center gap-2 text-blue-900 text-lg">
+                                        <div className="bg-[#1976D2] p-2 rounded-lg">
                                             <Droplet className="h-5 w-5 text-white" />
                                         </div>
                                         Water Intake
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-4">
-                                    <div className="space-y-4">
+                                <CardContent className="pt-5 space-y-4">
+                                    <div className="space-y-3">
                                         <Input
                                             type="number"
                                             placeholder="Enter ml (e.g., 2000)"
                                             value={waterIntake || ''}
                                             onChange={(e) => setWaterIntake(parseInt(e.target.value) || 0)}
-                                            className="text-lg border-2 border-blue-200 focus:border-blue-400"
+                                            className="text-lg border-2 border-blue-200 focus:border-blue-400 h-11"
                                         />
                                         <div className="flex gap-2 flex-wrap">
                                             {[250, 500, 750, 1000].map((amt) => (
@@ -273,85 +273,86 @@ export default function TrackingPage() {
                                                     variant="outline"
                                                     size="sm"
                                                     onClick={() => setWaterIntake(waterIntake + amt)}
-                                                    className="bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 border-blue-300 font-semibold"
+                                                    className="flex-1 min-w-[70px] bg-blue-50 hover:bg-blue-100 border-blue-300 text-blue-700 font-semibold"
                                                 >
                                                     +{amt}ml
                                                 </Button>
                                             ))}
                                         </div>
-                                        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-3 rounded-lg text-center">
-                                            <p className="text-sm opacity-90">Total</p>
-                                            <p className="text-2xl font-bold">{waterIntake} ml</p>
-                                        </div>
+                                    </div>
+                                    <div className="bg-[#1976D2] text-white p-4 rounded-xl text-center">
+                                        <p className="text-xs uppercase tracking-wide opacity-90 mb-1">Total Intake</p>
+                                        <p className="text-3xl font-bold">{waterIntake} <span className="text-lg">ml</span></p>
                                     </div>
                                 </CardContent>
                             </Card>
 
-                            {/* Bowel Movement - Green Gradient */}
-                            <Card className="border-2 border-green-200 shadow-md hover:shadow-lg transition-shadow">
-                                <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
-                                    <CardTitle className="flex items-center text-green-700">
-                                        <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-2 rounded-lg mr-2">
+                            {/* Bowel Movement - Green */}
+                            <Card className="border-2 border-green-200 shadow-sm hover:shadow-md transition-all">
+                                <CardHeader className="bg-gradient-to-r from-[#E8F5E9] to-[#C8E6C9] pb-3">
+                                    <CardTitle className="flex items-center gap-2 text-green-900 text-lg">
+                                        <div className="bg-[#388E3C] p-2 rounded-lg">
                                             <Heart className="h-5 w-5 text-white" />
                                         </div>
                                         Bowel Movement
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-4">
+                                <CardContent className="pt-5">
                                     <Select value={bowelMovement} onValueChange={setBowelMovement}>
-                                        <SelectTrigger className="border-2 border-green-200 focus:border-green-400">
+                                        <SelectTrigger className="border-2 border-green-200 focus:border-green-400 h-11 text-base">
                                             <SelectValue placeholder="Select status..." />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="normal">✅ Normal</SelectItem>
-                                            <SelectItem value="constipated">🟡 Constipated</SelectItem>
-                                            <SelectItem value="loose">🟠 Loose</SelectItem>
-                                            <SelectItem value="diarrhea">🔴 Diarrhea</SelectItem>
+                                            <SelectItem value="normal" className="text-base">✅ Normal</SelectItem>
+                                            <SelectItem value="constipated" className="text-base">🟡 Constipated</SelectItem>
+                                            <SelectItem value="loose" className="text-base">🟠 Loose</SelectItem>
+                                            <SelectItem value="diarrhea" className="text-base">🔴 Diarrhea</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </CardContent>
                             </Card>
 
-                            {/* Meal Adherence - Purple Gradient */}
-                            <Card className="border-2 border-purple-200 shadow-md hover:shadow-lg transition-shadow">
-                                <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-                                    <CardTitle className="flex items-center text-purple-700">
-                                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg mr-2">
+                            {/* Meal Adherence - Purple */}
+                            <Card className="border-2 border-purple-200 shadow-sm hover:shadow-md transition-all">
+                                <CardHeader className="bg-gradient-to-r from-[#F3E5F5] to-[#E1BEE7] pb-3">
+                                    <CardTitle className="flex items-center gap-2 text-purple-900 text-lg">
+                                        <div className="bg-[#7B1FA2] p-2 rounded-lg">
                                             <Zap className="h-5 w-5 text-white" />
                                         </div>
                                         Meal Adherence
                                     </CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-4">
-                                    <div className="space-y-4">
+                                <CardContent className="pt-5 space-y-4">
+                                    <div className="space-y-3">
                                         <Input
                                             type="range"
                                             min="0"
                                             max="100"
                                             value={mealAdherence}
                                             onChange={(e) => setMealAdherence(parseInt(e.target.value))}
-                                            className="w-full accent-purple-500"
+                                            className="w-full h-2 accent-purple-600"
                                         />
-                                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg text-center">
+                                        <div className="bg-[#7B1FA2] text-white p-4 rounded-xl text-center">
+                                            <p className="text-xs uppercase tracking-wide opacity-90 mb-1">Adherence Level</p>
                                             <p className="text-4xl font-bold">{mealAdherence}%</p>
                                         </div>
                                     </div>
                                 </CardContent>
                             </Card>
 
-                            {/* Weight - Orange Gradient */}
-                            <Card className="border-2 border-orange-200 shadow-md hover:shadow-lg transition-shadow">
-                                <CardHeader className="bg-gradient-to-r from-orange-50 to-amber-50">
-                                    <CardTitle className="text-orange-700">Weight (Optional)</CardTitle>
+                            {/* Weight - Orange */}
+                            <Card className="border-2 border-orange-200 shadow-sm hover:shadow-md transition-all">
+                                <CardHeader className="bg-gradient-to-r from-[#FFF3E0] to-[#FFE0B2] pb-3">
+                                    <CardTitle className="text-orange-800 text-lg">Weight (Optional)</CardTitle>
                                 </CardHeader>
-                                <CardContent className="pt-4">
+                                <CardContent className="pt-5">
                                     <Input
                                         type="number"
                                         step="0.1"
                                         placeholder="Enter weight in kg"
                                         value={weight}
                                         onChange={(e) => setWeight(e.target.value)}
-                                        className="border-2 border-orange-200 focus:border-orange-400"
+                                        className="border-2 border-orange-200 focus:border-orange-400 h-11 text-lg"
                                     />
                                 </CardContent>
                             </Card>
@@ -408,7 +409,7 @@ export default function TrackingPage() {
                             )}
                             <Button
                                 onClick={handleSave}
-                                className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white h-12 px-8 text-lg font-semibold shadow-lg"
+                                className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white h-12 px-8 text-lg font-semibold shadow-lg"
                                 disabled={saving || !bowelMovement}
                             >
                                 {saving ? (
@@ -435,55 +436,79 @@ export default function TrackingPage() {
                                 </CardContent>
                             </Card>
                         ) : (
-                            <div className="space-y-3">
+                            <div className="space-y-4">
                                 {history.slice(0, 14).map((entry, index) => (
-                                    <Card key={entry.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500">
-                                        <CardContent className="p-4 bg-gradient-to-r from-white to-blue-50/30">
-                                            <div className="flex items-start justify-between">
-                                                <div className="flex-1">
-                                                    <div className="flex items-center gap-3 mb-3">
+                                    <Card key={entry.id} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-[#2E7D32] overflow-hidden">
+                                        <CardContent className="p-5">
+                                            <div className="flex items-start justify-between gap-4">
+                                                <div className="flex-1 space-y-4">
+                                                    {/* Header */}
+                                                    <div className="flex flex-wrap items-center gap-3">
                                                         <h3 className="font-bold text-lg text-gray-900">
                                                             {format(new Date(entry.date), 'EEEE, MMM d, yyyy')}
                                                         </h3>
-                                                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${entry.bowelMovement === 'normal' ? 'bg-gradient-to-r from-green-400 to-emerald-400 text-white' :
-                                                                entry.bowelMovement === 'constipated' ? 'bg-gradient-to-r from-orange-400 to-amber-400 text-white' :
-                                                                    'bg-gradient-to-r from-red-400 to-pink-400 text-white'
+                                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${entry.bowelMovement === 'normal' ? 'bg-green-100 text-green-700 border border-green-300' :
+                                                                entry.bowelMovement === 'constipated' ? 'bg-orange-100 text-orange-700 border border-orange-300' :
+                                                                    'bg-red-100 text-red-700 border border-red-300'
                                                             }`}>
-                                                            {entry.bowelMovement}
+                                                            {entry.bowelMovement === 'normal' ? '✅ Normal' :
+                                                                entry.bowelMovement === 'constipated' ? '🟡 Constipated' :
+                                                                    entry.bowelMovement === 'loose' ? '🟠 Loose' : '🔴 Diarrhea'}
                                                         </span>
                                                     </div>
-                                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                                                        <div className="bg-blue-50 p-2 rounded-lg">
-                                                            <span className="text-blue-600 font-semibold">💧 Water:</span>
-                                                            <span className="ml-2 font-bold text-blue-700">{entry.waterIntake} ml</span>
+
+                                                    {/* Metrics Grid */}
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                                        <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <Droplet className="h-4 w-4 text-blue-600" />
+                                                                <span className="text-xs font-semibold text-blue-600 uppercase">Water</span>
+                                                            </div>
+                                                            <p className="text-lg font-bold text-blue-700">{entry.waterIntake} ml</p>
                                                         </div>
-                                                        <div className="bg-purple-50 p-2 rounded-lg">
-                                                            <span className="text-purple-600 font-semibold">⚡ Adherence:</span>
-                                                            <span className="ml-2 font-bold text-purple-700">{entry.mealAdherence}%</span>
+                                                        <div className="bg-purple-50 border border-purple-200 p-3 rounded-lg">
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <Zap className="h-4 w-4 text-purple-600" />
+                                                                <span className="text-xs font-semibold text-purple-600 uppercase">Adherence</span>
+                                                            </div>
+                                                            <p className="text-lg font-bold text-purple-700">{entry.mealAdherence}%</p>
                                                         </div>
                                                         {entry.weight && (
-                                                            <div className="bg-orange-50 p-2 rounded-lg">
-                                                                <span className="text-orange-600 font-semibold">⚖️ Weight:</span>
-                                                                <span className="ml-2 font-bold text-orange-700">{entry.weight} kg</span>
-                                                            </div>
-                                                        )}
-                                                        {entry.symptoms && (
-                                                            <div className="col-span-2 bg-red-50 p-2 rounded-lg">
-                                                                <span className="text-red-600 font-semibold">🩺 Symptoms:</span>
-                                                                <span className="ml-2 font-medium text-red-700">{entry.symptoms}</span>
+                                                            <div className="bg-orange-50 border border-orange-200 p-3 rounded-lg">
+                                                                <div className="flex items-center gap-2 mb-1">
+                                                                    <Activity className="h-4 w-4 text-orange-600" />
+                                                                    <span className="text-xs font-semibold text-orange-600 uppercase">Weight</span>
+                                                                </div>
+                                                                <p className="text-lg font-bold text-orange-700">{entry.weight} kg</p>
                                                             </div>
                                                         )}
                                                     </div>
+
+                                                    {/* Symptoms */}
+                                                    {entry.symptoms && (
+                                                        <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
+                                                            <p className="text-xs font-semibold text-red-600 uppercase mb-1">🩺 Symptoms</p>
+                                                            <p className="text-sm text-red-700">{entry.symptoms}</p>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Notes */}
                                                     {entry.notes && (
-                                                        <p className="mt-3 text-sm text-gray-600 italic bg-gray-50 p-2 rounded-lg">"{entry.notes}"</p>
+                                                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                                                            <p className="text-xs font-semibold text-gray-600 uppercase mb-1">📝 Notes</p>
+                                                            <p className="text-sm text-gray-700 italic">"{entry.notes}"</p>
+                                                        </div>
                                                     )}
                                                 </div>
-                                                <div className="flex gap-2 ml-4">
+
+                                                {/* Action Buttons */}
+                                                <div className="flex flex-col gap-2">
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => handleEdit(entry)}
-                                                        className="hover:bg-blue-100 text-blue-600"
+                                                        className="hover:bg-blue-100 text-blue-600 h-9 w-9 p-0"
+                                                        title="Edit"
                                                     >
                                                         <Edit2 className="h-4 w-4" />
                                                     </Button>
@@ -491,7 +516,8 @@ export default function TrackingPage() {
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => handleDelete(entry.id)}
-                                                        className="hover:bg-red-100 text-red-600"
+                                                        className="hover:bg-red-100 text-red-600 h-9 w-9 p-0"
+                                                        title="Delete"
                                                     >
                                                         <Trash2 className="h-4 w-4" />
                                                     </Button>
@@ -543,9 +569,9 @@ export default function TrackingPage() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className={`text-4xl font-bold ${stats.weightChange === null ? 'text-gray-400' :
-                                            parseFloat(stats.weightChange) > 0 ? 'bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent' :
-                                                parseFloat(stats.weightChange) < 0 ? 'bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent' :
-                                                    'text-gray-600'
+                                        parseFloat(stats.weightChange) > 0 ? 'bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent' :
+                                            parseFloat(stats.weightChange) < 0 ? 'bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent' :
+                                                'text-gray-600'
                                         }`}>
                                         {stats.weightChange === null ? 'N/A' :
                                             parseFloat(stats.weightChange) > 0 ? `+${stats.weightChange}` : stats.weightChange}
@@ -573,7 +599,7 @@ export default function TrackingPage() {
                         </Card>
                     </TabsContent>
                 </Tabs>
-            </div>
-        </PatientLayout>
+            </div >
+        </PatientLayout >
     );
 }

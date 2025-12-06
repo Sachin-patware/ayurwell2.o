@@ -9,6 +9,11 @@ import { AuthProvider } from "@/contexts/AuthContext";
 export const metadata: Metadata = {
   title: "AyurWell - Ayurvedic Diet Management",
   description: "Cloud-based Ayurvedic diet management software",
+  icons: {
+    icon: '/favicon2.png',
+    shortcut: '/favicon2.png',
+    apple: '/favicon2.png',
+  },
 };
 
 export default function RootLayout({

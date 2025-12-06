@@ -434,21 +434,51 @@ def delete_diet_plan(plan_id):
 @jwt_required()
 def log_progress():
     from models import Progress
+    from datetime import datetime, timedelta
     data = request.json
     current_user = get_jwt_identity()
     
-    progress = Progress(
-        patientId=data.get('patientId', current_user),
-        waterIntake=data.get('waterIntake'),
-        bowelMovement=data.get('bowelMovement'),
-        symptoms=data.get('symptoms', ''),
-        mealAdherence=data.get('mealAdherence'),
-        weight=data.get('weight'),
-        notes=data.get('notes', '')
-    )
-    progress.save()
+    # Parse the date from request or use today
+    date_str = data.get('date')
+    if date_str:
+        # Convert to datetime at start of day
+        target_date = datetime.fromisoformat(date_str).replace(hour=0, minute=0, second=0, microsecond=0)
+    else:
+        target_date = get_ist_now().replace(hour=0, minute=0, second=0, microsecond=0)
     
-    return jsonify({"message": "Progress logged", "id": str(progress.id)}), 201
+    patient_id = data.get('patientId', current_user)
+    
+    # Check for existing record on this date
+    existing = Progress.objects(
+        patientId=patient_id,
+        date__gte=target_date,
+        date__lt=target_date + timedelta(days=1)
+    ).first()
+    
+    if existing:
+        # Update existing record
+        existing.waterIntake = data.get('waterIntake')
+        existing.bowelMovement = data.get('bowelMovement')
+        existing.symptoms = data.get('symptoms', '')
+        existing.mealAdherence = data.get('mealAdherence')
+        existing.weight = data.get('weight')
+        existing.notes = data.get('notes', '')
+        existing.save()
+        return jsonify({"message": "Progress updated", "id": str(existing.id), "updated": True}), 200
+    else:
+        # Create new record
+        progress = Progress(
+            patientId=patient_id,
+            date=target_date,
+            waterIntake=data.get('waterIntake'),
+            bowelMovement=data.get('bowelMovement'),
+            symptoms=data.get('symptoms', ''),
+            mealAdherence=data.get('mealAdherence'),
+            weight=data.get('weight'),
+            notes=data.get('notes', '')
+        )
+        progress.save()
+        return jsonify({"message": "Progress logged", "id": str(progress.id), "updated": False}), 201
 
 @api_bp.route('/progress/<patient_id>', methods=['GET'])
 @jwt_required()
