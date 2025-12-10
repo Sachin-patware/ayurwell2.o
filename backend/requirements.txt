@@ -10,6 +10,5 @@ scikit-learn
 joblib
 python-dotenv
 dnspython
-sendgrid
 pymongo
 gunicorn

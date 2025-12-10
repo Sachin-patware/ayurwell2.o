@@ -3,8 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
-from sendgrid.helpers.mail import Mail, Email
-
+import ssl
 
 class EmailService:
     def __init__(self):
