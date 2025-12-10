@@ -15,15 +15,15 @@ def create_app():
     }
     app.config['JWT_SECRET_KEY'] = os.getenv("JWT_SECRET_KEY")
     
-    # Configure CORS to allow requests from frontend
-    CORS(app, resources={
-        r"/api/*": {
-            "origins": "*",
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            "allow_headers": ["Content-Type", "Authorization"],
-            "supports_credentials": True
-        }
-    })
+    # Configure CORS for production and development
+    # Allow all origins for maximum compatibility
+    CORS(app, 
+         origins="*",
+         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+         allow_headers=["Content-Type", "Authorization", "Accept"],
+         supports_credentials=True,
+         expose_headers=["Content-Type", "Authorization"]
+    )
     db.init_app(app)
     jwt = JWTManager(app)
     
