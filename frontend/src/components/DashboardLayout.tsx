@@ -75,7 +75,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     {/* User info */}
                     {user && (
                         <div className="p-4 border-b bg-[#E9F7EF]">
-                            <p className="font-medium text-gray-900">{user.username}</p>
+                            <p className="font-medium text-gray-900">{user.name}</p>
                             <p className="text-sm text-gray-500 capitalize">{user.role}</p>
                         </div>
                     )}
@@ -123,8 +123,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* Main content */}
             <div className="lg:pl-64">
                 {children}
-            </main>
+            </div>
         </div>
-        </div >
     );
 }
