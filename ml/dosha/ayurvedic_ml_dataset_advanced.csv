@@ -1,0 +1,2001 @@
+Age,Gender,Prakriti,ActivityLevel,SleepPattern,DietaryHabits,LifestyleFactor,Symptoms,DoshaImbalance
+80,Female,Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,Irregular Sleep,Red Eyes,Pitta-Vata
+82,Male,Pitta-Kapha,Active,Regular (7-8hr),Vegan,Excess Travel,Slow Digestion,Kapha-Vata
+47,Female,Tridosha,Sedentary,Irregular,Spicy/Oily Heavy,High Stress,Skin Rashes;Cold Hands;Constipation,Vata
+71,Female,Vata,Moderate,Regular (7-8hr),Irregular Meals,High Alcohol,Dry Skin;Fatigue,Vata
+45,Male,Pitta-Kapha,Very Active,Insomnia,Vegan,None,Red Eyes;Anxiety;Loose Stools,Pitta
+75,Male,Vata-Pitta,Moderate,Disturbed,Irregular Meals,Spicy Food,Dry Skin,Pitta-Vata
+64,Female,Pitta,Moderate,Insomnia,Non-Vegetarian,Overeating,Constipation;Joint Pain,Vata
+79,Female,Vata,Moderate,Excessive (>9hr),Vegetarian,Irregular Sleep,Inflammation,Pitta-Vata
+73,Female,Vata,Very Active,Disturbed,Vegan,Daytime Sleep,Cold Hands;Weight Gain;Congestion,Kapha
+64,Female,Vata,Sedentary,Irregular,Non-Vegetarian,Balanced,Anger;Acidity;Migraine,Pitta
+68,Male,Pitta-Kapha,Very Active,Irregular,Non-Vegetarian,None,Anxiety;Acidity;Congestion,Kapha-Pitta
+58,Female,Tridosha,Sedentary,Excessive (>9hr),Non-Vegetarian,Overworking,Red Eyes;Lethargy,Kapha-Pitta
+68,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Irregular Meals,Skipping Meals,Lethargy,Kapha-Vata
+41,Female,Vata,Sedentary,Insomnia,Spicy/Oily Heavy,Balanced,Anger,Pitta-Vata
+82,Female,Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Heavy/Sweet Food,Constipation;Burning Sensation,Pitta-Vata
+28,Female,Kapha,Active,Regular (7-8hr),Vegetarian,Sedentary,Excessive Sleep;Slow Digestion,Kapha
+76,Female,Pitta-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Smoking,Fatigue,Pitta-Vata
+36,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Fatigue;Skin Rashes,Pitta-Vata
+79,Female,Vata,Active,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Water Retention;Anger,Pitta-Vata
+46,Male,Vata,Very Active,Excessive (>9hr),Irregular Meals,Overworking,Excessive Sleep;Joint Pain;Burning Sensation,Pitta-Vata
+72,Female,Vata-Pitta,Active,Regular (7-8hr),Vegetarian,Sedentary,Light Sleep,Kapha-Vata
+60,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Sedentary,Fatigue;Migraine,Pitta-Vata
+79,Male,Vata-Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Sedentary,Insomnia,Kapha-Vata
+41,Female,Tridosha,Very Active,Regular (7-8hr),Vegan,Overworking,Sinusitis;Loose Stools;Bloating,Pitta-Vata
+54,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Irregular Meals,High Alcohol,Dry Skin;Water Retention,Kapha-Vata
+39,Female,Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Smoking,Constipation;Depression,Kapha-Vata
+26,Female,Vata-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,High Alcohol,Fatigue,Pitta-Vata
+25,Female,Vata-Pitta,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,None,Excessive Sleep,Kapha-Vata
+31,Male,Vata-Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Active,Sinusitis;Congestion,Kapha
+50,Female,Vata-Kapha,Very Active,Insomnia,Vegan,Overeating,Migraine;Burning Sensation;Congestion,Kapha-Pitta
+52,Male,Vata-Kapha,Moderate,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Congestion;Lethargy,Kapha
+63,Male,Kapha,Sedentary,Insomnia,Irregular Meals,Irregular Sleep,Excessive Heat;Weight Gain,Kapha-Pitta
+23,Female,Pitta,Moderate,Irregular,Sweet/Dairy Heavy,Skipping Meals,Cold Hands,Vata
+84,Male,Vata-Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Heavy/Sweet Food,Bloating;Excessive Sleep;Constipation,Kapha-Vata
+27,Female,Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Irregular Sleep,Cold Hands;Migraine;Red Eyes,Pitta-Vata
+31,Female,Vata-Pitta,Moderate,Disturbed,Sweet/Dairy Heavy,Sedentary,Oily Skin,Kapha
+72,Male,Tridosha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Daytime Sleep,Skin Rashes,Kapha-Pitta
+65,Male,Tridosha,Active,Irregular,Non-Vegetarian,Sedentary,Bloating,Kapha-Vata
+49,Female,Tridosha,Moderate,Insomnia,Vegetarian,Spicy Food,Oily Skin;Migraine,Kapha-Pitta
+77,Male,Tridosha,Very Active,Disturbed,Vegetarian,Smoking,Bloating;Weight Gain;Insomnia,Vata
+72,Male,Tridosha,Very Active,Disturbed,Non-Vegetarian,Heavy/Sweet Food,Lethargy;Water Retention,Kapha
+45,Male,Vata-Kapha,Very Active,Insomnia,Non-Vegetarian,High Stress,Lethargy;Joint Pain,Kapha-Vata
+35,Male,Vata,Very Active,Insomnia,Spicy/Oily Heavy,Smoking,Light Sleep;Congestion,Kapha-Vata
+33,Female,Pitta-Kapha,Very Active,Disturbed,Non-Vegetarian,Sedentary,Skin Rashes,Kapha-Pitta
+62,Female,Vata-Pitta,Sedentary,Excessive (>9hr),Vegetarian,Overworking,Inflammation;Light Sleep;Loose Stools,Pitta
+70,Male,Pitta,Active,Irregular,Non-Vegetarian,None,Slow Digestion;Insomnia,Kapha-Vata
+35,Female,Pitta,Very Active,Disturbed,Non-Vegetarian,Spicy Food,Excessive Sleep;Inflammation,Pitta
+85,Female,Tridosha,Very Active,Insomnia,Vegetarian,High Stress,Dry Skin;Insomnia,Vata
+58,Male,Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,None,Red Eyes,Kapha-Pitta
+52,Male,Vata-Kapha,Sedentary,Insomnia,Irregular Meals,Active,Inflammation;Migraine;Cold Hands,Pitta-Vata
+48,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Daytime Sleep,Skin Rashes;Sinusitis;Excessive Sleep,Kapha
+62,Male,Vata,Active,Insomnia,Spicy/Oily Heavy,Skipping Meals,Cold Hands;Skin Rashes,Vata
+68,Female,Vata-Kapha,Active,Regular (7-8hr),Vegetarian,High Alcohol,Inflammation,Pitta
+75,Female,Vata,Active,Insomnia,Vegan,Daytime Sleep,Bloating;Joint Pain;Burning Sensation,Vata
+30,Female,Pitta-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,High Alcohol,Cold Hands;Joint Pain;Red Eyes,Pitta-Vata
+75,Male,Vata,Active,Disturbed,Vegan,Heavy/Sweet Food,Water Retention;Slow Digestion;Depression,Kapha
+72,Male,Vata,Moderate,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Bloating;Joint Pain;Lethargy,Vata
+20,Male,Pitta-Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Active,Constipation;Migraine;Anger,Pitta
+77,Female,Pitta,Active,Insomnia,Non-Vegetarian,Excess Travel,Lethargy;Inflammation,Kapha-Pitta
+26,Male,Kapha,Very Active,Irregular,Sweet/Dairy Heavy,Sedentary,Depression;Inflammation,Kapha
+38,Female,Vata-Pitta,Moderate,Irregular,Sweet/Dairy Heavy,Smoking,Excessive Heat;Bloating,Pitta-Vata
+57,Female,Tridosha,Moderate,Regular (7-8hr),Irregular Meals,Skipping Meals,Skin Rashes,Pitta-Vata
+26,Female,Pitta,Sedentary,Regular (7-8hr),Irregular Meals,Excess Travel,Joint Pain,Vata
+57,Female,Vata-Kapha,Moderate,Irregular,Spicy/Oily Heavy,Daytime Sleep,Skin Rashes;Sinusitis;Water Retention,Kapha
+32,Male,Vata,Moderate,Disturbed,Vegan,Daytime Sleep,Inflammation;Sinusitis;Water Retention,Kapha
+83,Male,Vata-Pitta,Active,Insomnia,Vegan,High Alcohol,Slow Digestion;Red Eyes,Pitta
+29,Female,Kapha,Very Active,Irregular,Non-Vegetarian,Balanced,Insomnia;Fatigue,Vata
+40,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,Irregular Sleep,Loose Stools;Burning Sensation;Oily Skin,Pitta
+64,Female,Pitta-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Skipping Meals,Fatigue;Anxiety;Water Retention,Vata
+76,Male,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Depression,Kapha
+73,Male,Pitta,Very Active,Regular (7-8hr),Non-Vegetarian,Spicy Food,Water Retention;Sinusitis,Kapha
+21,Female,Pitta,Very Active,Disturbed,Vegetarian,Overworking,Weight Gain;Joint Pain,Pitta-Vata
+45,Male,Pitta,Moderate,Regular (7-8hr),Irregular Meals,Irregular Sleep,Migraine;Anger,Pitta
+78,Male,Vata-Pitta,Moderate,Insomnia,Non-Vegetarian,Overworking,Excessive Sleep;Migraine;Sinusitis,Kapha-Pitta
+19,Male,Vata-Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Oily Skin;Depression;Congestion,Kapha
+30,Female,Pitta,Active,Regular (7-8hr),Vegetarian,Heavy/Sweet Food,Lethargy;Cold Hands;Sinusitis,Kapha
+37,Male,Vata,Very Active,Regular (7-8hr),Vegan,Sedentary,Bloating,Kapha-Vata
+24,Male,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,Spicy Food,Bloating;Acidity;Cold Hands,Pitta-Vata
+41,Male,Pitta,Active,Irregular,Vegetarian,Balanced,Oily Skin,Kapha-Pitta
+49,Female,Pitta-Kapha,Very Active,Disturbed,Irregular Meals,Excess Travel,Anger;Light Sleep,Pitta-Vata
+62,Male,Vata-Pitta,Very Active,Insomnia,Irregular Meals,Overeating,Fatigue;Anger;Burning Sensation,Pitta
+84,Male,Tridosha,Very Active,Disturbed,Vegetarian,Overworking,Red Eyes;Excessive Heat;Joint Pain,Pitta
+19,Female,Vata-Pitta,Active,Insomnia,Non-Vegetarian,Smoking,Water Retention,Kapha-Pitta
+57,Male,Vata-Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,Heavy/Sweet Food,Skin Rashes,Kapha-Pitta
+59,Male,Tridosha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Irregular Sleep,Sinusitis;Lethargy,Kapha
+76,Female,Vata-Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Excess Travel,Joint Pain;Dry Skin;Light Sleep,Vata
+63,Male,Tridosha,Moderate,Disturbed,Sweet/Dairy Heavy,Overworking,Skin Rashes;Joint Pain,Pitta-Vata
+63,Female,Vata,Moderate,Disturbed,Spicy/Oily Heavy,Sedentary,Inflammation,Kapha-Pitta
+42,Female,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Sinusitis;Cold Hands;Slow Digestion,Kapha
+30,Female,Vata-Pitta,Sedentary,Excessive (>9hr),Vegetarian,High Alcohol,Burning Sensation;Water Retention;Oily Skin,Kapha-Pitta
+51,Male,Kapha,Active,Disturbed,Irregular Meals,Heavy/Sweet Food,Anxiety;Weight Gain,Kapha
+33,Male,Pitta-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Sedentary,Depression;Joint Pain;Red Eyes,Kapha-Pitta
+23,Female,Vata,Moderate,Excessive (>9hr),Irregular Meals,None,Migraine,Pitta-Vata
+65,Male,Kapha,Very Active,Disturbed,Vegan,Skipping Meals,Acidity;Joint Pain,Pitta-Vata
+30,Female,Pitta,Sedentary,Excessive (>9hr),Vegetarian,Smoking,Joint Pain,Pitta-Vata
+44,Male,Vata,Active,Insomnia,Irregular Meals,Skipping Meals,Depression;Lethargy;Insomnia,Kapha-Vata
+61,Female,Pitta,Very Active,Disturbed,Non-Vegetarian,High Alcohol,Anger,Pitta
+19,Male,Tridosha,Very Active,Regular (7-8hr),Vegetarian,None,Lethargy,Kapha
+28,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Light Sleep;Skin Rashes,Pitta
+79,Female,Pitta-Kapha,Very Active,Irregular,Vegetarian,High Alcohol,Congestion,Kapha-Pitta
+79,Female,Vata-Kapha,Sedentary,Excessive (>9hr),Vegetarian,Smoking,Insomnia,Pitta-Vata
+48,Male,Tridosha,Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Excessive Heat;Inflammation,Pitta
+23,Male,Pitta,Sedentary,Excessive (>9hr),Non-Vegetarian,High Stress,Depression;Weight Gain,Kapha
+57,Female,Vata-Pitta,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Red Eyes;Loose Stools,Pitta
+48,Female,Vata,Active,Disturbed,Irregular Meals,Skipping Meals,Dry Skin;Excessive Heat;Water Retention,Vata
+55,Female,Kapha,Very Active,Irregular,Non-Vegetarian,Smoking,Fatigue,Pitta-Vata
+34,Female,Vata-Kapha,Moderate,Irregular,Irregular Meals,Skipping Meals,Joint Pain,Vata
+26,Female,Kapha,Sedentary,Insomnia,Irregular Meals,Active,Sinusitis,Kapha
+45,Male,Vata,Very Active,Excessive (>9hr),Non-Vegetarian,Overworking,Loose Stools;Slow Digestion,Kapha-Pitta
+50,Male,Vata-Pitta,Very Active,Regular (7-8hr),Vegan,None,Oily Skin,Kapha-Vata
+24,Male,Vata-Pitta,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Active,Weight Gain;Skin Rashes;Burning Sensation,Pitta
+40,Female,Kapha,Very Active,Excessive (>9hr),Vegetarian,High Stress,Sinusitis,Kapha-Vata
+70,Female,Vata-Pitta,Moderate,Excessive (>9hr),Vegan,Overworking,Inflammation,Pitta
+46,Female,Pitta,Moderate,Irregular,Vegetarian,Daytime Sleep,Anxiety;Skin Rashes,Pitta-Vata
+73,Male,Vata-Pitta,Moderate,Disturbed,Spicy/Oily Heavy,Overeating,Cold Hands;Bloating,Vata
+84,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegan,Skipping Meals,Depression,Kapha-Vata
+38,Female,Pitta,Sedentary,Regular (7-8hr),Vegetarian,Excess Travel,Inflammation;Bloating;Light Sleep,Vata
+44,Female,Tridosha,Active,Irregular,Non-Vegetarian,Sedentary,Slow Digestion;Lethargy;Anxiety,Kapha
+46,Female,Pitta,Moderate,Insomnia,Vegan,Skipping Meals,Burning Sensation;Oily Skin;Inflammation,Pitta
+44,Female,Vata,Very Active,Insomnia,Non-Vegetarian,Active,Excessive Heat;Migraine,Pitta
+66,Male,Vata-Kapha,Very Active,Excessive (>9hr),Vegan,Sedentary,Water Retention,Kapha
+60,Male,Vata-Kapha,Active,Insomnia,Irregular Meals,Excess Travel,Anxiety;Excessive Sleep;Congestion,Kapha-Vata
+49,Male,Pitta,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Overeating,Lethargy;Burning Sensation,Kapha-Pitta
+53,Male,Vata,Very Active,Disturbed,Spicy/Oily Heavy,Smoking,Constipation,Pitta-Vata
+57,Male,Pitta-Kapha,Active,Insomnia,Vegetarian,Smoking,Anger;Red Eyes,Pitta
+26,Male,Vata,Active,Insomnia,Vegan,Smoking,Insomnia;Bloating,Vata
+32,Female,Vata-Kapha,Active,Excessive (>9hr),Non-Vegetarian,Excess Travel,Anxiety,Vata
+71,Female,Kapha,Very Active,Disturbed,Irregular Meals,None,Cold Hands;Excessive Heat;Bloating,Vata
+25,Female,Vata,Sedentary,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Excessive Sleep,Kapha
+64,Male,Vata,Active,Regular (7-8hr),Vegan,High Stress,Skin Rashes;Insomnia;Slow Digestion,Vata
+56,Male,Tridosha,Very Active,Disturbed,Non-Vegetarian,High Alcohol,Burning Sensation;Lethargy,Kapha-Pitta
+29,Male,Pitta,Sedentary,Irregular,Spicy/Oily Heavy,Overworking,Light Sleep;Migraine;Lethargy,Pitta
+21,Female,Vata-Pitta,Moderate,Disturbed,Non-Vegetarian,Overeating,Loose Stools;Fatigue;Weight Gain,Kapha-Vata
+75,Female,Tridosha,Sedentary,Insomnia,Irregular Meals,Balanced,Excessive Sleep,Kapha
+28,Female,Pitta,Very Active,Regular (7-8hr),Irregular Meals,Overworking,Excessive Sleep,Kapha-Pitta
+45,Male,Tridosha,Very Active,Irregular,Vegan,Overeating,Anger,Kapha-Pitta
+37,Female,Tridosha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Spicy Food,Sinusitis;Joint Pain;Congestion,Kapha
+55,Male,Vata,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Balanced,Fatigue,Vata
+37,Male,Vata-Pitta,Moderate,Excessive (>9hr),Vegetarian,Sedentary,Migraine;Constipation;Anger,Pitta
+28,Female,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Irregular Sleep,Congestion;Depression,Kapha
+63,Male,Vata-Kapha,Very Active,Irregular,Spicy/Oily Heavy,High Alcohol,Anger;Anxiety;Migraine,Pitta
+71,Male,Kapha,Very Active,Irregular,Spicy/Oily Heavy,Spicy Food,Red Eyes,Pitta
+73,Female,Tridosha,Active,Disturbed,Spicy/Oily Heavy,Skipping Meals,Skin Rashes;Insomnia,Pitta-Vata
+26,Female,Kapha,Active,Irregular,Vegetarian,Daytime Sleep,Light Sleep;Excessive Sleep,Kapha
+47,Male,Kapha,Sedentary,Regular (7-8hr),Vegan,Sedentary,Light Sleep;Dry Skin;Congestion,Kapha-Vata
+48,Female,Vata-Pitta,Active,Regular (7-8hr),Irregular Meals,High Stress,Slow Digestion;Water Retention,Kapha
+71,Female,Vata-Pitta,Very Active,Insomnia,Vegan,Excess Travel,Oily Skin;Migraine;Sinusitis,Kapha-Pitta
+64,Male,Pitta,Active,Disturbed,Sweet/Dairy Heavy,Overeating,Water Retention,Kapha
+36,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Vegetarian,None,Oily Skin;Dry Skin;Fatigue,Kapha-Vata
+66,Female,Tridosha,Active,Irregular,Sweet/Dairy Heavy,Balanced,Slow Digestion;Bloating;Dry Skin,Vata
+56,Male,Vata,Moderate,Irregular,Irregular Meals,High Alcohol,Loose Stools;Insomnia,Pitta-Vata
+48,Male,Vata-Pitta,Sedentary,Irregular,Vegetarian,Overworking,Skin Rashes;Congestion,Pitta
+74,Female,Vata,Moderate,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Red Eyes,Pitta-Vata
+59,Female,Pitta-Kapha,Sedentary,Insomnia,Vegetarian,Sedentary,Cold Hands;Water Retention;Joint Pain,Kapha-Vata
+82,Female,Vata,Sedentary,Insomnia,Non-Vegetarian,Smoking,Excessive Heat;Acidity;Insomnia,Pitta
+45,Female,Pitta,Active,Insomnia,Vegetarian,Balanced,Congestion;Loose Stools;Anger,Pitta
+51,Male,Vata,Very Active,Insomnia,Vegetarian,Overeating,Loose Stools,Kapha-Pitta
+38,Male,Pitta,Active,Disturbed,Non-Vegetarian,Irregular Sleep,Fatigue,Vata
+72,Male,Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Skipping Meals,Skin Rashes,Pitta-Vata
+46,Female,Kapha,Sedentary,Insomnia,Vegan,Smoking,Anger,Pitta
+81,Male,Vata-Kapha,Very Active,Irregular,Spicy/Oily Heavy,Smoking,Skin Rashes;Slow Digestion;Burning Sensation,Pitta
+60,Male,Vata-Pitta,Sedentary,Insomnia,Vegan,Daytime Sleep,Fatigue;Weight Gain,Kapha-Vata
+52,Female,Vata-Pitta,Active,Excessive (>9hr),Vegetarian,Daytime Sleep,Cold Hands;Burning Sensation;Dry Skin,Vata
+65,Female,Vata,Active,Insomnia,Vegan,Sedentary,Oily Skin;Congestion,Kapha
+37,Female,Pitta-Kapha,Active,Irregular,Irregular Meals,Overeating,Sinusitis,Kapha
+70,Female,Vata,Very Active,Irregular,Non-Vegetarian,Balanced,Excessive Heat;Bloating,Pitta-Vata
+48,Female,Vata-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Skipping Meals,Dry Skin;Anxiety,Vata
+47,Female,Kapha,Active,Irregular,Vegan,Balanced,Lethargy,Kapha
+40,Male,Vata-Pitta,Moderate,Excessive (>9hr),Non-Vegetarian,High Stress,Anger;Congestion,Pitta-Vata
+73,Male,Pitta-Kapha,Sedentary,Irregular,Vegetarian,Overeating,Skin Rashes;Acidity;Sinusitis,Kapha-Pitta
+22,Male,Tridosha,Very Active,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Excessive Sleep;Weight Gain;Cold Hands,Kapha-Vata
+43,Male,Vata-Kapha,Very Active,Disturbed,Vegan,None,Lethargy,Kapha
+64,Female,Vata-Kapha,Moderate,Excessive (>9hr),Irregular Meals,Smoking,Dry Skin;Acidity;Joint Pain,Pitta-Vata
+25,Female,Kapha,Active,Disturbed,Non-Vegetarian,High Alcohol,Sinusitis;Acidity,Kapha-Pitta
+23,Female,Vata-Pitta,Very Active,Insomnia,Vegan,Smoking,Bloating;Slow Digestion;Anxiety,Vata
+51,Female,Vata-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Overeating,Sinusitis;Weight Gain,Kapha
+26,Female,Pitta,Very Active,Disturbed,Vegetarian,Heavy/Sweet Food,Insomnia,Kapha-Vata
+61,Female,Vata-Pitta,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Spicy Food,Depression,Kapha-Pitta
+80,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,Overworking,Slow Digestion;Anxiety;Insomnia,Kapha-Vata
+85,Male,Vata,Sedentary,Irregular,Spicy/Oily Heavy,None,Insomnia,Vata
+55,Male,Tridosha,Very Active,Regular (7-8hr),Irregular Meals,High Stress,Anger;Sinusitis;Skin Rashes,Pitta
+25,Female,Kapha,Active,Excessive (>9hr),Vegetarian,Smoking,Red Eyes;Constipation,Pitta-Vata
+42,Male,Vata-Pitta,Moderate,Irregular,Vegan,Skipping Meals,Acidity;Lethargy,Pitta-Vata
+57,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Vegetarian,High Stress,Skin Rashes;Excessive Heat;Acidity,Pitta
+26,Female,Vata,Active,Excessive (>9hr),Irregular Meals,Active,Acidity,Pitta-Vata
+74,Male,Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Excessive Sleep;Constipation;Loose Stools,Kapha-Vata
+57,Female,Kapha,Sedentary,Disturbed,Irregular Meals,Overworking,Congestion;Anger,Kapha-Pitta
+67,Female,Pitta,Sedentary,Insomnia,Non-Vegetarian,Active,Fatigue,Pitta-Vata
+46,Female,Pitta,Very Active,Regular (7-8hr),Irregular Meals,High Stress,Migraine;Congestion,Kapha-Pitta
+75,Male,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,High Stress,Skin Rashes;Excessive Heat,Pitta
+68,Male,Pitta,Moderate,Irregular,Spicy/Oily Heavy,High Stress,Burning Sensation;Inflammation;Water Retention,Pitta
+72,Male,Pitta-Kapha,Active,Irregular,Sweet/Dairy Heavy,Smoking,Slow Digestion;Dry Skin,Kapha-Vata
+50,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Active,Weight Gain;Skin Rashes;Excessive Heat,Pitta
+57,Male,Tridosha,Sedentary,Regular (7-8hr),Vegetarian,Overeating,Slow Digestion,Kapha
+28,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Slow Digestion;Inflammation,Kapha-Pitta
+80,Female,Vata-Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,None,Sinusitis;Lethargy;Joint Pain,Kapha-Vata
+40,Male,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Overeating,Light Sleep;Excessive Sleep;Cold Hands,Kapha-Vata
+20,Female,Kapha,Very Active,Irregular,Vegetarian,Heavy/Sweet Food,Depression,Kapha
+71,Female,Vata,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Smoking,Oily Skin;Depression;Congestion,Kapha
+72,Male,Kapha,Moderate,Irregular,Irregular Meals,Heavy/Sweet Food,Migraine;Red Eyes,Pitta
+45,Female,Vata,Sedentary,Irregular,Non-Vegetarian,High Stress,Bloating;Insomnia;Loose Stools,Vata
+59,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Daytime Sleep,Migraine;Anxiety;Insomnia,Pitta-Vata
+75,Male,Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Overeating,Light Sleep;Loose Stools,Pitta-Vata
+33,Male,Pitta,Moderate,Disturbed,Irregular Meals,Overeating,Excessive Sleep;Dry Skin;Depression,Kapha
+62,Male,Vata-Kapha,Active,Regular (7-8hr),Vegan,Excess Travel,Anger,Pitta-Vata
+84,Female,Vata-Pitta,Very Active,Irregular,Sweet/Dairy Heavy,Active,Light Sleep;Anger,Pitta-Vata
+41,Male,Kapha,Sedentary,Irregular,Vegan,Smoking,Excessive Sleep,Kapha-Pitta
+75,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegetarian,Irregular Sleep,Light Sleep;Loose Stools,Pitta-Vata
+38,Male,Kapha,Active,Insomnia,Spicy/Oily Heavy,High Alcohol,Red Eyes,Pitta
+40,Male,Pitta,Very Active,Irregular,Vegetarian,Irregular Sleep,Acidity;Skin Rashes,Pitta
+82,Male,Vata-Kapha,Very Active,Regular (7-8hr),Vegan,Active,Weight Gain,Kapha
+29,Female,Vata-Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Spicy Food,Acidity;Insomnia,Pitta-Vata
+83,Female,Vata-Pitta,Active,Regular (7-8hr),Non-Vegetarian,High Stress,Burning Sensation,Pitta-Vata
+67,Male,Vata-Kapha,Sedentary,Insomnia,Vegan,Overworking,Migraine;Joint Pain;Burning Sensation,Pitta
+64,Female,Vata-Kapha,Active,Insomnia,Non-Vegetarian,Excess Travel,Acidity;Weight Gain;Excessive Heat,Kapha-Pitta
+60,Male,Tridosha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Sedentary,Light Sleep,Kapha-Vata
+63,Male,Vata-Kapha,Moderate,Insomnia,Vegetarian,Daytime Sleep,Burning Sensation;Congestion,Kapha
+22,Female,Vata,Very Active,Disturbed,Vegetarian,Overeating,Depression;Loose Stools;Lethargy,Kapha
+56,Male,Vata,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Dry Skin;Acidity,Vata
+47,Male,Vata-Kapha,Very Active,Insomnia,Non-Vegetarian,Sedentary,Congestion,Kapha
+19,Female,Vata-Kapha,Active,Regular (7-8hr),Vegan,Smoking,Constipation;Acidity;Skin Rashes,Pitta
+48,Male,Kapha,Active,Disturbed,Spicy/Oily Heavy,Smoking,Weight Gain,Kapha-Pitta
+78,Male,Pitta,Active,Disturbed,Sweet/Dairy Heavy,Excess Travel,Burning Sensation;Depression;Water Retention,Kapha-Pitta
+67,Male,Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Smoking,Anger;Lethargy,Kapha-Pitta
+36,Female,Vata-Pitta,Moderate,Irregular,Sweet/Dairy Heavy,Irregular Sleep,Congestion;Weight Gain;Excessive Heat,Kapha-Pitta
+68,Male,Tridosha,Moderate,Disturbed,Irregular Meals,Heavy/Sweet Food,Depression,Kapha
+45,Female,Vata-Kapha,Very Active,Disturbed,Non-Vegetarian,Excess Travel,Sinusitis,Kapha-Vata
+76,Male,Pitta,Sedentary,Irregular,Vegan,Irregular Sleep,Joint Pain,Vata
+69,Male,Vata,Active,Insomnia,Vegetarian,None,Weight Gain;Dry Skin;Sinusitis,Kapha-Vata
+60,Female,Vata,Moderate,Disturbed,Sweet/Dairy Heavy,Daytime Sleep,Water Retention;Red Eyes,Kapha-Pitta
+80,Male,Vata-Kapha,Active,Irregular,Non-Vegetarian,Smoking,Red Eyes,Pitta
+75,Female,Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Migraine,Pitta
+30,Male,Pitta-Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,Smoking,Light Sleep;Sinusitis,Kapha-Vata
+24,Female,Vata,Moderate,Excessive (>9hr),Vegan,Irregular Sleep,Burning Sensation;Weight Gain,Pitta-Vata
+79,Male,Vata,Moderate,Disturbed,Non-Vegetarian,Irregular Sleep,Oily Skin,Kapha-Vata
+74,Male,Tridosha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Active,Light Sleep;Depression;Anger,Pitta-Vata
+77,Female,Vata,Very Active,Irregular,Vegetarian,Overeating,Acidity;Dry Skin,Pitta-Vata
+23,Female,Tridosha,Moderate,Irregular,Non-Vegetarian,Overeating,Constipation;Lethargy;Migraine,Kapha-Vata
+70,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,None,Depression;Weight Gain,Kapha
+49,Female,Kapha,Moderate,Excessive (>9hr),Vegetarian,Daytime Sleep,Joint Pain;Insomnia;Anger,Vata
+34,Male,Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,High Stress,Joint Pain;Excessive Heat,Pitta-Vata
+59,Male,Vata-Kapha,Active,Insomnia,Sweet/Dairy Heavy,Smoking,Inflammation;Depression;Red Eyes,Pitta
+72,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegan,Skipping Meals,Water Retention;Congestion,Kapha
+20,Female,Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,Excess Travel,Joint Pain,Vata
+36,Female,Pitta,Very Active,Disturbed,Vegan,Heavy/Sweet Food,Anxiety;Slow Digestion,Kapha-Vata
+27,Male,Vata,Sedentary,Excessive (>9hr),Irregular Meals,Sedentary,Acidity,Kapha-Pitta
+47,Male,Pitta,Moderate,Excessive (>9hr),Irregular Meals,Overworking,Congestion;Lethargy;Red Eyes,Kapha-Pitta
+77,Female,Vata-Pitta,Very Active,Irregular,Vegetarian,Sedentary,Acidity;Excessive Sleep;Joint Pain,Kapha-Vata
+40,Female,Pitta-Kapha,Sedentary,Disturbed,Irregular Meals,Spicy Food,Red Eyes;Excessive Sleep;Slow Digestion,Kapha-Pitta
+78,Female,Vata,Sedentary,Disturbed,Non-Vegetarian,Overworking,Migraine,Pitta
+21,Female,Pitta,Moderate,Regular (7-8hr),Vegetarian,High Alcohol,Insomnia,Pitta-Vata
+55,Male,Pitta,Very Active,Irregular,Sweet/Dairy Heavy,Smoking,Loose Stools;Weight Gain;Light Sleep,Pitta
+43,Male,Tridosha,Very Active,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Excessive Heat,Kapha-Pitta
+41,Female,Tridosha,Moderate,Irregular,Sweet/Dairy Heavy,Overworking,Insomnia;Migraine,Pitta-Vata
+40,Male,Pitta-Kapha,Moderate,Irregular,Irregular Meals,Sedentary,Anger;Excessive Heat,Pitta
+45,Female,Vata-Kapha,Active,Insomnia,Vegan,Spicy Food,Light Sleep;Weight Gain;Excessive Heat,Pitta-Vata
+21,Female,Pitta-Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Sedentary,Red Eyes,Kapha-Pitta
+73,Female,Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,None,Burning Sensation,Kapha-Pitta
+41,Male,Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Overeating,Constipation;Burning Sensation,Pitta-Vata
+38,Male,Vata-Kapha,Very Active,Insomnia,Non-Vegetarian,Skipping Meals,Depression;Bloating;Constipation,Vata
+43,Female,Pitta,Very Active,Insomnia,Irregular Meals,Smoking,Depression;Water Retention,Kapha
+31,Female,Vata,Moderate,Excessive (>9hr),Vegan,Overworking,Anger,Pitta
+75,Female,Kapha,Sedentary,Irregular,Non-Vegetarian,Overworking,Fatigue;Skin Rashes;Congestion,Kapha-Pitta
+32,Male,Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Dry Skin,Kapha-Vata
+27,Female,Vata-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Daytime Sleep,Acidity;Light Sleep,Pitta-Vata
+63,Female,Vata,Very Active,Insomnia,Irregular Meals,Overworking,Excessive Heat,Pitta
+38,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Skipping Meals,Excessive Sleep;Weight Gain,Kapha
+60,Male,Tridosha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Acidity;Excessive Heat;Burning Sensation,Pitta
+77,Female,Pitta-Kapha,Active,Irregular,Vegetarian,Overeating,Acidity;Inflammation,Pitta
+72,Male,Kapha,Very Active,Excessive (>9hr),Vegetarian,Spicy Food,Dry Skin;Burning Sensation;Joint Pain,Pitta-Vata
+80,Male,Vata-Kapha,Active,Disturbed,Vegan,Irregular Sleep,Bloating;Anxiety,Vata
+49,Female,Vata-Pitta,Sedentary,Disturbed,Irregular Meals,None,Fatigue,Vata
+20,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegan,Irregular Sleep,Bloating,Vata
+65,Female,Vata,Sedentary,Insomnia,Sweet/Dairy Heavy,Sedentary,Anger;Insomnia;Slow Digestion,Kapha-Vata
+79,Male,Vata-Pitta,Active,Disturbed,Vegetarian,Skipping Meals,Anger;Bloating;Slow Digestion,Pitta-Vata
+72,Male,Vata-Kapha,Moderate,Excessive (>9hr),Irregular Meals,Sedentary,Constipation,Kapha-Vata
+65,Female,Vata-Pitta,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Congestion;Loose Stools;Burning Sensation,Pitta
+35,Female,Vata,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Overeating,Bloating;Joint Pain;Lethargy,Kapha-Vata
+46,Male,Kapha,Active,Disturbed,Non-Vegetarian,Balanced,Skin Rashes;Joint Pain;Lethargy,Kapha-Vata
+69,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Vegetarian,Smoking,Loose Stools,Pitta
+72,Male,Tridosha,Very Active,Regular (7-8hr),Vegetarian,Smoking,Bloating,Pitta-Vata
+44,Female,Pitta,Active,Insomnia,Vegan,Excess Travel,Acidity;Cold Hands,Pitta-Vata
+80,Female,Vata-Pitta,Moderate,Insomnia,Irregular Meals,High Alcohol,Excessive Heat,Pitta
+38,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegan,Overeating,Weight Gain;Oily Skin;Fatigue,Kapha
+54,Male,Vata-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Sedentary,Inflammation;Red Eyes,Pitta
+34,Male,Pitta,Very Active,Insomnia,Vegetarian,Excess Travel,Migraine;Inflammation;Skin Rashes,Pitta
+36,Female,Kapha,Active,Excessive (>9hr),Irregular Meals,Balanced,Loose Stools,Kapha-Pitta
+66,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Fatigue;Inflammation;Red Eyes,Pitta-Vata
+78,Male,Vata-Pitta,Moderate,Excessive (>9hr),Vegan,Smoking,Weight Gain;Congestion;Oily Skin,Kapha
+42,Female,Vata,Moderate,Insomnia,Spicy/Oily Heavy,None,Migraine;Acidity,Pitta
+58,Female,Pitta-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,High Alcohol,Acidity;Oily Skin;Excessive Heat,Pitta
+43,Female,Vata-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Balanced,Burning Sensation;Anger;Weight Gain,Kapha-Pitta
+48,Male,Vata-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Anxiety;Inflammation,Vata
+48,Male,Pitta,Active,Disturbed,Sweet/Dairy Heavy,Smoking,Bloating;Sinusitis;Burning Sensation,Pitta
+69,Male,Pitta,Moderate,Disturbed,Vegetarian,Heavy/Sweet Food,Light Sleep,Kapha-Vata
+69,Male,Pitta,Very Active,Irregular,Vegetarian,High Alcohol,Inflammation;Weight Gain;Slow Digestion,Kapha-Pitta
+23,Male,Vata-Pitta,Moderate,Excessive (>9hr),Vegan,Sedentary,Light Sleep,Kapha-Vata
+24,Male,Tridosha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Oily Skin;Migraine,Kapha-Pitta
+76,Female,Tridosha,Active,Regular (7-8hr),Non-Vegetarian,Sedentary,Constipation;Congestion;Loose Stools,Kapha-Vata
+20,Male,Pitta-Kapha,Sedentary,Insomnia,Vegetarian,Overeating,Loose Stools,Kapha-Pitta
+48,Male,Kapha,Active,Irregular,Sweet/Dairy Heavy,High Stress,Sinusitis;Oily Skin,Kapha
+41,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Vegetarian,Overeating,Anxiety;Red Eyes,Pitta-Vata
+74,Male,Pitta,Sedentary,Irregular,Non-Vegetarian,Overworking,Water Retention;Lethargy;Cold Hands,Kapha
+30,Male,Vata,Moderate,Disturbed,Vegan,None,Bloating,Vata
+56,Male,Vata,Active,Disturbed,Sweet/Dairy Heavy,Heavy/Sweet Food,Burning Sensation;Joint Pain,Pitta-Vata
+69,Male,Vata,Very Active,Insomnia,Irregular Meals,Spicy Food,Inflammation;Red Eyes;Burning Sensation,Pitta
+67,Male,Vata-Pitta,Active,Regular (7-8hr),Vegan,Sedentary,Skin Rashes,Kapha-Pitta
+78,Male,Pitta-Kapha,Very Active,Regular (7-8hr),Vegetarian,Overeating,Migraine;Constipation;Light Sleep,Pitta-Vata
+57,Female,Pitta-Kapha,Active,Excessive (>9hr),Vegan,Balanced,Depression,Kapha
+28,Male,Vata-Kapha,Moderate,Disturbed,Spicy/Oily Heavy,Excess Travel,Light Sleep;Oily Skin,Kapha-Vata
+58,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Vegetarian,Active,Slow Digestion;Sinusitis,Kapha
+37,Male,Vata,Moderate,Disturbed,Irregular Meals,None,Acidity;Burning Sensation;Joint Pain,Pitta-Vata
+48,Male,Kapha,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Spicy Food,Sinusitis;Depression,Kapha
+83,Female,Pitta-Kapha,Very Active,Irregular,Irregular Meals,Balanced,Fatigue;Anxiety,Vata
+31,Male,Kapha,Active,Disturbed,Spicy/Oily Heavy,High Stress,Constipation;Congestion;Dry Skin,Vata
+51,Male,Vata,Sedentary,Regular (7-8hr),Non-Vegetarian,Heavy/Sweet Food,Congestion;Cold Hands;Sinusitis,Kapha
+19,Male,Pitta,Very Active,Insomnia,Irregular Meals,Sedentary,Excessive Heat;Light Sleep,Pitta-Vata
+64,Male,Pitta,Sedentary,Insomnia,Spicy/Oily Heavy,Overeating,Oily Skin,Kapha
+54,Female,Pitta-Kapha,Active,Disturbed,Irregular Meals,Skipping Meals,Light Sleep;Joint Pain,Vata
+19,Female,Kapha,Moderate,Insomnia,Irregular Meals,Smoking,Water Retention,Kapha-Pitta
+34,Female,Kapha,Very Active,Disturbed,Vegetarian,Irregular Sleep,Fatigue,Vata
+20,Male,Pitta,Sedentary,Irregular,Spicy/Oily Heavy,Balanced,Excessive Sleep;Red Eyes;Migraine,Pitta
+56,Female,Vata-Pitta,Sedentary,Disturbed,Vegan,Smoking,Acidity;Slow Digestion;Depression,Kapha-Pitta
+56,Female,Pitta,Active,Irregular,Non-Vegetarian,Skipping Meals,Acidity;Oily Skin,Kapha-Pitta
+75,Female,Pitta-Kapha,Active,Insomnia,Irregular Meals,Smoking,Cold Hands;Weight Gain;Inflammation,Kapha-Pitta
+56,Female,Kapha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Overeating,Sinusitis,Kapha
+72,Female,Vata,Moderate,Disturbed,Vegetarian,Excess Travel,Fatigue;Burning Sensation,Vata
+79,Male,Pitta,Very Active,Disturbed,Vegan,Spicy Food,Oily Skin;Joint Pain;Inflammation,Pitta
+19,Female,Vata-Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Overworking,Anxiety,Pitta-Vata
+69,Male,Vata-Kapha,Very Active,Regular (7-8hr),Vegan,Heavy/Sweet Food,Cold Hands,Kapha-Vata
+75,Female,Vata-Pitta,Moderate,Irregular,Sweet/Dairy Heavy,Spicy Food,Excessive Heat,Pitta
+29,Male,Kapha,Very Active,Excessive (>9hr),Irregular Meals,Active,Lethargy;Skin Rashes,Kapha-Pitta
+34,Female,Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Cold Hands;Depression;Sinusitis,Kapha
+65,Male,Vata,Sedentary,Insomnia,Non-Vegetarian,Active,Water Retention;Inflammation;Dry Skin,Pitta-Vata
+29,Male,Tridosha,Moderate,Insomnia,Irregular Meals,Balanced,Joint Pain;Depression;Cold Hands,Vata
+66,Male,Vata,Active,Insomnia,Vegetarian,Balanced,Anxiety;Red Eyes,Pitta-Vata
+57,Female,Tridosha,Very Active,Irregular,Vegetarian,Skipping Meals,Fatigue;Anxiety,Vata
+84,Female,Vata,Active,Insomnia,Non-Vegetarian,Active,Red Eyes;Anxiety,Pitta-Vata
+21,Male,Vata-Pitta,Moderate,Excessive (>9hr),Vegetarian,Smoking,Anger;Fatigue;Lethargy,Pitta-Vata
+39,Male,Kapha,Active,Insomnia,Sweet/Dairy Heavy,Spicy Food,Dry Skin;Sinusitis;Anxiety,Kapha-Vata
+37,Male,Vata,Sedentary,Disturbed,Irregular Meals,Heavy/Sweet Food,Cold Hands;Dry Skin;Slow Digestion,Kapha-Vata
+32,Female,Vata,Sedentary,Insomnia,Vegetarian,Irregular Sleep,Joint Pain;Burning Sensation;Sinusitis,Vata
+51,Female,Tridosha,Sedentary,Irregular,Vegan,Spicy Food,Loose Stools,Pitta
+79,Male,Pitta,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Irregular Sleep,Excessive Heat;Lethargy,Kapha-Pitta
+81,Male,Kapha,Active,Disturbed,Irregular Meals,Heavy/Sweet Food,Cold Hands;Depression,Kapha
+63,Male,Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Lethargy,Kapha-Vata
+31,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Balanced,Skin Rashes;Migraine,Pitta
+47,Male,Kapha,Active,Disturbed,Vegan,None,Oily Skin,Kapha
+48,Female,Tridosha,Very Active,Disturbed,Irregular Meals,Active,Depression,Kapha
+26,Female,Vata-Kapha,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Active,Migraine;Insomnia,Pitta-Vata
+75,Female,Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Overworking,Skin Rashes,Pitta
+70,Female,Vata-Kapha,Moderate,Disturbed,Vegan,None,Depression;Loose Stools,Kapha-Pitta
+65,Male,Vata-Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Active,Insomnia;Bloating;Red Eyes,Vata
+32,Female,Pitta,Moderate,Disturbed,Non-Vegetarian,Overeating,Migraine;Bloating,Pitta-Vata
+41,Female,Vata,Moderate,Disturbed,Irregular Meals,Skipping Meals,Depression;Red Eyes;Lethargy,Kapha
+31,Female,Vata-Kapha,Sedentary,Irregular,Vegetarian,Spicy Food,Excessive Heat,Pitta
+70,Male,Pitta,Moderate,Irregular,Vegan,Skipping Meals,Dry Skin;Cold Hands;Constipation,Vata
+64,Male,Vata-Pitta,Sedentary,Irregular,Vegan,Skipping Meals,Insomnia;Dry Skin,Vata
+71,Female,Vata-Pitta,Very Active,Irregular,Non-Vegetarian,High Alcohol,Depression;Slow Digestion;Anxiety,Kapha-Vata
+50,Female,Vata-Kapha,Very Active,Disturbed,Irregular Meals,Smoking,Loose Stools,Pitta
+53,Male,Vata-Pitta,Active,Excessive (>9hr),Vegetarian,Spicy Food,Skin Rashes;Depression;Cold Hands,Pitta-Vata
+53,Female,Vata-Pitta,Very Active,Irregular,Spicy/Oily Heavy,Excess Travel,Joint Pain;Depression;Lethargy,Kapha-Vata
+37,Male,Vata-Kapha,Active,Excessive (>9hr),Non-Vegetarian,Overworking,Bloating;Skin Rashes,Pitta-Vata
+47,Female,Vata,Active,Regular (7-8hr),Vegetarian,Overworking,Sinusitis;Water Retention;Light Sleep,Kapha-Vata
+37,Male,Kapha,Sedentary,Disturbed,Irregular Meals,Skipping Meals,Anger;Excessive Sleep;Cold Hands,Kapha-Vata
+72,Male,Vata-Kapha,Active,Disturbed,Vegetarian,Smoking,Inflammation;Depression;Lethargy,Kapha-Pitta
+19,Male,Vata-Pitta,Moderate,Disturbed,Non-Vegetarian,High Alcohol,Cold Hands,Pitta-Vata
+50,Male,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Overworking,Acidity,Pitta
+68,Female,Vata-Pitta,Very Active,Excessive (>9hr),Irregular Meals,Overeating,Sinusitis,Kapha
+42,Male,Pitta-Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Lethargy,Kapha-Vata
+45,Male,Pitta,Sedentary,Disturbed,Non-Vegetarian,Overworking,Lethargy;Oily Skin,Kapha
+66,Female,Pitta-Kapha,Very Active,Insomnia,Non-Vegetarian,High Stress,Lethargy,Kapha-Vata
+32,Female,Kapha,Moderate,Insomnia,Non-Vegetarian,Active,Loose Stools;Excessive Sleep,Kapha-Pitta
+80,Male,Kapha,Moderate,Disturbed,Irregular Meals,High Alcohol,Insomnia,Pitta-Vata
+56,Female,Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Balanced,Skin Rashes;Anger,Pitta
+55,Male,Vata,Active,Irregular,Vegetarian,Overworking,Water Retention;Acidity,Kapha-Pitta
+23,Male,Vata-Kapha,Very Active,Disturbed,Vegetarian,Spicy Food,Oily Skin;Migraine;Constipation,Pitta-Vata
+53,Female,Vata-Kapha,Very Active,Insomnia,Vegan,Overworking,Loose Stools;Red Eyes,Pitta
+26,Male,Pitta-Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Excess Travel,Light Sleep;Bloating,Vata
+26,Male,Vata-Kapha,Active,Disturbed,Vegetarian,Irregular Sleep,Water Retention;Red Eyes;Light Sleep,Kapha-Vata
+49,Female,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Daytime Sleep,Sinusitis;Loose Stools;Bloating,Kapha-Vata
+72,Male,Kapha,Very Active,Disturbed,Vegan,Excess Travel,Migraine;Slow Digestion;Cold Hands,Kapha-Vata
+78,Male,Pitta,Very Active,Excessive (>9hr),Vegetarian,Daytime Sleep,Loose Stools;Congestion,Kapha-Pitta
+78,Female,Pitta,Very Active,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Depression;Bloating,Kapha-Vata
+22,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,High Alcohol,Fatigue;Excessive Heat,Pitta
+47,Male,Tridosha,Very Active,Disturbed,Non-Vegetarian,Balanced,Light Sleep,Vata
+31,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Vegan,Heavy/Sweet Food,Cold Hands;Inflammation,Pitta-Vata
+30,Female,Vata,Active,Insomnia,Vegetarian,Heavy/Sweet Food,Insomnia;Light Sleep;Excessive Heat,Vata
+57,Female,Pitta-Kapha,Moderate,Irregular,Irregular Meals,Balanced,Fatigue,Pitta-Vata
+68,Male,Pitta-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Daytime Sleep,Constipation;Migraine;Congestion,Kapha-Pitta
+83,Male,Vata-Pitta,Active,Insomnia,Vegan,Excess Travel,Weight Gain;Dry Skin;Fatigue,Vata
+43,Male,Kapha,Very Active,Disturbed,Non-Vegetarian,Skipping Meals,Depression;Slow Digestion;Joint Pain,Kapha-Vata
+62,Male,Vata-Kapha,Sedentary,Irregular,Vegan,Spicy Food,Depression;Weight Gain,Kapha
+31,Male,Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Skipping Meals,Lethargy;Joint Pain;Oily Skin,Kapha-Vata
+67,Female,Vata-Kapha,Active,Irregular,Sweet/Dairy Heavy,Daytime Sleep,Insomnia,Kapha-Vata
+59,Male,Vata-Kapha,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Overeating,Oily Skin;Constipation,Kapha-Vata
+71,Male,Vata,Moderate,Insomnia,Spicy/Oily Heavy,High Alcohol,Sinusitis;Skin Rashes;Congestion,Kapha-Pitta
+77,Male,Pitta-Kapha,Moderate,Irregular,Vegan,Overeating,Lethargy,Kapha
+29,Male,Kapha,Sedentary,Disturbed,Irregular Meals,None,Lethargy;Skin Rashes,Kapha-Pitta
+57,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Excess Travel,Slow Digestion,Kapha-Vata
+19,Female,Pitta,Moderate,Regular (7-8hr),Vegetarian,Balanced,Bloating;Joint Pain,Vata
+23,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Irregular Meals,High Stress,Dry Skin;Lethargy;Acidity,Pitta-Vata
+65,Female,Vata-Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,None,Excessive Sleep;Lethargy;Slow Digestion,Kapha
+78,Female,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Spicy Food,Bloating;Loose Stools,Pitta-Vata
+83,Male,Vata-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Skipping Meals,Skin Rashes;Weight Gain,Kapha-Vata
+38,Female,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Active,Insomnia,Vata
+82,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Depression;Skin Rashes;Constipation,Kapha-Vata
+52,Female,Vata-Kapha,Sedentary,Insomnia,Vegetarian,Balanced,Red Eyes;Cold Hands,Pitta-Vata
+21,Female,Vata,Moderate,Disturbed,Vegetarian,High Stress,Weight Gain,Kapha-Vata
+36,Female,Tridosha,Very Active,Disturbed,Vegetarian,Daytime Sleep,Skin Rashes,Kapha-Pitta
+18,Female,Pitta,Sedentary,Insomnia,Vegan,Spicy Food,Lethargy;Light Sleep;Skin Rashes,Pitta
+69,Male,Vata,Sedentary,Irregular,Vegan,Overworking,Insomnia;Excessive Sleep;Burning Sensation,Pitta-Vata
+42,Female,Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Smoking,Inflammation,Pitta
+81,Male,Pitta,Very Active,Excessive (>9hr),Vegetarian,Active,Congestion;Excessive Heat,Kapha-Pitta
+60,Female,Vata,Sedentary,Disturbed,Irregular Meals,Balanced,Depression;Water Retention;Migraine,Kapha
+40,Male,Pitta,Sedentary,Irregular,Vegan,Overworking,Loose Stools;Insomnia;Anxiety,Pitta-Vata
+84,Male,Vata,Sedentary,Disturbed,Sweet/Dairy Heavy,High Stress,Migraine;Sinusitis,Pitta-Vata
+21,Female,Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Irregular Sleep,Sinusitis;Joint Pain;Depression,Kapha-Vata
+73,Female,Vata-Pitta,Sedentary,Insomnia,Spicy/Oily Heavy,Spicy Food,Fatigue,Pitta-Vata
+71,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,Excess Travel,Migraine;Light Sleep,Pitta-Vata
+72,Female,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Slow Digestion,Kapha-Vata
+64,Male,Vata-Kapha,Active,Regular (7-8hr),Irregular Meals,Spicy Food,Depression;Loose Stools;Slow Digestion,Kapha-Pitta
+83,Female,Pitta-Kapha,Active,Disturbed,Spicy/Oily Heavy,Sedentary,Bloating;Inflammation;Depression,Kapha-Pitta
+63,Male,Pitta-Kapha,Very Active,Regular (7-8hr),Irregular Meals,Spicy Food,Oily Skin,Kapha-Pitta
+27,Female,Tridosha,Moderate,Disturbed,Vegetarian,Balanced,Lethargy,Kapha
+33,Female,Pitta,Moderate,Regular (7-8hr),Vegetarian,Heavy/Sweet Food,Depression,Kapha
+68,Female,Vata,Very Active,Disturbed,Irregular Meals,Sedentary,Anger,Kapha-Pitta
+79,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Vegan,Daytime Sleep,Joint Pain;Cold Hands;Red Eyes,Vata
+81,Female,Pitta-Kapha,Active,Disturbed,Vegan,Spicy Food,Fatigue;Red Eyes,Pitta
+43,Female,Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Anger;Sinusitis;Excessive Heat,Kapha-Pitta
+62,Female,Vata-Pitta,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Irregular Sleep,Cold Hands;Fatigue;Anger,Vata
+48,Male,Pitta,Very Active,Disturbed,Irregular Meals,Heavy/Sweet Food,Congestion;Bloating;Inflammation,Kapha-Pitta
+37,Male,Vata,Very Active,Insomnia,Vegan,Skipping Meals,Fatigue;Inflammation,Vata
+41,Female,Vata-Pitta,Moderate,Irregular,Vegetarian,Smoking,Oily Skin,Kapha-Pitta
+56,Female,Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Sinusitis,Kapha
+83,Female,Pitta-Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Acidity,Kapha-Pitta
+69,Female,Pitta-Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Skipping Meals,Excessive Sleep;Constipation,Kapha-Vata
+29,Female,Vata-Kapha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Smoking,Excessive Sleep,Kapha-Pitta
+82,Male,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Balanced,Migraine;Cold Hands,Pitta-Vata
+73,Female,Vata-Pitta,Active,Disturbed,Vegan,Excess Travel,Joint Pain;Fatigue;Lethargy,Vata
+43,Male,Vata-Pitta,Very Active,Irregular,Spicy/Oily Heavy,None,Migraine;Constipation;Inflammation,Pitta
+32,Female,Pitta,Moderate,Disturbed,Irregular Meals,Heavy/Sweet Food,Acidity;Loose Stools,Pitta
+66,Male,Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Slow Digestion,Kapha-Vata
+54,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Skipping Meals,Inflammation,Pitta-Vata
+35,Female,Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Sedentary,Oily Skin;Anger;Insomnia,Kapha
+65,Male,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,None,Excessive Heat;Migraine;Insomnia,Pitta
+38,Male,Pitta,Sedentary,Insomnia,Vegan,High Stress,Joint Pain;Bloating,Vata
+85,Male,Kapha,Active,Excessive (>9hr),Vegan,Heavy/Sweet Food,Light Sleep;Water Retention,Kapha
+83,Male,Vata-Kapha,Active,Regular (7-8hr),Non-Vegetarian,Excess Travel,Acidity;Constipation,Vata
+25,Female,Tridosha,Sedentary,Excessive (>9hr),Vegan,Daytime Sleep,Red Eyes;Inflammation;Loose Stools,Pitta
+18,Female,Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Daytime Sleep,Water Retention,Kapha
+27,Male,Tridosha,Very Active,Disturbed,Vegetarian,None,Anxiety;Skin Rashes;Joint Pain,Vata
+61,Male,Pitta-Kapha,Sedentary,Disturbed,Vegan,Spicy Food,Anger;Fatigue;Lethargy,Kapha-Pitta
+28,Female,Tridosha,Very Active,Irregular,Spicy/Oily Heavy,Excess Travel,Anxiety,Vata
+21,Male,Pitta,Active,Disturbed,Vegetarian,Overeating,Dry Skin;Depression,Kapha-Vata
+45,Male,Vata,Moderate,Irregular,Non-Vegetarian,Skipping Meals,Sinusitis;Light Sleep,Vata
+40,Female,Vata,Very Active,Disturbed,Non-Vegetarian,None,Bloating;Slow Digestion,Kapha-Vata
+44,Male,Tridosha,Sedentary,Excessive (>9hr),Vegan,High Stress,Slow Digestion,Kapha-Vata
+60,Female,Vata-Kapha,Moderate,Irregular,Vegan,Overeating,Skin Rashes;Burning Sensation,Pitta
+41,Male,Vata,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Joint Pain,Kapha-Vata
+67,Female,Vata,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Migraine;Fatigue,Pitta-Vata
+79,Male,Vata-Kapha,Sedentary,Disturbed,Sweet/Dairy Heavy,Irregular Sleep,Fatigue;Anger;Red Eyes,Pitta-Vata
+30,Female,Pitta-Kapha,Sedentary,Irregular,Vegan,Sedentary,Sinusitis,Kapha
+31,Male,Tridosha,Moderate,Irregular,Irregular Meals,Heavy/Sweet Food,Slow Digestion;Constipation,Kapha-Vata
+38,Male,Vata-Pitta,Active,Regular (7-8hr),Irregular Meals,Irregular Sleep,Depression;Sinusitis,Kapha
+70,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Irregular Meals,None,Red Eyes,Pitta-Vata
+29,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Skipping Meals,Dry Skin;Burning Sensation,Pitta-Vata
+47,Male,Vata,Sedentary,Insomnia,Non-Vegetarian,Overeating,Fatigue,Kapha-Vata
+21,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Smoking,Depression,Kapha-Pitta
+42,Male,Tridosha,Active,Regular (7-8hr),Vegetarian,Daytime Sleep,Dry Skin,Kapha-Vata
+40,Female,Vata-Pitta,Sedentary,Insomnia,Non-Vegetarian,Excess Travel,Weight Gain,Kapha-Vata
+55,Male,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Spicy Food,Congestion,Kapha-Pitta
+64,Male,Vata,Very Active,Irregular,Vegetarian,High Stress,Anger;Cold Hands;Water Retention,Vata
+42,Female,Vata,Active,Disturbed,Non-Vegetarian,Smoking,Anxiety;Excessive Sleep,Kapha-Vata
+68,Male,Vata-Kapha,Very Active,Irregular,Vegan,Spicy Food,Acidity;Anger,Pitta
+60,Male,Pitta-Kapha,Very Active,Irregular,Non-Vegetarian,High Alcohol,Dry Skin;Oily Skin;Constipation,Kapha-Vata
+57,Male,Pitta-Kapha,Active,Insomnia,Vegan,Heavy/Sweet Food,Acidity;Cold Hands,Pitta-Vata
+61,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Overworking,Depression;Migraine,Kapha-Pitta
+69,Male,Vata,Very Active,Insomnia,Sweet/Dairy Heavy,Overworking,Inflammation,Pitta
+40,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,Balanced,Weight Gain;Inflammation;Bloating,Pitta-Vata
+66,Male,Vata,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Spicy Food,Anger;Insomnia;Constipation,Pitta-Vata
+36,Female,Tridosha,Sedentary,Insomnia,Non-Vegetarian,Sedentary,Oily Skin;Congestion;Excessive Heat,Kapha
+23,Female,Vata-Kapha,Very Active,Insomnia,Non-Vegetarian,Irregular Sleep,Migraine,Pitta-Vata
+61,Male,Vata-Pitta,Very Active,Excessive (>9hr),Spicy/Oily Heavy,High Alcohol,Depression;Inflammation;Skin Rashes,Pitta
+55,Female,Kapha,Active,Irregular,Non-Vegetarian,Spicy Food,Oily Skin;Lethargy;Constipation,Kapha
+50,Female,Tridosha,Moderate,Disturbed,Irregular Meals,Sedentary,Insomnia;Constipation;Fatigue,Vata
+82,Male,Tridosha,Sedentary,Insomnia,Spicy/Oily Heavy,None,Acidity,Pitta
+61,Male,Kapha,Moderate,Insomnia,Vegan,None,Constipation;Water Retention;Dry Skin,Kapha-Vata
+50,Female,Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Congestion,Kapha-Vata
+69,Male,Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Water Retention;Oily Skin;Burning Sensation,Kapha
+76,Male,Pitta,Active,Regular (7-8hr),Vegetarian,Active,Burning Sensation;Anxiety,Pitta-Vata
+81,Female,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,High Alcohol,Joint Pain;Depression,Pitta-Vata
+58,Female,Vata,Sedentary,Insomnia,Non-Vegetarian,Overeating,Congestion;Excessive Sleep,Kapha
+29,Female,Kapha,Sedentary,Regular (7-8hr),Irregular Meals,Skipping Meals,Lethargy;Constipation,Kapha-Vata
+23,Female,Vata-Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Red Eyes;Inflammation,Pitta
+68,Female,Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Daytime Sleep,Light Sleep,Kapha-Vata
+62,Male,Vata,Sedentary,Regular (7-8hr),Vegan,High Stress,Loose Stools;Acidity;Lethargy,Pitta
+20,Male,Pitta,Very Active,Excessive (>9hr),Vegetarian,Active,Anger,Pitta
+64,Female,Pitta,Moderate,Irregular,Non-Vegetarian,Smoking,Congestion;Migraine;Acidity,Pitta
+28,Female,Vata-Pitta,Very Active,Irregular,Non-Vegetarian,Sedentary,Sinusitis,Kapha
+20,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Irregular Meals,Overeating,Constipation,Kapha-Vata
+71,Male,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,Skipping Meals,Joint Pain;Weight Gain,Vata
+58,Female,Tridosha,Sedentary,Irregular,Sweet/Dairy Heavy,Smoking,Fatigue,Pitta-Vata
+77,Male,Pitta-Kapha,Sedentary,Insomnia,Vegetarian,Overeating,Congestion;Lethargy;Constipation,Kapha
+71,Male,Vata,Active,Insomnia,Spicy/Oily Heavy,High Stress,Inflammation;Acidity;Light Sleep,Pitta-Vata
+19,Female,Vata-Pitta,Active,Excessive (>9hr),Vegan,Active,Water Retention;Burning Sensation,Kapha-Pitta
+65,Male,Vata-Kapha,Sedentary,Disturbed,Irregular Meals,Overeating,Insomnia,Kapha-Vata
+68,Male,Pitta-Kapha,Active,Irregular,Vegan,Sedentary,Acidity;Weight Gain,Kapha-Pitta
+67,Female,Vata,Moderate,Insomnia,Sweet/Dairy Heavy,Overeating,Sinusitis,Kapha
+47,Female,Pitta-Kapha,Very Active,Disturbed,Vegetarian,High Alcohol,Congestion;Joint Pain;Anxiety,Kapha-Vata
+74,Male,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,Heavy/Sweet Food,Anxiety;Water Retention,Kapha-Vata
+29,Female,Vata-Kapha,Moderate,Disturbed,Vegetarian,Skipping Meals,Excessive Sleep;Anxiety,Kapha-Vata
+36,Female,Vata,Active,Insomnia,Vegan,Skipping Meals,Dry Skin;Depression,Vata
+19,Male,Vata-Pitta,Active,Disturbed,Sweet/Dairy Heavy,None,Dry Skin;Slow Digestion,Kapha-Vata
+35,Female,Tridosha,Moderate,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Oily Skin;Migraine;Red Eyes,Kapha-Pitta
+49,Male,Tridosha,Moderate,Excessive (>9hr),Non-Vegetarian,High Alcohol,Water Retention,Kapha-Pitta
+54,Female,Kapha,Sedentary,Disturbed,Irregular Meals,Skipping Meals,Lethargy;Depression,Kapha
+72,Male,Vata-Kapha,Active,Insomnia,Non-Vegetarian,Overworking,Slow Digestion;Cold Hands;Light Sleep,Vata
+24,Female,Tridosha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Skipping Meals,Excessive Heat;Skin Rashes,Pitta
+47,Male,Pitta-Kapha,Moderate,Irregular,Vegetarian,Balanced,Sinusitis;Oily Skin,Kapha
+47,Female,Tridosha,Very Active,Irregular,Spicy/Oily Heavy,Balanced,Oily Skin;Loose Stools,Kapha-Pitta
+21,Female,Kapha,Sedentary,Disturbed,Vegan,Skipping Meals,Joint Pain;Oily Skin,Kapha-Vata
+79,Male,Vata-Kapha,Sedentary,Irregular,Non-Vegetarian,Irregular Sleep,Anger;Light Sleep,Vata
+20,Female,Kapha,Very Active,Regular (7-8hr),Irregular Meals,None,Fatigue,Kapha-Vata
+82,Female,Tridosha,Active,Regular (7-8hr),Spicy/Oily Heavy,High Alcohol,Insomnia;Slow Digestion;Congestion,Kapha
+74,Male,Vata,Moderate,Disturbed,Vegetarian,Active,Skin Rashes,Pitta-Vata
+48,Female,Vata-Kapha,Active,Excessive (>9hr),Irregular Meals,Sedentary,Constipation;Water Retention,Kapha-Vata
+23,Female,Vata-Kapha,Active,Insomnia,Irregular Meals,Excess Travel,Red Eyes;Weight Gain;Water Retention,Kapha
+64,Female,Pitta,Moderate,Irregular,Non-Vegetarian,High Stress,Sinusitis;Dry Skin,Kapha-Vata
+59,Male,Vata,Very Active,Disturbed,Vegetarian,Sedentary,Fatigue;Excessive Heat;Dry Skin,Vata
+49,Female,Pitta-Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Smoking,Cold Hands,Pitta-Vata
+66,Female,Kapha,Very Active,Irregular,Non-Vegetarian,Spicy Food,Migraine;Bloating;Oily Skin,Kapha-Pitta
+59,Female,Kapha,Active,Insomnia,Sweet/Dairy Heavy,Irregular Sleep,Water Retention;Dry Skin;Acidity,Kapha-Vata
+70,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Migraine;Insomnia,Pitta-Vata
+40,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,High Stress,Congestion;Dry Skin;Lethargy,Kapha-Vata
+38,Male,Pitta,Very Active,Disturbed,Spicy/Oily Heavy,Sedentary,Insomnia;Anger,Pitta-Vata
+77,Male,Pitta,Very Active,Regular (7-8hr),Vegetarian,High Alcohol,Dry Skin;Fatigue;Weight Gain,Vata
+50,Female,Vata-Pitta,Sedentary,Disturbed,Vegan,Sedentary,Insomnia,Kapha-Vata
+49,Male,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Anxiety;Dry Skin;Slow Digestion,Kapha-Vata
+37,Male,Vata-Pitta,Active,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Loose Stools;Excessive Heat,Pitta
+58,Male,Vata,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Migraine;Loose Stools,Pitta
+78,Male,Vata-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Spicy Food,Depression,Kapha-Pitta
+54,Female,Kapha,Sedentary,Insomnia,Spicy/Oily Heavy,High Alcohol,Cold Hands;Congestion;Excessive Heat,Kapha-Pitta
+73,Male,Pitta,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Overeating,Congestion,Kapha
+47,Male,Vata-Pitta,Moderate,Insomnia,Vegan,Smoking,Excessive Heat;Slow Digestion,Pitta
+20,Male,Kapha,Moderate,Insomnia,Spicy/Oily Heavy,High Stress,Excessive Heat;Slow Digestion,Kapha-Pitta
+80,Female,Kapha,Active,Insomnia,Vegan,Overeating,Light Sleep;Red Eyes,Pitta-Vata
+69,Female,Tridosha,Sedentary,Regular (7-8hr),Vegan,Overeating,Water Retention;Joint Pain;Lethargy,Kapha
+45,Female,Pitta,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,High Alcohol,Migraine;Congestion,Pitta
+46,Female,Vata-Kapha,Moderate,Excessive (>9hr),Vegan,Spicy Food,Dry Skin,Pitta-Vata
+30,Male,Pitta-Kapha,Active,Disturbed,Irregular Meals,Sedentary,Water Retention;Joint Pain,Kapha
+32,Male,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Smoking,Anxiety;Bloating,Vata
+41,Male,Vata,Moderate,Regular (7-8hr),Spicy/Oily Heavy,None,Joint Pain;Skin Rashes;Inflammation,Pitta-Vata
+22,Male,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Balanced,Inflammation;Depression;Congestion,Kapha-Pitta
+51,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Excess Travel,Lethargy,Kapha-Vata
+32,Female,Pitta-Kapha,Moderate,Irregular,Spicy/Oily Heavy,Overeating,Excessive Sleep,Kapha
+51,Male,Pitta,Active,Regular (7-8hr),Non-Vegetarian,Overworking,Loose Stools;Slow Digestion;Depression,Kapha-Pitta
+40,Female,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,Active,Excessive Heat;Joint Pain;Insomnia,Vata
+82,Male,Tridosha,Very Active,Excessive (>9hr),Non-Vegetarian,Daytime Sleep,Constipation;Fatigue,Vata
+18,Female,Vata,Moderate,Irregular,Irregular Meals,Skipping Meals,Water Retention;Joint Pain;Light Sleep,Vata
+84,Male,Tridosha,Active,Regular (7-8hr),Spicy/Oily Heavy,Skipping Meals,Migraine;Loose Stools,Pitta
+72,Female,Vata,Active,Regular (7-8hr),Vegetarian,Balanced,Light Sleep,Vata
+34,Female,Vata-Pitta,Moderate,Irregular,Non-Vegetarian,Sedentary,Dry Skin;Skin Rashes;Acidity,Pitta
+46,Male,Kapha,Sedentary,Insomnia,Irregular Meals,Smoking,Lethargy;Weight Gain;Bloating,Kapha
+58,Female,Vata-Kapha,Moderate,Irregular,Vegan,Smoking,Acidity;Burning Sensation,Pitta
+46,Male,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,None,Dry Skin,Vata
+59,Female,Vata-Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Active,Excessive Sleep,Kapha-Vata
+59,Female,Vata,Moderate,Disturbed,Spicy/Oily Heavy,Active,Joint Pain;Acidity;Migraine,Pitta-Vata
+54,Female,Vata,Sedentary,Insomnia,Non-Vegetarian,Overeating,Joint Pain,Kapha-Vata
+52,Male,Vata-Kapha,Active,Disturbed,Spicy/Oily Heavy,Active,Acidity;Migraine;Anxiety,Pitta-Vata
+44,Male,Tridosha,Sedentary,Irregular,Irregular Meals,Overworking,Constipation,Pitta-Vata
+68,Female,Vata-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Irregular Sleep,Acidity;Light Sleep;Cold Hands,Vata
+29,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Vegan,High Stress,Dry Skin;Lethargy;Burning Sensation,Pitta-Vata
+46,Female,Pitta-Kapha,Moderate,Disturbed,Vegan,None,Anger;Red Eyes,Pitta
+61,Male,Pitta,Very Active,Irregular,Sweet/Dairy Heavy,High Stress,Dry Skin,Vata
+58,Male,Pitta,Very Active,Insomnia,Non-Vegetarian,Smoking,Acidity;Cold Hands;Excessive Heat,Pitta
+35,Female,Vata-Pitta,Active,Insomnia,Non-Vegetarian,Excess Travel,Dry Skin,Vata
+51,Female,Vata-Kapha,Very Active,Excessive (>9hr),Vegan,High Stress,Congestion,Kapha-Vata
+59,Male,Kapha,Very Active,Irregular,Non-Vegetarian,Sedentary,Light Sleep;Slow Digestion;Depression,Kapha
+41,Male,Vata-Kapha,Moderate,Insomnia,Non-Vegetarian,Balanced,Bloating;Red Eyes,Pitta-Vata
+37,Female,Vata-Pitta,Active,Insomnia,Vegan,Balanced,Red Eyes;Congestion,Kapha-Pitta
+21,Male,Vata-Pitta,Moderate,Insomnia,Vegetarian,Smoking,Inflammation;Burning Sensation;Slow Digestion,Pitta
+70,Female,Pitta,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Skin Rashes;Constipation;Congestion,Kapha-Pitta
+28,Female,Vata-Kapha,Moderate,Irregular,Non-Vegetarian,Sedentary,Anger;Depression,Kapha
+48,Male,Kapha,Very Active,Insomnia,Non-Vegetarian,Irregular Sleep,Anger;Bloating;Weight Gain,Kapha-Vata
+66,Female,Tridosha,Active,Excessive (>9hr),Irregular Meals,Heavy/Sweet Food,Fatigue;Dry Skin;Water Retention,Kapha-Vata
+82,Female,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,Spicy Food,Slow Digestion;Red Eyes,Kapha-Pitta
+63,Male,Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Excess Travel,Depression,Kapha-Vata
+72,Male,Tridosha,Very Active,Disturbed,Vegan,High Alcohol,Sinusitis,Kapha-Pitta
+67,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,High Stress,Joint Pain;Lethargy;Sinusitis,Kapha-Vata
+18,Male,Tridosha,Sedentary,Disturbed,Vegetarian,Heavy/Sweet Food,Slow Digestion,Kapha
+55,Female,Pitta-Kapha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Spicy Food,Light Sleep,Pitta-Vata
+20,Female,Vata-Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,None,Bloating;Cold Hands;Acidity,Vata
+83,Male,Vata,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Skipping Meals,Joint Pain;Constipation;Acidity,Vata
+58,Male,Kapha,Sedentary,Regular (7-8hr),Vegan,Irregular Sleep,Depression;Skin Rashes;Inflammation,Kapha-Pitta
+82,Female,Pitta,Sedentary,Excessive (>9hr),Irregular Meals,Active,Constipation;Migraine,Pitta-Vata
+81,Female,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Excess Travel,Joint Pain;Red Eyes,Vata
+42,Male,Vata-Kapha,Active,Excessive (>9hr),Vegan,Overworking,Weight Gain;Sinusitis,Kapha
+74,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Heavy/Sweet Food,Acidity;Anger,Pitta
+46,Female,Pitta-Kapha,Moderate,Insomnia,Irregular Meals,Active,Fatigue,Pitta-Vata
+62,Male,Vata-Pitta,Active,Excessive (>9hr),Vegan,High Stress,Light Sleep;Congestion,Vata
+65,Female,Vata-Kapha,Moderate,Insomnia,Non-Vegetarian,Daytime Sleep,Lethargy,Kapha
+58,Female,Pitta,Very Active,Regular (7-8hr),Irregular Meals,Balanced,Weight Gain,Kapha-Pitta
+24,Female,Pitta,Sedentary,Regular (7-8hr),Vegan,Balanced,Congestion,Kapha-Pitta
+22,Male,Vata-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Overeating,Light Sleep,Kapha-Vata
+85,Female,Vata-Pitta,Moderate,Regular (7-8hr),Irregular Meals,Overeating,Bloating;Oily Skin,Kapha-Vata
+27,Male,Vata-Pitta,Very Active,Irregular,Non-Vegetarian,Heavy/Sweet Food,Water Retention;Weight Gain,Kapha
+66,Female,Pitta-Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Bloating;Excessive Sleep,Kapha
+69,Female,Pitta-Kapha,Moderate,Disturbed,Vegetarian,Overworking,Weight Gain;Acidity;Congestion,Kapha-Pitta
+77,Female,Pitta,Sedentary,Regular (7-8hr),Irregular Meals,Irregular Sleep,Insomnia;Fatigue;Burning Sensation,Vata
+68,Male,Vata-Kapha,Very Active,Irregular,Irregular Meals,Overworking,Inflammation,Pitta
+63,Male,Vata-Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,Balanced,Cold Hands,Vata
+79,Female,Kapha,Sedentary,Insomnia,Vegan,Excess Travel,Red Eyes,Pitta-Vata
+55,Male,Vata-Kapha,Active,Regular (7-8hr),Vegetarian,Heavy/Sweet Food,Water Retention;Oily Skin;Joint Pain,Kapha
+25,Male,Pitta-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Irregular Sleep,Loose Stools,Pitta-Vata
+53,Female,Pitta,Moderate,Regular (7-8hr),Vegetarian,Sedentary,Dry Skin;Red Eyes,Pitta-Vata
+59,Female,Kapha,Active,Insomnia,Sweet/Dairy Heavy,Active,Fatigue;Acidity,Pitta-Vata
+43,Male,Vata-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Burning Sensation;Light Sleep,Vata
+76,Female,Tridosha,Very Active,Irregular,Irregular Meals,Overeating,Congestion;Burning Sensation,Kapha-Pitta
+33,Male,Kapha,Active,Disturbed,Non-Vegetarian,High Alcohol,Excessive Heat;Cold Hands,Pitta-Vata
+80,Male,Vata-Pitta,Very Active,Insomnia,Vegetarian,Excess Travel,Water Retention;Light Sleep,Vata
+43,Male,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Spicy Food,Red Eyes;Anxiety;Migraine,Pitta
+18,Male,Kapha,Active,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Acidity;Anxiety,Pitta-Vata
+69,Female,Pitta,Sedentary,Insomnia,Non-Vegetarian,Daytime Sleep,Lethargy;Depression,Kapha
+58,Male,Vata-Kapha,Moderate,Irregular,Vegan,High Stress,Constipation;Lethargy,Kapha-Vata
+63,Male,Kapha,Moderate,Insomnia,Vegan,Heavy/Sweet Food,Dry Skin,Kapha-Vata
+64,Male,Tridosha,Sedentary,Disturbed,Vegetarian,Balanced,Joint Pain;Inflammation;Loose Stools,Pitta
+52,Female,Pitta-Kapha,Very Active,Insomnia,Vegan,Active,Insomnia;Excessive Sleep,Kapha-Vata
+43,Female,Vata,Moderate,Regular (7-8hr),Vegan,Irregular Sleep,Inflammation,Pitta-Vata
+62,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,None,Joint Pain;Anger,Pitta-Vata
+51,Female,Pitta,Very Active,Disturbed,Vegetarian,High Alcohol,Oily Skin;Congestion;Depression,Kapha
+47,Female,Vata,Active,Disturbed,Vegetarian,Excess Travel,Constipation;Cold Hands,Vata
+35,Female,Vata,Very Active,Insomnia,Vegetarian,Irregular Sleep,Skin Rashes,Pitta-Vata
+55,Male,Tridosha,Very Active,Irregular,Irregular Meals,Heavy/Sweet Food,Excessive Heat;Sinusitis;Slow Digestion,Kapha
+66,Female,Vata,Active,Insomnia,Irregular Meals,Overeating,Red Eyes,Kapha-Pitta
+70,Male,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,Active,Depression,Kapha-Vata
+20,Female,Vata-Kapha,Active,Disturbed,Non-Vegetarian,Daytime Sleep,Loose Stools,Kapha-Pitta
+30,Male,Tridosha,Active,Disturbed,Irregular Meals,Daytime Sleep,Joint Pain;Loose Stools;Anxiety,Vata
+41,Female,Vata,Active,Excessive (>9hr),Sweet/Dairy Heavy,Skipping Meals,Skin Rashes;Light Sleep;Joint Pain,Vata
+75,Male,Vata-Kapha,Very Active,Irregular,Non-Vegetarian,High Stress,Lethargy;Constipation,Kapha-Vata
+65,Female,Vata-Pitta,Moderate,Irregular,Sweet/Dairy Heavy,Overworking,Lethargy,Kapha-Pitta
+50,Female,Vata,Sedentary,Disturbed,Vegetarian,Active,Skin Rashes,Pitta-Vata
+48,Female,Vata,Very Active,Regular (7-8hr),Vegan,Irregular Sleep,Red Eyes,Pitta-Vata
+37,Female,Kapha,Active,Regular (7-8hr),Spicy/Oily Heavy,Skipping Meals,Migraine,Pitta-Vata
+22,Female,Tridosha,Active,Insomnia,Non-Vegetarian,Spicy Food,Red Eyes,Pitta
+58,Female,Pitta-Kapha,Very Active,Irregular,Non-Vegetarian,Balanced,Bloating;Red Eyes,Pitta-Vata
+61,Male,Kapha,Very Active,Irregular,Spicy/Oily Heavy,Sedentary,Skin Rashes;Light Sleep;Loose Stools,Pitta
+70,Male,Pitta-Kapha,Active,Insomnia,Vegetarian,Active,Anger;Burning Sensation;Lethargy,Pitta
+41,Female,Vata,Active,Irregular,Vegan,Overworking,Cold Hands;Slow Digestion;Acidity,Pitta-Vata
+60,Female,Vata,Moderate,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Lethargy;Depression;Dry Skin,Kapha
+33,Male,Vata,Sedentary,Regular (7-8hr),Vegan,Heavy/Sweet Food,Joint Pain;Excessive Sleep;Sinusitis,Kapha
+23,Female,Vata,Sedentary,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Skin Rashes;Dry Skin;Depression,Kapha-Vata
+21,Male,Pitta-Kapha,Active,Disturbed,Irregular Meals,Active,Dry Skin;Loose Stools;Congestion,Kapha-Pitta
+28,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Depression,Kapha-Pitta
+67,Female,Kapha,Sedentary,Insomnia,Vegan,Spicy Food,Loose Stools,Pitta
+18,Female,Pitta,Very Active,Insomnia,Irregular Meals,Heavy/Sweet Food,Skin Rashes;Constipation,Pitta-Vata
+39,Female,Vata-Kapha,Very Active,Irregular,Non-Vegetarian,Overeating,Loose Stools;Lethargy;Red Eyes,Kapha-Pitta
+50,Male,Vata,Active,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Sinusitis,Kapha-Vata
+76,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,High Stress,Joint Pain;Lethargy,Vata
+83,Female,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Balanced,Excessive Heat;Cold Hands,Pitta-Vata
+34,Female,Pitta-Kapha,Active,Excessive (>9hr),Irregular Meals,Spicy Food,Loose Stools,Pitta
+46,Male,Vata,Moderate,Irregular,Vegetarian,Balanced,Bloating;Loose Stools,Pitta-Vata
+80,Male,Vata,Sedentary,Regular (7-8hr),Irregular Meals,None,Inflammation;Weight Gain;Bloating,Pitta-Vata
+64,Female,Tridosha,Sedentary,Irregular,Vegan,Overworking,Oily Skin;Migraine;Red Eyes,Pitta
+52,Male,Vata-Pitta,Sedentary,Irregular,Irregular Meals,Active,Water Retention,Kapha-Vata
+62,Male,Vata,Sedentary,Insomnia,Vegan,Skipping Meals,Water Retention,Kapha-Vata
+76,Female,Tridosha,Active,Regular (7-8hr),Irregular Meals,Balanced,Depression,Kapha
+29,Female,Tridosha,Very Active,Disturbed,Non-Vegetarian,Active,Dry Skin,Vata
+62,Male,Tridosha,Active,Disturbed,Vegan,Balanced,Joint Pain,Vata
+40,Male,Vata-Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Excess Travel,Red Eyes,Pitta-Vata
+80,Female,Vata-Pitta,Active,Regular (7-8hr),Sweet/Dairy Heavy,Smoking,Sinusitis,Kapha-Pitta
+25,Female,Pitta,Very Active,Excessive (>9hr),Vegetarian,Active,Anxiety;Anger,Pitta-Vata
+37,Female,Kapha,Active,Insomnia,Irregular Meals,High Alcohol,Red Eyes;Dry Skin,Pitta-Vata
+79,Female,Vata-Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Fatigue,Vata
+19,Male,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Sedentary,Depression,Kapha
+73,Female,Vata,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Joint Pain,Pitta-Vata
+73,Female,Tridosha,Sedentary,Disturbed,Vegetarian,Spicy Food,Slow Digestion;Skin Rashes;Fatigue,Pitta-Vata
+22,Female,Pitta,Active,Disturbed,Spicy/Oily Heavy,Smoking,Dry Skin;Joint Pain;Migraine,Pitta-Vata
+80,Male,Kapha,Sedentary,Insomnia,Vegan,Balanced,Skin Rashes;Burning Sensation;Cold Hands,Pitta
+29,Male,Vata,Active,Insomnia,Vegan,High Stress,Water Retention,Kapha-Vata
+83,Male,Pitta,Sedentary,Regular (7-8hr),Irregular Meals,Overworking,Migraine,Pitta
+74,Male,Pitta,Moderate,Regular (7-8hr),Irregular Meals,Smoking,Migraine;Acidity;Loose Stools,Pitta
+41,Male,Vata-Pitta,Moderate,Disturbed,Irregular Meals,Smoking,Loose Stools,Pitta
+71,Female,Pitta-Kapha,Active,Irregular,Non-Vegetarian,Overeating,Red Eyes,Kapha-Pitta
+48,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,Active,Joint Pain,Pitta-Vata
+76,Female,Kapha,Sedentary,Insomnia,Vegan,Spicy Food,Excessive Heat;Dry Skin,Pitta-Vata
+33,Female,Vata,Active,Insomnia,Non-Vegetarian,Sedentary,Insomnia,Kapha-Vata
+30,Female,Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Bloating;Burning Sensation;Dry Skin,Vata
+73,Male,Vata-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Sedentary,Anxiety,Kapha-Vata
+44,Female,Vata-Kapha,Active,Disturbed,Spicy/Oily Heavy,Overworking,Light Sleep,Pitta-Vata
+53,Female,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Excess Travel,Loose Stools,Pitta-Vata
+44,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,High Stress,Burning Sensation;Dry Skin,Pitta-Vata
+71,Female,Tridosha,Moderate,Insomnia,Sweet/Dairy Heavy,Daytime Sleep,Anxiety,Kapha-Vata
+75,Female,Vata-Pitta,Active,Excessive (>9hr),Non-Vegetarian,Active,Joint Pain,Vata
+79,Female,Vata-Pitta,Active,Insomnia,Irregular Meals,Active,Sinusitis;Inflammation,Kapha-Pitta
+64,Male,Tridosha,Moderate,Irregular,Sweet/Dairy Heavy,High Stress,Congestion;Excessive Heat;Oily Skin,Kapha
+25,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,Sedentary,Excessive Heat;Burning Sensation,Pitta
+35,Male,Kapha,Moderate,Regular (7-8hr),Vegetarian,Spicy Food,Cold Hands;Anger,Pitta-Vata
+20,Male,Tridosha,Moderate,Insomnia,Vegetarian,Excess Travel,Acidity;Sinusitis;Depression,Kapha
+45,Male,Tridosha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Light Sleep;Acidity,Pitta-Vata
+85,Male,Vata-Pitta,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Cold Hands,Pitta-Vata
+83,Male,Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,High Alcohol,Red Eyes;Excessive Heat,Pitta
+80,Male,Vata-Kapha,Sedentary,Disturbed,Non-Vegetarian,Sedentary,Loose Stools;Inflammation;Congestion,Kapha-Pitta
+42,Male,Pitta-Kapha,Active,Insomnia,Vegan,Skipping Meals,Depression;Oily Skin;Congestion,Kapha
+48,Male,Vata,Active,Excessive (>9hr),Vegetarian,High Alcohol,Loose Stools;Lethargy,Kapha-Pitta
+67,Female,Vata-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,None,Acidity;Loose Stools,Pitta
+76,Female,Tridosha,Active,Irregular,Irregular Meals,Heavy/Sweet Food,Insomnia;Migraine,Pitta-Vata
+30,Male,Vata-Kapha,Very Active,Disturbed,Irregular Meals,Overworking,Oily Skin,Kapha-Pitta
+59,Female,Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Smoking,Inflammation;Acidity,Pitta
+85,Male,Vata-Kapha,Very Active,Regular (7-8hr),Irregular Meals,Overeating,Slow Digestion,Kapha
+78,Male,Vata-Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Spicy Food,Lethargy;Migraine;Excessive Heat,Pitta
+62,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Irregular Meals,Overworking,Anger,Pitta
+57,Male,Tridosha,Sedentary,Insomnia,Vegan,Overworking,Lethargy;Weight Gain,Kapha
+78,Male,Vata-Pitta,Very Active,Excessive (>9hr),Vegan,Overeating,Congestion;Slow Digestion,Kapha
+63,Female,Pitta-Kapha,Very Active,Insomnia,Vegetarian,High Stress,Joint Pain;Burning Sensation,Pitta-Vata
+24,Male,Vata-Kapha,Sedentary,Excessive (>9hr),Irregular Meals,High Alcohol,Water Retention;Congestion,Kapha
+83,Male,Kapha,Very Active,Irregular,Irregular Meals,None,Weight Gain;Skin Rashes,Kapha-Pitta
+81,Male,Pitta-Kapha,Active,Insomnia,Vegan,Smoking,Congestion,Kapha-Pitta
+78,Male,Vata-Kapha,Very Active,Insomnia,Irregular Meals,High Alcohol,Skin Rashes;Sinusitis,Kapha-Pitta
+42,Male,Vata,Moderate,Disturbed,Vegetarian,Skipping Meals,Cold Hands;Excessive Heat,Vata
+69,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Joint Pain;Bloating;Lethargy,Vata
+30,Male,Vata-Pitta,Very Active,Irregular,Sweet/Dairy Heavy,High Alcohol,Slow Digestion;Red Eyes,Pitta
+53,Female,Tridosha,Sedentary,Disturbed,Spicy/Oily Heavy,Overworking,Dry Skin;Joint Pain,Vata
+27,Female,Tridosha,Active,Disturbed,Vegan,Balanced,Dry Skin;Loose Stools,Pitta-Vata
+40,Male,Kapha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Constipation;Excessive Heat,Pitta-Vata
+53,Female,Vata,Sedentary,Regular (7-8hr),Irregular Meals,Balanced,Light Sleep;Inflammation,Pitta-Vata
+55,Female,Tridosha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Loose Stools;Red Eyes,Pitta
+29,Male,Kapha,Active,Irregular,Irregular Meals,Daytime Sleep,Fatigue;Slow Digestion,Kapha
+27,Male,Pitta-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Heavy/Sweet Food,Anger;Anxiety;Water Retention,Kapha-Pitta
+74,Male,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,Smoking,Light Sleep;Cold Hands;Excessive Sleep,Kapha-Vata
+58,Male,Tridosha,Moderate,Regular (7-8hr),Irregular Meals,High Alcohol,Congestion;Skin Rashes;Burning Sensation,Pitta
+33,Male,Kapha,Moderate,Excessive (>9hr),Vegetarian,High Stress,Skin Rashes;Oily Skin;Excessive Heat,Kapha-Pitta
+76,Female,Kapha,Very Active,Excessive (>9hr),Irregular Meals,Balanced,Anxiety,Kapha-Vata
+69,Female,Tridosha,Sedentary,Insomnia,Irregular Meals,Daytime Sleep,Loose Stools,Kapha-Pitta
+20,Female,Vata-Pitta,Moderate,Insomnia,Irregular Meals,Sedentary,Dry Skin;Anxiety,Vata
+63,Male,Kapha,Very Active,Disturbed,Vegan,Overeating,Excessive Sleep;Sinusitis,Kapha
+73,Male,Vata,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Congestion;Migraine;Red Eyes,Kapha-Pitta
+67,Male,Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Migraine;Oily Skin,Kapha-Pitta
+39,Female,Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Daytime Sleep,Loose Stools;Bloating,Pitta-Vata
+76,Female,Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Burning Sensation;Loose Stools,Pitta
+42,Female,Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,Overworking,Constipation;Anger,Pitta-Vata
+27,Male,Tridosha,Moderate,Insomnia,Sweet/Dairy Heavy,Excess Travel,Water Retention,Kapha-Vata
+44,Male,Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Balanced,Slow Digestion,Kapha
+78,Female,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,High Alcohol,Lethargy,Kapha-Pitta
+64,Male,Vata-Kapha,Sedentary,Insomnia,Non-Vegetarian,High Stress,Excessive Heat;Anger;Constipation,Pitta-Vata
+26,Female,Tridosha,Sedentary,Insomnia,Spicy/Oily Heavy,Skipping Meals,Insomnia;Water Retention;Inflammation,Pitta-Vata
+27,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,High Stress,Cold Hands,Vata
+24,Female,Pitta-Kapha,Moderate,Irregular,Vegetarian,Active,Cold Hands;Oily Skin,Kapha-Vata
+75,Female,Tridosha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Insomnia;Joint Pain;Migraine,Vata
+56,Male,Vata-Pitta,Active,Excessive (>9hr),Vegetarian,Irregular Sleep,Migraine;Joint Pain,Pitta-Vata
+65,Male,Pitta,Sedentary,Regular (7-8hr),Irregular Meals,None,Sinusitis;Oily Skin,Kapha
+69,Male,Vata,Sedentary,Irregular,Non-Vegetarian,High Alcohol,Constipation;Insomnia,Vata
+22,Male,Vata,Very Active,Excessive (>9hr),Irregular Meals,High Stress,Loose Stools,Pitta-Vata
+61,Male,Vata,Moderate,Excessive (>9hr),Irregular Meals,High Alcohol,Congestion,Kapha-Pitta
+74,Female,Tridosha,Sedentary,Excessive (>9hr),Vegetarian,Irregular Sleep,Dry Skin;Skin Rashes,Pitta-Vata
+68,Female,Vata-Pitta,Very Active,Irregular,Vegan,Active,Anger;Sinusitis;Water Retention,Kapha-Pitta
+67,Male,Pitta,Active,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Burning Sensation,Pitta-Vata
+85,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Spicy Food,Excessive Sleep,Kapha-Pitta
+18,Male,Vata-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Active,Loose Stools,Pitta-Vata
+83,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Overeating,Joint Pain;Skin Rashes,Pitta-Vata
+59,Male,Vata-Pitta,Moderate,Excessive (>9hr),Non-Vegetarian,High Alcohol,Slow Digestion,Kapha-Pitta
+76,Female,Vata,Moderate,Excessive (>9hr),Vegetarian,Daytime Sleep,Excessive Sleep,Kapha
+83,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Irregular Sleep,Light Sleep;Anxiety,Vata
+29,Male,Kapha,Active,Excessive (>9hr),Vegan,High Alcohol,Light Sleep;Depression,Kapha-Vata
+18,Female,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Skipping Meals,Migraine;Bloating;Insomnia,Vata
+55,Male,Vata-Pitta,Active,Disturbed,Spicy/Oily Heavy,Excess Travel,Slow Digestion,Kapha-Vata
+83,Female,Pitta-Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,Balanced,Burning Sensation;Skin Rashes,Pitta
+34,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Daytime Sleep,Light Sleep;Slow Digestion,Kapha
+67,Male,Kapha,Active,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Constipation;Depression,Kapha
+43,Male,Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Daytime Sleep,Depression;Congestion;Light Sleep,Kapha
+58,Male,Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Daytime Sleep,Skin Rashes;Anxiety,Pitta-Vata
+77,Female,Kapha,Sedentary,Irregular,Non-Vegetarian,Spicy Food,Congestion,Kapha-Pitta
+70,Female,Pitta,Moderate,Disturbed,Sweet/Dairy Heavy,Heavy/Sweet Food,Inflammation;Dry Skin,Pitta-Vata
+56,Male,Tridosha,Moderate,Excessive (>9hr),Non-Vegetarian,Daytime Sleep,Inflammation,Kapha-Pitta
+27,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Spicy Food,Constipation;Excessive Heat,Pitta
+60,Male,Pitta-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Heavy/Sweet Food,Skin Rashes;Bloating;Inflammation,Pitta
+85,Female,Kapha,Sedentary,Excessive (>9hr),Vegetarian,Active,Excessive Heat;Joint Pain;Light Sleep,Vata
+34,Female,Pitta,Very Active,Irregular,Vegetarian,Spicy Food,Joint Pain;Depression;Constipation,Vata
+48,Male,Kapha,Sedentary,Disturbed,Irregular Meals,Irregular Sleep,Water Retention;Light Sleep,Kapha-Vata
+37,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Vegan,High Stress,Sinusitis;Excessive Heat;Dry Skin,Kapha-Vata
+71,Male,Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,Overeating,Burning Sensation;Loose Stools;Excessive Sleep,Kapha-Pitta
+35,Female,Vata,Moderate,Irregular,Vegan,Overworking,Weight Gain;Congestion;Excessive Heat,Kapha-Pitta
+49,Female,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Weight Gain;Bloating,Kapha-Vata
+52,Male,Pitta,Active,Disturbed,Vegan,High Stress,Lethargy;Joint Pain;Excessive Sleep,Kapha-Vata
+31,Female,Vata-Kapha,Active,Disturbed,Vegetarian,Spicy Food,Weight Gain;Oily Skin,Kapha
+25,Male,Kapha,Active,Insomnia,Vegan,Daytime Sleep,Excessive Heat,Kapha-Pitta
+55,Female,Pitta-Kapha,Moderate,Disturbed,Vegan,Balanced,Congestion;Oily Skin,Kapha
+46,Male,Kapha,Sedentary,Insomnia,Non-Vegetarian,Overworking,Loose Stools;Cold Hands;Burning Sensation,Pitta
+42,Female,Vata-Pitta,Active,Irregular,Non-Vegetarian,Overeating,Weight Gain;Constipation,Kapha-Vata
+83,Female,Vata-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Heavy/Sweet Food,Acidity;Migraine;Loose Stools,Pitta
+81,Male,Vata-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Spicy Food,Dry Skin;Sinusitis,Kapha-Vata
+52,Female,Pitta,Sedentary,Insomnia,Vegan,Spicy Food,Constipation;Dry Skin;Excessive Sleep,Vata
+38,Female,Vata-Pitta,Active,Disturbed,Sweet/Dairy Heavy,Skipping Meals,Cold Hands;Water Retention;Insomnia,Vata
+56,Female,Pitta,Moderate,Irregular,Vegan,High Alcohol,Anxiety,Pitta-Vata
+80,Male,Pitta,Active,Excessive (>9hr),Non-Vegetarian,Overeating,Slow Digestion;Anger,Kapha-Pitta
+26,Male,Pitta-Kapha,Very Active,Insomnia,Non-Vegetarian,Overworking,Anxiety;Excessive Sleep;Excessive Heat,Kapha-Pitta
+50,Male,Tridosha,Very Active,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Loose Stools;Slow Digestion,Kapha-Pitta
+21,Female,Pitta-Kapha,Active,Regular (7-8hr),Vegan,High Stress,Bloating,Vata
+30,Male,Vata,Sedentary,Irregular,Vegan,High Stress,Fatigue;Excessive Sleep,Vata
+39,Female,Pitta-Kapha,Active,Disturbed,Non-Vegetarian,Irregular Sleep,Anxiety;Water Retention,Kapha-Vata
+49,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Skipping Meals,Bloating,Vata
+27,Female,Pitta,Very Active,Insomnia,Irregular Meals,High Stress,Cold Hands;Weight Gain;Anger,Pitta-Vata
+41,Male,Vata-Pitta,Sedentary,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Anger;Lethargy;Bloating,Pitta-Vata
+34,Male,Pitta-Kapha,Active,Insomnia,Irregular Meals,Balanced,Cold Hands;Slow Digestion,Kapha-Vata
+53,Male,Pitta,Very Active,Excessive (>9hr),Vegan,High Stress,Lethargy;Dry Skin;Oily Skin,Kapha-Vata
+79,Male,Pitta-Kapha,Very Active,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Light Sleep;Bloating;Congestion,Kapha-Vata
+30,Male,Vata-Pitta,Sedentary,Disturbed,Spicy/Oily Heavy,High Stress,Slow Digestion;Sinusitis,Kapha
+56,Male,Kapha,Very Active,Insomnia,Vegetarian,Irregular Sleep,Anxiety,Vata
+82,Male,Tridosha,Sedentary,Regular (7-8hr),Vegan,None,Congestion,Kapha
+18,Male,Kapha,Sedentary,Disturbed,Vegetarian,Excess Travel,Excessive Sleep;Weight Gain,Kapha
+66,Male,Pitta-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Excess Travel,Loose Stools;Anger;Red Eyes,Pitta
+32,Male,Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Active,Excessive Heat;Cold Hands,Pitta-Vata
+38,Male,Tridosha,Active,Disturbed,Vegan,Excess Travel,Sinusitis;Oily Skin;Water Retention,Kapha
+55,Male,Pitta,Moderate,Disturbed,Sweet/Dairy Heavy,Overeating,Inflammation;Anxiety;Weight Gain,Kapha-Pitta
+25,Male,Vata,Very Active,Irregular,Irregular Meals,Overeating,Anger,Kapha-Pitta
+36,Female,Pitta,Active,Excessive (>9hr),Vegetarian,Overworking,Fatigue,Pitta-Vata
+79,Male,Tridosha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Acidity;Weight Gain,Kapha-Pitta
+19,Male,Kapha,Very Active,Insomnia,Vegetarian,Overeating,Migraine,Kapha-Pitta
+63,Male,Vata-Kapha,Very Active,Disturbed,Vegetarian,None,Inflammation;Congestion,Kapha-Pitta
+38,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Active,Anger,Pitta
+75,Male,Vata-Kapha,Moderate,Excessive (>9hr),Vegetarian,Smoking,Inflammation;Water Retention,Kapha-Pitta
+79,Male,Kapha,Active,Regular (7-8hr),Vegan,Sedentary,Weight Gain,Kapha
+49,Male,Vata-Pitta,Moderate,Disturbed,Non-Vegetarian,Skipping Meals,Depression;Anger;Dry Skin,Pitta-Vata
+38,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,Skipping Meals,Congestion,Kapha-Vata
+83,Female,Pitta-Kapha,Very Active,Irregular,Vegan,Overeating,Sinusitis;Excessive Sleep,Kapha
+84,Female,Vata-Kapha,Very Active,Regular (7-8hr),Irregular Meals,Excess Travel,Cold Hands;Dry Skin,Vata
+53,Male,Vata-Pitta,Sedentary,Insomnia,Sweet/Dairy Heavy,High Alcohol,Water Retention;Constipation,Pitta-Vata
+56,Male,Vata-Pitta,Sedentary,Disturbed,Irregular Meals,High Stress,Fatigue;Light Sleep;Depression,Vata
+84,Male,Kapha,Moderate,Excessive (>9hr),Vegan,Overeating,Bloating;Light Sleep;Insomnia,Vata
+26,Female,Kapha,Very Active,Excessive (>9hr),Irregular Meals,None,Migraine;Congestion,Kapha-Pitta
+75,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Vegetarian,Smoking,Depression;Slow Digestion;Anger,Kapha-Pitta
+35,Male,Tridosha,Sedentary,Excessive (>9hr),Irregular Meals,Irregular Sleep,Joint Pain;Oily Skin;Anger,Pitta-Vata
+81,Male,Vata-Pitta,Active,Disturbed,Vegetarian,Overworking,Burning Sensation;Depression;Excessive Sleep,Kapha-Pitta
+53,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,None,Anxiety,Pitta-Vata
+34,Female,Vata-Kapha,Active,Disturbed,Vegan,None,Loose Stools,Pitta-Vata
+25,Male,Pitta-Kapha,Very Active,Regular (7-8hr),Vegetarian,Overeating,Slow Digestion;Red Eyes;Migraine,Kapha-Pitta
+44,Male,Kapha,Active,Irregular,Sweet/Dairy Heavy,Irregular Sleep,Slow Digestion;Light Sleep;Bloating,Vata
+34,Male,Vata-Pitta,Sedentary,Disturbed,Sweet/Dairy Heavy,High Alcohol,Burning Sensation;Weight Gain;Anger,Pitta
+70,Male,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Congestion;Anger;Burning Sensation,Kapha-Pitta
+45,Male,Vata-Kapha,Active,Excessive (>9hr),Vegan,Excess Travel,Fatigue,Vata
+73,Female,Vata-Pitta,Very Active,Excessive (>9hr),Vegetarian,Heavy/Sweet Food,Inflammation;Oily Skin,Kapha-Pitta
+19,Female,Vata,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Overworking,Skin Rashes;Loose Stools;Depression,Pitta
+28,Male,Pitta,Sedentary,Insomnia,Non-Vegetarian,None,Water Retention;Oily Skin;Fatigue,Kapha
+39,Female,Vata,Active,Regular (7-8hr),Irregular Meals,Irregular Sleep,Slow Digestion;Cold Hands;Anxiety,Vata
+38,Male,Pitta-Kapha,Active,Insomnia,Spicy/Oily Heavy,High Alcohol,Excessive Heat;Weight Gain;Depression,Kapha-Pitta
+59,Male,Pitta,Active,Excessive (>9hr),Non-Vegetarian,Smoking,Inflammation;Slow Digestion,Pitta
+40,Female,Vata-Pitta,Active,Insomnia,Vegetarian,Balanced,Slow Digestion,Kapha-Vata
+69,Male,Vata,Moderate,Insomnia,Non-Vegetarian,Excess Travel,Acidity,Pitta-Vata
+56,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Irregular Sleep,Oily Skin;Acidity;Excessive Sleep,Kapha
+85,Female,Vata-Pitta,Sedentary,Insomnia,Non-Vegetarian,High Alcohol,Oily Skin;Inflammation;Sinusitis,Kapha-Pitta
+47,Male,Kapha,Sedentary,Insomnia,Vegan,Smoking,Congestion,Kapha-Pitta
+37,Female,Vata,Sedentary,Disturbed,Sweet/Dairy Heavy,Active,Light Sleep;Depression,Kapha-Vata
+37,Female,Kapha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,None,Inflammation,Kapha-Pitta
+31,Female,Vata-Kapha,Very Active,Disturbed,Irregular Meals,Excess Travel,Acidity,Pitta-Vata
+70,Male,Pitta-Kapha,Active,Irregular,Non-Vegetarian,Spicy Food,Skin Rashes,Pitta
+35,Male,Pitta,Sedentary,Disturbed,Non-Vegetarian,Daytime Sleep,Anxiety;Oily Skin,Kapha-Vata
+36,Female,Pitta,Sedentary,Insomnia,Vegan,High Stress,Congestion;Red Eyes;Excessive Heat,Pitta
+45,Male,Kapha,Moderate,Regular (7-8hr),Vegetarian,Irregular Sleep,Dry Skin,Vata
+54,Female,Vata-Kapha,Sedentary,Disturbed,Vegan,Heavy/Sweet Food,Bloating;Skin Rashes;Light Sleep,Vata
+60,Female,Tridosha,Moderate,Insomnia,Irregular Meals,Active,Migraine;Constipation;Excessive Sleep,Pitta-Vata
+52,Male,Vata,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Insomnia;Light Sleep;Dry Skin,Vata
+33,Male,Tridosha,Moderate,Excessive (>9hr),Vegan,High Stress,Weight Gain,Kapha-Vata
+39,Male,Vata,Moderate,Excessive (>9hr),Non-Vegetarian,Balanced,Loose Stools;Slow Digestion,Kapha-Pitta
+85,Male,Pitta-Kapha,Sedentary,Insomnia,Spicy/Oily Heavy,Smoking,Cold Hands;Migraine;Burning Sensation,Pitta
+81,Female,Vata-Pitta,Moderate,Disturbed,Vegan,High Alcohol,Red Eyes;Congestion;Anxiety,Pitta-Vata
+83,Female,Vata-Kapha,Very Active,Regular (7-8hr),Irregular Meals,Excess Travel,Sinusitis;Water Retention;Migraine,Kapha
+18,Male,Pitta-Kapha,Active,Irregular,Vegan,Balanced,Migraine;Excessive Heat;Insomnia,Pitta
+62,Male,Vata-Kapha,Very Active,Irregular,Vegetarian,Irregular Sleep,Slow Digestion,Kapha-Vata
+41,Female,Pitta-Kapha,Active,Regular (7-8hr),Irregular Meals,None,Anxiety,Pitta-Vata
+43,Male,Vata,Active,Excessive (>9hr),Spicy/Oily Heavy,Daytime Sleep,Light Sleep;Skin Rashes;Anger,Pitta-Vata
+67,Female,Vata,Sedentary,Regular (7-8hr),Vegan,Daytime Sleep,Burning Sensation,Kapha-Pitta
+45,Female,Pitta,Active,Excessive (>9hr),Vegan,Overworking,Sinusitis;Depression,Kapha
+26,Male,Vata-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Slow Digestion;Burning Sensation;Depression,Kapha
+23,Male,Pitta,Moderate,Excessive (>9hr),Vegetarian,Overworking,Loose Stools,Pitta
+22,Female,Pitta,Sedentary,Disturbed,Vegan,Active,Anger;Weight Gain,Kapha-Pitta
+64,Male,Pitta-Kapha,Sedentary,Insomnia,Vegan,Heavy/Sweet Food,Burning Sensation;Fatigue;Excessive Heat,Pitta
+52,Female,Vata,Active,Irregular,Sweet/Dairy Heavy,Overeating,Slow Digestion;Depression,Kapha
+18,Male,Tridosha,Active,Disturbed,Vegetarian,Heavy/Sweet Food,Migraine;Water Retention,Kapha-Pitta
+82,Female,Pitta-Kapha,Very Active,Disturbed,Vegetarian,Heavy/Sweet Food,Weight Gain;Cold Hands,Kapha
+81,Female,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Sedentary,Acidity,Kapha-Pitta
+57,Male,Tridosha,Moderate,Irregular,Sweet/Dairy Heavy,None,Water Retention;Excessive Heat,Kapha-Pitta
+38,Male,Vata-Kapha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Sinusitis;Light Sleep,Kapha-Vata
+36,Female,Vata-Pitta,Moderate,Irregular,Irregular Meals,Spicy Food,Excessive Sleep,Kapha-Pitta
+64,Female,Tridosha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Depression,Kapha-Pitta
+33,Female,Pitta-Kapha,Very Active,Regular (7-8hr),Vegetarian,Balanced,Lethargy,Kapha
+80,Male,Vata-Pitta,Very Active,Disturbed,Vegan,Skipping Meals,Inflammation,Pitta-Vata
+66,Male,Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Daytime Sleep,Insomnia;Burning Sensation;Migraine,Pitta
+46,Male,Pitta-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Smoking,Anxiety;Acidity;Excessive Heat,Pitta
+22,Female,Tridosha,Active,Regular (7-8hr),Non-Vegetarian,Sedentary,Inflammation,Kapha-Pitta
+84,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,High Stress,Congestion;Excessive Sleep,Kapha
+21,Male,Vata,Sedentary,Excessive (>9hr),Vegan,Balanced,Anxiety;Burning Sensation,Pitta-Vata
+75,Male,Kapha,Very Active,Insomnia,Vegetarian,Daytime Sleep,Oily Skin;Excessive Sleep;Excessive Heat,Kapha
+64,Male,Vata,Moderate,Disturbed,Non-Vegetarian,Sedentary,Lethargy;Skin Rashes,Kapha-Pitta
+76,Female,Vata-Pitta,Active,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Water Retention;Inflammation;Acidity,Pitta
+18,Male,Tridosha,Moderate,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Dry Skin,Vata
+49,Female,Vata-Kapha,Active,Disturbed,Irregular Meals,Spicy Food,Insomnia;Constipation,Vata
+42,Female,Pitta-Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Excess Travel,Dry Skin,Vata
+66,Female,Tridosha,Moderate,Irregular,Vegan,Heavy/Sweet Food,Lethargy,Kapha
+25,Female,Pitta,Very Active,Excessive (>9hr),Vegan,Balanced,Insomnia,Pitta-Vata
+50,Female,Vata-Kapha,Very Active,Insomnia,Irregular Meals,Excess Travel,Burning Sensation;Anxiety,Vata
+79,Male,Vata,Very Active,Regular (7-8hr),Irregular Meals,Spicy Food,Light Sleep;Depression,Kapha-Vata
+60,Male,Tridosha,Very Active,Regular (7-8hr),Irregular Meals,High Alcohol,Joint Pain;Water Retention,Kapha-Vata
+71,Male,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,None,Acidity;Migraine,Pitta
+55,Female,Kapha,Moderate,Regular (7-8hr),Irregular Meals,Overeating,Oily Skin;Migraine;Fatigue,Kapha
+57,Male,Pitta,Moderate,Irregular,Irregular Meals,Balanced,Slow Digestion,Kapha-Pitta
+20,Male,Vata,Moderate,Excessive (>9hr),Vegan,Sedentary,Fatigue;Excessive Sleep,Kapha-Vata
+33,Male,Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,High Stress,Depression;Weight Gain,Kapha
+53,Male,Pitta,Moderate,Irregular,Non-Vegetarian,Overeating,Burning Sensation;Anxiety,Pitta-Vata
+34,Female,Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Smoking,Loose Stools,Pitta
+22,Male,Vata-Kapha,Moderate,Disturbed,Spicy/Oily Heavy,High Alcohol,Loose Stools,Pitta
+33,Male,Vata,Very Active,Disturbed,Vegetarian,Smoking,Cold Hands;Lethargy;Anxiety,Vata
+20,Male,Pitta,Very Active,Excessive (>9hr),Vegan,High Stress,Inflammation,Pitta-Vata
+35,Male,Vata-Pitta,Sedentary,Irregular,Vegetarian,Overeating,Weight Gain;Acidity,Kapha-Pitta
+65,Male,Pitta-Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Sedentary,Constipation,Kapha-Vata
+33,Female,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Excess Travel,Anxiety;Migraine,Vata
+21,Female,Pitta,Very Active,Insomnia,Non-Vegetarian,Sedentary,Weight Gain;Anger;Anxiety,Kapha-Pitta
+67,Male,Vata-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Excess Travel,Inflammation,Pitta-Vata
+22,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Overeating,Skin Rashes;Cold Hands,Pitta-Vata
+74,Male,Vata-Pitta,Sedentary,Regular (7-8hr),Vegetarian,High Stress,Congestion;Anxiety;Dry Skin,Vata
+25,Male,Vata-Pitta,Moderate,Irregular,Vegan,Smoking,Anger,Pitta
+22,Male,Vata,Active,Irregular,Non-Vegetarian,Excess Travel,Red Eyes,Pitta-Vata
+78,Female,Pitta,Active,Disturbed,Irregular Meals,Smoking,Sinusitis,Kapha-Pitta
+56,Female,Vata-Pitta,Active,Disturbed,Irregular Meals,Excess Travel,Red Eyes,Pitta-Vata
+41,Male,Pitta,Sedentary,Irregular,Irregular Meals,Excess Travel,Cold Hands;Constipation,Vata
+46,Male,Vata,Active,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Inflammation;Constipation;Lethargy,Vata
+41,Male,Kapha,Very Active,Insomnia,Vegan,Heavy/Sweet Food,Fatigue;Bloating;Cold Hands,Vata
+79,Female,Pitta-Kapha,Active,Irregular,Irregular Meals,High Stress,Constipation,Vata
+62,Female,Tridosha,Moderate,Irregular,Vegetarian,Active,Burning Sensation;Inflammation,Pitta
+74,Male,Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,Heavy/Sweet Food,Water Retention;Red Eyes,Kapha
+20,Male,Vata,Active,Insomnia,Non-Vegetarian,Active,Sinusitis,Kapha-Vata
+64,Female,Vata-Pitta,Moderate,Insomnia,Vegetarian,Smoking,Bloating;Fatigue;Inflammation,Pitta-Vata
+59,Female,Tridosha,Sedentary,Disturbed,Irregular Meals,Sedentary,Acidity;Anxiety;Cold Hands,Vata
+20,Male,Pitta-Kapha,Moderate,Irregular,Vegetarian,Daytime Sleep,Joint Pain;Loose Stools;Congestion,Kapha-Pitta
+31,Male,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,High Stress,Constipation;Depression;Skin Rashes,Pitta-Vata
+54,Male,Tridosha,Sedentary,Insomnia,Vegan,Skipping Meals,Depression;Acidity;Sinusitis,Kapha
+22,Female,Vata-Pitta,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Inflammation,Kapha-Pitta
+75,Male,Pitta,Active,Excessive (>9hr),Irregular Meals,Daytime Sleep,Constipation;Depression;Skin Rashes,Kapha-Pitta
+38,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Vegan,High Stress,Weight Gain;Insomnia;Dry Skin,Vata
+42,Male,Vata,Sedentary,Excessive (>9hr),Vegetarian,Spicy Food,Congestion;Migraine;Oily Skin,Kapha-Pitta
+35,Male,Tridosha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Weight Gain;Migraine;Skin Rashes,Pitta
+21,Female,Pitta-Kapha,Very Active,Irregular,Sweet/Dairy Heavy,Excess Travel,Sinusitis,Kapha-Vata
+40,Female,Vata-Kapha,Very Active,Regular (7-8hr),Vegan,Daytime Sleep,Acidity,Kapha-Pitta
+52,Male,Vata-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Red Eyes;Congestion;Anger,Pitta
+69,Female,Vata-Pitta,Very Active,Disturbed,Irregular Meals,High Alcohol,Insomnia;Sinusitis,Pitta-Vata
+84,Male,Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Balanced,Sinusitis;Constipation,Kapha-Vata
+28,Female,Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Excessive Sleep;Cold Hands,Kapha-Vata
+29,Male,Vata,Active,Irregular,Sweet/Dairy Heavy,Excess Travel,Cold Hands;Congestion;Burning Sensation,Vata
+45,Male,Vata,Very Active,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Lethargy;Bloating,Kapha-Vata
+73,Female,Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Excess Travel,Anger,Pitta-Vata
+36,Male,Kapha,Active,Irregular,Sweet/Dairy Heavy,Overeating,Bloating,Kapha-Vata
+80,Female,Kapha,Sedentary,Irregular,Vegetarian,Sedentary,Anger;Light Sleep;Lethargy,Kapha
+23,Male,Vata-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Skipping Meals,Congestion;Water Retention;Red Eyes,Kapha
+77,Male,Vata-Pitta,Active,Disturbed,Vegetarian,Smoking,Red Eyes,Pitta
+59,Female,Pitta,Very Active,Disturbed,Vegan,High Alcohol,Migraine;Congestion,Pitta
+58,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Congestion,Kapha
+42,Male,Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Overeating,Migraine;Loose Stools,Pitta
+46,Female,Vata,Active,Disturbed,Non-Vegetarian,Smoking,Lethargy;Insomnia;Oily Skin,Kapha-Vata
+69,Male,Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Cold Hands;Migraine,Pitta-Vata
+84,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Overeating,Fatigue,Kapha-Vata
+75,Male,Pitta,Active,Insomnia,Sweet/Dairy Heavy,High Stress,Lethargy;Loose Stools;Dry Skin,Pitta-Vata
+47,Male,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Heavy/Sweet Food,Loose Stools,Kapha-Pitta
+81,Female,Kapha,Active,Excessive (>9hr),Irregular Meals,Overworking,Anger;Loose Stools,Pitta
+60,Male,Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Skin Rashes;Insomnia,Pitta-Vata
+30,Female,Kapha,Moderate,Irregular,Vegan,Spicy Food,Burning Sensation;Water Retention;Oily Skin,Kapha-Pitta
+78,Female,Pitta,Moderate,Excessive (>9hr),Vegetarian,Daytime Sleep,Anger;Sinusitis;Lethargy,Kapha
+41,Male,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Sedentary,Cold Hands;Bloating;Dry Skin,Vata
+76,Male,Vata-Pitta,Very Active,Insomnia,Non-Vegetarian,Overeating,Depression,Kapha
+60,Female,Vata,Active,Insomnia,Spicy/Oily Heavy,Smoking,Lethargy;Slow Digestion,Kapha
+61,Male,Vata-Kapha,Moderate,Irregular,Irregular Meals,Daytime Sleep,Anxiety;Fatigue,Vata
+84,Female,Vata-Pitta,Moderate,Disturbed,Sweet/Dairy Heavy,Daytime Sleep,Skin Rashes,Kapha-Pitta
+23,Male,Vata-Pitta,Moderate,Insomnia,Sweet/Dairy Heavy,Active,Excessive Sleep,Kapha-Vata
+24,Female,Vata,Very Active,Insomnia,Sweet/Dairy Heavy,Spicy Food,Slow Digestion;Weight Gain;Anxiety,Kapha-Vata
+42,Male,Tridosha,Moderate,Irregular,Non-Vegetarian,Daytime Sleep,Cold Hands;Skin Rashes;Sinusitis,Kapha-Vata
+83,Male,Kapha,Very Active,Insomnia,Vegan,Smoking,Fatigue,Pitta-Vata
+47,Male,Vata,Very Active,Insomnia,Non-Vegetarian,Overeating,Excessive Heat;Loose Stools,Pitta
+46,Male,Pitta-Kapha,Very Active,Disturbed,Irregular Meals,Smoking,Excessive Sleep,Kapha-Pitta
+68,Male,Vata-Kapha,Active,Disturbed,Vegan,Skipping Meals,Excessive Heat;Congestion;Constipation,Kapha-Vata
+55,Female,Vata-Pitta,Active,Insomnia,Non-Vegetarian,Smoking,Constipation;Light Sleep;Lethargy,Vata
+29,Male,Tridosha,Moderate,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Inflammation;Migraine;Anger,Pitta
+81,Female,Tridosha,Moderate,Irregular,Irregular Meals,Sedentary,Excessive Heat;Water Retention;Anger,Kapha-Pitta
+37,Female,Vata-Pitta,Very Active,Excessive (>9hr),Vegan,Active,Congestion;Insomnia;Anxiety,Vata
+30,Female,Pitta,Moderate,Insomnia,Spicy/Oily Heavy,Smoking,Fatigue;Bloating,Vata
+66,Male,Vata-Pitta,Active,Excessive (>9hr),Spicy/Oily Heavy,None,Burning Sensation;Light Sleep;Excessive Sleep,Pitta-Vata
+36,Female,Vata-Pitta,Active,Disturbed,Irregular Meals,High Stress,Depression;Oily Skin,Kapha
+38,Female,Vata,Moderate,Insomnia,Vegetarian,Active,Joint Pain,Vata
+63,Male,Pitta,Moderate,Irregular,Non-Vegetarian,Irregular Sleep,Acidity,Pitta-Vata
+73,Female,Tridosha,Active,Disturbed,Vegetarian,Irregular Sleep,Cold Hands;Congestion;Insomnia,Vata
+76,Female,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Anger,Pitta-Vata
+79,Male,Pitta,Sedentary,Irregular,Sweet/Dairy Heavy,Overeating,Cold Hands,Kapha-Vata
+66,Female,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Loose Stools;Red Eyes;Dry Skin,Pitta-Vata
+34,Female,Vata-Pitta,Sedentary,Disturbed,Non-Vegetarian,Skipping Meals,Congestion;Bloating,Vata
+40,Female,Tridosha,Very Active,Irregular,Vegetarian,Overeating,Congestion;Oily Skin;Acidity,Kapha
+47,Male,Vata-Pitta,Sedentary,Disturbed,Irregular Meals,Excess Travel,Fatigue;Inflammation;Joint Pain,Vata
+85,Female,Pitta,Active,Excessive (>9hr),Vegan,Sedentary,Water Retention,Kapha
+54,Male,Vata-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Balanced,Acidity;Anger;Cold Hands,Pitta-Vata
+59,Female,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Loose Stools,Pitta-Vata
+44,Female,Pitta,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Active,Inflammation;Sinusitis,Kapha-Pitta
+19,Male,Tridosha,Very Active,Disturbed,Vegetarian,Overworking,Excessive Heat;Inflammation;Acidity,Pitta
+44,Male,Pitta-Kapha,Sedentary,Disturbed,Irregular Meals,Daytime Sleep,Skin Rashes;Constipation,Pitta-Vata
+85,Female,Vata,Very Active,Irregular,Sweet/Dairy Heavy,None,Excessive Heat,Pitta-Vata
+60,Male,Tridosha,Moderate,Regular (7-8hr),Non-Vegetarian,Active,Migraine,Pitta
+64,Female,Vata,Active,Regular (7-8hr),Irregular Meals,High Stress,Weight Gain;Loose Stools,Pitta-Vata
+70,Female,Kapha,Very Active,Insomnia,Vegan,Skipping Meals,Joint Pain,Vata
+57,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Non-Vegetarian,Overworking,Oily Skin,Kapha-Pitta
+45,Female,Vata,Sedentary,Insomnia,Vegan,Heavy/Sweet Food,Excessive Heat;Constipation,Pitta-Vata
+70,Male,Pitta,Moderate,Excessive (>9hr),Vegan,Balanced,Slow Digestion;Lethargy,Kapha
+74,Male,Vata,Moderate,Irregular,Vegetarian,Irregular Sleep,Depression,Kapha-Vata
+35,Male,Pitta,Very Active,Disturbed,Irregular Meals,Spicy Food,Acidity,Pitta
+69,Female,Vata,Very Active,Disturbed,Vegetarian,High Alcohol,Cold Hands;Insomnia,Vata
+68,Male,Tridosha,Active,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Light Sleep;Anxiety,Vata
+62,Female,Pitta-Kapha,Active,Irregular,Irregular Meals,Overworking,Water Retention;Weight Gain;Depression,Kapha
+81,Male,Pitta-Kapha,Moderate,Irregular,Spicy/Oily Heavy,Irregular Sleep,Sinusitis;Migraine;Joint Pain,Pitta-Vata
+59,Female,Vata-Kapha,Moderate,Disturbed,Irregular Meals,Excess Travel,Dry Skin;Light Sleep;Anger,Vata
+24,Female,Pitta-Kapha,Active,Regular (7-8hr),Irregular Meals,Balanced,Slow Digestion;Fatigue;Acidity,Kapha-Pitta
+57,Male,Vata-Kapha,Moderate,Disturbed,Vegan,High Alcohol,Sinusitis;Migraine;Depression,Kapha-Pitta
+58,Male,Pitta-Kapha,Very Active,Irregular,Non-Vegetarian,Spicy Food,Fatigue,Pitta-Vata
+42,Female,Vata-Kapha,Sedentary,Insomnia,Spicy/Oily Heavy,Smoking,Loose Stools;Lethargy,Kapha-Pitta
+20,Female,Pitta-Kapha,Sedentary,Insomnia,Non-Vegetarian,Sedentary,Acidity;Sinusitis,Kapha-Pitta
+24,Male,Vata-Kapha,Active,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Insomnia,Kapha-Vata
+49,Female,Pitta-Kapha,Very Active,Disturbed,Vegetarian,Irregular Sleep,Constipation;Dry Skin;Burning Sensation,Vata
+54,Female,Tridosha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Slow Digestion;Depression,Kapha
+32,Female,Vata-Kapha,Moderate,Insomnia,Vegan,Sedentary,Water Retention;Light Sleep,Kapha-Vata
+34,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,High Alcohol,Excessive Heat;Oily Skin,Kapha-Pitta
+27,Male,Vata,Moderate,Irregular,Vegetarian,High Alcohol,Fatigue;Constipation,Vata
+22,Male,Kapha,Sedentary,Irregular,Irregular Meals,Sedentary,Excessive Heat,Kapha-Pitta
+32,Female,Pitta,Moderate,Disturbed,Vegetarian,Daytime Sleep,Weight Gain;Water Retention;Bloating,Kapha
+38,Female,Pitta,Active,Regular (7-8hr),Non-Vegetarian,High Stress,Burning Sensation;Light Sleep,Pitta-Vata
+43,Male,Vata,Sedentary,Insomnia,Vegan,Heavy/Sweet Food,Lethargy;Congestion;Slow Digestion,Kapha
+60,Male,Pitta,Sedentary,Regular (7-8hr),Vegan,Overeating,Weight Gain;Fatigue,Kapha-Vata
+68,Male,Kapha,Very Active,Insomnia,Vegetarian,Excess Travel,Oily Skin,Kapha-Vata
+64,Female,Vata,Very Active,Insomnia,Irregular Meals,Irregular Sleep,Lethargy,Kapha-Vata
+80,Female,Vata-Kapha,Sedentary,Disturbed,Sweet/Dairy Heavy,Excess Travel,Loose Stools;Excessive Sleep;Acidity,Kapha-Pitta
+39,Male,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Migraine;Burning Sensation;Depression,Kapha-Pitta
+81,Female,Vata-Kapha,Moderate,Regular (7-8hr),Vegetarian,Daytime Sleep,Inflammation,Kapha-Pitta
+37,Female,Tridosha,Very Active,Irregular,Sweet/Dairy Heavy,None,Weight Gain,Kapha
+64,Male,Pitta,Very Active,Disturbed,Non-Vegetarian,Balanced,Slow Digestion;Excessive Heat,Kapha-Pitta
+51,Female,Tridosha,Sedentary,Irregular,Sweet/Dairy Heavy,Skipping Meals,Red Eyes;Inflammation;Lethargy,Pitta
+81,Male,Pitta,Active,Excessive (>9hr),Vegetarian,Overworking,Depression;Cold Hands;Bloating,Vata
+85,Female,Pitta,Active,Regular (7-8hr),Non-Vegetarian,Balanced,Congestion;Slow Digestion;Weight Gain,Kapha
+36,Male,Vata,Very Active,Insomnia,Sweet/Dairy Heavy,Daytime Sleep,Joint Pain;Burning Sensation,Pitta-Vata
+22,Male,Tridosha,Active,Regular (7-8hr),Sweet/Dairy Heavy,None,Light Sleep,Vata
+19,Female,Vata-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Skin Rashes,Kapha-Pitta
+27,Female,Vata,Moderate,Insomnia,Non-Vegetarian,Excess Travel,Anxiety;Depression;Loose Stools,Vata
+36,Female,Vata-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,High Stress,Sinusitis;Dry Skin,Kapha-Vata
+29,Female,Pitta,Very Active,Insomnia,Vegan,None,Fatigue,Pitta-Vata
+80,Female,Pitta,Sedentary,Disturbed,Vegan,Overworking,Joint Pain;Oily Skin;Insomnia,Vata
+20,Female,Kapha,Very Active,Regular (7-8hr),Irregular Meals,Balanced,Oily Skin,Kapha
+78,Female,Tridosha,Moderate,Insomnia,Irregular Meals,None,Sinusitis;Excessive Sleep;Fatigue,Kapha
+73,Female,Vata-Kapha,Very Active,Irregular,Sweet/Dairy Heavy,Balanced,Water Retention;Anger;Constipation,Kapha-Vata
+23,Male,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Skipping Meals,Light Sleep,Vata
+47,Female,Kapha,Active,Insomnia,Vegetarian,Smoking,Inflammation;Water Retention;Insomnia,Kapha-Pitta
+47,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Vegan,Sedentary,Slow Digestion;Migraine,Kapha-Pitta
+44,Female,Vata-Pitta,Moderate,Regular (7-8hr),Vegan,None,Constipation;Cold Hands,Vata
+44,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Inflammation;Excessive Sleep;Insomnia,Kapha-Vata
+79,Female,Vata,Active,Irregular,Non-Vegetarian,Spicy Food,Red Eyes;Joint Pain;Fatigue,Pitta-Vata
+53,Female,Vata,Sedentary,Disturbed,Spicy/Oily Heavy,Smoking,Excessive Heat;Oily Skin;Anxiety,Pitta-Vata
+72,Male,Tridosha,Active,Excessive (>9hr),Non-Vegetarian,Smoking,Light Sleep;Migraine;Depression,Pitta-Vata
+57,Male,Pitta,Very Active,Regular (7-8hr),Irregular Meals,Spicy Food,Congestion;Excessive Sleep,Kapha
+54,Male,Pitta-Kapha,Moderate,Disturbed,Vegetarian,Spicy Food,Migraine,Pitta
+79,Male,Tridosha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Skipping Meals,Bloating,Vata
+52,Male,Vata-Pitta,Very Active,Regular (7-8hr),Vegan,Spicy Food,Sinusitis;Anxiety;Joint Pain,Vata
+68,Male,Kapha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Migraine;Water Retention,Kapha-Pitta
+33,Female,Vata,Active,Regular (7-8hr),Non-Vegetarian,Heavy/Sweet Food,Anxiety;Inflammation,Pitta-Vata
+60,Female,Kapha,Moderate,Disturbed,Vegetarian,Overeating,Water Retention,Kapha
+30,Female,Pitta-Kapha,Very Active,Insomnia,Irregular Meals,Smoking,Light Sleep,Pitta-Vata
+18,Male,Vata,Very Active,Excessive (>9hr),Vegan,Daytime Sleep,Water Retention,Kapha
+20,Female,Pitta-Kapha,Moderate,Irregular,Spicy/Oily Heavy,High Stress,Acidity,Pitta-Vata
+76,Female,Kapha,Active,Disturbed,Irregular Meals,High Alcohol,Joint Pain,Pitta-Vata
+48,Female,Vata,Active,Irregular,Vegan,Overeating,Inflammation,Kapha-Pitta
+33,Female,Vata,Moderate,Disturbed,Spicy/Oily Heavy,High Stress,Loose Stools;Burning Sensation,Pitta
+74,Male,Vata,Very Active,Regular (7-8hr),Non-Vegetarian,Sedentary,Acidity,Kapha-Pitta
+60,Female,Vata,Moderate,Insomnia,Vegetarian,Sedentary,Weight Gain;Fatigue,Kapha-Vata
+65,Female,Pitta,Moderate,Excessive (>9hr),Vegetarian,Spicy Food,Bloating;Anger;Inflammation,Pitta
+40,Female,Pitta,Sedentary,Insomnia,Irregular Meals,Skipping Meals,Dry Skin,Vata
+24,Female,Tridosha,Moderate,Excessive (>9hr),Vegan,None,Constipation,Vata
+52,Female,Tridosha,Active,Irregular,Non-Vegetarian,High Stress,Joint Pain,Vata
+49,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Smoking,Congestion;Loose Stools;Acidity,Pitta
+33,Female,Pitta,Active,Insomnia,Vegan,Heavy/Sweet Food,Cold Hands;Skin Rashes;Slow Digestion,Kapha-Pitta
+48,Male,Vata-Kapha,Moderate,Disturbed,Non-Vegetarian,Sedentary,Burning Sensation;Loose Stools,Pitta
+50,Female,Pitta,Very Active,Irregular,Non-Vegetarian,Overworking,Excessive Sleep;Burning Sensation;Fatigue,Pitta
+46,Male,Vata,Active,Regular (7-8hr),Vegetarian,Sedentary,Lethargy,Kapha
+28,Male,Vata-Pitta,Moderate,Irregular,Vegetarian,Spicy Food,Loose Stools,Pitta
+37,Female,Vata,Moderate,Regular (7-8hr),Vegan,Smoking,Migraine;Excessive Sleep,Kapha-Pitta
+71,Female,Kapha,Active,Insomnia,Sweet/Dairy Heavy,High Alcohol,Joint Pain;Cold Hands,Vata
+34,Male,Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,High Stress,Migraine;Bloating;Insomnia,Vata
+65,Female,Pitta,Active,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Lethargy;Oily Skin;Water Retention,Kapha
+41,Female,Vata-Kapha,Moderate,Regular (7-8hr),Vegetarian,High Stress,Bloating;Cold Hands,Vata
+84,Male,Vata,Very Active,Disturbed,Vegan,Active,Fatigue,Vata
+62,Female,Pitta,Very Active,Irregular,Irregular Meals,Spicy Food,Oily Skin;Depression;Dry Skin,Kapha
+75,Male,Vata-Pitta,Moderate,Disturbed,Spicy/Oily Heavy,Skipping Meals,Water Retention,Kapha-Vata
+83,Female,Kapha,Moderate,Disturbed,Irregular Meals,Overeating,Excessive Heat,Kapha-Pitta
+72,Female,Vata-Pitta,Active,Insomnia,Vegan,Overworking,Migraine;Bloating;Dry Skin,Pitta-Vata
+72,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Constipation;Migraine;Dry Skin,Pitta-Vata
+63,Male,Vata-Kapha,Moderate,Insomnia,Irregular Meals,Daytime Sleep,Migraine;Burning Sensation;Joint Pain,Pitta-Vata
+30,Male,Vata-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Overworking,Water Retention;Cold Hands,Kapha-Vata
+81,Male,Vata,Active,Irregular,Vegan,None,Excessive Sleep;Bloating,Kapha-Vata
+19,Male,Vata,Very Active,Regular (7-8hr),Vegetarian,Smoking,Acidity;Insomnia;Loose Stools,Pitta
+26,Female,Kapha,Very Active,Irregular,Spicy/Oily Heavy,Excess Travel,Anxiety;Lethargy;Weight Gain,Kapha-Vata
+21,Female,Vata-Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Overworking,Acidity,Pitta
+70,Female,Pitta,Active,Excessive (>9hr),Vegetarian,High Stress,Inflammation;Anxiety,Pitta-Vata
+26,Male,Vata,Sedentary,Disturbed,Vegan,None,Insomnia;Dry Skin,Vata
+44,Male,Tridosha,Moderate,Excessive (>9hr),Non-Vegetarian,None,Fatigue;Dry Skin,Vata
+39,Male,Vata-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Overworking,Migraine;Insomnia;Cold Hands,Pitta-Vata
+42,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Vegan,Skipping Meals,Joint Pain;Water Retention,Kapha-Vata
+76,Female,Kapha,Sedentary,Disturbed,Irregular Meals,Heavy/Sweet Food,Bloating;Skin Rashes,Pitta-Vata
+31,Female,Vata,Sedentary,Irregular,Sweet/Dairy Heavy,Smoking,Inflammation;Joint Pain,Pitta-Vata
+35,Male,Pitta,Active,Disturbed,Irregular Meals,Overworking,Excessive Sleep;Burning Sensation,Pitta
+55,Female,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Irregular Sleep,Constipation,Vata
+71,Male,Vata-Kapha,Active,Irregular,Irregular Meals,High Alcohol,Weight Gain;Migraine,Kapha-Pitta
+49,Male,Vata,Active,Regular (7-8hr),Vegan,High Alcohol,Migraine;Joint Pain;Slow Digestion,Pitta-Vata
+33,Female,Pitta,Active,Regular (7-8hr),Non-Vegetarian,Balanced,Burning Sensation;Skin Rashes,Pitta
+31,Female,Vata,Active,Disturbed,Sweet/Dairy Heavy,Irregular Sleep,Fatigue;Cold Hands;Joint Pain,Vata
+32,Female,Vata-Pitta,Active,Excessive (>9hr),Vegetarian,Daytime Sleep,Light Sleep;Inflammation,Pitta-Vata
+38,Male,Vata-Pitta,Sedentary,Disturbed,Irregular Meals,None,Red Eyes,Pitta
+22,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Vegetarian,Excess Travel,Congestion;Inflammation,Kapha-Pitta
+72,Female,Kapha,Very Active,Regular (7-8hr),Vegetarian,Daytime Sleep,Acidity,Kapha-Pitta
+44,Male,Vata,Very Active,Irregular,Vegan,Irregular Sleep,Water Retention,Kapha-Vata
+42,Male,Pitta-Kapha,Moderate,Irregular,Vegan,Daytime Sleep,Loose Stools;Fatigue;Excessive Sleep,Kapha-Pitta
+72,Female,Vata-Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,Spicy Food,Depression;Loose Stools,Kapha-Pitta
+31,Female,Kapha,Very Active,Disturbed,Spicy/Oily Heavy,None,Red Eyes;Weight Gain,Kapha-Pitta
+61,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,Overworking,Insomnia;Excessive Sleep;Depression,Kapha
+51,Female,Pitta-Kapha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Excessive Sleep;Anger;Dry Skin,Kapha-Pitta
+77,Female,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,None,Fatigue,Vata
+29,Female,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Overeating,Anxiety;Loose Stools;Constipation,Vata
+76,Male,Vata,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,None,Dry Skin;Skin Rashes;Anger,Pitta-Vata
+29,Female,Pitta,Sedentary,Excessive (>9hr),Vegetarian,Heavy/Sweet Food,Oily Skin,Kapha
+80,Female,Vata-Pitta,Very Active,Insomnia,Irregular Meals,Overeating,Water Retention;Excessive Sleep,Kapha
+21,Female,Kapha,Very Active,Irregular,Irregular Meals,Heavy/Sweet Food,Constipation;Excessive Heat;Loose Stools,Pitta
+40,Female,Tridosha,Sedentary,Insomnia,Non-Vegetarian,Excess Travel,Inflammation;Lethargy;Excessive Heat,Pitta
+22,Male,Vata-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,None,Fatigue;Water Retention;Anger,Kapha-Vata
+34,Male,Vata-Pitta,Moderate,Insomnia,Vegan,Heavy/Sweet Food,Excessive Heat,Kapha-Pitta
+35,Male,Pitta-Kapha,Active,Disturbed,Non-Vegetarian,Irregular Sleep,Congestion;Red Eyes,Kapha-Pitta
+30,Female,Vata-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Overworking,Fatigue,Pitta-Vata
+83,Female,Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Anger;Slow Digestion;Oily Skin,Kapha-Pitta
+58,Female,Vata,Moderate,Irregular,Vegan,Spicy Food,Loose Stools;Burning Sensation,Pitta
+78,Male,Vata-Kapha,Active,Disturbed,Vegetarian,None,Insomnia;Inflammation,Pitta-Vata
+77,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Active,Lethargy;Anxiety;Congestion,Kapha
+42,Female,Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Excessive Heat;Red Eyes,Pitta
+37,Male,Tridosha,Very Active,Irregular,Vegetarian,Overworking,Inflammation,Pitta
+45,Male,Vata,Active,Regular (7-8hr),Non-Vegetarian,High Alcohol,Slow Digestion;Bloating;Excessive Heat,Pitta-Vata
+80,Male,Vata-Kapha,Moderate,Regular (7-8hr),Irregular Meals,Balanced,Acidity;Cold Hands;Sinusitis,Kapha-Vata
+69,Male,Tridosha,Moderate,Insomnia,Vegan,Spicy Food,Loose Stools;Slow Digestion;Light Sleep,Pitta-Vata
+21,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Vegan,Daytime Sleep,Skin Rashes,Kapha-Pitta
+44,Male,Kapha,Moderate,Insomnia,Irregular Meals,Balanced,Depression;Burning Sensation;Cold Hands,Kapha-Vata
+54,Female,Pitta,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Smoking,Bloating;Constipation;Anger,Pitta-Vata
+34,Female,Vata-Pitta,Very Active,Irregular,Irregular Meals,Active,Fatigue;Depression,Kapha-Vata
+39,Male,Kapha,Moderate,Insomnia,Irregular Meals,Balanced,Loose Stools;Skin Rashes;Water Retention,Kapha-Pitta
+41,Male,Vata-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Overeating,Oily Skin;Red Eyes,Kapha
+81,Male,Vata,Sedentary,Excessive (>9hr),Irregular Meals,Overworking,Anxiety;Congestion;Bloating,Vata
+84,Male,Pitta-Kapha,Very Active,Irregular,Irregular Meals,Spicy Food,Slow Digestion;Congestion;Skin Rashes,Kapha-Pitta
+85,Male,Tridosha,Moderate,Disturbed,Vegetarian,Heavy/Sweet Food,Slow Digestion;Fatigue;Cold Hands,Kapha-Vata
+19,Male,Pitta-Kapha,Very Active,Insomnia,Irregular Meals,Active,Anger;Sinusitis;Cold Hands,Kapha-Pitta
+53,Male,Tridosha,Active,Irregular,Vegetarian,Spicy Food,Skin Rashes,Pitta
+36,Female,Pitta,Moderate,Insomnia,Vegan,Daytime Sleep,Excessive Sleep;Anxiety,Kapha-Vata
+23,Female,Pitta,Sedentary,Disturbed,Non-Vegetarian,Daytime Sleep,Migraine;Slow Digestion,Kapha-Pitta
+62,Female,Vata,Moderate,Irregular,Vegan,High Stress,Excessive Sleep,Kapha-Vata
+67,Male,Vata-Pitta,Active,Insomnia,Vegetarian,Excess Travel,Inflammation,Pitta-Vata
+68,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,None,Excessive Heat;Cold Hands,Pitta-Vata
+42,Female,Vata-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Overworking,Dry Skin,Pitta-Vata
+85,Male,Pitta,Moderate,Excessive (>9hr),Vegetarian,None,Anxiety,Pitta-Vata
+49,Female,Vata,Very Active,Irregular,Vegetarian,Irregular Sleep,Skin Rashes,Pitta-Vata
+67,Male,Pitta-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Overworking,Fatigue;Depression,Kapha-Vata
+58,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Spicy Food,Lethargy;Constipation,Kapha-Vata
+74,Female,Kapha,Moderate,Regular (7-8hr),Vegan,High Stress,Light Sleep;Cold Hands,Vata
+61,Male,Vata,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Daytime Sleep,Sinusitis,Kapha
+26,Male,Vata,Active,Regular (7-8hr),Vegan,Smoking,Migraine,Pitta
+75,Female,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Heavy/Sweet Food,Anger;Water Retention;Excessive Sleep,Kapha
+65,Male,Tridosha,Moderate,Excessive (>9hr),Vegan,Balanced,Acidity,Pitta
+55,Male,Pitta-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,High Stress,Lethargy,Kapha-Vata
+66,Female,Vata-Pitta,Moderate,Irregular,Vegetarian,Irregular Sleep,Burning Sensation,Pitta-Vata
+79,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Active,Light Sleep,Pitta-Vata
+74,Male,Vata-Kapha,Moderate,Disturbed,Spicy/Oily Heavy,None,Dry Skin,Vata
+77,Male,Pitta,Sedentary,Insomnia,Vegan,Overeating,Skin Rashes;Joint Pain,Pitta-Vata
+82,Female,Pitta,Very Active,Irregular,Vegetarian,Daytime Sleep,Insomnia;Skin Rashes,Pitta-Vata
+43,Female,Pitta-Kapha,Sedentary,Disturbed,Sweet/Dairy Heavy,Overworking,Cold Hands;Congestion,Kapha-Vata
+40,Male,Vata,Active,Excessive (>9hr),Vegan,High Alcohol,Congestion;Lethargy,Kapha
+82,Female,Vata,Moderate,Irregular,Irregular Meals,Active,Weight Gain;Slow Digestion,Kapha
+18,Female,Vata-Pitta,Active,Regular (7-8hr),Irregular Meals,Spicy Food,Oily Skin;Excessive Sleep;Bloating,Kapha-Vata
+55,Female,Tridosha,Active,Irregular,Vegetarian,Heavy/Sweet Food,Lethargy;Light Sleep;Acidity,Kapha-Vata
+43,Male,Kapha,Moderate,Insomnia,Non-Vegetarian,High Stress,Oily Skin;Burning Sensation,Kapha-Pitta
+73,Male,Pitta,Moderate,Excessive (>9hr),Vegan,Excess Travel,Migraine;Red Eyes,Pitta
+42,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Vegetarian,Spicy Food,Lethargy;Bloating;Light Sleep,Kapha-Vata
+19,Male,Vata-Pitta,Active,Excessive (>9hr),Irregular Meals,Irregular Sleep,Anger;Weight Gain,Pitta-Vata
+77,Male,Pitta,Very Active,Irregular,Vegan,Spicy Food,Excessive Heat;Inflammation;Depression,Pitta
+64,Male,Tridosha,Very Active,Disturbed,Spicy/Oily Heavy,Overeating,Red Eyes;Fatigue;Skin Rashes,Pitta
+37,Male,Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Oily Skin;Anger;Dry Skin,Kapha
+71,Female,Pitta,Very Active,Irregular,Irregular Meals,Overworking,Anxiety;Depression,Pitta-Vata
+70,Female,Pitta-Kapha,Active,Insomnia,Irregular Meals,Smoking,Congestion,Kapha-Pitta
+40,Male,Pitta-Kapha,Active,Insomnia,Vegan,Excess Travel,Inflammation,Pitta-Vata
+72,Female,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,Balanced,Anxiety,Pitta-Vata
+80,Female,Tridosha,Very Active,Disturbed,Non-Vegetarian,High Stress,Acidity;Bloating,Pitta-Vata
+79,Male,Pitta-Kapha,Active,Disturbed,Vegetarian,High Stress,Constipation;Migraine,Pitta-Vata
+53,Female,Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Joint Pain;Burning Sensation;Loose Stools,Pitta-Vata
+47,Female,Vata,Sedentary,Excessive (>9hr),Vegetarian,None,Light Sleep,Vata
+47,Male,Vata,Sedentary,Excessive (>9hr),Vegetarian,Sedentary,Joint Pain;Depression;Water Retention,Kapha
+50,Male,Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Sedentary,Dry Skin;Red Eyes;Joint Pain,Vata
+19,Male,Vata,Very Active,Irregular,Vegan,None,Acidity;Cold Hands;Weight Gain,Pitta-Vata
+25,Male,Tridosha,Moderate,Irregular,Vegetarian,High Alcohol,Water Retention;Depression,Kapha
+45,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,Sedentary,Joint Pain;Cold Hands,Vata
+53,Male,Vata-Kapha,Very Active,Disturbed,Vegetarian,Irregular Sleep,Burning Sensation;Anxiety,Vata
+52,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Overworking,Water Retention;Red Eyes;Light Sleep,Kapha-Pitta
+61,Male,Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Burning Sensation;Anger;Migraine,Pitta
+25,Female,Vata-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,High Stress,Cold Hands,Vata
+68,Female,Vata-Kapha,Sedentary,Insomnia,Vegetarian,Spicy Food,Migraine;Oily Skin;Weight Gain,Kapha-Pitta
+68,Female,Vata-Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Water Retention;Depression,Kapha
+37,Female,Vata,Moderate,Insomnia,Vegetarian,High Alcohol,Fatigue,Pitta-Vata
+34,Female,Pitta,Active,Irregular,Sweet/Dairy Heavy,Irregular Sleep,Light Sleep;Dry Skin,Vata
+63,Female,Pitta-Kapha,Sedentary,Insomnia,Vegan,Excess Travel,Weight Gain;Cold Hands;Joint Pain,Vata
+21,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Vegan,Excess Travel,Water Retention;Cold Hands,Kapha-Vata
+84,Female,Pitta-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,High Alcohol,Cold Hands,Pitta-Vata
+56,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Smoking,Sinusitis;Fatigue;Inflammation,Kapha-Pitta
+76,Male,Vata-Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,High Alcohol,Sinusitis;Fatigue;Bloating,Vata
+52,Female,Vata-Kapha,Very Active,Insomnia,Vegan,Smoking,Insomnia,Pitta-Vata
+21,Male,Pitta-Kapha,Sedentary,Irregular,Vegetarian,Smoking,Fatigue;Insomnia,Vata
+48,Female,Pitta,Very Active,Excessive (>9hr),Irregular Meals,None,Congestion,Kapha-Pitta
+19,Female,Vata,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Skipping Meals,Inflammation;Anxiety;Dry Skin,Vata
+37,Male,Vata-Kapha,Moderate,Irregular,Vegan,None,Oily Skin,Kapha
+56,Female,Kapha,Sedentary,Insomnia,Vegetarian,Overworking,Sinusitis,Kapha-Pitta
+52,Female,Vata-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Sedentary,Depression,Kapha
+23,Female,Vata,Active,Regular (7-8hr),Vegetarian,Overworking,Light Sleep;Burning Sensation,Pitta-Vata
+71,Male,Pitta-Kapha,Moderate,Insomnia,Vegetarian,Heavy/Sweet Food,Anger,Kapha-Pitta
+44,Female,Kapha,Active,Disturbed,Vegan,Irregular Sleep,Joint Pain;Bloating,Vata
+60,Female,Kapha,Sedentary,Disturbed,Vegan,Active,Burning Sensation;Excessive Sleep,Kapha-Pitta
+48,Male,Vata-Pitta,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Anxiety,Pitta-Vata
+66,Female,Vata-Pitta,Moderate,Insomnia,Spicy/Oily Heavy,High Alcohol,Joint Pain,Pitta-Vata
+34,Male,Pitta-Kapha,Active,Irregular,Non-Vegetarian,Overworking,Loose Stools;Acidity,Pitta
+37,Male,Vata,Very Active,Disturbed,Vegetarian,Balanced,Fatigue;Constipation;Dry Skin,Vata
+83,Male,Vata-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Smoking,Depression;Burning Sensation,Kapha-Pitta
+58,Female,Pitta,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Overeating,Excessive Heat;Bloating,Pitta-Vata
+60,Female,Vata-Pitta,Moderate,Insomnia,Spicy/Oily Heavy,Spicy Food,Inflammation;Burning Sensation,Pitta
+21,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Active,Light Sleep;Excessive Sleep;Acidity,Kapha-Pitta
+83,Male,Vata,Active,Excessive (>9hr),Irregular Meals,Daytime Sleep,Insomnia;Red Eyes;Dry Skin,Vata
+42,Male,Pitta-Kapha,Active,Excessive (>9hr),Irregular Meals,Daytime Sleep,Anger,Kapha-Pitta
+74,Female,Vata,Very Active,Excessive (>9hr),Vegetarian,Active,Oily Skin;Sinusitis,Kapha
+55,Female,Vata-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Balanced,Congestion;Weight Gain,Kapha
+72,Male,Vata-Pitta,Moderate,Disturbed,Spicy/Oily Heavy,Balanced,Bloating;Excessive Sleep;Inflammation,Pitta-Vata
+58,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Irregular Meals,None,Migraine;Cold Hands;Dry Skin,Vata
+74,Male,Pitta-Kapha,Sedentary,Disturbed,Vegan,Daytime Sleep,Acidity;Dry Skin,Pitta-Vata
+43,Female,Pitta,Active,Excessive (>9hr),Vegan,Smoking,Anger;Excessive Sleep;Oily Skin,Kapha-Pitta
+74,Female,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Overeating,Excessive Sleep,Kapha
+25,Male,Kapha,Very Active,Insomnia,Vegetarian,Skipping Meals,Excessive Heat,Pitta-Vata
+69,Male,Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Oily Skin;Skin Rashes;Anxiety,Pitta
+77,Male,Vata,Active,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Congestion,Kapha
+42,Male,Pitta,Very Active,Disturbed,Irregular Meals,Overworking,Congestion;Fatigue;Burning Sensation,Pitta
+80,Female,Vata-Kapha,Moderate,Regular (7-8hr),Irregular Meals,Active,Dry Skin;Fatigue,Vata
+72,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,Heavy/Sweet Food,Anger;Joint Pain,Pitta-Vata
+66,Male,Kapha,Sedentary,Disturbed,Vegan,Overworking,Oily Skin,Kapha-Pitta
+34,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,None,Depression;Loose Stools;Excessive Heat,Kapha-Pitta
+65,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,Heavy/Sweet Food,Migraine,Kapha-Pitta
+35,Female,Vata-Kapha,Sedentary,Disturbed,Non-Vegetarian,High Stress,Congestion;Joint Pain,Kapha-Vata
+63,Female,Pitta-Kapha,Moderate,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Red Eyes;Constipation,Pitta-Vata
+43,Male,Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Sinusitis;Inflammation;Acidity,Kapha-Pitta
+67,Female,Vata,Very Active,Disturbed,Non-Vegetarian,Excess Travel,Joint Pain,Vata
+47,Female,Kapha,Active,Excessive (>9hr),Vegan,Irregular Sleep,Skin Rashes;Weight Gain,Kapha-Pitta
+47,Male,Tridosha,Moderate,Insomnia,Non-Vegetarian,None,Congestion,Kapha
+33,Male,Kapha,Moderate,Disturbed,Irregular Meals,Skipping Meals,Joint Pain,Vata
+46,Male,Vata,Very Active,Insomnia,Sweet/Dairy Heavy,Overworking,Weight Gain,Kapha-Pitta
+25,Female,Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Irregular Sleep,Weight Gain;Burning Sensation;Light Sleep,Pitta-Vata
+32,Male,Vata-Pitta,Very Active,Regular (7-8hr),Vegan,Active,Sinusitis;Fatigue,Kapha-Vata
+58,Female,Tridosha,Sedentary,Insomnia,Sweet/Dairy Heavy,High Stress,Sinusitis;Weight Gain,Kapha
+42,Male,Vata-Kapha,Active,Excessive (>9hr),Vegan,Overeating,Sinusitis,Kapha
+34,Male,Pitta,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Balanced,Weight Gain,Kapha-Pitta
+58,Female,Vata,Very Active,Insomnia,Spicy/Oily Heavy,Active,Depression,Kapha-Vata
+75,Male,Vata,Sedentary,Insomnia,Spicy/Oily Heavy,Spicy Food,Burning Sensation;Lethargy,Kapha-Pitta
+35,Male,Pitta-Kapha,Very Active,Disturbed,Irregular Meals,None,Sinusitis;Red Eyes;Water Retention,Kapha
+61,Male,Kapha,Sedentary,Insomnia,Vegan,Active,Slow Digestion,Kapha
+66,Female,Pitta-Kapha,Active,Excessive (>9hr),Irregular Meals,Overworking,Burning Sensation,Pitta
+44,Male,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,None,Joint Pain,Vata
+67,Female,Kapha,Active,Regular (7-8hr),Non-Vegetarian,Overworking,Insomnia,Pitta-Vata
+34,Male,Pitta,Active,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Weight Gain;Constipation,Kapha-Vata
+45,Female,Tridosha,Moderate,Regular (7-8hr),Non-Vegetarian,Active,Insomnia,Vata
+28,Male,Kapha,Active,Disturbed,Irregular Meals,Spicy Food,Insomnia;Depression,Kapha-Vata
+59,Female,Pitta-Kapha,Active,Disturbed,Non-Vegetarian,Daytime Sleep,Skin Rashes;Anxiety,Pitta-Vata
+63,Female,Vata-Kapha,Active,Excessive (>9hr),Irregular Meals,High Alcohol,Inflammation;Lethargy,Kapha-Pitta
+54,Male,Pitta-Kapha,Sedentary,Insomnia,Non-Vegetarian,Excess Travel,Depression,Kapha-Vata
+27,Female,Pitta,Very Active,Irregular,Sweet/Dairy Heavy,Active,Bloating;Oily Skin;Red Eyes,Pitta-Vata
+56,Female,Kapha,Active,Disturbed,Vegetarian,High Stress,Red Eyes;Joint Pain,Pitta-Vata
+38,Male,Vata-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Overworking,Skin Rashes;Bloating,Pitta-Vata
+23,Male,Pitta-Kapha,Active,Excessive (>9hr),Vegan,Sedentary,Skin Rashes,Kapha-Pitta
+52,Male,Vata-Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Sedentary,Burning Sensation;Slow Digestion,Kapha
+61,Male,Vata-Kapha,Active,Disturbed,Vegetarian,Overworking,Red Eyes,Pitta
+57,Female,Vata,Sedentary,Insomnia,Non-Vegetarian,None,Anxiety;Loose Stools,Pitta-Vata
+84,Female,Vata-Pitta,Sedentary,Irregular,Vegetarian,Balanced,Inflammation,Pitta
+49,Female,Kapha,Active,Disturbed,Non-Vegetarian,Sedentary,Sinusitis;Burning Sensation;Slow Digestion,Kapha
+55,Male,Tridosha,Active,Insomnia,Sweet/Dairy Heavy,Spicy Food,Sinusitis;Inflammation;Bloating,Pitta-Vata
+67,Female,Vata-Pitta,Active,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Loose Stools;Congestion;Oily Skin,Kapha
+21,Female,Pitta-Kapha,Moderate,Disturbed,Spicy/Oily Heavy,Excess Travel,Fatigue;Water Retention,Kapha-Vata
+55,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Vegetarian,None,Excessive Heat,Pitta
+85,Male,Tridosha,Moderate,Insomnia,Irregular Meals,None,Joint Pain;Migraine;Red Eyes,Pitta
+74,Female,Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Active,Acidity;Migraine;Fatigue,Pitta
+83,Female,Vata-Pitta,Very Active,Disturbed,Spicy/Oily Heavy,Overeating,Insomnia;Excessive Heat,Pitta-Vata
+41,Female,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Irregular Sleep,Anxiety,Vata
+46,Male,Pitta-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Spicy Food,Dry Skin;Depression,Kapha-Vata
+44,Female,Kapha,Active,Regular (7-8hr),Non-Vegetarian,High Alcohol,Excessive Heat;Bloating;Anxiety,Pitta-Vata
+80,Female,Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Balanced,Light Sleep,Kapha-Vata
+69,Female,Tridosha,Very Active,Disturbed,Vegan,Spicy Food,Loose Stools;Slow Digestion,Kapha-Pitta
+53,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Active,Light Sleep,Vata
+67,Male,Kapha,Active,Irregular,Vegetarian,Excess Travel,Migraine;Skin Rashes;Slow Digestion,Kapha-Pitta
+65,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Vegan,Spicy Food,Skin Rashes;Anger,Pitta
+73,Female,Vata-Pitta,Very Active,Excessive (>9hr),Irregular Meals,Excess Travel,Excessive Heat;Fatigue,Pitta-Vata
+80,Male,Pitta,Moderate,Regular (7-8hr),Irregular Meals,None,Burning Sensation;Migraine,Pitta
+44,Male,Vata-Kapha,Active,Excessive (>9hr),Vegan,Heavy/Sweet Food,Oily Skin;Excessive Sleep;Depression,Kapha
+72,Female,Tridosha,Sedentary,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Water Retention;Migraine,Kapha-Pitta
+42,Male,Kapha,Very Active,Irregular,Vegetarian,Balanced,Light Sleep,Kapha-Vata
+66,Female,Vata,Sedentary,Regular (7-8hr),Non-Vegetarian,None,Bloating;Constipation;Inflammation,Vata
+75,Female,Pitta-Kapha,Very Active,Disturbed,Non-Vegetarian,Heavy/Sweet Food,Cold Hands;Congestion,Kapha
+69,Female,Kapha,Very Active,Disturbed,Vegetarian,Excess Travel,Sinusitis;Weight Gain;Water Retention,Kapha
+25,Male,Vata-Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Active,Excessive Sleep,Kapha
+73,Male,Vata-Kapha,Moderate,Insomnia,Vegetarian,Heavy/Sweet Food,Excessive Sleep;Cold Hands;Red Eyes,Kapha-Vata
+82,Male,Vata,Active,Excessive (>9hr),Vegan,Irregular Sleep,Skin Rashes;Congestion;Fatigue,Vata
+54,Male,Vata-Kapha,Active,Irregular,Non-Vegetarian,Heavy/Sweet Food,Loose Stools;Red Eyes,Pitta
+54,Female,Pitta-Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Daytime Sleep,Acidity;Constipation,Pitta-Vata
+41,Female,Pitta,Active,Excessive (>9hr),Spicy/Oily Heavy,High Stress,Burning Sensation,Pitta-Vata
+26,Female,Vata,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Slow Digestion;Inflammation;Dry Skin,Kapha-Vata
+65,Male,Tridosha,Very Active,Irregular,Vegetarian,Overworking,Migraine,Pitta
+66,Female,Vata-Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Skipping Meals,Joint Pain,Vata
+31,Female,Tridosha,Very Active,Irregular,Vegetarian,High Alcohol,Congestion;Burning Sensation;Constipation,Pitta-Vata
+26,Male,Kapha,Moderate,Disturbed,Vegetarian,Smoking,Congestion;Depression;Acidity,Kapha-Pitta
+36,Female,Tridosha,Active,Disturbed,Non-Vegetarian,Irregular Sleep,Depression;Anxiety;Lethargy,Kapha-Vata
+20,Female,Tridosha,Active,Insomnia,Vegetarian,Spicy Food,Acidity;Anxiety,Pitta-Vata
+45,Female,Pitta,Moderate,Irregular,Irregular Meals,Skipping Meals,Red Eyes,Pitta-Vata
+40,Male,Vata-Kapha,Active,Insomnia,Vegan,Overeating,Bloating,Kapha-Vata
+39,Male,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Excess Travel,Dry Skin,Vata
+76,Female,Tridosha,Very Active,Regular (7-8hr),Vegetarian,Irregular Sleep,Migraine,Pitta-Vata
+26,Male,Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Irregular Sleep,Burning Sensation,Pitta-Vata
+35,Female,Kapha,Sedentary,Insomnia,Vegetarian,Irregular Sleep,Light Sleep,Vata
+80,Male,Kapha,Active,Insomnia,Irregular Meals,High Alcohol,Constipation,Pitta-Vata
+52,Female,Vata,Very Active,Excessive (>9hr),Vegetarian,Excess Travel,Anxiety;Congestion;Excessive Sleep,Kapha-Vata
+80,Female,Vata,Sedentary,Irregular,Vegan,Smoking,Sinusitis,Kapha-Pitta
+43,Female,Vata,Active,Regular (7-8hr),Spicy/Oily Heavy,Heavy/Sweet Food,Loose Stools;Migraine,Pitta
+32,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Non-Vegetarian,Smoking,Sinusitis;Skin Rashes,Kapha-Pitta
+24,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Skipping Meals,Acidity;Slow Digestion,Kapha-Pitta
+30,Female,Vata,Active,Insomnia,Vegan,High Stress,Migraine;Anxiety;Insomnia,Vata
+76,Female,Kapha,Very Active,Insomnia,Irregular Meals,Smoking,Migraine;Congestion;Slow Digestion,Kapha-Pitta
+32,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Vegan,Heavy/Sweet Food,Bloating;Acidity;Burning Sensation,Pitta
+35,Female,Vata-Pitta,Sedentary,Insomnia,Vegetarian,Active,Depression,Kapha-Vata
+78,Female,Vata,Active,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Joint Pain;Excessive Sleep;Lethargy,Kapha-Vata
+68,Female,Vata,Active,Regular (7-8hr),Sweet/Dairy Heavy,Overeating,Slow Digestion;Depression,Kapha
+81,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Excess Travel,Dry Skin;Light Sleep;Water Retention,Vata
+67,Female,Vata,Sedentary,Insomnia,Sweet/Dairy Heavy,High Alcohol,Anger;Slow Digestion;Fatigue,Pitta-Vata
+85,Female,Pitta-Kapha,Very Active,Disturbed,Non-Vegetarian,High Stress,Sinusitis;Fatigue;Anger,Pitta-Vata
+33,Female,Pitta-Kapha,Sedentary,Irregular,Spicy/Oily Heavy,Heavy/Sweet Food,Joint Pain,Kapha-Vata
+43,Male,Vata-Kapha,Moderate,Disturbed,Non-Vegetarian,Overeating,Weight Gain;Depression;Slow Digestion,Kapha
+75,Male,Kapha,Active,Excessive (>9hr),Irregular Meals,Heavy/Sweet Food,Burning Sensation;Anxiety;Dry Skin,Vata
+46,Female,Vata,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Joint Pain;Fatigue,Vata
+72,Female,Kapha,Active,Irregular,Vegetarian,Overeating,Red Eyes,Kapha-Pitta
+58,Female,Tridosha,Sedentary,Irregular,Non-Vegetarian,Daytime Sleep,Oily Skin,Kapha
+81,Female,Vata,Moderate,Regular (7-8hr),Non-Vegetarian,Heavy/Sweet Food,Excessive Sleep;Weight Gain,Kapha
+28,Female,Pitta,Moderate,Irregular,Vegan,Excess Travel,Constipation,Vata
+80,Male,Vata,Very Active,Disturbed,Vegetarian,Irregular Sleep,Constipation,Vata
+35,Male,Pitta-Kapha,Very Active,Insomnia,Irregular Meals,Smoking,Excessive Heat,Pitta
+59,Female,Tridosha,Moderate,Irregular,Vegetarian,Active,Migraine;Loose Stools;Excessive Sleep,Pitta
+23,Male,Vata-Pitta,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Acidity,Kapha-Pitta
+49,Female,Vata-Kapha,Moderate,Excessive (>9hr),Vegan,Overeating,Water Retention,Kapha
+43,Male,Pitta,Sedentary,Disturbed,Irregular Meals,Balanced,Red Eyes,Pitta
+39,Male,Pitta-Kapha,Moderate,Irregular,Vegan,High Alcohol,Excessive Sleep,Kapha-Pitta
+84,Male,Pitta,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,High Stress,Water Retention;Cold Hands;Burning Sensation,Pitta-Vata
+74,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Irregular Meals,Overeating,Excessive Heat,Kapha-Pitta
+41,Male,Pitta,Very Active,Insomnia,Irregular Meals,Spicy Food,Inflammation;Fatigue;Bloating,Pitta-Vata
+30,Female,Tridosha,Moderate,Disturbed,Spicy/Oily Heavy,Daytime Sleep,Joint Pain;Congestion;Sinusitis,Kapha
+45,Female,Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Smoking,Light Sleep;Fatigue;Excessive Sleep,Kapha-Vata
+24,Male,Vata-Pitta,Sedentary,Disturbed,Sweet/Dairy Heavy,Smoking,Anxiety;Congestion,Pitta-Vata
+31,Male,Tridosha,Active,Insomnia,Vegan,Overworking,Anger;Cold Hands;Fatigue,Pitta-Vata
+23,Male,Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Dry Skin;Acidity;Migraine,Pitta
+64,Female,Tridosha,Very Active,Excessive (>9hr),Vegetarian,Overeating,Anger;Excessive Heat,Pitta
+20,Male,Vata,Moderate,Disturbed,Irregular Meals,Balanced,Weight Gain;Bloating,Kapha-Vata
+34,Female,Tridosha,Very Active,Excessive (>9hr),Vegetarian,Balanced,Congestion;Sinusitis;Light Sleep,Kapha
+81,Male,Vata-Kapha,Moderate,Disturbed,Irregular Meals,Irregular Sleep,Red Eyes,Pitta-Vata
+36,Female,Pitta-Kapha,Very Active,Insomnia,Vegetarian,Sedentary,Sinusitis;Fatigue,Kapha
+80,Male,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Spicy Food,Congestion,Kapha-Pitta
+65,Female,Kapha,Active,Regular (7-8hr),Non-Vegetarian,Irregular Sleep,Red Eyes;Burning Sensation,Pitta
+80,Female,Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Joint Pain;Excessive Heat,Pitta-Vata
+43,Male,Tridosha,Moderate,Irregular,Vegan,Heavy/Sweet Food,Insomnia;Oily Skin,Kapha-Vata
+27,Male,Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,None,Excessive Sleep;Depression,Kapha
+68,Male,Tridosha,Active,Insomnia,Sweet/Dairy Heavy,Spicy Food,Water Retention;Insomnia,Kapha-Vata
+38,Male,Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Excess Travel,Excessive Sleep;Anxiety;Inflammation,Kapha-Vata
+51,Female,Kapha,Active,Excessive (>9hr),Irregular Meals,Skipping Meals,Insomnia;Anxiety,Vata
+79,Male,Pitta-Kapha,Moderate,Disturbed,Vegetarian,Overeating,Bloating,Kapha-Vata
+64,Female,Vata,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Irregular Sleep,Skin Rashes;Congestion;Slow Digestion,Kapha
+22,Female,Pitta,Active,Insomnia,Non-Vegetarian,Daytime Sleep,Joint Pain,Kapha-Vata
+64,Female,Vata,Very Active,Insomnia,Vegetarian,Smoking,Loose Stools;Skin Rashes,Pitta
+53,Male,Tridosha,Very Active,Insomnia,Sweet/Dairy Heavy,Sedentary,Acidity;Slow Digestion;Lethargy,Kapha
+61,Male,Vata,Active,Disturbed,Vegetarian,Excess Travel,Sinusitis;Water Retention,Kapha
+44,Female,Kapha,Sedentary,Excessive (>9hr),Vegetarian,Balanced,Depression,Kapha
+42,Male,Tridosha,Active,Disturbed,Spicy/Oily Heavy,High Stress,Inflammation,Pitta-Vata
+74,Female,Vata-Kapha,Active,Regular (7-8hr),Vegan,Overworking,Excessive Sleep,Kapha-Pitta
+21,Male,Pitta,Very Active,Irregular,Sweet/Dairy Heavy,Overworking,Weight Gain,Kapha-Pitta
+32,Male,Vata-Pitta,Active,Irregular,Vegetarian,Active,Anxiety;Insomnia;Loose Stools,Vata
+57,Female,Pitta,Active,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Anxiety,Vata
+72,Female,Vata,Sedentary,Excessive (>9hr),Irregular Meals,Overworking,Congestion;Depression;Burning Sensation,Kapha-Pitta
+59,Female,Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Sedentary,Red Eyes;Skin Rashes;Congestion,Kapha-Pitta
+33,Male,Vata-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Sedentary,Water Retention;Inflammation;Oily Skin,Kapha
+21,Male,Pitta,Active,Irregular,Irregular Meals,Heavy/Sweet Food,Congestion;Anxiety,Kapha-Vata
+47,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Vegan,Irregular Sleep,Burning Sensation;Depression,Pitta-Vata
+49,Female,Vata-Pitta,Sedentary,Irregular,Spicy/Oily Heavy,Balanced,Sinusitis,Kapha-Vata
+57,Female,Vata,Active,Irregular,Vegan,Skipping Meals,Insomnia;Loose Stools,Vata
+73,Male,Vata,Very Active,Insomnia,Irregular Meals,None,Fatigue,Vata
+78,Female,Pitta,Active,Insomnia,Vegan,Excess Travel,Migraine;Anger,Pitta
+26,Female,Kapha,Very Active,Irregular,Irregular Meals,Daytime Sleep,Loose Stools;Constipation,Pitta-Vata
+70,Male,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,None,Loose Stools;Inflammation;Lethargy,Kapha-Pitta
+56,Male,Vata-Kapha,Sedentary,Disturbed,Vegetarian,Sedentary,Sinusitis;Loose Stools,Kapha
+36,Male,Vata-Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Smoking,Anxiety;Constipation;Excessive Sleep,Vata
+34,Female,Vata-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Smoking,Inflammation,Pitta
+80,Male,Pitta-Kapha,Very Active,Insomnia,Vegetarian,High Alcohol,Excessive Heat,Pitta
+29,Male,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,Balanced,Dry Skin;Anger,Pitta-Vata
+56,Female,Vata-Kapha,Very Active,Regular (7-8hr),Vegan,High Alcohol,Light Sleep;Migraine;Excessive Sleep,Pitta-Vata
+73,Male,Tridosha,Sedentary,Irregular,Vegetarian,High Alcohol,Depression;Migraine,Kapha-Pitta
+51,Male,Pitta-Kapha,Active,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Light Sleep;Joint Pain;Sinusitis,Vata
+83,Female,Pitta,Active,Irregular,Vegetarian,Smoking,Excessive Sleep;Anger,Pitta
+33,Female,Vata-Pitta,Sedentary,Irregular,Spicy/Oily Heavy,None,Weight Gain,Kapha-Vata
+22,Female,Pitta,Very Active,Disturbed,Vegetarian,Daytime Sleep,Excessive Heat,Kapha-Pitta
+69,Male,Vata,Sedentary,Irregular,Vegetarian,Overworking,Light Sleep,Pitta-Vata
+21,Male,Pitta,Sedentary,Irregular,Vegetarian,Irregular Sleep,Lethargy;Excessive Sleep;Migraine,Kapha-Pitta
+40,Male,Tridosha,Active,Disturbed,Non-Vegetarian,Heavy/Sweet Food,Constipation,Kapha-Vata
+22,Female,Tridosha,Very Active,Insomnia,Vegetarian,Skipping Meals,Skin Rashes;Burning Sensation;Depression,Pitta
+77,Male,Kapha,Very Active,Regular (7-8hr),Irregular Meals,High Alcohol,Depression;Loose Stools;Slow Digestion,Kapha-Pitta
+56,Male,Pitta,Very Active,Irregular,Irregular Meals,Spicy Food,Inflammation;Dry Skin;Congestion,Pitta
+57,Female,Vata-Pitta,Moderate,Excessive (>9hr),Non-Vegetarian,None,Slow Digestion;Excessive Sleep,Kapha
+65,Male,Vata-Kapha,Sedentary,Regular (7-8hr),Irregular Meals,Balanced,Sinusitis,Kapha
+21,Male,Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,Spicy Food,Weight Gain;Slow Digestion;Acidity,Kapha-Pitta
+39,Male,Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Water Retention,Kapha
+44,Female,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Lethargy;Sinusitis,Kapha
+76,Male,Pitta-Kapha,Very Active,Irregular,Spicy/Oily Heavy,Skipping Meals,Depression,Kapha-Vata
+59,Female,Pitta,Moderate,Insomnia,Non-Vegetarian,Balanced,Inflammation,Pitta
+50,Female,Vata,Active,Excessive (>9hr),Vegetarian,Overworking,Bloating;Fatigue;Congestion,Vata
+63,Male,Pitta-Kapha,Very Active,Regular (7-8hr),Irregular Meals,None,Excessive Heat;Inflammation,Pitta
+52,Female,Vata-Kapha,Active,Insomnia,Irregular Meals,Active,Oily Skin,Kapha
+51,Female,Kapha,Active,Disturbed,Vegetarian,Irregular Sleep,Depression;Constipation;Skin Rashes,Kapha-Vata
+43,Female,Vata-Kapha,Active,Irregular,Non-Vegetarian,Overeating,Burning Sensation;Water Retention;Inflammation,Kapha-Pitta
+72,Female,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Spicy Food,Water Retention,Kapha-Pitta
+30,Male,Tridosha,Sedentary,Insomnia,Vegetarian,High Alcohol,Lethargy;Joint Pain;Excessive Sleep,Kapha
+50,Male,Vata-Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,Spicy Food,Excessive Heat;Congestion,Pitta
+74,Male,Vata-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,High Stress,Cold Hands;Oily Skin,Kapha-Vata
+26,Female,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Anxiety,Kapha-Vata
+22,Female,Pitta,Very Active,Irregular,Vegan,Excess Travel,Congestion;Fatigue;Excessive Sleep,Kapha-Vata
+56,Female,Kapha,Sedentary,Irregular,Irregular Meals,Daytime Sleep,Anxiety;Sinusitis;Slow Digestion,Kapha
+63,Male,Tridosha,Sedentary,Insomnia,Vegetarian,Skipping Meals,Migraine;Depression,Kapha-Pitta
+40,Female,Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Heavy/Sweet Food,Sinusitis,Kapha
+62,Female,Pitta,Active,Regular (7-8hr),Vegetarian,Active,Anxiety;Insomnia;Depression,Vata
+66,Female,Vata-Kapha,Moderate,Irregular,Vegetarian,Spicy Food,Water Retention;Joint Pain,Kapha-Vata
+73,Male,Pitta,Moderate,Irregular,Irregular Meals,Overeating,Skin Rashes;Cold Hands;Congestion,Kapha-Pitta
+36,Female,Pitta,Very Active,Excessive (>9hr),Vegan,Sedentary,Excessive Sleep;Lethargy,Kapha
+65,Female,Vata-Pitta,Very Active,Disturbed,Vegan,Sedentary,Cold Hands;Joint Pain,Vata
+49,Male,Kapha,Sedentary,Insomnia,Vegan,Skipping Meals,Slow Digestion;Bloating;Depression,Kapha-Vata
+37,Female,Tridosha,Active,Irregular,Vegan,High Alcohol,Depression,Kapha-Pitta
+33,Female,Pitta-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Congestion;Light Sleep;Acidity,Kapha-Pitta
+73,Male,Vata-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Daytime Sleep,Weight Gain,Kapha
+69,Male,Tridosha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,None,Fatigue;Slow Digestion;Excessive Sleep,Kapha
+66,Male,Vata-Pitta,Sedentary,Disturbed,Vegetarian,High Alcohol,Congestion;Joint Pain,Pitta-Vata
+50,Female,Vata,Active,Excessive (>9hr),Vegetarian,High Stress,Sinusitis;Weight Gain,Kapha
+39,Female,Vata-Kapha,Very Active,Insomnia,Irregular Meals,Skipping Meals,Burning Sensation;Bloating;Lethargy,Kapha-Vata
+49,Female,Vata-Pitta,Very Active,Regular (7-8hr),Non-Vegetarian,Excess Travel,Congestion,Kapha-Vata
+43,Female,Pitta,Active,Regular (7-8hr),Vegan,Smoking,Inflammation;Loose Stools,Pitta
+48,Female,Tridosha,Moderate,Insomnia,Vegetarian,High Alcohol,Acidity;Lethargy,Kapha-Pitta
+42,Female,Vata-Pitta,Very Active,Disturbed,Spicy/Oily Heavy,High Stress,Congestion;Water Retention;Excessive Heat,Kapha-Pitta
+82,Female,Vata,Very Active,Excessive (>9hr),Irregular Meals,Excess Travel,Water Retention,Kapha-Vata
+21,Male,Vata-Kapha,Sedentary,Insomnia,Spicy/Oily Heavy,Spicy Food,Water Retention;Sinusitis;Inflammation,Kapha-Pitta
+52,Female,Vata,Active,Irregular,Non-Vegetarian,None,Fatigue;Skin Rashes,Pitta-Vata
+24,Male,Tridosha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Active,Light Sleep;Weight Gain;Bloating,Vata
+26,Female,Vata-Kapha,Very Active,Disturbed,Vegetarian,Overeating,Excessive Heat;Dry Skin;Migraine,Pitta-Vata
+21,Male,Kapha,Moderate,Disturbed,Vegetarian,Sedentary,Constipation;Fatigue,Vata
+30,Female,Tridosha,Sedentary,Excessive (>9hr),Vegan,High Alcohol,Acidity;Excessive Sleep,Kapha-Pitta
+68,Male,Vata,Active,Irregular,Vegan,Active,Red Eyes;Insomnia;Anger,Pitta-Vata
+75,Male,Vata,Moderate,Insomnia,Vegetarian,Skipping Meals,Water Retention,Kapha-Vata
+20,Male,Vata-Kapha,Active,Irregular,Non-Vegetarian,Excess Travel,Burning Sensation,Pitta-Vata
+69,Male,Kapha,Moderate,Disturbed,Spicy/Oily Heavy,Spicy Food,Cold Hands;Weight Gain;Acidity,Kapha-Pitta
+24,Male,Vata-Pitta,Sedentary,Irregular,Irregular Meals,Overeating,Excessive Sleep;Insomnia,Kapha-Vata
+71,Female,Vata,Sedentary,Insomnia,Vegetarian,None,Oily Skin,Kapha-Vata
+63,Male,Vata-Pitta,Moderate,Insomnia,Sweet/Dairy Heavy,Overworking,Weight Gain,Kapha-Pitta
+32,Male,Vata-Pitta,Moderate,Regular (7-8hr),Vegetarian,Daytime Sleep,Slow Digestion;Red Eyes;Dry Skin,Kapha-Vata
+69,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Excessive Sleep,Kapha-Vata
+43,Female,Vata-Pitta,Active,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Excessive Sleep;Burning Sensation;Anxiety,Kapha-Vata
+66,Female,Kapha,Moderate,Insomnia,Non-Vegetarian,Excess Travel,Constipation;Burning Sensation,Pitta-Vata
+77,Male,Vata,Very Active,Insomnia,Irregular Meals,Sedentary,Light Sleep;Inflammation;Fatigue,Vata
+56,Female,Kapha,Very Active,Regular (7-8hr),Vegetarian,Active,Water Retention;Anxiety,Kapha-Vata
+53,Male,Pitta,Moderate,Insomnia,Spicy/Oily Heavy,High Stress,Excessive Heat,Pitta-Vata
+18,Female,Pitta-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Overworking,Weight Gain;Depression,Kapha
+67,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Overeating,Excessive Sleep;Lethargy;Acidity,Kapha
+78,Female,Tridosha,Very Active,Disturbed,Vegan,Smoking,Red Eyes,Pitta
+32,Female,Pitta-Kapha,Active,Regular (7-8hr),Vegetarian,Overworking,Skin Rashes;Burning Sensation;Excessive Heat,Pitta
+85,Male,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Balanced,Depression;Loose Stools;Dry Skin,Kapha-Vata
+48,Male,Tridosha,Active,Irregular,Vegetarian,Excess Travel,Inflammation;Light Sleep,Pitta-Vata
+31,Female,Vata-Kapha,Sedentary,Disturbed,Non-Vegetarian,None,Dry Skin;Depression;Joint Pain,Vata
+41,Female,Vata,Active,Disturbed,Vegan,Overworking,Weight Gain;Excessive Heat,Kapha-Pitta
+37,Female,Pitta,Very Active,Irregular,Irregular Meals,High Stress,Red Eyes;Anxiety;Acidity,Pitta-Vata
+63,Male,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,Irregular Sleep,Fatigue,Vata
+26,Female,Pitta,Very Active,Irregular,Vegetarian,Heavy/Sweet Food,Fatigue;Anxiety,Vata
+35,Female,Vata-Pitta,Moderate,Excessive (>9hr),Irregular Meals,Overworking,Anger,Pitta
+26,Male,Vata-Kapha,Very Active,Excessive (>9hr),Irregular Meals,High Stress,Depression;Anxiety;Inflammation,Kapha-Vata
+61,Female,Vata-Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Skipping Meals,Fatigue;Water Retention;Anger,Kapha-Vata
+46,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,None,Constipation;Congestion,Kapha-Vata
+75,Male,Pitta,Sedentary,Irregular,Sweet/Dairy Heavy,Daytime Sleep,Sinusitis,Kapha
+48,Male,Pitta-Kapha,Active,Regular (7-8hr),Non-Vegetarian,Smoking,Slow Digestion;Excessive Heat;Anxiety,Kapha-Pitta
+44,Female,Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,None,Constipation;Insomnia,Vata
+71,Male,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,Spicy Food,Migraine;Slow Digestion,Kapha-Pitta
+37,Male,Kapha,Sedentary,Regular (7-8hr),Irregular Meals,Irregular Sleep,Red Eyes,Pitta-Vata
+61,Male,Vata,Sedentary,Excessive (>9hr),Vegetarian,Overworking,Inflammation;Insomnia,Pitta-Vata
+84,Female,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Overworking,Burning Sensation,Pitta
+29,Female,Kapha,Sedentary,Excessive (>9hr),Vegan,Skipping Meals,Sinusitis;Light Sleep,Kapha-Vata
+81,Male,Vata-Pitta,Active,Excessive (>9hr),Spicy/Oily Heavy,High Stress,Skin Rashes;Water Retention,Pitta-Vata
+59,Female,Tridosha,Active,Disturbed,Vegetarian,Daytime Sleep,Excessive Sleep,Kapha
+70,Male,Vata-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Heavy/Sweet Food,Oily Skin;Cold Hands,Kapha-Vata
+21,Female,Kapha,Sedentary,Irregular,Vegetarian,None,Congestion;Weight Gain;Anger,Kapha
+76,Male,Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Active,Depression;Light Sleep;Cold Hands,Kapha-Vata
+41,Male,Tridosha,Active,Disturbed,Vegan,Spicy Food,Red Eyes;Lethargy;Water Retention,Kapha-Pitta
+27,Female,Tridosha,Active,Disturbed,Sweet/Dairy Heavy,Overeating,Sinusitis;Cold Hands,Kapha-Vata
+59,Male,Pitta,Very Active,Regular (7-8hr),Vegan,High Alcohol,Migraine,Pitta
+48,Male,Vata-Pitta,Very Active,Irregular,Irregular Meals,Sedentary,Burning Sensation,Kapha-Pitta
+48,Female,Tridosha,Sedentary,Regular (7-8hr),Vegan,Irregular Sleep,Red Eyes;Joint Pain;Migraine,Pitta-Vata
+77,Female,Vata-Pitta,Moderate,Excessive (>9hr),Non-Vegetarian,Excess Travel,Migraine;Inflammation,Pitta
+22,Male,Pitta,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Excess Travel,Anger;Burning Sensation,Pitta
+25,Male,Tridosha,Moderate,Regular (7-8hr),Vegetarian,Sedentary,Bloating;Anxiety,Vata
+82,Female,Kapha,Sedentary,Excessive (>9hr),Vegetarian,Active,Oily Skin;Excessive Sleep;Light Sleep,Kapha
+32,Male,Vata-Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,None,Migraine;Constipation;Excessive Heat,Pitta
+54,Male,Vata,Moderate,Disturbed,Vegan,Sedentary,Light Sleep,Kapha-Vata
+67,Female,Pitta-Kapha,Very Active,Irregular,Vegetarian,Balanced,Dry Skin;Fatigue;Cold Hands,Vata
+56,Female,Vata,Active,Regular (7-8hr),Vegan,Irregular Sleep,Burning Sensation;Depression;Inflammation,Pitta
+81,Male,Vata,Active,Disturbed,Sweet/Dairy Heavy,High Alcohol,Slow Digestion;Loose Stools;Burning Sensation,Pitta
+54,Male,Kapha,Moderate,Insomnia,Irregular Meals,Sedentary,Fatigue,Kapha-Vata
+61,Female,Pitta-Kapha,Active,Insomnia,Vegan,Overworking,Sinusitis;Lethargy,Kapha
+59,Female,Pitta,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Skipping Meals,Excessive Heat;Slow Digestion;Constipation,Pitta-Vata
+30,Female,Vata-Kapha,Active,Excessive (>9hr),Irregular Meals,Sedentary,Bloating;Sinusitis,Kapha-Vata
+84,Female,Pitta,Sedentary,Irregular,Irregular Meals,High Stress,Skin Rashes,Pitta-Vata
+46,Female,Vata-Kapha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Inflammation;Weight Gain,Kapha-Pitta
+34,Male,Tridosha,Moderate,Irregular,Irregular Meals,Skipping Meals,Migraine,Pitta-Vata
+55,Male,Pitta-Kapha,Active,Disturbed,Spicy/Oily Heavy,Overworking,Migraine,Pitta
+45,Male,Kapha,Very Active,Regular (7-8hr),Irregular Meals,Sedentary,Excessive Heat;Anger,Pitta
+46,Male,Vata-Pitta,Active,Disturbed,Non-Vegetarian,Overeating,Constipation;Oily Skin,Kapha-Vata
+20,Female,Vata,Sedentary,Irregular,Vegetarian,High Alcohol,Excessive Heat;Sinusitis,Kapha-Pitta
+28,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Insomnia;Acidity,Pitta-Vata
+33,Male,Vata-Kapha,Sedentary,Irregular,Vegan,Overworking,Lethargy;Depression,Kapha
+69,Female,Vata-Kapha,Moderate,Insomnia,Irregular Meals,Balanced,Loose Stools;Congestion;Lethargy,Kapha
+66,Male,Tridosha,Very Active,Insomnia,Irregular Meals,Smoking,Fatigue,Pitta-Vata
+43,Male,Kapha,Sedentary,Irregular,Vegetarian,Overworking,Excessive Heat,Pitta
+32,Female,Vata-Pitta,Active,Regular (7-8hr),Spicy/Oily Heavy,Daytime Sleep,Water Retention;Loose Stools;Cold Hands,Kapha-Vata
+27,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Balanced,Fatigue;Sinusitis,Kapha-Vata
+24,Female,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,High Alcohol,Skin Rashes;Lethargy;Depression,Kapha-Pitta
+42,Male,Vata,Moderate,Insomnia,Non-Vegetarian,Sedentary,Loose Stools,Kapha-Pitta
+30,Male,Vata,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Irregular Sleep,Joint Pain;Loose Stools,Vata
+43,Male,Pitta-Kapha,Active,Regular (7-8hr),Non-Vegetarian,None,Migraine;Weight Gain;Depression,Kapha
+53,Female,Kapha,Active,Excessive (>9hr),Vegan,Daytime Sleep,Joint Pain,Kapha-Vata
+42,Female,Pitta,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Excess Travel,Excessive Sleep,Kapha-Vata
+75,Female,Vata-Pitta,Sedentary,Disturbed,Irregular Meals,None,Anxiety;Joint Pain,Vata
+67,Female,Kapha,Active,Irregular,Spicy/Oily Heavy,High Alcohol,Depression;Weight Gain,Kapha
+72,Male,Kapha,Moderate,Disturbed,Vegan,Daytime Sleep,Migraine;Anger,Pitta
+34,Male,Tridosha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Smoking,Migraine;Lethargy,Kapha-Pitta
+26,Female,Vata,Active,Regular (7-8hr),Vegan,Active,Bloating;Light Sleep;Skin Rashes,Vata
+64,Female,Pitta,Very Active,Excessive (>9hr),Vegan,Sedentary,Cold Hands;Skin Rashes,Pitta-Vata
+30,Female,Vata,Active,Irregular,Sweet/Dairy Heavy,Overworking,Water Retention,Kapha-Pitta
+81,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,None,Burning Sensation;Anger,Pitta
+36,Female,Pitta,Very Active,Disturbed,Non-Vegetarian,Irregular Sleep,Loose Stools;Congestion;Fatigue,Pitta-Vata
+28,Female,Tridosha,Active,Excessive (>9hr),Vegetarian,Active,Excessive Sleep;Oily Skin,Kapha
+36,Female,Pitta,Sedentary,Excessive (>9hr),Vegetarian,Skipping Meals,Sinusitis,Kapha-Vata
+83,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Irregular Meals,Smoking,Weight Gain;Depression;Lethargy,Kapha
+63,Female,Vata,Active,Irregular,Irregular Meals,Active,Water Retention;Migraine,Kapha-Pitta
+71,Male,Vata-Kapha,Very Active,Irregular,Non-Vegetarian,Spicy Food,Weight Gain;Slow Digestion,Kapha
+21,Female,Tridosha,Moderate,Excessive (>9hr),Irregular Meals,Sedentary,Anxiety;Red Eyes;Acidity,Pitta
+39,Male,Pitta-Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Inflammation,Kapha-Pitta
+27,Female,Tridosha,Active,Regular (7-8hr),Spicy/Oily Heavy,Active,Weight Gain;Inflammation,Kapha-Pitta
+53,Male,Pitta,Moderate,Irregular,Non-Vegetarian,Skipping Meals,Excessive Heat;Red Eyes;Slow Digestion,Pitta
+80,Female,Pitta-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Anger;Excessive Heat;Weight Gain,Kapha-Pitta
+27,Male,Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Active,Acidity;Loose Stools,Pitta
+55,Male,Vata,Active,Insomnia,Vegetarian,Smoking,Constipation;Inflammation;Sinusitis,Pitta-Vata
+84,Female,Kapha,Moderate,Disturbed,Irregular Meals,Excess Travel,Weight Gain;Loose Stools,Kapha-Pitta
+37,Male,Pitta,Moderate,Insomnia,Non-Vegetarian,Overworking,Oily Skin;Lethargy;Red Eyes,Kapha-Pitta
+23,Female,Vata-Kapha,Very Active,Irregular,Irregular Meals,Daytime Sleep,Dry Skin;Insomnia;Cold Hands,Vata
+84,Male,Pitta-Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,None,Dry Skin,Pitta-Vata
+23,Male,Tridosha,Very Active,Irregular,Irregular Meals,None,Excessive Sleep,Kapha
+70,Female,Pitta,Moderate,Insomnia,Spicy/Oily Heavy,Overeating,Constipation;Migraine;Light Sleep,Pitta-Vata
+62,Female,Vata-Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Skipping Meals,Sinusitis,Kapha-Vata
+43,Female,Pitta-Kapha,Very Active,Insomnia,Vegetarian,Sedentary,Joint Pain;Dry Skin,Vata
+61,Female,Vata-Kapha,Sedentary,Insomnia,Vegetarian,Irregular Sleep,Excessive Heat;Excessive Sleep;Bloating,Kapha-Vata
+32,Male,Vata-Kapha,Very Active,Irregular,Vegan,Smoking,Anxiety;Constipation;Anger,Pitta-Vata
+75,Female,Vata-Kapha,Sedentary,Disturbed,Non-Vegetarian,Spicy Food,Inflammation,Pitta
+31,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Non-Vegetarian,Spicy Food,Anger;Loose Stools;Insomnia,Pitta
+20,Female,Kapha,Active,Irregular,Vegetarian,Heavy/Sweet Food,Anxiety,Kapha-Vata
+42,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Sedentary,Excessive Sleep;Sinusitis,Kapha
+25,Male,Pitta,Active,Irregular,Vegan,Daytime Sleep,Congestion;Skin Rashes,Kapha-Pitta
+33,Female,Pitta,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Anxiety,Kapha-Vata
+21,Male,Vata,Moderate,Regular (7-8hr),Vegan,Spicy Food,Migraine,Pitta
+49,Male,Tridosha,Moderate,Insomnia,Non-Vegetarian,Overworking,Burning Sensation;Water Retention;Anxiety,Pitta-Vata
+24,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Smoking,Water Retention;Congestion;Slow Digestion,Kapha
+73,Female,Pitta,Active,Irregular,Vegetarian,Sedentary,Slow Digestion;Oily Skin;Congestion,Kapha
+65,Female,Vata-Kapha,Sedentary,Excessive (>9hr),Vegan,Balanced,Red Eyes;Excessive Heat;Cold Hands,Pitta-Vata
+55,Male,Vata-Pitta,Active,Disturbed,Irregular Meals,Spicy Food,Lethargy;Burning Sensation,Pitta
+32,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Non-Vegetarian,Overeating,Burning Sensation;Sinusitis;Fatigue,Kapha-Vata
+45,Male,Vata,Sedentary,Insomnia,Vegan,Spicy Food,Sinusitis;Dry Skin;Depression,Kapha-Vata
+59,Female,Pitta-Kapha,Sedentary,Irregular,Non-Vegetarian,Sedentary,Constipation;Cold Hands;Weight Gain,Kapha-Vata
+75,Male,Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Balanced,Light Sleep;Sinusitis,Kapha-Vata
+39,Female,Vata-Pitta,Active,Insomnia,Irregular Meals,Balanced,Bloating;Inflammation,Pitta-Vata
+41,Male,Kapha,Active,Disturbed,Non-Vegetarian,Active,Anger;Insomnia;Water Retention,Kapha-Vata
+23,Male,Vata,Active,Regular (7-8hr),Non-Vegetarian,Balanced,Cold Hands;Lethargy;Migraine,Pitta-Vata
+73,Female,Tridosha,Sedentary,Irregular,Vegan,Daytime Sleep,Lethargy;Dry Skin,Kapha-Vata
+81,Male,Pitta,Moderate,Irregular,Irregular Meals,Overworking,Depression,Kapha-Pitta
+45,Male,Pitta-Kapha,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Active,Joint Pain,Pitta-Vata
+74,Male,Kapha,Active,Irregular,Vegan,None,Burning Sensation;Red Eyes;Joint Pain,Pitta
+84,Male,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,Skipping Meals,Constipation,Vata
+44,Female,Tridosha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Insomnia;Slow Digestion,Kapha-Vata
+68,Female,Vata-Kapha,Moderate,Regular (7-8hr),Irregular Meals,Smoking,Red Eyes;Oily Skin,Kapha-Pitta
+61,Female,Pitta,Very Active,Regular (7-8hr),Vegetarian,Sedentary,Lethargy,Kapha
+59,Female,Vata,Sedentary,Disturbed,Sweet/Dairy Heavy,Daytime Sleep,Fatigue,Kapha-Vata
+62,Male,Tridosha,Active,Irregular,Non-Vegetarian,None,Loose Stools;Dry Skin;Sinusitis,Pitta-Vata
+77,Female,Vata-Pitta,Very Active,Insomnia,Vegetarian,Smoking,Skin Rashes,Pitta
+82,Female,Pitta,Sedentary,Disturbed,Vegetarian,High Alcohol,Acidity;Anxiety;Slow Digestion,Pitta
+21,Male,Vata-Pitta,Active,Insomnia,Non-Vegetarian,Smoking,Skin Rashes;Slow Digestion,Pitta
+44,Male,Pitta,Moderate,Insomnia,Non-Vegetarian,None,Depression,Kapha-Pitta
+69,Male,Vata,Very Active,Excessive (>9hr),Non-Vegetarian,Spicy Food,Inflammation;Depression;Anger,Pitta
+36,Female,Pitta,Very Active,Insomnia,Vegetarian,Balanced,Depression;Anxiety;Migraine,Pitta-Vata
+67,Male,Vata,Active,Irregular,Spicy/Oily Heavy,High Stress,Burning Sensation;Depression,Pitta-Vata
+59,Male,Kapha,Moderate,Regular (7-8hr),Vegetarian,Balanced,Burning Sensation;Excessive Sleep,Kapha-Pitta
+75,Male,Pitta,Active,Excessive (>9hr),Irregular Meals,Balanced,Insomnia;Excessive Heat,Pitta-Vata
+47,Female,Vata-Kapha,Sedentary,Irregular,Sweet/Dairy Heavy,Daytime Sleep,Dry Skin;Inflammation,Pitta-Vata
+50,Female,Pitta,Sedentary,Excessive (>9hr),Vegetarian,Overeating,Red Eyes,Kapha-Pitta
+79,Female,Pitta,Active,Disturbed,Irregular Meals,Overworking,Anger,Pitta
+49,Male,Vata-Pitta,Moderate,Disturbed,Non-Vegetarian,Daytime Sleep,Anger;Depression;Dry Skin,Kapha-Vata
+78,Male,Tridosha,Very Active,Disturbed,Irregular Meals,Skipping Meals,Anxiety;Inflammation;Skin Rashes,Pitta-Vata
+20,Female,Vata-Pitta,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Daytime Sleep,Depression;Constipation,Kapha-Vata
+29,Male,Vata,Moderate,Irregular,Vegetarian,None,Insomnia;Bloating,Vata
+48,Female,Pitta-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Overworking,Weight Gain,Kapha-Pitta
+84,Male,Pitta,Sedentary,Insomnia,Sweet/Dairy Heavy,None,Light Sleep;Oily Skin,Kapha-Vata
+43,Male,Tridosha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,None,Oily Skin,Kapha
+51,Male,Pitta-Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Daytime Sleep,Excessive Heat;Inflammation,Pitta
+37,Male,Pitta-Kapha,Very Active,Insomnia,Vegetarian,Overworking,Cold Hands,Pitta-Vata
+43,Female,Kapha,Sedentary,Disturbed,Sweet/Dairy Heavy,Irregular Sleep,Water Retention,Kapha-Vata
+55,Female,Kapha,Sedentary,Regular (7-8hr),Irregular Meals,Overworking,Dry Skin;Constipation;Congestion,Kapha-Vata
+67,Female,Vata,Sedentary,Excessive (>9hr),Vegetarian,Skipping Meals,Light Sleep,Vata
+77,Male,Vata,Sedentary,Disturbed,Vegetarian,Irregular Sleep,Excessive Sleep;Acidity,Pitta-Vata
+45,Male,Tridosha,Moderate,Excessive (>9hr),Irregular Meals,Daytime Sleep,Excessive Sleep;Anger,Kapha-Pitta
+32,Male,Tridosha,Moderate,Regular (7-8hr),Vegetarian,Irregular Sleep,Excessive Sleep,Kapha-Vata
+61,Female,Vata-Pitta,Active,Disturbed,Irregular Meals,Skipping Meals,Loose Stools,Pitta-Vata
+49,Female,Vata,Moderate,Disturbed,Vegan,Heavy/Sweet Food,Light Sleep;Slow Digestion,Kapha-Vata
+82,Female,Vata-Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,Daytime Sleep,Excessive Heat,Kapha-Pitta
+38,Female,Vata-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,None,Acidity;Inflammation,Pitta
+34,Male,Vata-Kapha,Very Active,Insomnia,Vegan,High Alcohol,Insomnia,Pitta-Vata
+29,Female,Tridosha,Very Active,Excessive (>9hr),Vegan,Active,Burning Sensation;Acidity,Pitta
+35,Male,Vata-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Spicy Food,Loose Stools;Excessive Sleep;Excessive Heat,Pitta
+42,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Active,Weight Gain,Kapha-Vata
+68,Female,Kapha,Very Active,Disturbed,Irregular Meals,High Alcohol,Lethargy;Skin Rashes,Kapha-Pitta
+68,Male,Vata,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,High Alcohol,Anger,Pitta
+46,Female,Pitta-Kapha,Very Active,Irregular,Irregular Meals,Daytime Sleep,Water Retention,Kapha
+70,Female,Pitta,Moderate,Insomnia,Non-Vegetarian,Balanced,Bloating;Anxiety,Vata
+26,Female,Tridosha,Moderate,Irregular,Vegetarian,Spicy Food,Loose Stools;Insomnia;Bloating,Pitta-Vata
+65,Male,Tridosha,Moderate,Excessive (>9hr),Vegan,Excess Travel,Weight Gain;Excessive Heat,Kapha-Pitta
+54,Male,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Heavy/Sweet Food,Sinusitis;Acidity;Skin Rashes,Kapha-Pitta
+59,Male,Vata-Kapha,Active,Regular (7-8hr),Vegetarian,Active,Lethargy;Sinusitis,Kapha
+82,Female,Pitta,Sedentary,Regular (7-8hr),Irregular Meals,Daytime Sleep,Skin Rashes,Kapha-Pitta
+47,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Vegetarian,Daytime Sleep,Fatigue;Excessive Sleep,Kapha
+19,Male,Vata,Very Active,Regular (7-8hr),Vegan,Heavy/Sweet Food,Anxiety;Fatigue;Red Eyes,Vata
+23,Male,Vata,Active,Excessive (>9hr),Sweet/Dairy Heavy,Active,Acidity;Dry Skin,Pitta-Vata
+73,Male,Vata,Very Active,Excessive (>9hr),Vegan,Excess Travel,Congestion;Slow Digestion;Excessive Sleep,Kapha
+27,Female,Tridosha,Moderate,Irregular,Spicy/Oily Heavy,Overeating,Anxiety;Sinusitis,Kapha-Vata
+45,Female,Vata,Active,Insomnia,Spicy/Oily Heavy,Sedentary,Anxiety,Kapha-Vata
+63,Male,Kapha,Active,Irregular,Non-Vegetarian,Smoking,Sinusitis;Insomnia;Anger,Kapha-Pitta
+48,Male,Vata,Moderate,Excessive (>9hr),Irregular Meals,Balanced,Anger,Pitta-Vata
+56,Male,Tridosha,Very Active,Insomnia,Spicy/Oily Heavy,None,Constipation,Vata
+19,Male,Vata,Very Active,Excessive (>9hr),Irregular Meals,None,Weight Gain;Congestion,Kapha
+55,Male,Vata-Pitta,Active,Insomnia,Spicy/Oily Heavy,Skipping Meals,Congestion;Cold Hands,Vata
+60,Male,Pitta-Kapha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,High Alcohol,Anger;Burning Sensation;Fatigue,Pitta
+29,Female,Vata,Very Active,Insomnia,Sweet/Dairy Heavy,Overeating,Cold Hands,Kapha-Vata
+51,Male,Vata-Pitta,Sedentary,Irregular,Vegetarian,Skipping Meals,Fatigue;Weight Gain;Excessive Heat,Pitta-Vata
+54,Male,Vata,Sedentary,Regular (7-8hr),Non-Vegetarian,Irregular Sleep,Cold Hands;Slow Digestion,Vata
+63,Female,Vata-Pitta,Active,Excessive (>9hr),Vegetarian,Spicy Food,Constipation;Cold Hands;Excessive Heat,Pitta-Vata
+72,Male,Tridosha,Moderate,Insomnia,Vegan,Balanced,Skin Rashes;Joint Pain,Pitta-Vata
+62,Female,Kapha,Moderate,Disturbed,Irregular Meals,None,Slow Digestion,Kapha
+84,Male,Vata-Kapha,Sedentary,Irregular,Vegetarian,Balanced,Congestion;Joint Pain;Depression,Kapha
+41,Male,Vata-Pitta,Sedentary,Insomnia,Spicy/Oily Heavy,Daytime Sleep,Sinusitis;Oily Skin;Migraine,Kapha
+82,Female,Tridosha,Very Active,Regular (7-8hr),Vegan,Heavy/Sweet Food,Depression,Kapha
+37,Female,Tridosha,Very Active,Disturbed,Non-Vegetarian,Irregular Sleep,Slow Digestion,Kapha-Vata
+21,Male,Vata-Kapha,Very Active,Irregular,Vegan,High Stress,Slow Digestion;Water Retention,Kapha
+37,Female,Pitta-Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,Overworking,Cold Hands;Sinusitis;Lethargy,Kapha
+65,Female,Tridosha,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Migraine,Kapha-Pitta
+27,Female,Tridosha,Very Active,Insomnia,Sweet/Dairy Heavy,None,Sinusitis;Slow Digestion,Kapha
+76,Male,Pitta-Kapha,Active,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Depression,Kapha-Pitta
+58,Female,Vata-Pitta,Sedentary,Disturbed,Spicy/Oily Heavy,High Stress,Red Eyes,Pitta-Vata
+32,Male,Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Slow Digestion;Skin Rashes;Inflammation,Kapha-Pitta
+30,Male,Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Bloating;Congestion,Kapha-Vata
+74,Female,Tridosha,Moderate,Insomnia,Non-Vegetarian,Sedentary,Weight Gain;Excessive Heat;Migraine,Kapha-Pitta
+29,Female,Tridosha,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Depression;Water Retention,Kapha
+38,Female,Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Active,Burning Sensation;Depression;Excessive Sleep,Kapha
+41,Female,Tridosha,Active,Irregular,Non-Vegetarian,Overworking,Loose Stools;Water Retention,Kapha-Pitta
+71,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Vegetarian,Excess Travel,Cold Hands,Vata
+69,Male,Vata,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Excess Travel,Red Eyes;Light Sleep;Slow Digestion,Vata
+37,Female,Tridosha,Sedentary,Disturbed,Spicy/Oily Heavy,High Stress,Skin Rashes;Constipation;Dry Skin,Vata
+63,Female,Vata-Pitta,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,High Alcohol,Excessive Heat;Loose Stools,Pitta
+69,Male,Tridosha,Very Active,Insomnia,Irregular Meals,Overeating,Acidity;Weight Gain;Inflammation,Kapha-Pitta
+57,Female,Kapha,Sedentary,Irregular,Irregular Meals,Overeating,Constipation;Insomnia,Vata
+45,Male,Vata,Very Active,Regular (7-8hr),Non-Vegetarian,High Alcohol,Oily Skin,Kapha-Pitta
+35,Male,Vata-Kapha,Very Active,Disturbed,Non-Vegetarian,High Stress,Cold Hands;Anger;Oily Skin,Kapha-Vata
+43,Female,Tridosha,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Sedentary,Excessive Sleep;Congestion,Kapha
+24,Male,Pitta,Sedentary,Excessive (>9hr),Vegan,Overeating,Water Retention;Dry Skin;Congestion,Kapha
+41,Female,Vata-Kapha,Moderate,Disturbed,Vegetarian,High Alcohol,Joint Pain;Insomnia,Vata
+62,Female,Vata-Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Burning Sensation;Cold Hands;Excessive Sleep,Kapha-Vata
+78,Female,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Congestion,Kapha-Vata
+18,Male,Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Oily Skin,Kapha-Pitta
+49,Female,Vata-Kapha,Active,Disturbed,Non-Vegetarian,Smoking,Cold Hands,Pitta-Vata
+82,Female,Vata-Pitta,Active,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Light Sleep,Kapha-Vata
+68,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Excessive Sleep;Light Sleep,Kapha-Vata
+41,Female,Pitta,Moderate,Irregular,Vegetarian,Sedentary,Insomnia;Skin Rashes,Pitta-Vata
+83,Female,Pitta-Kapha,Active,Insomnia,Vegan,High Stress,Excessive Sleep;Depression,Kapha
+40,Female,Vata-Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Acidity;Burning Sensation;Migraine,Pitta
+41,Male,Kapha,Active,Irregular,Spicy/Oily Heavy,Active,Inflammation,Kapha-Pitta
+60,Female,Vata-Pitta,Sedentary,Regular (7-8hr),Vegan,None,Inflammation,Pitta
+32,Female,Vata-Pitta,Active,Irregular,Vegetarian,Heavy/Sweet Food,Excessive Heat,Kapha-Pitta
+76,Male,Pitta,Very Active,Irregular,Spicy/Oily Heavy,Smoking,Congestion;Migraine,Pitta
+35,Female,Vata-Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Heavy/Sweet Food,Cold Hands;Inflammation;Skin Rashes,Pitta
+78,Female,Vata-Pitta,Active,Disturbed,Spicy/Oily Heavy,Balanced,Fatigue;Dry Skin,Vata
+82,Female,Kapha,Sedentary,Disturbed,Vegetarian,None,Anxiety;Loose Stools;Inflammation,Pitta
+58,Female,Tridosha,Sedentary,Irregular,Vegetarian,Heavy/Sweet Food,Lethargy,Kapha
+25,Male,Vata,Moderate,Irregular,Sweet/Dairy Heavy,Skipping Meals,Migraine;Joint Pain;Light Sleep,Vata
+56,Male,Pitta,Very Active,Excessive (>9hr),Irregular Meals,Active,Congestion;Migraine;Slow Digestion,Kapha-Pitta
+46,Female,Tridosha,Very Active,Insomnia,Spicy/Oily Heavy,High Stress,Bloating;Weight Gain;Excessive Sleep,Kapha-Vata
+40,Female,Kapha,Sedentary,Irregular,Vegan,Active,Insomnia;Bloating,Vata
+19,Male,Tridosha,Active,Insomnia,Non-Vegetarian,High Alcohol,Lethargy;Water Retention,Kapha
+27,Female,Pitta,Active,Disturbed,Spicy/Oily Heavy,Active,Insomnia;Dry Skin;Skin Rashes,Pitta-Vata
+18,Male,Vata,Sedentary,Disturbed,Sweet/Dairy Heavy,Active,Red Eyes;Constipation;Insomnia,Vata
+67,Male,Tridosha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Overeating,Inflammation,Kapha-Pitta
+71,Female,Pitta,Very Active,Excessive (>9hr),Non-Vegetarian,Overeating,Lethargy;Joint Pain;Acidity,Kapha-Pitta
+75,Female,Kapha,Sedentary,Insomnia,Irregular Meals,Overworking,Bloating;Joint Pain;Burning Sensation,Pitta-Vata
+28,Male,Vata-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,High Stress,Inflammation;Red Eyes,Pitta
+76,Male,Tridosha,Moderate,Irregular,Vegan,Heavy/Sweet Food,Insomnia;Depression,Kapha-Vata
+40,Male,Pitta,Active,Irregular,Spicy/Oily Heavy,Sedentary,Excessive Sleep,Kapha
+38,Female,Pitta,Sedentary,Regular (7-8hr),Vegan,High Alcohol,Insomnia;Constipation;Loose Stools,Pitta-Vata
+26,Male,Pitta-Kapha,Active,Disturbed,Irregular Meals,None,Burning Sensation,Pitta
+69,Female,Kapha,Active,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Water Retention,Kapha-Vata
+78,Female,Tridosha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Sedentary,Migraine;Anger,Pitta
+26,Female,Vata,Moderate,Insomnia,Vegan,High Alcohol,Skin Rashes,Pitta
+50,Female,Pitta,Sedentary,Insomnia,Vegetarian,Balanced,Sinusitis;Excessive Sleep;Lethargy,Kapha
+44,Female,Kapha,Sedentary,Insomnia,Irregular Meals,Heavy/Sweet Food,Insomnia;Sinusitis,Kapha
+19,Female,Pitta,Sedentary,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Depression,Kapha-Vata
+19,Female,Pitta-Kapha,Moderate,Irregular,Non-Vegetarian,Skipping Meals,Red Eyes,Pitta-Vata
+61,Female,Tridosha,Active,Insomnia,Irregular Meals,Active,Inflammation;Light Sleep;Skin Rashes,Pitta
+21,Male,Pitta-Kapha,Very Active,Insomnia,Non-Vegetarian,High Alcohol,Red Eyes;Skin Rashes,Pitta
+26,Female,Pitta,Moderate,Excessive (>9hr),Vegan,None,Cold Hands,Pitta-Vata
+55,Male,Pitta,Moderate,Regular (7-8hr),Sweet/Dairy Heavy,Daytime Sleep,Red Eyes,Kapha-Pitta
+71,Female,Pitta-Kapha,Very Active,Regular (7-8hr),Non-Vegetarian,Overeating,Sinusitis;Oily Skin;Inflammation,Kapha
+40,Male,Pitta,Very Active,Disturbed,Non-Vegetarian,Spicy Food,Light Sleep;Lethargy;Excessive Sleep,Kapha
+81,Male,Pitta,Active,Insomnia,Irregular Meals,Active,Loose Stools;Sinusitis,Kapha-Pitta
+63,Male,Vata-Kapha,Active,Irregular,Irregular Meals,Excess Travel,Joint Pain;Anxiety;Constipation,Vata
+60,Female,Vata,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Spicy Food,Inflammation;Constipation;Loose Stools,Pitta
+64,Male,Vata-Pitta,Sedentary,Irregular,Sweet/Dairy Heavy,Excess Travel,Insomnia;Cold Hands,Vata
+69,Female,Vata,Active,Regular (7-8hr),Non-Vegetarian,Active,Congestion;Constipation;Anxiety,Vata
+27,Female,Vata-Kapha,Very Active,Disturbed,Irregular Meals,Heavy/Sweet Food,Fatigue;Weight Gain;Dry Skin,Kapha-Vata
+71,Female,Kapha,Sedentary,Excessive (>9hr),Irregular Meals,Overeating,Weight Gain,Kapha
+82,Female,Pitta,Sedentary,Disturbed,Irregular Meals,Smoking,Excessive Sleep,Kapha-Pitta
+19,Female,Tridosha,Active,Irregular,Vegetarian,High Alcohol,Red Eyes;Insomnia;Depression,Pitta-Vata
+28,Male,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Overworking,Red Eyes,Pitta
+74,Female,Vata,Active,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Fatigue;Migraine,Vata
+47,Female,Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,Irregular Sleep,Slow Digestion,Kapha-Vata
+68,Male,Tridosha,Active,Regular (7-8hr),Spicy/Oily Heavy,Spicy Food,Insomnia;Burning Sensation,Pitta-Vata
+20,Male,Vata,Active,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Excessive Sleep;Bloating;Water Retention,Kapha
+30,Female,Kapha,Active,Excessive (>9hr),Vegetarian,Spicy Food,Oily Skin;Inflammation,Kapha-Pitta
+75,Male,Vata-Kapha,Active,Disturbed,Vegan,Spicy Food,Anger,Pitta
+23,Male,Pitta-Kapha,Active,Disturbed,Spicy/Oily Heavy,Skipping Meals,Skin Rashes;Migraine;Sinusitis,Pitta
+73,Female,Pitta-Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,High Alcohol,Acidity;Anger;Fatigue,Pitta
+39,Female,Pitta,Moderate,Excessive (>9hr),Irregular Meals,Sedentary,Oily Skin,Kapha
+52,Female,Vata-Pitta,Active,Regular (7-8hr),Non-Vegetarian,High Alcohol,Skin Rashes;Water Retention;Lethargy,Kapha-Pitta
+79,Male,Vata-Pitta,Very Active,Irregular,Non-Vegetarian,Spicy Food,Water Retention;Sinusitis,Kapha
+21,Male,Tridosha,Very Active,Regular (7-8hr),Vegan,Active,Slow Digestion;Burning Sensation;Oily Skin,Kapha
+36,Male,Vata-Pitta,Active,Insomnia,Vegan,Active,Weight Gain;Light Sleep;Cold Hands,Vata
+42,Male,Vata,Active,Excessive (>9hr),Sweet/Dairy Heavy,Balanced,Light Sleep;Excessive Heat;Bloating,Vata
+72,Female,Tridosha,Active,Excessive (>9hr),Vegetarian,Overworking,Migraine;Cold Hands,Pitta-Vata
+36,Male,Kapha,Very Active,Irregular,Spicy/Oily Heavy,Sedentary,Slow Digestion;Light Sleep;Joint Pain,Kapha-Vata
+21,Male,Vata-Pitta,Sedentary,Regular (7-8hr),Vegetarian,Balanced,Cold Hands;Joint Pain;Excessive Heat,Vata
+69,Male,Pitta,Moderate,Excessive (>9hr),Spicy/Oily Heavy,None,Oily Skin,Kapha-Pitta
+59,Female,Vata,Sedentary,Disturbed,Vegetarian,Balanced,Weight Gain;Joint Pain,Kapha-Vata
+72,Male,Kapha,Very Active,Excessive (>9hr),Irregular Meals,Smoking,Inflammation,Pitta
+70,Female,Tridosha,Active,Irregular,Sweet/Dairy Heavy,None,Depression,Kapha
+55,Female,Tridosha,Moderate,Excessive (>9hr),Vegan,High Stress,Constipation;Oily Skin;Anxiety,Vata
+39,Male,Vata-Kapha,Very Active,Regular (7-8hr),Irregular Meals,Skipping Meals,Lethargy;Acidity;Light Sleep,Kapha-Vata
+64,Female,Kapha,Sedentary,Disturbed,Irregular Meals,Irregular Sleep,Migraine;Anger,Pitta
+43,Female,Vata-Kapha,Very Active,Excessive (>9hr),Vegetarian,Skipping Meals,Depression;Loose Stools;Skin Rashes,Kapha-Pitta
+28,Female,Vata-Kapha,Very Active,Insomnia,Sweet/Dairy Heavy,Irregular Sleep,Acidity;Migraine,Pitta
+80,Female,Vata-Kapha,Moderate,Insomnia,Vegetarian,Balanced,Light Sleep;Cold Hands,Vata
+46,Female,Vata-Pitta,Moderate,Disturbed,Vegetarian,Sedentary,Water Retention;Fatigue;Red Eyes,Kapha-Vata
+48,Male,Pitta,Active,Insomnia,Spicy/Oily Heavy,Skipping Meals,Slow Digestion;Burning Sensation;Light Sleep,Pitta-Vata
+45,Male,Vata-Pitta,Moderate,Insomnia,Non-Vegetarian,Sedentary,Burning Sensation;Anxiety;Cold Hands,Vata
+69,Female,Vata-Pitta,Active,Irregular,Non-Vegetarian,Sedentary,Excessive Sleep;Anxiety,Kapha-Vata
+26,Male,Tridosha,Very Active,Regular (7-8hr),Vegetarian,Skipping Meals,Water Retention,Kapha-Vata
+67,Male,Tridosha,Active,Insomnia,Sweet/Dairy Heavy,Excess Travel,Bloating;Burning Sensation;Weight Gain,Pitta-Vata
+27,Female,Kapha,Moderate,Excessive (>9hr),Vegetarian,Active,Red Eyes,Kapha-Pitta
+32,Male,Pitta,Moderate,Regular (7-8hr),Vegan,Overeating,Sinusitis,Kapha
+69,Male,Vata-Kapha,Very Active,Disturbed,Spicy/Oily Heavy,Heavy/Sweet Food,Slow Digestion;Light Sleep;Red Eyes,Kapha-Vata
+26,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Vegan,Spicy Food,Water Retention,Kapha-Pitta
+84,Male,Kapha,Sedentary,Irregular,Non-Vegetarian,Overeating,Joint Pain;Water Retention;Excessive Heat,Kapha
+68,Male,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Daytime Sleep,Slow Digestion,Kapha
+52,Female,Pitta,Very Active,Excessive (>9hr),Vegetarian,Overeating,Skin Rashes,Kapha-Pitta
+20,Female,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,High Stress,Excessive Sleep;Anger,Kapha-Pitta
+24,Male,Kapha,Very Active,Disturbed,Sweet/Dairy Heavy,High Alcohol,Anger;Excessive Heat;Depression,Pitta
+84,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Irregular Meals,Excess Travel,Inflammation,Pitta-Vata
+42,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Non-Vegetarian,Heavy/Sweet Food,Bloating,Kapha-Vata
+79,Male,Vata-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,High Stress,Lethargy;Constipation,Kapha-Vata
+18,Male,Vata-Pitta,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Active,Loose Stools;Slow Digestion;Excessive Heat,Pitta
+68,Male,Pitta-Kapha,Moderate,Disturbed,Vegan,Overworking,Cold Hands,Pitta-Vata
+59,Female,Vata-Kapha,Very Active,Excessive (>9hr),Vegetarian,Overworking,Weight Gain,Kapha-Pitta
+42,Male,Vata-Pitta,Sedentary,Irregular,Irregular Meals,Heavy/Sweet Food,Depression,Kapha
+75,Male,Kapha,Very Active,Disturbed,Vegan,Balanced,Joint Pain,Kapha-Vata
+77,Female,Pitta,Sedentary,Regular (7-8hr),Spicy/Oily Heavy,Excess Travel,Cold Hands,Vata
+74,Male,Pitta-Kapha,Very Active,Insomnia,Spicy/Oily Heavy,Heavy/Sweet Food,Bloating,Kapha-Vata
+27,Female,Vata,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Daytime Sleep,Depression,Kapha
+29,Female,Kapha,Active,Irregular,Vegan,High Stress,Cold Hands;Excessive Sleep;Dry Skin,Vata
+18,Female,Pitta-Kapha,Active,Excessive (>9hr),Vegan,Skipping Meals,Oily Skin,Kapha-Vata
+79,Female,Vata-Pitta,Active,Insomnia,Spicy/Oily Heavy,Smoking,Excessive Heat,Pitta
+78,Male,Vata-Pitta,Moderate,Disturbed,Sweet/Dairy Heavy,None,Lethargy;Light Sleep,Kapha-Vata
+61,Female,Pitta,Active,Regular (7-8hr),Vegan,Overeating,Dry Skin,Kapha-Vata
+18,Male,Tridosha,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Irregular Sleep,Depression,Kapha-Vata
+62,Female,Pitta,Very Active,Insomnia,Irregular Meals,Skipping Meals,Slow Digestion,Kapha-Vata
+72,Male,Tridosha,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Overworking,Anxiety;Loose Stools,Pitta-Vata
+56,Female,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Balanced,Constipation,Pitta-Vata
+71,Male,Pitta,Moderate,Insomnia,Non-Vegetarian,High Stress,Excessive Heat;Skin Rashes,Pitta
+72,Female,Pitta,Moderate,Disturbed,Irregular Meals,Skipping Meals,Insomnia;Slow Digestion,Kapha-Vata
+23,Male,Vata-Kapha,Active,Excessive (>9hr),Sweet/Dairy Heavy,Daytime Sleep,Burning Sensation;Excessive Heat,Pitta
+73,Female,Vata-Kapha,Sedentary,Regular (7-8hr),Vegetarian,Active,Oily Skin;Constipation,Kapha-Vata
+78,Male,Vata,Active,Excessive (>9hr),Vegetarian,Smoking,Light Sleep,Pitta-Vata
+28,Male,Vata-Pitta,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Active,Excessive Sleep;Fatigue,Kapha-Vata
+55,Male,Vata,Active,Insomnia,Spicy/Oily Heavy,Sedentary,Congestion;Cold Hands;Light Sleep,Kapha-Vata
+68,Female,Vata-Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,Overeating,Red Eyes;Anxiety,Pitta-Vata
+31,Male,Vata,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Spicy Food,Fatigue,Pitta-Vata
+54,Male,Vata-Pitta,Sedentary,Excessive (>9hr),Vegan,Skipping Meals,Excessive Sleep;Anger;Depression,Kapha-Pitta
+68,Male,Vata-Pitta,Sedentary,Irregular,Spicy/Oily Heavy,Smoking,Fatigue;Excessive Sleep,Pitta-Vata
+37,Female,Vata,Moderate,Irregular,Vegetarian,Daytime Sleep,Water Retention,Kapha
+74,Male,Vata,Very Active,Regular (7-8hr),Spicy/Oily Heavy,Overworking,Fatigue;Bloating,Vata
+83,Male,Pitta,Active,Excessive (>9hr),Non-Vegetarian,Spicy Food,Red Eyes;Dry Skin,Pitta
+48,Male,Kapha,Very Active,Disturbed,Irregular Meals,Excess Travel,Migraine;Loose Stools,Pitta
+76,Female,Vata,Moderate,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Migraine,Pitta-Vata
+85,Female,Kapha,Moderate,Regular (7-8hr),Vegan,Irregular Sleep,Loose Stools,Pitta-Vata
+53,Male,Vata,Sedentary,Excessive (>9hr),Non-Vegetarian,Sedentary,Bloating;Anxiety,Vata
+36,Female,Kapha,Active,Excessive (>9hr),Non-Vegetarian,Skipping Meals,Anxiety,Vata
+73,Female,Pitta-Kapha,Moderate,Excessive (>9hr),Vegan,Sedentary,Anger;Burning Sensation;Depression,Kapha-Pitta
+45,Female,Tridosha,Very Active,Regular (7-8hr),Vegetarian,Active,Insomnia;Sinusitis,Kapha-Vata
+54,Female,Tridosha,Moderate,Insomnia,Vegetarian,Overworking,Inflammation;Dry Skin;Insomnia,Pitta-Vata
+28,Male,Vata,Sedentary,Insomnia,Sweet/Dairy Heavy,Excess Travel,Insomnia,Vata
+22,Female,Kapha,Active,Disturbed,Irregular Meals,Overeating,Acidity;Insomnia;Light Sleep,Vata
+57,Male,Pitta,Active,Disturbed,Non-Vegetarian,Irregular Sleep,Weight Gain;Fatigue,Kapha-Vata
+51,Male,Vata-Pitta,Moderate,Insomnia,Spicy/Oily Heavy,Spicy Food,Joint Pain;Water Retention,Pitta-Vata
+46,Male,Vata-Pitta,Active,Irregular,Sweet/Dairy Heavy,Excess Travel,Lethargy;Dry Skin,Vata
+39,Female,Tridosha,Active,Insomnia,Irregular Meals,Active,Joint Pain;Insomnia;Inflammation,Vata
+80,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Non-Vegetarian,Heavy/Sweet Food,Light Sleep;Oily Skin,Kapha
+51,Male,Vata,Very Active,Disturbed,Vegan,Heavy/Sweet Food,Excessive Sleep;Skin Rashes,Kapha-Pitta
+30,Female,Pitta,Moderate,Irregular,Irregular Meals,Irregular Sleep,Excessive Heat;Red Eyes,Pitta
+81,Female,Pitta,Moderate,Regular (7-8hr),Non-Vegetarian,Daytime Sleep,Oily Skin;Skin Rashes,Kapha-Pitta
+42,Male,Vata,Very Active,Disturbed,Vegan,Overeating,Oily Skin;Lethargy,Kapha
+42,Female,Vata-Kapha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Anxiety,Kapha-Vata
+43,Male,Tridosha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Irregular Sleep,Red Eyes;Light Sleep,Pitta-Vata
+82,Female,Kapha,Active,Regular (7-8hr),Vegetarian,Heavy/Sweet Food,Red Eyes;Anger,Pitta
+41,Male,Kapha,Sedentary,Excessive (>9hr),Vegan,Irregular Sleep,Anger;Inflammation,Pitta
+55,Male,Vata,Active,Excessive (>9hr),Spicy/Oily Heavy,None,Lethargy,Kapha-Vata
+59,Female,Pitta-Kapha,Very Active,Excessive (>9hr),Vegan,Sedentary,Oily Skin;Fatigue;Excessive Heat,Kapha-Pitta
+36,Male,Vata-Kapha,Sedentary,Irregular,Irregular Meals,Excess Travel,Water Retention;Fatigue,Kapha-Vata
+60,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Non-Vegetarian,Overeating,Inflammation;Burning Sensation,Pitta
+57,Male,Pitta-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Excess Travel,Slow Digestion,Kapha-Vata
+61,Male,Tridosha,Very Active,Regular (7-8hr),Spicy/Oily Heavy,High Stress,Water Retention;Inflammation,Kapha-Pitta
+67,Male,Kapha,Moderate,Excessive (>9hr),Irregular Meals,Sedentary,Loose Stools;Skin Rashes;Oily Skin,Kapha-Pitta
+84,Female,Tridosha,Very Active,Insomnia,Vegetarian,Overworking,Excessive Sleep;Anger;Bloating,Pitta-Vata
+51,Female,Pitta-Kapha,Sedentary,Irregular,Vegan,Active,Burning Sensation,Pitta
+47,Female,Vata,Sedentary,Regular (7-8hr),Vegetarian,None,Slow Digestion;Excessive Sleep;Depression,Kapha
+43,Female,Kapha,Active,Irregular,Vegetarian,High Alcohol,Fatigue;Weight Gain;Anger,Kapha-Pitta
+67,Male,Vata,Moderate,Regular (7-8hr),Vegetarian,Overworking,Congestion,Kapha-Pitta
+83,Female,Pitta-Kapha,Sedentary,Disturbed,Vegetarian,Active,Acidity;Bloating;Excessive Sleep,Kapha-Pitta
+67,Male,Pitta,Very Active,Insomnia,Vegan,Skipping Meals,Water Retention,Kapha-Vata
+27,Female,Pitta,Active,Excessive (>9hr),Irregular Meals,None,Loose Stools;Fatigue;Sinusitis,Pitta-Vata
+78,Female,Vata-Kapha,Very Active,Irregular,Vegetarian,Daytime Sleep,Weight Gain;Migraine;Congestion,Kapha
+30,Male,Vata-Kapha,Active,Regular (7-8hr),Vegetarian,Overworking,Anxiety,Pitta-Vata
+67,Male,Pitta-Kapha,Sedentary,Insomnia,Irregular Meals,Overworking,Anger;Congestion,Kapha-Pitta
+32,Male,Pitta-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Sedentary,Excessive Heat;Red Eyes;Sinusitis,Kapha-Pitta
+60,Female,Vata,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Smoking,Water Retention;Insomnia,Kapha-Vata
+38,Male,Vata-Pitta,Very Active,Excessive (>9hr),Vegetarian,Balanced,Skin Rashes;Cold Hands,Pitta-Vata
+77,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Skipping Meals,Excessive Sleep;Constipation,Kapha-Vata
+63,Female,Pitta-Kapha,Active,Regular (7-8hr),Irregular Meals,Spicy Food,Congestion;Cold Hands,Kapha-Vata
+35,Male,Kapha,Sedentary,Regular (7-8hr),Irregular Meals,High Stress,Sinusitis;Burning Sensation,Kapha-Pitta
+61,Female,Pitta-Kapha,Moderate,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Constipation;Light Sleep,Vata
+79,Male,Vata-Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Daytime Sleep,Lethargy;Congestion,Kapha
+57,Male,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,Daytime Sleep,Dry Skin,Kapha-Vata
+38,Male,Pitta-Kapha,Very Active,Excessive (>9hr),Vegetarian,Overworking,Congestion;Loose Stools;Fatigue,Kapha-Pitta
+35,Male,Vata,Sedentary,Excessive (>9hr),Irregular Meals,Skipping Meals,Joint Pain;Red Eyes,Vata
+82,Female,Vata-Pitta,Active,Irregular,Spicy/Oily Heavy,Active,Skin Rashes;Weight Gain,Kapha-Pitta
+82,Female,Tridosha,Sedentary,Excessive (>9hr),Irregular Meals,Balanced,Excessive Heat;Excessive Sleep,Kapha-Pitta
+75,Male,Vata-Pitta,Sedentary,Disturbed,Vegetarian,Active,Light Sleep,Vata
+75,Female,Pitta-Kapha,Active,Regular (7-8hr),Non-Vegetarian,Skipping Meals,Light Sleep,Vata
+31,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Smoking,Lethargy;Joint Pain;Anxiety,Vata
+64,Female,Vata-Kapha,Very Active,Excessive (>9hr),Vegan,Overworking,Dry Skin,Pitta-Vata
+19,Male,Vata-Kapha,Very Active,Irregular,Irregular Meals,High Stress,Cold Hands;Light Sleep,Vata
+78,Male,Tridosha,Moderate,Regular (7-8hr),Vegetarian,Balanced,Inflammation;Skin Rashes,Pitta
+40,Female,Kapha,Sedentary,Irregular,Non-Vegetarian,Smoking,Anxiety;Water Retention,Kapha-Vata
+33,Male,Vata-Pitta,Active,Disturbed,Vegan,Active,Anger;Skin Rashes,Pitta
+50,Male,Tridosha,Active,Regular (7-8hr),Vegan,Spicy Food,Joint Pain;Lethargy,Kapha-Vata
+22,Male,Vata-Kapha,Very Active,Irregular,Non-Vegetarian,High Stress,Excessive Sleep;Loose Stools;Insomnia,Kapha-Vata
+78,Male,Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Loose Stools;Sinusitis;Fatigue,Kapha
+22,Male,Kapha,Very Active,Irregular,Sweet/Dairy Heavy,Spicy Food,Burning Sensation,Pitta
+18,Female,Tridosha,Sedentary,Irregular,Non-Vegetarian,Excess Travel,Excessive Heat;Constipation,Pitta-Vata
+28,Male,Pitta,Moderate,Insomnia,Irregular Meals,Balanced,Constipation,Pitta-Vata
+62,Male,Pitta-Kapha,Active,Excessive (>9hr),Non-Vegetarian,Irregular Sleep,Inflammation;Red Eyes,Pitta
+85,Male,Vata,Moderate,Disturbed,Sweet/Dairy Heavy,Smoking,Sinusitis;Water Retention,Kapha
+31,Male,Vata-Kapha,Sedentary,Excessive (>9hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Light Sleep,Kapha-Vata
+19,Male,Vata-Kapha,Very Active,Excessive (>9hr),Vegetarian,Balanced,Excessive Heat;Acidity;Excessive Sleep,Kapha-Pitta
+42,Female,Pitta-Kapha,Very Active,Disturbed,Vegetarian,Sedentary,Fatigue;Light Sleep;Oily Skin,Kapha-Vata
+25,Female,Pitta-Kapha,Active,Irregular,Spicy/Oily Heavy,Spicy Food,Congestion,Kapha-Pitta
+54,Female,Vata-Pitta,Very Active,Disturbed,Vegan,Skipping Meals,Congestion;Loose Stools,Pitta-Vata
+42,Female,Vata-Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Excess Travel,Water Retention;Lethargy,Kapha
+51,Male,Tridosha,Sedentary,Irregular,Spicy/Oily Heavy,Balanced,Acidity;Excessive Heat,Pitta
+84,Male,Pitta-Kapha,Sedentary,Disturbed,Non-Vegetarian,Irregular Sleep,Migraine;Lethargy;Bloating,Pitta-Vata
+34,Male,Tridosha,Moderate,Excessive (>9hr),Vegetarian,Heavy/Sweet Food,Skin Rashes;Insomnia,Pitta-Vata
+40,Female,Kapha,Active,Excessive (>9hr),Spicy/Oily Heavy,None,Anxiety;Slow Digestion,Kapha-Vata
+85,Female,Vata-Pitta,Active,Disturbed,Irregular Meals,Balanced,Inflammation;Anxiety,Pitta-Vata
+61,Female,Tridosha,Moderate,Irregular,Vegan,None,Inflammation;Burning Sensation;Bloating,Pitta
+34,Male,Vata-Pitta,Moderate,Excessive (>9hr),Irregular Meals,High Alcohol,Migraine;Loose Stools,Pitta
+54,Male,Vata,Active,Disturbed,Vegan,Daytime Sleep,Loose Stools;Skin Rashes;Anxiety,Pitta-Vata
+72,Male,Vata-Pitta,Sedentary,Insomnia,Sweet/Dairy Heavy,Overeating,Insomnia;Weight Gain,Kapha-Vata
+47,Male,Tridosha,Moderate,Irregular,Sweet/Dairy Heavy,High Alcohol,Anxiety;Fatigue;Acidity,Pitta-Vata
+60,Female,Vata-Pitta,Moderate,Excessive (>9hr),Vegan,Smoking,Fatigue;Light Sleep,Vata
+24,Female,Vata-Kapha,Active,Disturbed,Spicy/Oily Heavy,Overworking,Skin Rashes;Migraine,Pitta
+27,Male,Pitta,Active,Insomnia,Irregular Meals,None,Anger,Pitta
+45,Male,Pitta-Kapha,Moderate,Insomnia,Vegan,Spicy Food,Joint Pain,Pitta-Vata
+82,Male,Kapha,Moderate,Disturbed,Vegan,Balanced,Excessive Sleep,Kapha
+27,Male,Pitta,Sedentary,Irregular,Sweet/Dairy Heavy,Heavy/Sweet Food,Excessive Sleep;Joint Pain,Kapha-Vata
+79,Male,Pitta-Kapha,Sedentary,Irregular,Irregular Meals,Heavy/Sweet Food,Oily Skin;Joint Pain,Kapha
+41,Female,Vata-Pitta,Very Active,Disturbed,Non-Vegetarian,Smoking,Loose Stools;Acidity,Pitta
+51,Male,Kapha,Active,Disturbed,Non-Vegetarian,Sedentary,Constipation;Dry Skin,Vata
+27,Male,Kapha,Very Active,Disturbed,Vegetarian,High Alcohol,Cold Hands,Pitta-Vata
+74,Male,Tridosha,Moderate,Irregular,Irregular Meals,Excess Travel,Anger,Pitta-Vata
+72,Female,Tridosha,Sedentary,Irregular,Irregular Meals,Overworking,Oily Skin;Insomnia;Cold Hands,Vata
+39,Female,Vata-Kapha,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Skipping Meals,Sinusitis;Constipation;Red Eyes,Kapha-Vata
+83,Female,Kapha,Very Active,Insomnia,Vegan,Spicy Food,Red Eyes;Skin Rashes,Pitta
+57,Male,Kapha,Active,Irregular,Vegan,Heavy/Sweet Food,Insomnia;Oily Skin;Migraine,Kapha
+62,Male,Vata-Kapha,Sedentary,Excessive (>9hr),Irregular Meals,None,Dry Skin;Sinusitis;Migraine,Kapha-Vata
+32,Male,Kapha,Very Active,Excessive (>9hr),Vegan,Excess Travel,Water Retention;Anger,Kapha-Pitta
+23,Male,Vata-Pitta,Moderate,Regular (7-8hr),Vegan,High Alcohol,Insomnia;Anger;Anxiety,Pitta-Vata
+36,Male,Vata-Pitta,Sedentary,Insomnia,Spicy/Oily Heavy,Overeating,Slow Digestion,Kapha
+66,Female,Pitta-Kapha,Moderate,Insomnia,Non-Vegetarian,Excess Travel,Burning Sensation,Pitta-Vata
+32,Male,Tridosha,Moderate,Insomnia,Vegan,Sedentary,Joint Pain;Insomnia,Vata
+73,Male,Tridosha,Active,Regular (7-8hr),Sweet/Dairy Heavy,High Stress,Bloating;Congestion;Constipation,Vata
+23,Female,Pitta-Kapha,Active,Insomnia,Spicy/Oily Heavy,High Stress,Anxiety;Red Eyes,Pitta-Vata
+31,Female,Pitta-Kapha,Active,Irregular,Irregular Meals,Balanced,Lethargy,Kapha
+68,Male,Tridosha,Active,Insomnia,Vegan,High Alcohol,Loose Stools;Depression,Kapha-Pitta
+55,Female,Vata-Pitta,Active,Insomnia,Spicy/Oily Heavy,Irregular Sleep,Skin Rashes;Anxiety,Pitta-Vata
+56,Male,Pitta,Very Active,Excessive (>9hr),Sweet/Dairy Heavy,Active,Slow Digestion;Joint Pain;Fatigue,Vata
+50,Female,Vata-Pitta,Active,Regular (7-8hr),Irregular Meals,Excess Travel,Acidity;Excessive Heat;Water Retention,Pitta
+50,Male,Vata,Moderate,Irregular,Irregular Meals,High Alcohol,Red Eyes;Light Sleep;Constipation,Pitta-Vata
+26,Male,Tridosha,Very Active,Regular (7-8hr),Vegan,Skipping Meals,Anger,Pitta-Vata
+76,Female,Pitta-Kapha,Very Active,Irregular,Vegan,Active,Anxiety;Cold Hands,Vata
+46,Male,Vata-Kapha,Moderate,Excessive (>9hr),Vegan,Irregular Sleep,Loose Stools;Excessive Sleep,Kapha-Vata
+43,Male,Vata,Very Active,Disturbed,Vegetarian,Smoking,Light Sleep;Loose Stools,Pitta-Vata
+82,Female,Pitta-Kapha,Sedentary,Insomnia,Spicy/Oily Heavy,Sedentary,Migraine,Kapha-Pitta
+55,Female,Kapha,Moderate,Insomnia,Spicy/Oily Heavy,Daytime Sleep,Migraine;Water Retention;Burning Sensation,Kapha-Pitta
+40,Male,Vata-Pitta,Very Active,Disturbed,Vegetarian,Excess Travel,Anxiety;Constipation,Vata
+38,Male,Vata-Kapha,Very Active,Insomnia,Non-Vegetarian,Heavy/Sweet Food,Red Eyes;Acidity;Depression,Kapha-Pitta
+18,Male,Kapha,Moderate,Disturbed,Sweet/Dairy Heavy,Overworking,Bloating;Loose Stools,Pitta-Vata
+43,Male,Pitta-Kapha,Sedentary,Insomnia,Non-Vegetarian,Balanced,Cold Hands,Pitta-Vata
+27,Female,Vata,Moderate,Excessive (>9hr),Spicy/Oily Heavy,Spicy Food,Red Eyes;Burning Sensation;Inflammation,Pitta
+84,Female,Pitta,Active,Irregular,Spicy/Oily Heavy,Sedentary,Fatigue,Kapha-Vata
+72,Male,Kapha,Moderate,Excessive (>9hr),Irregular Meals,Spicy Food,Bloating;Inflammation,Pitta-Vata
+85,Male,Vata,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Overworking,Loose Stools,Pitta
+20,Male,Tridosha,Active,Insomnia,Vegetarian,Excess Travel,Excessive Sleep;Red Eyes,Kapha-Pitta
+49,Male,Vata-Kapha,Active,Irregular,Spicy/Oily Heavy,Balanced,Acidity,Pitta-Vata
+52,Male,Vata-Pitta,Moderate,Excessive (>9hr),Sweet/Dairy Heavy,Balanced,Weight Gain,Kapha-Vata
+20,Female,Vata,Very Active,Insomnia,Non-Vegetarian,Daytime Sleep,Acidity,Kapha-Pitta
+23,Male,Kapha,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Sedentary,Acidity,Kapha-Pitta
+22,Female,Kapha,Moderate,Disturbed,Irregular Meals,Skipping Meals,Red Eyes;Acidity;Light Sleep,Pitta-Vata
+35,Male,Pitta,Sedentary,Disturbed,Sweet/Dairy Heavy,Sedentary,Anxiety;Excessive Heat;Excessive Sleep,Kapha-Pitta
+20,Male,Tridosha,Moderate,Disturbed,Vegan,Spicy Food,Joint Pain,Pitta-Vata
+76,Female,Tridosha,Active,Disturbed,Vegetarian,Irregular Sleep,Excessive Sleep;Excessive Heat,Kapha-Pitta
+30,Male,Vata-Kapha,Active,Irregular,Non-Vegetarian,Skipping Meals,Excessive Sleep;Cold Hands,Kapha-Vata
+68,Male,Kapha,Very Active,Irregular,Sweet/Dairy Heavy,High Stress,Weight Gain;Oily Skin,Kapha
+58,Female,Vata,Active,Regular (7-8hr),Sweet/Dairy Heavy,Heavy/Sweet Food,Oily Skin;Loose Stools;Red Eyes,Kapha-Pitta
+37,Male,Vata-Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Smoking,Oily Skin,Kapha-Pitta
+22,Female,Pitta,Very Active,Excessive (>9hr),Vegan,Overeating,Red Eyes;Acidity;Slow Digestion,Kapha-Pitta
+83,Male,Tridosha,Very Active,Excessive (>9hr),Spicy/Oily Heavy,Balanced,Burning Sensation;Red Eyes,Pitta
+76,Male,Pitta-Kapha,Sedentary,Irregular,Vegan,Spicy Food,Excessive Sleep;Loose Stools;Burning Sensation,Pitta
+56,Male,Vata-Kapha,Active,Excessive (>9hr),Vegetarian,Spicy Food,Cold Hands;Congestion;Dry Skin,Vata
+80,Male,Vata-Pitta,Very Active,Disturbed,Sweet/Dairy Heavy,Overworking,Acidity;Oily Skin,Pitta
+23,Male,Vata-Kapha,Sedentary,Disturbed,Spicy/Oily Heavy,Spicy Food,Red Eyes,Pitta
+37,Female,Vata-Kapha,Sedentary,Insomnia,Sweet/Dairy Heavy,Heavy/Sweet Food,Burning Sensation,Kapha-Pitta
+29,Female,Pitta-Kapha,Active,Disturbed,Sweet/Dairy Heavy,Heavy/Sweet Food,Skin Rashes,Kapha-Pitta
+69,Male,Kapha,Active,Regular (7-8hr),Irregular Meals,Smoking,Sinusitis,Kapha-Pitta
+79,Male,Pitta-Kapha,Active,Regular (7-8hr),Non-Vegetarian,Smoking,Skin Rashes;Oily Skin;Dry Skin,Kapha-Pitta
+79,Male,Tridosha,Sedentary,Regular (7-8hr),Sweet/Dairy Heavy,Sedentary,Water Retention;Weight Gain,Kapha
+48,Male,Vata,Moderate,Regular (7-8hr),Spicy/Oily Heavy,Irregular Sleep,Anger;Inflammation;Dry Skin,Pitta-Vata
+28,Female,Vata,Sedentary,Insomnia,Sweet/Dairy Heavy,Overworking,Fatigue,Pitta-Vata
+18,Female,Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Skipping Meals,Congestion,Kapha-Vata
+23,Female,Tridosha,Sedentary,Irregular,Vegan,High Alcohol,Inflammation;Light Sleep,Pitta-Vata
+42,Male,Vata-Kapha,Active,Regular (7-8hr),Irregular Meals,Spicy Food,Constipation;Bloating;Migraine,Pitta-Vata
+41,Male,Vata,Very Active,Insomnia,Non-Vegetarian,Balanced,Excessive Heat;Inflammation;Joint Pain,Pitta-Vata
+65,Male,Tridosha,Very Active,Regular (7-8hr),Irregular Meals,Heavy/Sweet Food,Sinusitis,Kapha
+32,Male,Vata-Pitta,Moderate,Irregular,Vegan,Active,Burning Sensation;Skin Rashes,Pitta
+52,Female,Pitta-Kapha,Very Active,Disturbed,Non-Vegetarian,Daytime Sleep,Cold Hands;Oily Skin,Kapha
+49,Female,Vata-Kapha,Moderate,Insomnia,Sweet/Dairy Heavy,Daytime Sleep,Constipation;Excessive Heat,Pitta-Vata
+40,Male,Vata-Kapha,Moderate,Regular (7-8hr),Irregular Meals,Active,Migraine;Depression,Kapha-Pitta
+20,Male,Kapha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,None,Constipation;Weight Gain;Sinusitis,Kapha
+19,Female,Tridosha,Very Active,Regular (7-8hr),Sweet/Dairy Heavy,Balanced,Congestion;Excessive Heat,Kapha-Pitta
+72,Male,Tridosha,Sedentary,Excessive (>9hr),Spicy/Oily Heavy,Overeating,Weight Gain;Slow Digestion,Kapha
+41,Female,Kapha,Active,Insomnia,Vegan,Irregular Sleep,Weight Gain;Light Sleep;Congestion,Kapha-Vata
+44,Male,Vata-Pitta,Active,Excessive (>9hr),Irregular Meals,Daytime Sleep,Anxiety;Joint Pain,Vata
+22,Male,Pitta-Kapha,Active,Excessive (>9hr),Vegetarian,Sedentary,Bloating;Excessive Sleep,Kapha
+24,Female,Pitta,Very Active,Insomnia,Sweet/Dairy Heavy,Active,Dry Skin;Anger;Excessive Heat,Pitta
+59,Male,Pitta-Kapha,Very Active,Disturbed,Non-Vegetarian,High Alcohol,Bloating,Pitta-Vata
+26,Female,Pitta,Active,Disturbed,Vegan,Overeating,Red Eyes;Depression;Insomnia,Kapha-Pitta
+20,Male,Vata-Pitta,Active,Insomnia,Non-Vegetarian,Daytime Sleep,Fatigue;Skin Rashes;Constipation,Vata
+59,Male,Vata,Active,Regular (7-8hr),Non-Vegetarian,None,Anger;Constipation;Dry Skin,Vata
+44,Female,Pitta-Kapha,Very Active,Irregular,Non-Vegetarian,High Stress,Light Sleep,Vata
+47,Female,Vata,Moderate,Disturbed,Vegan,High Alcohol,Excessive Sleep,Kapha-Pitta
+39,Female,Vata-Kapha,Moderate,Regular (7-8hr),Vegan,Smoking,Lethargy;Skin Rashes,Kapha-Pitta
