@@ -26,6 +26,8 @@ interface Patient {
         vikriti?: string;
         age?: number;
         gender?: string;
+        activityLevel?: string;
+        sleepPattern?: string;
     };
 }
 
@@ -599,6 +601,14 @@ function CreateDietPlanContent() {
                                 <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 p-4 rounded-lg border border-purple-200">
                                     <p className="text-xs font-medium text-purple-700 uppercase tracking-wide mb-1">Gender</p>
                                     <p className="text-lg font-bold text-purple-900">{latestAssessment.assessment.gender || 'N/A'}</p>
+                                </div>
+                                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100/50 p-4 rounded-lg border border-yellow-200">
+                                    <p className="text-xs font-medium text-yellow-700 uppercase tracking-wide mb-1">Activity</p>
+                                    <p className="text-lg font-bold text-yellow-900 truncate" title={latestAssessment.assessment.activityLevel}>{latestAssessment.assessment.activityLevel || 'N/A'}</p>
+                                </div>
+                                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100/50 p-4 rounded-lg border border-indigo-200">
+                                    <p className="text-xs font-medium text-indigo-700 uppercase tracking-wide mb-1">Sleep</p>
+                                    <p className="text-lg font-bold text-indigo-900 truncate" title={latestAssessment.assessment.sleepPattern}>{latestAssessment.assessment.sleepPattern || 'N/A'}</p>
                                 </div>
                             </div>
                         )}

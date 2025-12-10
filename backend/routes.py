@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from models import Patient, DietPlan, Doctor, get_ist_now
 from flask_jwt_extended import jwt_required, get_jwt_identity
 import json
+from ml_service import ml_service
 
 api_bp = Blueprint('api', __name__)
 
@@ -105,45 +106,63 @@ def validate_status_transition(current_status, new_status):
 @api_bp.route('/generate-diet', methods=['POST'])
 @jwt_required()
 def generate_diet_plan():
-    data = request.json
-    patient_id = data.get('patient_id')
-    current_user = get_jwt_identity()
-    
-    patient = Patient.objects(patientId=patient_id).first()
-    if not patient:
-        return jsonify({"error": "Patient not found"}), 404
+    try:
+        data = request.json
+        patient_id = data.get('patient_id')
+        # Allow passing specific assessment data, otherwise use patient's saved assessment
+        assessment_override = data.get('assessment_data')
         
-    # Use the ML Service
-    from ml_service import ml_service
-    
-    # Construct profile from assessment
-    assessment_data = data.get('assessment_data')
-    
-    if assessment_data and 'assessment' in assessment_data:
-        # If full assessment object passed (from Assessment collection)
-        assessment = assessment_data['assessment']
-    elif assessment_data:
-        # If just the assessment fields passed
-        assessment = assessment_data
-    else:
-        # Fallback to patient's embedded assessment
-        assessment = patient.assessment or {}
+        if not patient_id:
+            return jsonify({"error": "Patient ID is required"}), 400
+            
+        patient = Patient.objects(patientId=patient_id).first()
+        if not patient:
+            return jsonify({"error": "Patient not found"}), 404
+        
+        # Determine which assessment data to use
+        assessment_source = assessment_override if assessment_override else patient.assessment
+            
+        if not assessment_source:
+             return jsonify({"error": "No assessment data found. Please complete an assessment first."}), 400
 
-    profile = {
-        "prakriti": assessment.get('prakriti'),
-        "vikriti": assessment.get('vikriti'),
-        "age": assessment.get('age'),
-        "gender": assessment.get('gender')
-    }
-    
-    diet_plan_content = ml_service.generate_diet(profile)
-    
-    # Don't auto-save - let doctor decide to save or publish
-    # Just return the generated plan
-    return jsonify({
-        "message": "Diet plan generated successfully", 
-        "diet_plan": diet_plan_content
-    }), 200
+        # Helper to safely extracting data whether it's flat or nested in 'assessment' key
+        # (Handling inconsistency where sometimes data is top-level and sometimes in 'assessment' key)
+        def get_val(key):
+            val = assessment_source.get(key)
+            if val is None and 'assessment' in assessment_source:
+                val = assessment_source['assessment'].get(key)
+            return val
+
+        vikriti_val = get_val('vikriti')
+        if vikriti_val == 'Auto Detect':
+            vikriti_val = None
+
+        profile = {
+            'Age': get_val('age'),
+            'Gender': get_val('gender'),
+            'Prakriti': get_val('prakriti'),
+            'Vikriti': vikriti_val,
+            'ActivityLevel': get_val('activityLevel'),
+            'SleepPattern': get_val('sleepPattern'),
+            'DietaryHabits': get_val('dietaryHabits'),
+            'Lifestyle': get_val('lifestyle'),
+            'Symptoms': get_val('symptoms')
+        }
+        
+        # Basic validation for critical fields
+        if not profile['Prakriti']:
+             return jsonify({"error": "Prakriti is required for diet generation"}), 400
+
+        diet_plan_content = ml_service.generate_diet(profile)
+        
+        return jsonify({
+            "message": "Diet plan generated successfully", 
+            "diet_plan": diet_plan_content
+        }), 200
+        
+    except Exception as e:
+        print(f"Error generating diet plan: {str(e)}")
+        return jsonify({"error": f"Failed to generate diet plan: {str(e)}"}), 500
 
 @api_bp.route('/diet-plans/<patient_id>', methods=['GET'])
 @jwt_required()

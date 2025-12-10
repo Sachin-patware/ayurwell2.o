@@ -21,6 +21,8 @@ export default function AssessmentForm({ patientId, initialData, onSuccess, onCa
     const [gender, setGender] = useState('');
     const [prakriti, setPrakriti] = useState('');
     const [vikriti, setVikriti] = useState('');
+    const [activityLevel, setActivityLevel] = useState('');
+    const [sleepPattern, setSleepPattern] = useState('');
     const [healthHistory, setHealthHistory] = useState('');
     const [medicalConditions, setMedicalConditions] = useState('');
     const [lifestyle, setLifestyle] = useState('');
@@ -35,6 +37,8 @@ export default function AssessmentForm({ patientId, initialData, onSuccess, onCa
                 setGender(initialData.assessment.gender || '');
                 setPrakriti(initialData.assessment.prakriti || '');
                 setVikriti(initialData.assessment.vikriti || '');
+                setActivityLevel(initialData.assessment.activityLevel || initialData.activityLevel || '');
+                setSleepPattern(initialData.assessment.sleepPattern || initialData.sleepPattern || '');
             }
             setHealthHistory(initialData.healthHistory || '');
             setMedicalConditions(initialData.medicalConditions || '');
@@ -57,8 +61,12 @@ export default function AssessmentForm({ patientId, initialData, onSuccess, onCa
                     age: parseInt(age),
                     gender,
                     prakriti,
-                    vikriti
+                    vikriti,
+                    activityLevel,
+                    sleepPattern
                 },
+                activityLevel,
+                sleepPattern,
                 healthHistory,
                 medicalConditions,
                 lifestyle,
@@ -149,15 +157,48 @@ export default function AssessmentForm({ patientId, initialData, onSuccess, onCa
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Vikriti (Current Imbalance) *</label>
-                        <Select value={vikriti} onValueChange={setVikriti} required>
+                        <label className="text-sm font-medium text-gray-700">Vikriti (Current Imbalance) — Optional</label>
+                        <Select value={vikriti} onValueChange={setVikriti}>
                             <SelectTrigger className="border-2">
                                 <SelectValue placeholder="Select current imbalance" />
                             </SelectTrigger>
                             <SelectContent className="bg-white">
+                                <SelectItem value="Auto Detect">Auto Detect (Recommended)</SelectItem>
                                 <SelectItem value="Vata">Vata (Anxiety, Dryness, Bloating)</SelectItem>
                                 <SelectItem value="Pitta">Pitta (Acidity, Heat, Anger)</SelectItem>
                                 <SelectItem value="Kapha">Kapha (Lethargy, Weight Gain, Congestion)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Activity Level *</label>
+                        <Select value={activityLevel} onValueChange={setActivityLevel} required>
+                            <SelectTrigger className="border-2">
+                                <SelectValue placeholder="Select activity level" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                                <SelectItem value="Sedentary">Sedentary</SelectItem>
+                                <SelectItem value="Low">Low</SelectItem>
+                                <SelectItem value="Moderate">Moderate</SelectItem>
+                                <SelectItem value="High">High</SelectItem>
+                                <SelectItem value="Very High">Very High</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Sleep Pattern *</label>
+                        <Select value={sleepPattern} onValueChange={setSleepPattern} required>
+                            <SelectTrigger className="border-2">
+                                <SelectValue placeholder="Select sleep pattern" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                                <SelectItem value="Regular">Regular</SelectItem>
+                                <SelectItem value="Light Sleep">Light Sleep</SelectItem>
+                                <SelectItem value="Disturbed Sleep">Disturbed Sleep</SelectItem>
+                                <SelectItem value="Irregular Sleep">Irregular Sleep</SelectItem>
+                                <SelectItem value="Insomnia">Insomnia</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>

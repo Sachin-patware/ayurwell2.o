@@ -6,27 +6,42 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ml'))
 
 try:
-    from local_engine import LocalDietEngine
+    from recommendation_engine import AyurvedicRecommendationEngine
 except ImportError as e:
     print(f"Import error: {e}")
-    # Fallback if path setup fails
-    class LocalDietEngine:
-        def __init__(self, db_path): 
-            print("⚠ Using fallback LocalDietEngine")
-        def generate_diet_plan(self, profile): 
+    # Fallback
+    class AyurvedicRecommendationEngine:
+        def __init__(self, model_path=None, food_data_path=None): 
+            print("⚠ Using fallback Engine (Import Failed)")
+        def generate_diet_chart(self, profile): 
             return {"error": "ML Engine not found"}
 
 class MLService:
     def __init__(self):
-        # Point to the actual CSV file
-        csv_path = os.path.join(os.path.dirname(__file__), '..', 'ml', 'ayurvedic_food_data.csv')
-        print(f"🔧 Initializing ML Service with CSV: {csv_path}")
-        self.engine = LocalDietEngine(csv_path)
+        # Paths are handled internally by the Engine class defaults, 
+        # but we can explicitly pass them if needed.
+        # The Engine expects model at ../backend/model/model.pkl relative to itself
+        # or we can pass absolute paths.
+        
+        base_dir = os.path.dirname(__file__)
+        model_path = os.path.join(base_dir, 'model', 'model.pkl')
+        food_path = os.path.join(base_dir, '..', 'ml', 'ayurvedic_food_data.csv')
+        
+        print(f"🔧 Initializing ML Service...")
+        print(f"   Model: {model_path}")
+        print(f"   Food: {food_path}")
+        
+        self.engine = AyurvedicRecommendationEngine(model_path, food_path)
 
     def generate_diet(self, patient_profile):
-
         print(f"\n📋 Generating diet for profile: {patient_profile}")
-        result = self.engine.generate_diet_plan(patient_profile)
+        
+        # Ensure profile has necessary fields
+        # If 'symptoms' is missing, try to infer or set default
+        if 'symptoms' not in patient_profile:
+            patient_profile['symptoms'] = "None"
+            
+        result = self.engine.generate_diet_chart(patient_profile)
         print(f"✅ Diet plan generated successfully")
         return result
 
@@ -39,49 +54,26 @@ if __name__ == "__main__":
     print("🧪 TESTING ML SERVICE")
     print("="*60)
     
-    # Test with different doshas
     test_profiles = [
         {
-            "vikriti": "Vata",
-            "prakriti": "Vata-Pitta",
+            "prakriti": "Vata",
             "age": 35,
-            "gender": "Male"
+            "gender": "Male",
+            "symptoms": "Joint Pain" 
         },
         {
-            "vikriti": "Pitta",
             "prakriti": "Pitta",
             "age": 28,
-            "gender": "Female"
-        },
-        {
-            "vikriti": "Kapha",
-            "prakriti": "Kapha",
-            "age": 42,
-            "gender": "Male"
+            "gender": "Female",
+            "symptoms": "Acidity"
         }
     ]
     
     for i, profile in enumerate(test_profiles, 1):
         print(f"\n{'='*60}")
-        print(f"TEST {i}: {profile['vikriti']} Imbalance")
-        print(f"{'='*60}")
+        print(f"TEST {i}: {profile}")
         
         result = ml_service.generate_diet(profile)
         
-        print(f"\n📊 RESULTS:")
-        print(f"   Dosha Imbalance: {result.get('doshaImbalance')}")
-        print(f"   Recommended Foods ({len(result.get('recommendedFoods', []))}): {', '.join(result.get('recommendedFoods', [])[:5])}...")
-        print(f"   Avoid Foods ({len(result.get('avoidFoods', []))}): {', '.join(result.get('avoidFoods', [])[:5])}...")
-        print(f"   Meal Plan Days: {len(result.get('mealPlan', []))}")
-        print(f"   Rationale: {result.get('rationale')}")
-        
-        # Show sample day
-        if result.get('mealPlan'):
-            sample_day = result['mealPlan'][0]
-            print(f"\n   📅 Sample Day ({sample_day['day']}):")
-            for meal in sample_day['meals']:
-                print(f"      {meal['time']} - {meal['type']}: {', '.join(meal['items'])}")
-    
-    print(f"\n{'='*60}")
-    print("✅ ALL TESTS COMPLETED")
-    print(f"{'='*60}\n")
+        print(f"Dosha Imbalance: {result.get('doshaImbalance')}")
+        print(f"Rec Foods: {len(result.get('recommendedFoods', []))}")

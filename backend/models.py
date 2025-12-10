@@ -68,6 +68,8 @@ class Assessment(db.Document):
     lifestyle = db.StringField()
     dietaryHabits = db.StringField()
     symptoms = db.StringField()
+    activityLevel = db.StringField()  # New: Sedentary, Moderate, High, etc.
+    sleepPattern = db.StringField()   # New: Regular, Insomnia, etc.
     notes = db.StringField()
     
     # Metadata

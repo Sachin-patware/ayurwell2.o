@@ -686,6 +686,8 @@ def create_assessment():
             lifestyle=data.get('lifestyle', ''),
             dietaryHabits=data.get('dietaryHabits', ''),
             symptoms=data.get('symptoms', ''),
+            activityLevel=data.get('activityLevel', ''),
+            sleepPattern=data.get('sleepPattern', ''),
             notes=data.get('notes', '')
         )
         assessment.save()
@@ -704,6 +706,8 @@ def create_assessment():
                 'lifestyle': assessment.lifestyle,
                 'dietaryHabits': assessment.dietaryHabits,
                 'symptoms': assessment.symptoms,
+                'activityLevel': assessment.activityLevel,
+                'sleepPattern': assessment.sleepPattern,
                 'notes': assessment.notes
             }
         }), 201
