@@ -170,10 +170,18 @@ export default function PatientAppointmentsPage() {
             setSelectedDoctor('');
             setError('');
         } catch (err: any) {
-            console.error('Error processing appointment:', err);
-            const errorMsg = err.response?.data?.error || err.message || 'Failed to process appointment';
+            const warningMsg = err.response?.data?.warning;
+            const errorMsg = err.response?.data?.error || warningMsg || err.message || 'Failed to process appointment';
+
             setError(errorMsg);
-            toast.error(errorMsg);
+
+            if (warningMsg) {
+                console.warn('Booking warning:', warningMsg);
+                toast.warning(warningMsg);
+            } else {
+                console.error('Error processing appointment:', err);
+                toast.error(errorMsg);
+            }
         } finally {
             setBooking(false);
         }
@@ -432,9 +440,9 @@ export default function PatientAppointmentsPage() {
                     </div>
                 </div>
 
-            
-                            
-                            
+
+
+
 
                 {error && (
                     <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 rounded-xl p-4 shadow-sm">
@@ -609,58 +617,58 @@ export default function PatientAppointmentsPage() {
                             {/* All Appointments List */}
                             <Card className="border-2 border-blue-200 shadow-lg">
                                 <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6">
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-        {/* Left Side Title */}
-        <div>
-            <CardTitle className="text-blue-700 text-2xl font-semibold">
-                All Appointments
-            </CardTitle>
-        </div>
+                                        {/* Left Side Title */}
+                                        <div>
+                                            <CardTitle className="text-blue-700 text-2xl font-semibold">
+                                                All Appointments
+                                            </CardTitle>
+                                        </div>
 
-        {/* Right Side Filters */}
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-         <Filter className="h-5 w-5 text-gray-700" />
-            {/* Date Filter */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">
-                    Filter by Date
-                </label>
-                <Select value={dateFilter} onValueChange={setDateFilter}>
-                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
-                        <SelectValue placeholder="Select date range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All Dates</SelectItem>
-                        <SelectItem value="today">Today</SelectItem>
-                        <SelectItem value="upcoming">Upcoming</SelectItem>
-                        <SelectItem value="past">Past</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+                                        {/* Right Side Filters */}
+                                        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                                            <Filter className="h-5 w-5 text-gray-700" />
+                                            {/* Date Filter */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-gray-600">
+                                                    Filter by Date
+                                                </label>
+                                                <Select value={dateFilter} onValueChange={setDateFilter}>
+                                                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
+                                                        <SelectValue placeholder="Select date range" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="all">All Dates</SelectItem>
+                                                        <SelectItem value="today">Today</SelectItem>
+                                                        <SelectItem value="upcoming">Upcoming</SelectItem>
+                                                        <SelectItem value="past">Past</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
 
-            {/* Status Filter */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">
-                    Filter by Status
-                </label>
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
-                        <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All Status</SelectItem>
-                        <SelectItem value="pending">Pending</SelectItem>
-                        <SelectItem value="confirmed">Confirmed</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                        <SelectItem value="cancelled">Cancelled</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+                                            {/* Status Filter */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-gray-600">
+                                                    Filter by Status
+                                                </label>
+                                                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                                                    <SelectTrigger className="w-30 bg-white border-gray-300 shadow-sm">
+                                                        <SelectValue placeholder="Select status" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="all">All Status</SelectItem>
+                                                        <SelectItem value="pending">Pending</SelectItem>
+                                                        <SelectItem value="confirmed">Confirmed</SelectItem>
+                                                        <SelectItem value="completed">Completed</SelectItem>
+                                                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
 
-        </div>
-    </div>
-</CardHeader>
+                                        </div>
+                                    </div>
+                                </CardHeader>
 
                                 <CardContent className="p-4">
                                     {filteredAppointments.length > 0 ? (

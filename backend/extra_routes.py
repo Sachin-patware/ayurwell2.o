@@ -94,13 +94,21 @@ def book_appointment():
     # Parse datetime
     try:
         start_dt = datetime.fromisoformat(start_time_str.replace('Z', '+00:00'))
+        # Ensure timezone aware (Assume IST for naive inputs from frontend)
+        if start_dt.tzinfo is None:
+            ist_tz = timezone(timedelta(hours=5, minutes=30))
+            start_dt = start_dt.replace(tzinfo=ist_tz)
     except ValueError:
         return jsonify({"error": "Invalid date format. Use ISO format."}), 400
+    
+    # Check if time is in the past
+    if start_dt < get_ist_now():
+        return jsonify({"warning": "Cannot book appointments in the past."}), 400
     
     # Check for conflicts
     if check_appointment_conflict(doctor_id, start_dt):
         return jsonify({
-            "error": "This time slot is already booked",
+            "warning": "This time slot is already booked",
             "conflict": True
         }), 409
     
