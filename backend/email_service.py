@@ -313,9 +313,42 @@ class EmailService:
         
         return self.send_email(doctor_email, subject, html_body)
 
-    def send_reschedule_rejected_to_patient(self, doctor_email, doctor_name, patient_name, start_time, proposed_time):
-        """Email to doctor when patient rejects reschedule"""
-        subject = f"{patient_name} Rejected Reschedule"
+    def send_appointment_completed(self, patient_email, patient_name, doctor_name, appointment_time):
+        """Email to patient when appointment is marked as completed"""
+        subject = "Appointment Completed - Thank You!"
+        
+        html_body = f""" 
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #2563eb;">Appointment Completed</h2>
+                <p>Dear {patient_name},</p>
+                <p>Thank you for visiting Dr. {doctor_name}. Your appointment on {appointment_time} has been marked as completed.</p>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <p>We hope you had a good experience. If you have any feedback, please let us know.</p>
+                </div>
+                
+                <p>You can view your appointment history and prescriptions in your dashboard.</p>
+                
+                <a href="http://localhost:3000/patient/appointments" 
+                   style="display: inline-block; background: #2563eb; color: white; padding: 12px 24px; 
+                   text-decoration: none; border-radius: 6px; margin: 20px 0;">
+                    View Dashboard
+                </a>
+                
+                <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+                    This is an automated message from AyurWell.
+                </p>
+            </div>
+        </body>
+        </html>
+        """
+        return self.send_email(patient_email, subject, html_body)
+
+    def send_reschedule_rejected_to_patient(self, patient_email, doctor_name, patient_name, start_time, proposed_time):
+        """Email to patient when doctor rejects reschedule"""
+        subject = f"Dr. {doctor_name} Rejected Reschedule"
         
         html_body = f"""
         <html>
@@ -323,16 +356,16 @@ class EmailService:
             <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
                 <h2 style="color: #ef4444;">Reschedule Rejected</h2>
                 <p>Dear {patient_name},</p>
-                <p> Dr.{doctor_name} has rejected the proposed appointment time.</p>
+                <p>Dr. {doctor_name} has rejected your proposed appointment time.</p>
                 
                 <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ef4444;">
                     <p><strong>Doctor:</strong> {doctor_name}</p>
-                    <p><strong>Rejected Time:</strong><span style="text-decoration: line-through;"> {proposed_time}</span></p>
+                    <p><strong>Rejected Time:</strong> <span style="text-decoration: line-through;">{proposed_time}</span></p>
                     <p><strong>Original Time:</strong> {start_time}</p>
-                    <p><strong>Status:</strong> <span style="color: #ef4444;">Reschedule Rejected</span></p>
+                    <p><strong>Status:</strong> <span style="color: #ef4444;">Remains at Original Time or Canceled</span></p>
                 </div>
                 
-                <p>The reschedule request has been rejected. You may contact the doctor to schedule a new time.</p>
+                <p>Please contact the doctor if you need to discuss further.</p>
                 
                 <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
                     This is an automated message from AyurWell.
@@ -342,7 +375,7 @@ class EmailService:
         </html>
         """
         
-        return self.send_email(doctor_email, subject, html_body)
+        return self.send_email(patient_email, subject, html_body)
 
 
 # Global email service instance
