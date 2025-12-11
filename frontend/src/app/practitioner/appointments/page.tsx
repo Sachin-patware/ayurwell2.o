@@ -119,7 +119,7 @@ export default function PractitionerAppointmentsPage() {
             setRescheduleModalOpen(false);
             setSelectedAppointment(null);
 
-            toast.success('✅ Reschedule proposal sent to patient!');
+            toast.success('Reschedule proposal sent to patient!');
         } catch (err: any) {
             console.error('Error rescheduling:', err);
             throw new Error(err.response?.data?.error || 'Failed to reschedule');
@@ -134,10 +134,10 @@ export default function PractitionerAppointmentsPage() {
                 await api.post(`/appointments/${appointmentId}/cancel`, { reason: 'Cancelled by doctor' });
             }
             await fetchAppointments();
-            toast.success(`✅ Appointment ${newStatus}!`);
+            toast.success(` Appointment ${newStatus}!`);
         } catch (err: any) {
             console.error('Error updating status:', err);
-            toast.error(`❌ Failed to update appointment: ${err.response?.data?.error || err.message}`);
+            toast.error(`Failed to update appointment: ${err.response?.data?.error || err.message}`);
         }
     };
 
@@ -149,10 +149,10 @@ export default function PractitionerAppointmentsPage() {
         try {
             await api.post(`/appointments/${appointmentId}/reschedule/reject`);
             await fetchAppointments();
-            toast.success('✅ Reschedule request rejected!');
+            toast.success('Reschedule request rejected!');
         } catch (err: any) {
             console.error('Error rejecting reschedule:', err);
-            toast.error(`❌ Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
+            toast.error(`Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
         }
     };
 

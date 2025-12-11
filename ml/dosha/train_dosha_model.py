@@ -71,7 +71,7 @@ def train_model():
     # 7. Evaluate
     y_pred = model_pipeline.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
-    print(f"✅ Model Accuracy: {acc:.2f}")
+    print(f"✅Model Accuracy: {acc:.2f}")
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred))
     
