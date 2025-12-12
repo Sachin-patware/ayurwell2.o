@@ -28,6 +28,7 @@ import { RenderField } from '@/components/Renderfield'; // or import from same f
 import { useAuth } from '@/contexts/AuthContext';
 
 type ProfileType = {
+  doctorId: string;
   personalInfo: {
     name: string;
     gender: string;
@@ -55,6 +56,7 @@ type ProfileType = {
 };
 
 const defaultProfile: ProfileType = {
+  doctorId: '',
   personalInfo: {
     name: '',
     gender: '',
@@ -103,6 +105,7 @@ export default function DoctorProfilePage() {
       setProfile(prev => ({
         ...prev,
         ...data,
+        doctorId: data.doctorId || '',
         personalInfo: { ...prev.personalInfo, ...(data.personalInfo || {}) },
         professionalInfo: { ...prev.professionalInfo, ...(data.professionalInfo || {}) },
         clinicInfo: { ...prev.clinicInfo, ...(data.clinicInfo || {}) },
@@ -206,8 +209,12 @@ export default function DoctorProfilePage() {
               <div>
                 <h1 className="text-3xl font-bold tracking-tight">{profile.personalInfo.name || 'Doctor Profile'}</h1>
                 <p className="text-green-100 text-lg flex items-center gap-2">
-                  <Briefcase className="w-4 h-4" />
-                  {profile.professionalInfo.specialization || 'General Practitioner'}
+                  <Mail className="w-4 h-4" />
+                  {profile.personalInfo.email || 'General Practitioner'}
+                </p>
+                <p className="text-green-100 text-lg flex items-center gap-2">
+                    <span className="font-semibold">Doctor ID:</span>
+                    {profile.doctorId || 'No Doctor ID'}
                 </p>
                 <div className="flex items-center gap-4 mt-2 text-sm text-green-50">
                   <span className="flex items-center gap-1">

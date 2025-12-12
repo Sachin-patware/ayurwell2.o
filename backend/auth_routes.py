@@ -19,8 +19,10 @@ def register():
         
     if User.objects(email=email).first():
         return jsonify({"error": "User already exists"}), 400
-    
-    uid = str(uuid.uuid4())
+    if role=="doctor":
+        uid = f"DR-{uuid.uuid4().hex[:12].upper()}"
+    elif role=="patient":
+        uid = f"PT-{uuid.uuid4().hex[:12].upper()}"
     new_user = User(
         uid=uid,
         name=name,

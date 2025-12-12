@@ -24,6 +24,7 @@ import { RenderField } from '@/components/Renderfield';
 import { useAuth } from '@/contexts/AuthContext';
 
 type ProfileType = {
+    patientId: string;
     personalInfo: {
         name: string;
         gender: string;
@@ -41,6 +42,7 @@ type ProfileType = {
 };
 
 const defaultProfile: ProfileType = {
+    patientId: '',
     personalInfo: {
         name: '',
         gender: '',
@@ -76,6 +78,7 @@ export default function PatientProfilePage() {
 
             setProfile(prev => ({
                 ...prev,
+                patientId: data.patientId,
                 personalInfo: { ...prev.personalInfo, ...(data.personalInfo || {}) },
                 medicalInfo: { ...prev.medicalInfo, ...(data.medicalInfo || {}) }
             }));
@@ -106,6 +109,7 @@ export default function PatientProfilePage() {
             setSaving(false);
         }
     }, [profile, refreshUser]);
+
 
     const handleChange = useCallback(
         (section: keyof ProfileType, field: string, value: any, nestedField?: string) => {
@@ -154,6 +158,10 @@ export default function PatientProfilePage() {
                                     <Mail className="w-4 h-4" />
                                     {profile.personalInfo.email || 'No email provided'}
                                 </p>
+                                <p className="text-green-100 text-lg flex items-center gap-2">
+    <span className="font-semibold">Patient ID:</span>
+    {profile.patientId || 'No Patient ID'}
+</p>
                                 <div className="flex items-center gap-4 mt-2 text-sm text-green-50">
                                     <span className="flex items-center gap-1">
                                         <MapPin className="w-3 h-3" />
