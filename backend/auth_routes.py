@@ -69,7 +69,12 @@ def login():
     password = data.get('password')
     
     # ---- ADMIN FIXED LOGIN ----
-    if email and email.lower() == "ayurwell@gmail.com" and password == "ayurwell@100":
+    # Admin credentials from environment variables
+    import os
+    admin_email = os.getenv("ADMIN_EMAIL", "ayurwell@gmail.com")
+    admin_password = os.getenv("ADMIN_PASSWORD", "ayurwell@100")
+    
+    if email and email.lower() == admin_email.lower() and password == admin_password:
         access_token = create_access_token(
             identity="admin",
             additional_claims={"role": "admin"},
@@ -80,7 +85,7 @@ def login():
             "access_token": access_token,
             "uid": "admin",
             "name": "Admin",
-            "email": "ayurwell@gmail.com",
+            "email": admin_email,
             "role": "admin"
         }), 200
     
