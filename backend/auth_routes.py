@@ -68,10 +68,31 @@ def login():
     email = data.get('email')
     password = data.get('password')
     
+    # ---- ADMIN FIXED LOGIN ----
+    if email and email.lower() == "ayurwell@gmail.com" and password == "ayurwell@100":
+        access_token = create_access_token(
+            identity="admin",
+            additional_claims={"role": "admin"},
+            expires_delta=timedelta(days=7)
+        )
+        return jsonify({
+            "message": "Admin login success",
+            "access_token": access_token,
+            "uid": "admin",
+            "name": "Admin",
+            "email": "ayurwell@gmail.com",
+            "role": "admin"
+        }), 200
+    
+    # ---- NORMAL USER LOGIN ----
     user = User.objects(email=email).first()
     
     if user and user.check_password(password):
-        access_token = create_access_token(identity=user.uid, expires_delta=timedelta(days=7))
+        access_token = create_access_token(
+            identity=user.uid,
+            additional_claims={"role": user.role},
+            expires_delta=timedelta(days=7)
+        )
         return jsonify({
             "access_token": access_token, 
             "uid": user.uid,

@@ -32,6 +32,9 @@ def create_app():
     
     from extra_routes import appt_bp
     app.register_blueprint(appt_bp, url_prefix='/api/appointments')
+    
+    from admin_routes import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/api/admin')
         
     return app
 

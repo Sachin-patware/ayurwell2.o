@@ -37,12 +37,7 @@ def get_patient(patient_id):
             "name": patient.name,
         }
 
-        # If assessment was created by a doctor, fetch doctor's name
-        if patient.assessmentCreatedBy:
-            doctor = Doctor.objects(doctorId=patient.assessmentCreatedBy).first()
-            if doctor:
-                response_data['assessmentDoctorName'] = doctor.name
-        
+       
         return jsonify(response_data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -56,22 +51,6 @@ def update_patient(patient_id):
     
     if not patient:
         return jsonify({"error": "Patient not found"}), 404
-        
-    if 'assessment' in data:
-        patient.assessment = data['assessment']
-        # If the updater is a doctor (we can check if they are in Doctor collection or just assume based on role if we had it in JWT)
-        # For now, we'll assume the current user is the one creating/updating it.
-        # Ideally we should check if current_user is a doctor.
-        current_user = get_jwt_identity()
-        # Check if user is a doctor
-        is_doctor = Doctor.objects(doctorId=current_user).first() is not None
-        
-        if is_doctor:
-            patient.assessmentCreatedBy = current_user
-            patient.assessmentCreatedAt = get_ist_now()
-    
-    if 'healthHistory' in data:
-        patient.healthHistory = data['healthHistory']
         
     
     patient.save()
@@ -109,21 +88,20 @@ def generate_diet_plan():
     try:
         data = request.json
         patient_id = data.get('patient_id')
-        # Allow passing specific assessment data, otherwise use patient's saved assessment
-        assessment_override = data.get('assessment_data')
+        # Get assessment data from request (required)
+        assessment_data = data.get('assessment_data')
         
         if not patient_id:
             return jsonify({"error": "Patient ID is required"}), 400
+        
+        if not assessment_data:
+            return jsonify({"error": "Assessment data is required for diet generation"}), 400
             
         patient = Patient.objects(patientId=patient_id).first()
         if not patient:
             return jsonify({"error": "Patient not found"}), 404
         
-        # Determine which assessment data to use
-        assessment_source = assessment_override if assessment_override else patient.assessment
-            
-        if not assessment_source:
-             return jsonify({"error": "No assessment data found. Please complete an assessment first."}), 400
+        assessment_source = assessment_data
 
         # Helper to safely extracting data whether it's flat or nested in 'assessment' key
         # (Handling inconsistency where sometimes data is top-level and sometimes in 'assessment' key)

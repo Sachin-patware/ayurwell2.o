@@ -52,7 +52,7 @@ type ProfileType = {
     consultationFee: { inClinic: number; online: number };
     location: { type: string; coordinates: [number, number] };
   };
-  account: { status: string; profileImage: string };
+  account: { status: string;};
 };
 
 const defaultProfile: ProfileType = {
@@ -80,7 +80,7 @@ const defaultProfile: ProfileType = {
     consultationFee: { inClinic: 0, online: 0 },
     location: { type: 'Point', coordinates: [0, 0] }
   },
-  account: { status: '', profileImage: '' }
+  account: { status: 'Pending'}
 };
 
 export default function DoctorProfilePage() {
@@ -199,13 +199,6 @@ export default function DoctorProfilePage() {
         <div className="relative rounded-xl overflow-hidden bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] text-white p-8 shadow-lg">
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="flex items-center gap-6">
-              <div className="h-24 w-24 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/30 flex items-center justify-center overflow-hidden shadow-xl">
-                {profile.account.profileImage ? (
-                  <img src={profile.account.profileImage} alt="Profile" className="h-full w-full object-cover" />
-                ) : (
-                  <User className="h-12 w-12 text-white" />
-                )}
-              </div>
               <div>
                 <h1 className="text-3xl font-bold tracking-tight">{profile.personalInfo.name || 'Doctor Profile'}</h1>
                 <p className="text-green-100 text-lg flex items-center gap-2">
@@ -607,16 +600,7 @@ export default function DoctorProfilePage() {
                 <CardTitle className="text-xl text-[#2E7D32]">Account Settings</CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-8">
-                <div className="flex items-center gap-6 p-6 bg-gradient-to-r from-gray-50 to-white border rounded-xl">
-                  <div className="h-24 w-24 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border-4 border-white shadow-md">
-                    {profile.account.profileImage ? <img src={profile.account.profileImage} alt="Profile" className="h-full w-full object-cover" /> : <User className="h-10 w-10 text-gray-400" />}
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-lg">Profile Picture</h3>
-                    <p className="text-sm text-gray-500 mb-3">Upload a professional photo to build trust with patients.</p>
-                    {isEditing && <Button size="sm" variant="outline" className="border-green-600 text-green-700 hover:bg-green-50">Upload New Photo</Button>}
-                  </div>
-                </div>
+      
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">

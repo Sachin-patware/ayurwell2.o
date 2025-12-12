@@ -42,16 +42,8 @@ class Doctor(db.Document):
 class Patient(db.Document):
     patientId = db.StringField(required=True, unique=True)
     name = db.StringField(max_length=100, required=True)
-    assignedDoctorId = db.StringField()
-    healthHistory = db.StringField()
-    assessment = db.DictField(default={})  # prakriti, vikriti, age, etc.
-    assessmentCreatedBy = db.StringField()  # doctorId
-    assessmentCreatedAt = db.DateTimeField()
-    
-    # New Profile Fields
     personalInfo = db.DictField(default={})  # gender, age, email, phone, address
     medicalInfo = db.DictField(default={})   # bloodGroup, dietPreferences, smoking, alcohol
-    
     createdAt = db.DateTimeField(default=get_ist_now)
 
 class Assessment(db.Document):
