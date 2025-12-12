@@ -71,8 +71,8 @@ def login():
     # ---- ADMIN FIXED LOGIN ----
     # Admin credentials from environment variables
     import os
-    admin_email = os.getenv("ADMIN_EMAIL", "ayurwell@gmail.com")
-    admin_password = os.getenv("ADMIN_PASSWORD", "ayurwell@100")
+    admin_email = os.getenv("ADMIN_EMAIL")
+    admin_password = os.getenv("ADMIN_PASSWORD")
     
     if email and email.lower() == admin_email.lower() and password == admin_password:
         access_token = create_access_token(
