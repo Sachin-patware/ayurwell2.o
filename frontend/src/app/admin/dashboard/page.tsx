@@ -46,13 +46,27 @@ type Doctor = {
     createdAt: string;
 };
 
+type Appointment = {
+    id: string;
+    doctorId: string;
+    doctorName: string;
+    patientId: string;
+    patientName: string;
+    startTimestamp: string;
+    endTimestamp: string;
+    status: string;
+    notes: string;
+    createdAt: string;
+};
+
 export default function AdminDashboard() {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState<Stats | null>(null);
     const [patients, setPatients] = useState<Patient[]>([]);
     const [doctors, setDoctors] = useState<Doctor[]>([]);
-    const [activeTab, setActiveTab] = useState<'patients' | 'doctors'>('patients');
+    const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [activeTab, setActiveTab] = useState<'patients' | 'doctors' | 'appointments'>('patients');
 
     useEffect(() => {
         checkAuth();
@@ -81,15 +95,17 @@ export default function AdminDashboard() {
 
     const fetchData = async () => {
         try {
-            const [statsRes, patientsRes, doctorsRes] = await Promise.all([
+            const [statsRes, patientsRes, doctorsRes, appointmentsRes] = await Promise.all([
                 axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/stats`, getAuthHeaders()),
                 axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/patients`, getAuthHeaders()),
-                axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/doctors`, getAuthHeaders())
+                axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/doctors`, getAuthHeaders()),
+                axios.get(`${process.env.NEXT_PUBLIC_API_URL}/admin/appointments`, getAuthHeaders())
             ]);
 
             setStats(statsRes.data);
             setPatients(patientsRes.data);
             setDoctors(doctorsRes.data);
+            setAppointments(appointmentsRes.data);
         } catch (error) {
             console.error('Error fetching data:', error);
             toast.error('Failed to load dashboard data');
@@ -136,6 +152,24 @@ export default function AdminDashboard() {
         localStorage.removeItem('user');
         toast.success('Logged out successfully');
         router.push('/admin');
+    };
+
+    const handleDeleteAppointment = async (appointmentId: string, patientName: string, doctorName: string) => {
+        if (!confirm(`Are you sure you want to delete the appointment between ${patientName} and ${doctorName}?`)) {
+            return;
+        }
+
+        try {
+            await axios.delete(
+                `${process.env.NEXT_PUBLIC_API_URL}/admin/appointment/${appointmentId}`,
+                getAuthHeaders()
+            );
+            toast.success('Appointment deleted successfully');
+            fetchData(); // Refresh data
+        } catch (error) {
+            console.error('Error deleting appointment:', error);
+            toast.error('Failed to delete appointment');
+        }
     };
 
     if (loading) {
@@ -255,6 +289,15 @@ export default function AdminDashboard() {
                         <UserCheck className="mr-2 h-4 w-4" />
                         Doctors ({doctors.length})
                     </Button>
+                    <Button
+                        onClick={() => setActiveTab('appointments')}
+                        className={activeTab === 'appointments'
+                            ? 'bg-gradient-to-r from-purple-600 to-blue-600'
+                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}
+                    >
+                        <Calendar className="mr-2 h-4 w-4" />
+                        Appointments ({appointments.length})
+                    </Button>
                 </div>
 
                 {/* Patients Table */}
@@ -362,6 +405,67 @@ export default function AdminDashboard() {
                                                             <Trash2 className="h-4 w-4" />
                                                         </Button>
                                                     </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )}
+
+                {/* Appointments Table */}
+                {activeTab === 'appointments' && (
+                    <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-xl">
+                        <CardHeader>
+                            <CardTitle className="text-white">Appointments Management</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead>
+                                        <tr className="border-b border-slate-700">
+                                            <th className="text-left py-3 px-4 text-slate-400 font-medium">Patient</th>
+                                            <th className="text-left py-3 px-4 text-slate-400 font-medium">Doctor</th>
+                                            <th className="text-left py-3 px-4 text-slate-400 font-medium">Date & Time</th>
+                                            <th className="text-left py-3 px-4 text-slate-400 font-medium">Status</th>
+                                            <th className="text-left py-3 px-4 text-slate-400 font-medium">Notes</th>
+                                            <th className="text-right py-3 px-4 text-slate-400 font-medium">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {appointments.map((appointment) => (
+                                            <tr key={appointment.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+                                                <td className="py-3 px-4 text-white font-medium">{appointment.patientName}</td>
+                                                <td className="py-3 px-4 text-white font-medium">{appointment.doctorName}</td>
+                                                <td className="py-3 px-4 text-slate-300">
+                                                    {new Date(appointment.startTimestamp).toLocaleString()}
+                                                </td>
+                                                <td className="py-3 px-4">
+                                                    <Badge
+                                                        variant={appointment.status === 'confirmed' ? 'default' : 'secondary'}
+                                                        className={
+                                                            appointment.status === 'confirmed' ? 'bg-green-600' :
+                                                                appointment.status === 'pending' ? 'bg-yellow-600' :
+                                                                    appointment.status === 'cancelled' ? 'bg-red-600' :
+                                                                        'bg-blue-600'
+                                                        }
+                                                    >
+                                                        {appointment.status}
+                                                    </Badge>
+                                                </td>
+                                                <td className="py-3 px-4 text-slate-400 text-sm">
+                                                    {appointment.notes || 'N/A'}
+                                                </td>
+                                                <td className="py-3 px-4 text-right">
+                                                    <Button
+                                                        size="sm"
+                                                        variant="destructive"
+                                                        onClick={() => handleDeleteAppointment(appointment.id, appointment.patientName, appointment.doctorName)}
+                                                    >
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
                                                 </td>
                                             </tr>
                                         ))}

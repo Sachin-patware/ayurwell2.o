@@ -23,8 +23,7 @@ def get_all_patients():
                 "name": patient.name,
                 "phone": patient.personalInfo.get('phone', '') if patient.personalInfo else '',
                 "email": user.email if user else "",
-                "createdAt": patient.createdAt.isoformat() if patient.createdAt else None,
-
+                "createdAt": patient.createdAt.isoformat() if patient.createdAt else None
             })
         
         return jsonify(results), 200
@@ -78,6 +77,10 @@ def delete_user(uid):
             if patient:
                 patient.delete()
             
+            # Delete assessments
+            from models import Assessment
+            Assessment.objects(patientId=uid).delete()
+            
             # Delete diet plans
             from models import DietPlan
             DietPlan.objects(patientId=uid).delete()
@@ -91,6 +94,10 @@ def delete_user(uid):
             doctor = Doctor.objects(doctorId=uid).first()
             if doctor:
                 doctor.delete()
+            
+            # Delete assessments created by this doctor
+            from models import Assessment
+            Assessment.objects(doctorId=uid).delete()
         
         # Delete appointments
         from models import Appointment
@@ -153,6 +160,58 @@ def get_admin_stats():
             "verifiedDoctors": verified_doctors,
             "pendingDoctors": pending_doctors,
             "totalAppointments": total_appointments
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@admin_bp.route('/appointments', methods=['GET'])
+@jwt_required()
+@admin_required
+def get_all_appointments():
+    """Get all appointments in the system"""
+    try:
+        from models import Appointment
+        appointments = Appointment.objects().order_by('-startTimestamp')
+        
+        results = []
+        for appt in appointments:
+            results.append({
+                "id": str(appt.id),
+                "doctorId": appt.doctorId,
+                "doctorName": appt.doctorName,
+                "patientId": appt.patientId,
+                "patientName": appt.patientName,
+                "startTimestamp": appt.startTimestamp.isoformat() if appt.startTimestamp else None,
+                "endTimestamp": appt.endTimestamp.isoformat() if appt.endTimestamp else None,
+                "status": appt.status,
+                "notes": appt.notes,
+                "createdAt": appt.createdAt.isoformat() if appt.createdAt else None
+            })
+        
+        return jsonify(results), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@admin_bp.route('/appointment/<appointment_id>', methods=['DELETE'])
+@jwt_required()
+@admin_required
+def delete_appointment(appointment_id):
+    """Delete an appointment"""
+    try:
+        from models import Appointment
+        appointment = Appointment.objects(id=appointment_id).first()
+        
+        if not appointment:
+            return jsonify({"error": "Appointment not found"}), 404
+        
+        patient_name = appointment.patientName
+        doctor_name = appointment.doctorName
+        
+        appointment.delete()
+        
+        return jsonify({
+            "message": f"Appointment between {patient_name} and {doctor_name} deleted successfully"
         }), 200
         
     except Exception as e:
