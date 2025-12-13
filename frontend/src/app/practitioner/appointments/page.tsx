@@ -24,6 +24,7 @@ export default function PractitionerAppointmentsPage() {
     // Reschedule state
     const [rescheduleModalOpen, setRescheduleModalOpen] = useState(false);
     const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+    const [processingState, setProcessingState] = useState<{ id: string; action: string } | null>(null);
 
     useEffect(() => {
         fetchAppointments();
@@ -127,6 +128,8 @@ export default function PractitionerAppointmentsPage() {
     };
 
     const handleStatusChange = async (appointmentId: string, newStatus: string) => {
+        const action = newStatus === 'confirmed' ? 'confirm' : 'cancel';
+        setProcessingState({ id: appointmentId, action });
         try {
             if (newStatus === 'confirmed') {
                 await api.post(`/appointments/${appointmentId}/confirm`);
@@ -138,6 +141,8 @@ export default function PractitionerAppointmentsPage() {
         } catch (err: any) {
             console.error('Error updating status:', err);
             toast.error(`Failed to update appointment: ${err.response?.data?.error || err.message}`);
+        } finally {
+            setProcessingState(null);
         }
     };
 
@@ -146,6 +151,7 @@ export default function PractitionerAppointmentsPage() {
     };
 
     const handleRejectReschedule = async (appointmentId: string) => {
+        setProcessingState({ id: appointmentId, action: 'reject' });
         try {
             await api.post(`/appointments/${appointmentId}/reschedule/reject`);
             await fetchAppointments();
@@ -153,6 +159,8 @@ export default function PractitionerAppointmentsPage() {
         } catch (err: any) {
             console.error('Error rejecting reschedule:', err);
             toast.error(`Failed to reject reschedule: ${err.response?.data?.error || err.message}`);
+        } finally {
+            setProcessingState(null);
         }
     };
 
@@ -180,12 +188,12 @@ export default function PractitionerAppointmentsPage() {
         const now = new Date();
         return {
             total: appointments.length,
-            upcoming: appointments.filter(a => (a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending'|| a.status === 'confirmed') && parseISO(a.startTimestamp) >= now).length,
+            upcoming: appointments.filter(a => (a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending' || a.status === 'confirmed') && parseISO(a.startTimestamp) >= now).length,
             today: appointments.filter(a => {
                 const aptDate = parseISO(a.startTimestamp);
                 return isWithinInterval(aptDate, { start: startOfDay(now), end: endOfDay(now) });
             }).length,
-            pending:appointments.filter(a => a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending').length,
+            pending: appointments.filter(a => a.status === 'pending' || a.status === 'doctor_rescheduled_pending' || a.status === 'patient_rescheduled_pending').length,
             completed: appointments.filter(a => a.status === 'completed').length,
         };
     };
@@ -355,15 +363,21 @@ export default function PractitionerAppointmentsPage() {
                                                         <>
                                                             <Button
                                                                 size="sm"
+                                                                disabled={!!processingState}
                                                                 className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
                                                                 onClick={() => handleStatusChange(apt.id, 'confirmed')}
                                                             >
-                                                                <CheckCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'confirm' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <CheckCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Confirm
                                                             </Button>
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-blue-200 text-blue-600 hover:bg-blue-50"
                                                                 onClick={() => handleReschedule(apt)}
                                                             >
@@ -373,10 +387,15 @@ export default function PractitionerAppointmentsPage() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleStatusChange(apt.id, 'cancelled')}
                                                             >
-                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Reject
                                                             </Button>
                                                         </>
@@ -388,6 +407,7 @@ export default function PractitionerAppointmentsPage() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-blue-200 text-blue-600 hover:bg-blue-50"
                                                                 onClick={() => handleReschedule(apt)}
                                                             >
@@ -397,10 +417,15 @@ export default function PractitionerAppointmentsPage() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleStatusChange(apt.id, 'cancelled')}
                                                             >
-                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Cancel
                                                             </Button>
                                                         </>
@@ -411,28 +436,43 @@ export default function PractitionerAppointmentsPage() {
                                                         <>
                                                             <Button
                                                                 size="sm"
+                                                                disabled={!!processingState}
                                                                 className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
                                                                 onClick={() => handleStatusChange(apt.id, 'confirmed')}
                                                             >
-                                                                <CheckCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'confirm' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <CheckCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Accept Reschedule
                                                             </Button>
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleRejectReschedule(apt.id)}
                                                             >
-                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'reject' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Decline
                                                             </Button>
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleStatusChange(apt.id, 'cancelled')}
                                                             >
-                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Cancel
                                                             </Button>
                                                         </>
@@ -444,10 +484,15 @@ export default function PractitionerAppointmentsPage() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
+                                                                disabled={!!processingState}
                                                                 className="border-orange-200 text-orange-600 hover:bg-orange-50"
                                                                 onClick={() => handleRejectReschedule(apt.id)}
                                                             >
-                                                                <XCircle className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'reject' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Withdraw Proposal
                                                             </Button>
                                                             <Button

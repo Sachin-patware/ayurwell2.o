@@ -33,6 +33,7 @@ export default function RegisterPage() {
     const [isVerifying, setIsVerifying] = useState(false);
     const [resendCountdown, setResendCountdown] = useState(0);
     const [verificationSuccess, setVerificationSuccess] = useState(false);
+    const [isResending, setIsResending] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const { login } = useAuth();
@@ -116,6 +117,7 @@ export default function RegisterPage() {
     const handleResendOTP = async () => {
         try {
             setError('');
+            setIsResending(true);
             await api.post('/auth/resend-otp', {
                 email: registeredEmail,
                 purpose: 'signup'
@@ -123,6 +125,8 @@ export default function RegisterPage() {
             setResendCountdown(60);
         } catch (err: any) {
             setError(err.response?.data?.error || 'Failed to resend OTP');
+        } finally {
+            setIsResending(false);
         }
     };
 
@@ -317,9 +321,11 @@ export default function RegisterPage() {
                                                     ) : (
                                                         <button
                                                             onClick={handleResendOTP}
-                                                            className="text-sm text-[#2E7D32] hover:text-[#1B5E20] font-bold hover:underline transition-all"
+                                                            disabled={isResending}
+                                                            className="text-sm text-[#2E7D32] hover:text-[#1B5E20] font-bold hover:underline transition-all flex items-center gap-1 justify-center mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
                                                         >
-                                                            Resend Code
+                                                            {isResending && <Loader2 className="h-3 w-3 animate-spin" />}
+                                                            {isResending ? 'Resending...' : 'Resend Code'}
                                                         </button>
                                                     )}
                                                 </div>

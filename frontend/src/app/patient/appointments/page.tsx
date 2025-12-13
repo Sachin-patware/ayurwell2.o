@@ -50,6 +50,7 @@ export default function PatientAppointmentsPage() {
     const [booking, setBooking] = useState(false);
     const [error, setError] = useState('');
     const [reschedulingId, setReschedulingId] = useState<string | null>(null);
+    const [processingState, setProcessingState] = useState<{ id: string; action: string } | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [dateFilter, setDateFilter] = useState<string>('all');
 
@@ -189,6 +190,7 @@ export default function PatientAppointmentsPage() {
 
     const handleCancel = async (appointmentId: string) => {
         if (!confirm('Are you sure you want to cancel this appointment?')) return;
+        setProcessingState({ id: appointmentId, action: 'cancel' });
         try {
             await api.post(`/appointments/${appointmentId}/cancel`, {
                 reason: 'Cancelled by patient'
@@ -199,6 +201,8 @@ export default function PatientAppointmentsPage() {
             setError(err.response?.data?.error || 'Failed to cancel appointment');
             toast.error('Failed to cancel appointment');
             console.error('Error cancelling appointment:', err);
+        } finally {
+            setProcessingState(null);
         }
     };
 
@@ -211,6 +215,7 @@ export default function PatientAppointmentsPage() {
     };
 
     const handleRescheduleResponse = async (appointmentId: string, action: 'accept' | 'reject') => {
+        setProcessingState({ id: appointmentId, action });
         try {
             await api.post(`/appointments/${appointmentId}/reschedule/${action}`);
             await fetchData();
@@ -218,6 +223,8 @@ export default function PatientAppointmentsPage() {
         } catch (err: any) {
             console.error(`Error ${action}ing reschedule:`, err);
             toast.error(`Failed to ${action} reschedule`);
+        } finally {
+            setProcessingState(null);
         }
     };
 
@@ -715,10 +722,15 @@ export default function PatientAppointmentsPage() {
                                                             <Button
                                                                 variant="outline"
                                                                 size="sm"
+                                                                disabled={!!processingState}
                                                                 className="border-red-200 text-red-600 hover:bg-red-50"
                                                                 onClick={() => handleCancel(apt.id)}
                                                             >
-                                                                <X className="h-4 w-4 mr-1" />
+                                                                {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                ) : (
+                                                                    <X className="h-4 w-4 mr-1" />
+                                                                )}
                                                                 Cancel
                                                             </Button>
                                                         )}
@@ -729,6 +741,7 @@ export default function PatientAppointmentsPage() {
                                                                 <Button
                                                                     variant="outline"
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="border-blue-200 text-blue-600 hover:bg-blue-50"
                                                                     onClick={() => handleReschedule(apt)}
                                                                 >
@@ -738,10 +751,15 @@ export default function PatientAppointmentsPage() {
                                                                 <Button
                                                                     variant="outline"
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="border-red-200 text-red-600 hover:bg-red-50"
                                                                     onClick={() => handleCancel(apt.id)}
                                                                 >
-                                                                    <X className="h-4 w-4 mr-1" />
+                                                                    {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <X className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                     Cancel
                                                                 </Button>
                                                             </>
@@ -753,19 +771,29 @@ export default function PatientAppointmentsPage() {
                                                                 <Button
                                                                     variant="outline"
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="border-orange-200 text-orange-600 hover:bg-orange-50"
                                                                     onClick={() => handleRescheduleResponse(apt.id, 'reject')}
                                                                 >
-                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                    {processingState?.id === apt.id && processingState.action === 'reject' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <XCircle className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                     Withdraw Request
                                                                 </Button>
                                                                 <Button
                                                                     variant="outline"
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="border-red-200 text-red-600 hover:bg-red-50"
                                                                     onClick={() => handleCancel(apt.id)}
                                                                 >
-                                                                    <X className="h-4 w-4 mr-1" />
+                                                                    {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <X className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                     Cancel
                                                                 </Button>
                                                             </>
@@ -776,29 +804,43 @@ export default function PatientAppointmentsPage() {
                                                             <>
                                                                 <Button
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="bg-green-600 hover:bg-green-700 text-white"
                                                                     onClick={() => handleRescheduleResponse(apt.id, 'accept')}
                                                                 >
-                                                                    <CheckCircle className="h-4 w-4 mr-1" />
+                                                                    {processingState?.id === apt.id && processingState.action === 'accept' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <CheckCircle className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                     Accept New Time
                                                                 </Button>
                                                                 <Button
                                                                     size="sm"
                                                                     variant="outline"
+                                                                    disabled={!!processingState}
                                                                     className="border-red-200 text-red-600 hover:bg-red-50"
                                                                     onClick={() => handleRescheduleResponse(apt.id, 'reject')}
                                                                 >
-                                                                    <XCircle className="h-4 w-4 mr-1" />
+                                                                    {processingState?.id === apt.id && processingState.action === 'reject' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <XCircle className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                     Reject
                                                                 </Button>
                                                                 <Button
                                                                     variant="outline"
                                                                     size="sm"
+                                                                    disabled={!!processingState}
                                                                     className="border-red-200 text-red-600 hover:bg-red-50"
                                                                     onClick={() => handleCancel(apt.id)}
                                                                 >
-                                                                    <X className="h-4 w-4 mr-1" />
-                                                                    Cancel
+                                                                    {processingState?.id === apt.id && processingState.action === 'cancel' ? (
+                                                                        <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                                                                    ) : (
+                                                                        <X className="h-4 w-4 mr-1" />
+                                                                    )}
                                                                 </Button>
                                                             </>
                                                         )}

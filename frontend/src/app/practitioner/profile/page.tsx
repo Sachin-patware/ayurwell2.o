@@ -686,6 +686,7 @@ function EmailChangeModal({ currentEmail, onClose, onSuccess }: { currentEmail: 
   const [step, setStep] = useState<'request' | 'verify'>('request');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isResending, setIsResending] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(0);
 
   // Countdown timer
@@ -741,6 +742,7 @@ function EmailChangeModal({ currentEmail, onClose, onSuccess }: { currentEmail: 
 
   const handleResendOTP = async () => {
     setError('');
+    setIsResending(true);
     try {
       await api.post('/auth/resend-otp', {
         email: newEmail,
@@ -750,6 +752,8 @@ function EmailChangeModal({ currentEmail, onClose, onSuccess }: { currentEmail: 
       toast.info('Verification code resent');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Failed to resend OTP');
+    } finally {
+      setIsResending(false);
     }
   };
 
@@ -836,9 +840,11 @@ function EmailChangeModal({ currentEmail, onClose, onSuccess }: { currentEmail: 
                       ) : (
                         <button
                           onClick={handleResendOTP}
-                          className="text-[#2E7D32] hover:underline font-medium"
+                          disabled={isResending}
+                          className="text-[#2E7D32] hover:underline font-medium flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Resend Code
+                          {isResending && <Loader2 className="h-3 w-3 animate-spin" />}
+                          {isResending ? 'Resending...' : 'Resend Code'}
                         </button>
                       )}
                     </div>
