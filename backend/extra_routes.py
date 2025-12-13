@@ -970,7 +970,6 @@ def get_doctor_patients():
                 'id': str(patient.id),
                 'patientId': patient.patientId,
                 'name': patient.name,
-                'assessment': patient.assessment or {},
                 'lastAppointment': {
                     'date': last_appt_date,
                     'status': last_appt_info.get('lastAppointmentStatus')
