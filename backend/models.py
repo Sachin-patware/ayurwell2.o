@@ -16,6 +16,8 @@ class User(db.Document):
     email = db.StringField(max_length=120, required=True, unique=True)
     password = db.StringField(max_length=120, required=True)
     role = db.StringField(max_length=20, default='patient', choices=['patient', 'doctor', 'admin'])
+    emailVerified = db.BooleanField(default=False)  # Email verification status
+    pendingEmail = db.StringField(max_length=120)  # For email change requests
     createdAt = db.DateTimeField(default=get_ist_now)
     meta_info = db.DictField(default={})  # phone, verified, etc.
 
@@ -144,3 +146,21 @@ class Progress(db.Document):
     mood = db.StringField()  # New: Mood (e.g., "Happy", "Stressed")
     notes = db.StringField()
 
+class OTPVerification(db.Document):
+    """OTP verification for email verification and email change"""
+    email = db.StringField(required=True, max_length=120)
+    otp = db.StringField(required=True, max_length=255)  # Hashed OTP
+    purpose = db.StringField(required=True, choices=['signup', 'email_change'])
+    createdAt = db.DateTimeField(default=get_ist_now)
+    expiresAt = db.DateTimeField(required=True)
+    attempts = db.IntField(default=0)  # Number of verification attempts
+    verified = db.BooleanField(default=False)
+    userId = db.StringField()  # For email_change purpose, store user ID
+    
+    # Indexes for efficient querying and automatic cleanup
+    meta = {
+        'indexes': [
+            {'fields': ['email', 'purpose']},
+            {'fields': ['expiresAt'], 'expireAfterSeconds': 0}  # TTL index for auto-cleanup
+        ]
+    }

@@ -87,7 +87,7 @@ class EmailService:
                 
                 <p>Please log in to your dashboard to confirm or reject this appointment.</p>
                 
-                <a href="http://localhost:3000/practitioner/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/practitioner/appointments" 
                    style="display: inline-block; background: #2563eb; color: white; padding: 12px 24px; 
                           text-decoration: none; border-radius: 6px; margin: 20px 0;">
                     View Appointments
@@ -123,7 +123,7 @@ class EmailService:
                 
                 <p>Please arrive 10 minutes before your scheduled time.</p>
                 
-                <a href="http://localhost:3000/patient/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/patient/appointments" 
                    style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; 
                           text-decoration: none; border-radius: 6px; margin: 20px 0;">
                     View My Appointments
@@ -194,7 +194,7 @@ class EmailService:
                 
                 <p>Please review and confirm the new time.</p>
                 
-                <a href="http://localhost:3000/practitioner/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/practitioner/appointments" 
                    style="display: inline-block; background: #f59e0b; color: white; padding: 12px 24px; 
                           text-decoration: none; border-radius: 6px; margin: 20px 0;">
                     Review Request
@@ -233,12 +233,12 @@ class EmailService:
                 
                 <p><strong>Please accept or reject this change.</strong></p>
                 
-                <a href="http://localhost:3000/patient/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/patient/appointments" 
                    style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; 
                           text-decoration: none; border-radius: 6px; margin: 10px 10px 10px 0;">
                     Accept
                 </a>
-                <a href="http://localhost:3000/patient/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/patient/appointments" 
                    style="display: inline-block; background: #ef4444; color: white; padding: 12px 24px; 
                           text-decoration: none; border-radius: 6px; margin: 10px 0;">
                     Reject
@@ -331,7 +331,7 @@ class EmailService:
                 
                 <p>You can view your appointment history and prescriptions in your dashboard.</p>
                 
-                <a href="http://localhost:3000/patient/appointments" 
+                <a href="https://ayurwell2-o.vercel.app/patient/appointments" 
                    style="display: inline-block; background: #2563eb; color: white; padding: 12px 24px; 
                    text-decoration: none; border-radius: 6px; margin: 20px 0;">
                     View Dashboard
@@ -376,6 +376,78 @@ class EmailService:
         """
         
         return self.send_email(patient_email, subject, html_body)
+
+    # ==================== OTP VERIFICATION EMAIL TEMPLATES ====================
+    
+    def send_otp_email(self, to_email, otp_code, purpose):
+        """Send OTP verification email"""
+        if purpose == 'signup':
+            subject = "Verify Your Email - AyurWell"
+            action_text = "Complete your registration"
+        else:  # email_change
+            subject = "Verify Your New Email - AyurWell"
+            action_text = "Confirm your email change"
+        
+        html_body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #2E7D32;">Email Verification</h2>
+                <p>Hello,</p>
+                <p>Thank you for using AyurWell. To {action_text}, please use the following verification code:</p>
+                
+                <div style="background: #E9F7EF; padding: 20px; border-radius: 8px; margin: 30px 0; text-align: center;">
+                    <p style="margin: 0; font-size: 14px; color: #666;">Your verification code is:</p>
+                    <h1 style="color: #2E7D32; font-size: 42px; letter-spacing: 8px; margin: 15px 0; font-family: 'Courier New', monospace;">
+                        {otp_code}
+                    </h1>
+                    <p style="margin: 0; font-size: 12px; color: #999;">This code will expire in 5 minutes</p>
+                </div>
+                
+                <p style="color: #666; font-size: 14px;">
+                    If you didn't request this verification code, please ignore this email.
+                </p>
+                
+                <p style="color: #6b7280; font-size: 14px; margin-top: 30px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+                    This is an automated message from AyurWell. Please do not reply to this email.
+                </p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        return self.send_email(to_email, subject, html_body)
+    
+    def send_email_changed_notification(self, to_email, name):
+        """Notify old email address that email has been changed"""
+        subject = "Your AyurWell Email Address Has Been Changed"
+        
+        html_body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #f59e0b;">Email Address Changed</h2>
+                <p>Dear {name},</p>
+                <p>This is to inform you that the email address associated with your AyurWell account has been successfully changed.</p>
+                
+                <div style="background: #fffbeb; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                    <p><strong>Previous Email:</strong> {to_email}</p>
+                    <p><strong>Status:</strong> <span style="color: #f59e0b;">Email Changed</span></p>
+                </div>
+                
+                <p style="color: #ef4444; font-weight: bold;">
+                    If you did not make this change, please contact our support team immediately.
+                </p>
+                
+                <p style="color: #6b7280; font-size: 14px; margin-top: 30px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+                    This is an automated security notification from AyurWell.
+                </p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        return self.send_email(to_email, subject, html_body)
 
 
 # Global email service instance

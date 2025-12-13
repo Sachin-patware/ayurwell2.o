@@ -18,6 +18,11 @@ import {
     Mail,
     Phone
 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import OTPInput from '@/components/auth/OTPInput';
+import { AlertTriangle, CheckCircle } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { AnimatePresence, motion } from 'framer-motion';
 import api from '@/services/api';
 import { toast } from 'react-toastify';
 import { RenderField } from '@/components/Renderfield';
@@ -66,6 +71,18 @@ export default function PatientProfilePage() {
     const [isEditing, setIsEditing] = useState(false);
     const [activeTab, setActiveTab] = useState('personal');
     const [profile, setProfile] = useState<ProfileType>(defaultProfile);
+
+    // Email Change State
+    const [showEmailChangeModal, setShowEmailChangeModal] = useState(false);
+
+    const handleEmailUpdateSuccess = (newEmail: string) => {
+        setProfile(prev => ({
+            ...prev,
+            personalInfo: { ...prev.personalInfo, email: newEmail }
+        }));
+        setShowEmailChangeModal(false);
+        refreshUser({ email: newEmail }); // Refresh global auth state
+    };
 
     useEffect(() => {
         fetchProfile();
@@ -159,9 +176,9 @@ export default function PatientProfilePage() {
                                     {profile.personalInfo.email || 'No email provided'}
                                 </p>
                                 <p className="text-green-100 text-lg flex items-center gap-2">
-    <span className="font-semibold">Patient ID:</span>
-    {profile.patientId || 'No Patient ID'}
-</p>
+                                    <span className="font-semibold">Patient ID:</span>
+                                    {profile.patientId || 'No Patient ID'}
+                                </p>
                                 <div className="flex items-center gap-4 mt-2 text-sm text-green-50">
                                     <span className="flex items-center gap-1">
                                         <MapPin className="w-3 h-3" />
@@ -232,12 +249,24 @@ export default function PatientProfilePage() {
                                         isEditing={isEditing}
                                     />
 
-                                    {/* Email is Read-Only */}
+                                    {/* Email Field with Edit Button */}
                                     <div className="space-y-1">
                                         <Label className="text-xs text-gray-500 uppercase tracking-wide">Email</Label>
-                                        <div className="flex items-center gap-2 text-gray-900 font-medium p-2 bg-gray-100 rounded-md border border-transparent opacity-80 cursor-not-allowed">
-                                            <Mail className="w-4 h-4 text-gray-400" />
-                                            <span>{profile.personalInfo.email}</span>
+                                        <div className="flex items-center gap-2">
+                                            <div className="flex-1 flex items-center gap-2 text-gray-900 font-medium p-2 bg-gray-100 rounded-md border border-transparent">
+                                                <Mail className="w-4 h-4 text-gray-400" />
+                                                <span>{profile.personalInfo.email}</span>
+                                            </div>
+                                            {isEditing && (
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline"
+                                                    className="border-[#2E7D32] text-[#2E7D32] hover:bg-[#E9F7EF]"
+                                                    onClick={() => setShowEmailChangeModal(true)}
+                                                >
+                                                    Change
+                                                </Button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -401,7 +430,203 @@ export default function PatientProfilePage() {
                         </Card>
                     </TabsContent>
                 </Tabs>
+
+                {showEmailChangeModal && (
+                    <EmailChangeModal
+                        currentEmail={profile.personalInfo.email}
+                        onClose={() => setShowEmailChangeModal(false)}
+                        onSuccess={handleEmailUpdateSuccess}
+                    />
+                )}
             </div>
         </PatientLayout>
+    );
+}
+
+function EmailChangeModal({ currentEmail, onClose, onSuccess }: { currentEmail: string, onClose: () => void, onSuccess: (email: string) => void }) {
+    const [newEmail, setNewEmail] = useState('');
+    const [step, setStep] = useState<'request' | 'verify'>('request');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [resendCountdown, setResendCountdown] = useState(0);
+
+    // Countdown timer
+    useEffect(() => {
+        if (resendCountdown > 0) {
+            const timer = setTimeout(() => setResendCountdown(resendCountdown - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [resendCountdown]);
+
+    const handleRequestChange = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError('');
+        setIsLoading(true);
+
+        if (!newEmail) {
+            setError('Please enter a new email address');
+            setIsLoading(false);
+            return;
+        }
+
+        if (newEmail === currentEmail) {
+            setError('New email cannot be the same as current email');
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            await api.post('/auth/request-email-change', { newEmail });
+            setStep('verify');
+            setResendCountdown(60);
+        } catch (err: any) {
+            setError(err.response?.data?.error || 'Failed to request email change');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleVerify = async (otp: string) => {
+        setError('');
+        setIsLoading(true);
+
+        try {
+            const response = await api.post('/auth/verify-email-change', { otp });
+            toast.success('Email changed successfully!');
+            onSuccess(response.data.newEmail);
+        } catch (err: any) {
+            setError(err.response?.data?.error || 'Failed to verify email change');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleResendOTP = async () => {
+        setError('');
+        try {
+            await api.post('/auth/resend-otp', {
+                email: newEmail,
+                purpose: 'email_change'
+            });
+            setResendCountdown(60);
+            toast.info('Verification code resent');
+        } catch (err: any) {
+            setError(err.response?.data?.error || 'Failed to resend OTP');
+        }
+    };
+
+    return (
+        <Dialog open={true} onOpenChange={onClose}>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle>Change Email Address</DialogTitle>
+                    <DialogDescription>
+                        Update your registered email address. Verification required.
+                    </DialogDescription>
+                </DialogHeader>
+
+                <div className="py-4">
+                    <AnimatePresence mode="wait">
+                        {step === 'request' ? (
+                            <motion.form
+                                key="request"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                onSubmit={handleRequestChange}
+                                className="space-y-4"
+                            >
+                                <div className="space-y-2">
+                                    <Label>Current Email</Label>
+                                    <Input value={currentEmail} disabled className="bg-gray-50" />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>New Email Address</Label>
+                                    <Input
+                                        type="email"
+                                        placeholder="Enter new email address"
+                                        value={newEmail}
+                                        onChange={(e) => setNewEmail(e.target.value)}
+                                        autoFocus
+                                    />
+                                </div>
+
+                                {error && (
+                                    <div className="text-sm text-red-600 flex items-center gap-2">
+                                        <AlertTriangle className="h-4 w-4" />
+                                        {error}
+                                    </div>
+                                )}
+
+                                <div className="flex justify-end gap-2 pt-2">
+                                    <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        disabled={isLoading || !newEmail}
+                                        className="bg-[#2E7D32] hover:bg-[#1B5E20] text-white"
+                                    >
+                                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Send OTP'}
+                                    </Button>
+                                </div>
+                            </motion.form>
+                        ) : (
+                            <motion.div
+                                key="verify"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="space-y-6"
+                            >
+                                <div className="bg-[#E9F7EF] p-4 rounded-lg border border-[#2E7D32]/20">
+                                    <h3 className="text-sm font-semibold text-[#1B5E20] mb-2">Verify New Email</h3>
+                                    <p className="text-sm text-gray-600 mb-4">
+                                        Code sent to <span className="font-bold">{newEmail}</span>
+                                    </p>
+
+                                    <OTPInput
+                                        length={6}
+                                        onComplete={handleVerify}
+                                        disabled={isLoading}
+                                    />
+
+                                    <div className="flex items-center justify-between mt-4">
+                                        <div className="text-xs">
+                                            {resendCountdown > 0 ? (
+                                                <span className="text-gray-400">Resend in {resendCountdown}s</span>
+                                            ) : (
+                                                <button
+                                                    onClick={handleResendOTP}
+                                                    className="text-[#2E7D32] hover:underline font-medium"
+                                                >
+                                                    Resend Code
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {error && (
+                                    <div className="text-sm text-red-600 flex items-center gap-2">
+                                        <AlertTriangle className="h-4 w-4" />
+                                        {error}
+                                    </div>
+                                )}
+
+                                <div className="flex justify-end gap-2 text-sm">
+                                    <Button variant="ghost" onClick={() => setStep('request')} disabled={isLoading}>
+                                        Back
+                                    </Button>
+                                    <Button variant="ghost" onClick={onClose} disabled={isLoading}>
+                                        Cancel
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </DialogContent>
+        </Dialog>
     );
 }

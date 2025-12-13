@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,7 +25,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function LoginPage() {
     const router = useRouter();
     const { login } = useAuth();
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<ReactNode>(null);
     const [showPassword, setShowPassword] = useState(false);
 
     const {
@@ -56,7 +57,20 @@ export default function LoginPage() {
             }
         } catch (err: any) {
             console.error('Login error:', err);
-            setError(err.response?.data?.message || 'Failed to login. Please check your credentials.');
+
+            // Check if email verification is required
+            if (err.response?.data?.requiresVerification) {
+                setError(
+                    <span>
+                        {err.response.data.error}{' '}
+                        <Link href="/register" className="underline font-bold">
+                            Verify now
+                        </Link>
+                    </span>
+                );
+            } else {
+                setError(err.response?.data?.error || err.response?.data?.message || 'Failed to login. Please check your credentials.');
+            }
         }
     };
 
