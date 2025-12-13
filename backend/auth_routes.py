@@ -21,9 +21,26 @@ def register():
     if not email or not password or not name:
         return jsonify({"error": "Name, email and password required"}), 400
         
-    if User.objects(email=email).first():
-        return jsonify({"error": "User already exists"}), 400
-    
+    existing_user = User.objects(email=email).first()
+    if existing_user:
+        if existing_user.emailVerified:
+            return jsonify({"error": "User already exists"}), 400
+        else:
+            # User exists but not verified. Resend OTP.
+            otp_result = otp_service.send_otp(email, 'signup')
+            if not otp_result['success']:
+                return jsonify({
+                    "message": "Failed to send verification email.",
+                    "requiresVerification": True
+                }), 500
+            
+            return jsonify({
+                "message": "User already registered but not verified. Verification code sent.",
+                "email": email,
+                "requiresVerification": True,
+                "expiresIn": otp_result.get('expiresIn', 5)
+            }), 200
+
     # Generate UID based on role
     if role == "doctor":
         uid = f"DR-{uuid.uuid4().hex[:12].upper()}"

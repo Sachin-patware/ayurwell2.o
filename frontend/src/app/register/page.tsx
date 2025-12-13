@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -34,9 +34,10 @@ export default function RegisterPage() {
     const [resendCountdown, setResendCountdown] = useState(0);
     const [verificationSuccess, setVerificationSuccess] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { login } = useAuth();
 
-    const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<RegisterFormValues>({
+    const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<RegisterFormValues>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
             role: 'patient',
@@ -44,6 +45,18 @@ export default function RegisterPage() {
     });
 
     const selectedRole = watch('role');
+
+    // Check for verify mode in URL
+    useEffect(() => {
+        const mode = searchParams.get('mode');
+        const emailParam = searchParams.get('email');
+        if (mode === 'verify' && emailParam) {
+            setRegisteredEmail(emailParam);
+            setStep('verify');
+            setValue('email', emailParam);
+            setResendCountdown(60);
+        }
+    }, [searchParams, setValue]);
 
     // Countdown timer for resend OTP
     useEffect(() => {

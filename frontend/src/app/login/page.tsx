@@ -60,14 +60,8 @@ export default function LoginPage() {
 
             // Check if email verification is required
             if (err.response?.data?.requiresVerification) {
-                setError(
-                    <span>
-                        {err.response.data.error}{' '}
-                        <Link href="/register" className="underline font-bold">
-                            Verify now
-                        </Link>
-                    </span>
-                );
+                router.push(`/register?mode=verify&email=${encodeURIComponent(data.email)}`);
+                return;
             } else {
                 setError(err.response?.data?.error || err.response?.data?.message || 'Failed to login. Please check your credentials.');
             }
