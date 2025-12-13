@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,7 +25,7 @@ const registerSchema = z.object({
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
-export default function RegisterPage() {
+function RegisterContent() {
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [step, setStep] = useState<'register' | 'verify'>('register');
@@ -343,5 +343,17 @@ export default function RegisterPage() {
                 </Card>
             </motion.div>
         </div>
+    );
+}
+
+export default function RegisterPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <Loader2 className="h-8 w-8 animate-spin text-[#2E7D32]" />
+            </div>
+        }>
+            <RegisterContent />
+        </Suspense>
     );
 }
