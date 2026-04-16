@@ -105,7 +105,7 @@ class Appointment(db.Document):
             {'fields': ['doctorId', 'startTimestamp']},
             {'fields': ['patientId', 'startTimestamp']},
             {'fields': ['status', 'startTimestamp']},
-            {'fields': ['doctorId', 'status', 'startTimestamp']}
+            {'fields': ['doctorId', 'status','startTimestamp']}
         ]
     }
 
@@ -150,7 +150,7 @@ class OTPVerification(db.Document):
     """OTP verification for email verification and email change"""
     email = db.StringField(required=True, max_length=120)
     otp = db.StringField(required=True, max_length=255)  # Hashed OTP
-    purpose = db.StringField(required=True, choices=['signup', 'email_change'])
+    purpose = db.StringField(required=True, choices=['signup', 'email_change','forgot_password'])
     createdAt = db.DateTimeField(default=get_ist_now)
     expiresAt = db.DateTimeField(required=True)
     attempts = db.IntField(default=0)  # Number of verification attempts

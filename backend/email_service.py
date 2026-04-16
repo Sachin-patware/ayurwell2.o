@@ -376,6 +376,7 @@ class EmailService:
         """
         
         return self.send_email(patient_email, subject, html_body)
+    
 
     # ==================== OTP VERIFICATION EMAIL TEMPLATES ====================
     
@@ -384,6 +385,9 @@ class EmailService:
         if purpose == 'signup':
             subject = "Verify Your Email - AyurWell"
             action_text = "Complete your registration"
+        elif purpose == 'forgot_password':
+            subject = "Password Reset Code - AyurWell"
+            action_text = "Reset your password"
         else:  # email_change
             subject = "Verify Your New Email - AyurWell"
             action_text = "Confirm your email change"
@@ -433,6 +437,35 @@ class EmailService:
                 <div style="background: #fffbeb; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
                     <p><strong>Previous Email:</strong> {to_email}</p>
                     <p><strong>Status:</strong> <span style="color: #f59e0b;">Email Changed</span></p>
+                </div>
+                
+                <p style="color: #ef4444; font-weight: bold;">
+                    If you did not make this change, please contact our support team immediately.
+                </p>
+                
+                <p style="color: #6b7280; font-size: 14px; margin-top: 30px; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+                    This is an automated security notification from AyurWell.
+                </p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        return self.send_email(to_email, subject, html_body)
+    def send_password_changed_notification(self, to_email, name):   
+        """Notify user that their password has been changed"""
+        subject = "Your AyurWell Password Has Been Changed"
+        
+        html_body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #f59e0b;">Password Changed</h2>
+                <p>Dear {name},</p>
+                <p>This is to inform you that the password for your AyurWell account has been successfully changed.</p>
+                
+                <div style="background: #fffbeb; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                    <p><strong>Status:</strong> <span style="color: #f59e0b;">Password Changed</span></p>
                 </div>
                 
                 <p style="color: #ef4444; font-weight: bold;">

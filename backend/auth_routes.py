@@ -7,6 +7,7 @@ from email_service import email_service
 import uuid
 import os
 
+
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/register', methods=['POST'])
@@ -96,6 +97,117 @@ def register():
         "expiresIn": otp_result.get('expiresIn', 5)
     }), 201
 
+
+@auth_bp.route('/forgot-password', methods=['POST'])
+def forget_password():
+    """Request password reset with OTP"""
+    data = request.json
+    email = data.get('email')
+    purpose='forgot_password'
+    
+    if not email:
+        return jsonify({"error": "Email required"}), 400
+    
+    user = User.objects(email=email).first()
+    
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+   
+    # Send OTP for password reset
+    result = otp_service.send_otp(email, purpose , user_id=user.uid, )
+    
+    if not result['success']:
+        return jsonify({"error": result['message']}), 500
+    
+    return jsonify({
+        "message": f"Password reset code sent to {email}",
+        "expiresIn": result.get('expiresIn', 5)
+    }), 200
+
+@auth_bp.route('/verify-forget-password', methods=['POST'])
+def verify_forget_password():
+    """Verify OTP for password reset (Step 1)"""
+    data = request.json
+    email = data.get('email')
+    otp = data.get('otp')
+    purpose='forgot_password'
+    
+    if not email or not otp:
+        return jsonify({"error": "Email and OTP required"}), 400
+    
+    # Verify OTP
+    result = otp_service.verify_otp(email, otp, purpose)
+
+    if not result['success']:
+        return jsonify({"error": result['message']}), 400
+
+    user = User.objects(email=email).first()
+    
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    
+    # Generate temporary reset token
+    reset_token = create_access_token(
+        identity=user.uid,
+        additional_claims={"purpose": "password_reset"},
+        expires_delta=timedelta(minutes=15)
+    )
+    
+    return jsonify({
+        "message": "OTP verified successfully",
+        "email": email,
+        "resetToken": reset_token,
+        "success": True
+    }), 200
+
+@auth_bp.route('/reset-password', methods=['POST'])
+def reset_password():
+    """Reset password after OTP verification (Step 2)"""
+    data = request.json
+    reset_token = data.get('resetToken')
+    new_password = data.get('newPassword')
+    
+    if not reset_token or not new_password:
+        return jsonify({"error": "Reset token and new password required"}), 400
+    
+    if len(new_password) < 6:
+        return jsonify({"error": "Password must be at least 6 characters long"}), 400
+    
+    try:
+        # Verify reset token
+        from flask_jwt_extended import decode_token
+        decoded_token = decode_token(reset_token)
+        
+        if decoded_token.get('purpose') != 'password_reset':
+            return jsonify({"error": "Invalid reset token"}), 400
+        
+        user_id = decoded_token.get('sub')
+        user = User.objects(uid=user_id).first()
+        
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+        
+        # Update password
+        user.set_password(new_password)
+        user.save()
+
+        # Security notification email (do not fail password reset if email fails)
+        try:
+            email_service.send_password_changed_notification(user.email, user.name)
+        except Exception as notify_error:
+            print(f"Password changed email failed for {user.email}: {notify_error}")
+        
+        return jsonify({
+            "message": "Password reset successfully",
+            "email": user.email,
+            "success": True
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": "Invalid or expired reset token"}), 400
+    
+
+
 @auth_bp.route('/verify-email', methods=['POST'])
 def verify_email():
     """Verify email with OTP for signup"""
@@ -123,7 +235,7 @@ def verify_email():
 
     # Auto-login: Generate token (7 days to match frontend cookie)
     access_token = create_access_token(identity=user.uid, expires_delta=timedelta(days=7))
-    
+
     return jsonify({
         "message": "Email verified successfully!",
         "email": email,
